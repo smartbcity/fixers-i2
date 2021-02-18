@@ -1,0 +1,29 @@
+project.ext.pomConfig = {
+    licenses {
+        license {
+            name "The Apache Software License, Version 2.0"
+            url "https://www.apache.org/licenses/LICENSE-2.0.txt"
+            distribution "repo"
+        }
+    }
+    developers {
+        developer {
+            id "SmartB"
+            name "SmartB Team"
+            organization "JetBrains"
+            organizationUrl "https://www.smartb.city"
+        }
+    }
+
+    scm {
+        url "scm:git:https://gitlab.smartb.city/fixers/i2.git"
+    }
+}
+
+project.ext.configureMavenCentralMetadata = { pom ->
+    def root = asNode()
+    root.appendNode('name', project.name)
+    root.appendNode('description', 'I2 Authentication')
+    root.appendNode('url', 'https://github.com/smartbcity/i2')
+    root.children().last() + pomConfig
+}
