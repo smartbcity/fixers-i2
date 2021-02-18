@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  city.smartb.i2.spring.boot.auth.config.ConfigurationLoader,\
+  city.smartb.i2.spring.boot.auth.config.WebSecurityConfig
