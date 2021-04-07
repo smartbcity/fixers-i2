@@ -5,7 +5,7 @@ plugins {
     kotlin("jvm") version PluginVersions.kotlin apply false
     kotlin("plugin.spring") version PluginVersions.kotlin apply false
     id("io.spring.dependency-management") version PluginVersions.springPom apply false
-    id("org.springframework.boot") version PluginVersions.spring apply false
+    id("org.springframework.boot") version PluginVersions.springBoot apply false
     id("com.google.cloud.tools.jib") version PluginVersions.jib apply false
 }
 
@@ -15,6 +15,7 @@ allprojects {
     repositories {
         jcenter()
         mavenCentral()
+        maven { url = uri("https://oss.sonatype.org/content/repositories/snapshots") }
     }
 }
 
