@@ -1,8 +1,8 @@
 package i2.s2.user.create
 
 import f2.function.spring.adapter.f2Function
-import i2.keycloak.realm.client.config.ServiceRealmClient
-import i2.keycloak.realm.client.config.ServiceRealmClientBuilder
+import i2.keycloak.realm.client.config.AuthRealmClient
+import i2.keycloak.realm.client.config.AuthRealmClientBuilder
 import i2.keycloak.realm.domain.features.command.UserCreateCommand
 import i2.keycloak.realm.domain.features.command.UserCreateFunction
 import i2.keycloak.realm.domain.features.command.UserCreatedResult
@@ -16,20 +16,20 @@ class UserCreateFunctionImpl {
 
 	@Bean
 	fun userCreateFunction(): UserCreateFunction = f2Function { cmd ->
-		val serviceClient = ServiceRealmClientBuilder().build(cmd.auth)
+		val serviceClient = AuthRealmClientBuilder().build(cmd.auth)
 		createUser(serviceClient, cmd)
 
 		UserCreatedResult(cmd.id)
 	}
 
-	fun createUser(client: ServiceRealmClient, user: UserCreateCommand): String {
-		val userRepresentation = initUserRepresentation(user)
+	fun createUser(client: AuthRealmClient, cmd: UserCreateCommand): String {
+		val userRepresentation = initUserRepresentation(cmd)
 		val userId = createUser(client, userRepresentation, ::onUserCreationFailure)
-		onboarding(client, user.id)
+		onboarding(client, cmd)
 		return userId
 	}
 
-	fun createUser(client: ServiceRealmClient, user: UserRepresentation, onFailure: (response: Response) -> Unit = {}): String {
+	fun createUser(client: AuthRealmClient, user: UserRepresentation, onFailure: (response: Response) -> Unit = {}): String {
 		val response = client.realm.users().create(user)
 		if (response.isFailure()) {
 			onFailure(response)
@@ -52,13 +52,12 @@ class UserCreateFunctionImpl {
 		return userRep
 	}
 
-	fun onboarding(client: ServiceRealmClient, userId: String) {
-		executeEmailActions(client, userId, listOf("UPDATE_PASSWORD", "ONBOARDING"))
+	fun onboarding(client: AuthRealmClient, cmd: UserCreateCommand) {
+		executeEmailActions(client, cmd, listOf("UPDATE_PASSWORD", "ONBOARDING"))
 	}
 
-	fun executeEmailActions(client: ServiceRealmClient, userId: String, actions: List<String>)  {
-		val auth = client.auth
-		client.getUserResource(userId).executeActionsEmail(auth.clientId, auth.redirectUrl, actions)
+	fun executeEmailActions(client: AuthRealmClient, cmd: UserCreateCommand, actions: List<String>)  {
+		client.getUserResource(cmd.id).executeActionsEmail(cmd.auth.clientId, cmd.auth.redirectUrl, actions)
 	}
 
 	private fun Response.isFailure(): Boolean {

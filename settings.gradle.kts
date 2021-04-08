@@ -15,10 +15,13 @@ include(
 )
 
 include(
-    "i2-keycloak:keycloak-master:keycloak-master-client",
-    "i2-keycloak:keycloak-master:keycloak-master-domain",
-    "i2-keycloak:keycloak-realm:keycloak-realm-client",
-    "i2-keycloak:keycloak-realm:keycloak-realm-domain"
+    "i2-keycloak:keycloak-auth:keycloak-auth-client",
+    "i2-keycloak:keycloak-auth:keycloak-auth-domain"
+)
+
+include(
+    "i2-s2:client:client-domain",
+    "i2-s2:client:client-f2-create"
 )
 
 include(
@@ -27,7 +30,19 @@ include(
 )
 
 include(
+    "i2-s2:role:role-domain",
+    "i2-s2:role:role-f2-create"
+)
+
+include(
     "i2-s2:user:user-domain",
     "i2-s2:user:user-f2-create",
-    "i2-s2:user:user-f2-reset-password"
+    "i2-s2:user:user-f2-password-reset",
+    "i2-s2:user:user-f2-roles-grant",
+    "i2-s2:user:user-f2-roles-revoke"
+)
+
+include(
+    "i2-test:test-assertion",
+    "i2-test:test-bdd"
 )

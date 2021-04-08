@@ -4,7 +4,7 @@ import f2.dsl.cqrs.Command
 import f2.dsl.cqrs.Event
 import f2.dsl.function.F2Function
 import f2.dsl.function.F2FunctionRemote
-import i2.keycloak.master.domain.MasterRealmAuth
+import i2.keycloak.master.domain.AuthRealm
 import kotlin.js.JsExport
 import kotlin.js.JsName
 
@@ -15,10 +15,10 @@ typealias RealmCreateRemoteFunction = F2FunctionRemote<RealmCreateCommand, Realm
 @JsName("RealmCreateCommand")
 class RealmCreateCommand(
 	val id: String,
-	val theme: String,
-	val locale: String,
-	val smtpServer: Map<String, String>,
-	val masterRealmAuth: MasterRealmAuth
+	val theme: String?,
+	val locale: String?,
+	val smtpServer: Map<String, String>?,
+	val masterRealmAuth: AuthRealm
 ) : Command
 
 @JsExport

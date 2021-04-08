@@ -1,6 +1,6 @@
 object PluginVersions {
     const val springBoot = "2.4.1"
-    const val kotlin = "1.4.30"
+    const val kotlin = "1.4.31"
     const val jib = "2.7.0"
     const val springPom = "1.0.10.RELEASE"
 }

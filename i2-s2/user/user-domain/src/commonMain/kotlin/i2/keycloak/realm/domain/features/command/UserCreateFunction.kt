@@ -4,7 +4,7 @@ import f2.dsl.cqrs.Command
 import f2.dsl.cqrs.Event
 import f2.dsl.function.F2Function
 import f2.dsl.function.F2FunctionRemote
-import i2.keycloak.realm.domain.ServiceRealmAuth
+import i2.keycloak.master.domain.AuthRealm
 import i2.keycloak.realm.domain.UserId
 import kotlin.js.JsExport
 import kotlin.js.JsName
@@ -22,7 +22,7 @@ class UserCreateCommand(
 	val email: String,
 	val isEnable: String,
 	val metadata: Map<String, String>,
-	val auth: ServiceRealmAuth,
+	val auth: AuthRealm,
 ) : Command
 
 @JsExport
