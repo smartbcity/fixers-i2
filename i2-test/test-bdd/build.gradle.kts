@@ -5,15 +5,19 @@ plugins {
 }
 
 dependencies {
-    api(project(":i2-test:test-assertion"))
+
+    api(project(":i2-s2:client:client-f2-create"))
+
+    api(project(":i2-s2:realm:realm-f2-create"))
+
+    api(project(":i2-s2:role:role-f2-create"))
+
+    api(project(":i2-s2:user:user-f2-create"))
+    api(project(":i2-s2:user:user-f2-password-reset"))
+    api(project(":i2-s2:user:user-f2-roles-grant"))
+    api(project(":i2-s2:user:user-f2-roles-revoke"))
+
     api(project(":i2-keycloak:keycloak-auth:keycloak-auth-client"))
-
-    api("org.keycloak:keycloak-admin-client:${Versions.keycloak}")
-
-    implementation("org.springframework.boot:spring-boot-starter-test:${PluginVersions.springBoot}") {
-        exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
-    }
+    api("org.testcontainers:junit-jupiter:${Versions.testcontainers}")
 
 }
-
-apply(from = rootProject.file("gradle/publishing.gradle"))

@@ -1,14 +1,13 @@
 version: "3.3"
 
 services:
-  keycloak:
+  keycloak-it:
     image: smartbcity/i2-keycloak:experimental
-    container_name: keycloak
     environment:
       DB_VENDOR: POSTGRES
-      DB_ADDR: keycloak-postgres
+      DB_ADDR: keycloak-postgres-it
       DB_SCHEMA: public
-      DB_DATABASE: keycloack
+      DB_DATABASE: keycloack-it
       DB_USER: admin
       DB_PASSWORD: admin
       KEYCLOAK_USER: admin
@@ -19,12 +18,11 @@ services:
     ports:
       - 8080:8080
     depends_on:
-      - keycloak_pg
+      - keycloak-postgres-it
 
-  keycloak-postgres:
+  keycloak-postgres-it:
     image: postgres
-    container_name: keycloak-postgres
     environment:
-      POSTGRES_DB: keycloack
+      POSTGRES_DB: keycloack-it
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin

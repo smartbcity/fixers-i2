@@ -17,20 +17,24 @@ class UserCreateFunctionImpl {
 	@Bean
 	fun userCreateFunction(): UserCreateFunction = f2Function { cmd ->
 		val serviceClient = AuthRealmClientBuilder().build(cmd.auth)
-		createUser(serviceClient, cmd)
-
-		UserCreatedResult(cmd.id)
+		val userId = createUser(serviceClient, cmd)
+		UserCreatedResult(userId)
 	}
 
-	fun createUser(client: AuthRealmClient, cmd: UserCreateCommand): String {
+	private fun createUser(client: AuthRealmClient, cmd: UserCreateCommand): String {
 		val userRepresentation = initUserRepresentation(cmd)
-		val userId = createUser(client, userRepresentation, ::onUserCreationFailure)
-		onboarding(client, cmd)
-		return userId
+		return createUser(client, cmd.realmId, userRepresentation, ::onUserCreationFailure).also {
+			// onboarding(client, cmd)
+		}
 	}
 
-	fun createUser(client: AuthRealmClient, user: UserRepresentation, onFailure: (response: Response) -> Unit = {}): String {
-		val response = client.realm.users().create(user)
+	private fun createUser(
+		client: AuthRealmClient,
+		realmId: String,
+		user: UserRepresentation,
+		onFailure: (response: Response) -> Unit = {},
+	): String {
+		val response = client.keycloak.realm(realmId).users().create(user)
 		if (response.isFailure()) {
 			onFailure(response)
 		}
@@ -39,7 +43,6 @@ class UserCreateFunctionImpl {
 
 	private fun initUserRepresentation(user: UserCreateCommand): UserRepresentation {
 		val userRep = UserRepresentation()
-		userRep.id = user.id
 		userRep.username = user.username
 		userRep.email = user.email
 		userRep.firstName = user.firstname
@@ -52,13 +55,13 @@ class UserCreateFunctionImpl {
 		return userRep
 	}
 
-	fun onboarding(client: AuthRealmClient, cmd: UserCreateCommand) {
-		executeEmailActions(client, cmd, listOf("UPDATE_PASSWORD", "ONBOARDING"))
-	}
+//	private fun onboarding(client: AuthRealmClient, cmd: UserCreateCommand) {
+//		executeEmailActions(client, cmd, listOf("UPDATE_PASSWORD", "ONBOARDING"))
+//	}
 
-	fun executeEmailActions(client: AuthRealmClient, cmd: UserCreateCommand, actions: List<String>)  {
-		client.getUserResource(cmd.id).executeActionsEmail(cmd.auth.clientId, cmd.auth.redirectUrl, actions)
-	}
+//	private fun executeEmailActions(client: AuthRealmClient, cmd: UserCreateCommand, actions: List<String>) {
+//		client.getUserResource(cmd.id).executeActionsEmail(cmd.auth.clientId, cmd.auth.redirectUrl, actions)
+//	}
 
 	private fun Response.isFailure(): Boolean {
 		return this.status < 200 || this.status > 299

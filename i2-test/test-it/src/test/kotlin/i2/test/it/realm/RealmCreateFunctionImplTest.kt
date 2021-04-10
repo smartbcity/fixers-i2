@@ -1,0 +1,39 @@
+package i2.test.it.realm
+
+import f2.function.spring.invokeSingle
+import i2.s2.realm.domain.features.command.RealmCreateCommand
+import i2.s2.realm.f2.RealmCreateFunctionImpl
+import i2.test.bdd.testcontainers.I2KeycloakTest
+import i2.test.bdd.assertion.AssertionKC
+import i2.test.bdd.assertion.realm
+import i2.test.bdd.given.GivenKC
+import i2.test.bdd.given.auth
+import kotlinx.coroutines.runBlocking
+import org.junit.jupiter.api.Test
+import java.util.*
+
+class RealmCreateFunctionImplTest : I2KeycloakTest() {
+
+	val masterClient = GivenKC().auth().withMasterRealmClient()
+
+	@Test
+	fun `should failed realm`(): Unit = runBlocking {
+		val id = "test-${UUID.randomUUID()}"
+		AssertionKC.realm(masterClient.keycloak).notExist(id)
+	}
+
+	@Test
+	fun `should create a new realm`(): Unit = runBlocking {
+		val id = "test-${UUID.randomUUID()}"
+		val cmd = RealmCreateCommand(
+			id = id,
+			theme = null,
+			locale = null,
+			smtpServer = null,
+			masterRealmAuth = masterClient.auth
+		)
+
+		val event = RealmCreateFunctionImpl().realmCreateFunction().invokeSingle(cmd)
+		AssertionKC.realm(masterClient.keycloak).exist(id)
+	}
+}

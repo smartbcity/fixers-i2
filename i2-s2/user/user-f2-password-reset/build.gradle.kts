@@ -11,6 +11,7 @@ dependencies {
     api("city.smartb.f2:f2-spring-boot-starter-function:${Versions.f2}")
 
     testImplementation(project(":i2-test:test-bdd"))
+    testImplementation(project(":i2-s2:user:user-f2-create"))
 
 }
 

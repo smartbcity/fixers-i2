@@ -91,6 +91,10 @@ subprojects {
             testImplementation("org.junit.jupiter:junit-jupiter-api:${Versions.junit}")
 
             testImplementation("org.assertj:assertj-core:${Versions.assertj}")
+
+            implementation("org.springframework.boot:spring-boot-starter-test:${PluginVersions.springBoot}") {
+                exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
+            }
         }
     }
 }

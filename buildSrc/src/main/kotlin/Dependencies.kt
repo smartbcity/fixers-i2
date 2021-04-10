@@ -8,6 +8,7 @@ object PluginVersions {
 object Versions {
     const val junit = "5.7.0"
     const val assertj = "3.15.0"
+    const val testcontainers = "1.15.2"
 
     const val keycloak = "11.0.2"
     const val f2 = "0.1.0-SNAPSHOT"

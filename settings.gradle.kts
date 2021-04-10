@@ -43,6 +43,6 @@ include(
 )
 
 include(
-    "i2-test:test-assertion",
-    "i2-test:test-bdd"
+    "i2-test:test-bdd",
+    "i2-test:test-it"
 )

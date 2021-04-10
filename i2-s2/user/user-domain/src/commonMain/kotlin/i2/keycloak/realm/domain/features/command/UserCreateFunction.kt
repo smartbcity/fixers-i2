@@ -5,6 +5,7 @@ import f2.dsl.cqrs.Event
 import f2.dsl.function.F2Function
 import f2.dsl.function.F2FunctionRemote
 import i2.keycloak.master.domain.AuthRealm
+import i2.keycloak.master.domain.RealmId
 import i2.keycloak.realm.domain.UserId
 import kotlin.js.JsExport
 import kotlin.js.JsName
@@ -15,12 +16,12 @@ typealias UserCreateRemoteFunction = F2FunctionRemote<UserCreateCommand, UserCre
 @JsExport
 @JsName("UserCreateCommand")
 class UserCreateCommand(
-	val id: UserId,
+	val realmId: RealmId,
 	val username: String,
 	val firstname: String?,
 	val lastname: String?,
 	val email: String,
-	val isEnable: String,
+	val isEnable: Boolean,
 	val metadata: Map<String, String>,
 	val auth: AuthRealm,
 ) : Command
@@ -28,5 +29,5 @@ class UserCreateCommand(
 @JsExport
 @JsName("UserCreatedResult")
 class UserCreatedResult(
-	val id: String
+	val id: UserId
 ) : Event
