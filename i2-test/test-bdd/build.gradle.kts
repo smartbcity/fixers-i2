@@ -14,6 +14,7 @@ dependencies {
     api(project(":i2-s2:role:role-f2-create"))
 
     api(project(":i2-s2:user:user-f2-create"))
+    api(project(":i2-s2:user:user-f2-disable"))
     api(project(":i2-s2:user:user-f2-password-reset"))
     api(project(":i2-s2:user:user-f2-roles-grant"))
     api(project(":i2-s2:user:user-f2-roles-revoke"))
