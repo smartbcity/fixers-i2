@@ -17,7 +17,7 @@ class AssertionUser(
 			val user = getUserRepresentation(realmId, id)
 			Assertions.assertThat(user).isNotNull
 		} catch (e: javax.ws.rs.NotFoundException) {
-			Assertions.fail("Realm[${id} not found]", e)
+			Assertions.fail("User[${id} not found]", e)
 		}
 	}
 
@@ -44,6 +44,9 @@ class AssertionUser(
 	private fun getUserRepresentation(
 		realmId: String,
 		id: String,
-	): UserRepresentation = keycloak.realm(realmId).users().get(id).toRepresentation()
+	): UserRepresentation  {
+		val l = keycloak.realm(realmId).users().list()
+		return keycloak.realm(realmId).users().get(id).toRepresentation()
+	}
 
 }

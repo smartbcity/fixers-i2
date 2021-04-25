@@ -2,6 +2,8 @@ package i2.keycloak.realm.domain.features.query
 
 import f2.dsl.cqrs.Command
 import f2.dsl.cqrs.Event
+import f2.dsl.cqrs.base.PageBase
+import f2.dsl.cqrs.base.PageRequestBase
 import f2.dsl.function.F2Function
 import f2.dsl.function.F2FunctionRemote
 import i2.keycloak.master.domain.AuthRealm
@@ -11,18 +13,19 @@ import i2.keycloak.realm.domain.UserModel
 import kotlin.js.JsExport
 import kotlin.js.JsName
 
-typealias UserGetOneQueryFunction = F2Function<UserGetOneQuery, UserGetOneQueryResult>
-typealias UserGetOneQueryRemoteFunction = F2FunctionRemote<UserGetOneQuery, UserGetOneQueryResult>
+typealias UserGetPageQueryFunction = F2Function<UserGetPageQuery, UserGetPageQueryResult>
+typealias UserGetPageQueryRemoteFunction = F2FunctionRemote<UserGetPageQuery, UserGetPageQueryResult>
 
 @JsExport
-@JsName("UserGetOneQuery")
-class UserGetOneQuery(
-	open val id: UserId,
+@JsName("UserGetPageQuery")
+class UserGetPageQuery(
+	val realmId: RealmId,
+	val page: PageRequestBase,
 	val auth: AuthRealm,
 ) : Command
 
 @JsExport
-@JsName("UserGetOneQueryResult")
-class UserGetOneQueryResult(
-	val realm: UserModel?
+@JsName("UserGetPageQueryResult")
+class UserGetPageQueryResult(
+	val page: PageBase<UserModel>
 ) : Event

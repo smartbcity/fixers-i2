@@ -45,6 +45,7 @@ include(
     "i2-s2:user:user-f2-create",
     "i2-s2:user:user-f2-delete",
     "i2-s2:user:user-f2-disable",
+    "i2-s2:user:user-f2-query",
     "i2-s2:user:user-f2-password-reset",
     "i2-s2:user:user-f2-roles-grant",
     "i2-s2:user:user-f2-roles-revoke"

@@ -6,8 +6,8 @@ import kotlin.js.JsName
 typealias UserId = String
 
 @JsExport
-@JsName("UserDomain")
-class UserDomain(
+@JsName("UserModel")
+class UserModel(
 	val id: UserId,
-	val email: String
+	val email: String?
 )

@@ -5,23 +5,25 @@ import f2.dsl.cqrs.Event
 import f2.dsl.function.F2Function
 import f2.dsl.function.F2FunctionRemote
 import i2.keycloak.master.domain.AuthRealm
-import i2.s2.realm.domain.RealmId
-import i2.s2.realm.domain.RealmModel
+import i2.keycloak.master.domain.RealmId
+import i2.keycloak.realm.domain.UserId
+import i2.keycloak.realm.domain.UserModel
 import kotlin.js.JsExport
 import kotlin.js.JsName
 
-typealias RealmGetOneQueryFunction = F2Function<RealmGetOneQuery, RealmGetOneQueryResult>
-typealias RealmGetOneQueryRemoteFunction = F2FunctionRemote<RealmGetOneQuery, RealmGetOneQueryResult>
+typealias UserGetOneQueryFunction = F2Function<UserGetOneQuery, UserGetOneQueryResult>
+typealias UserGetOneQueryRemoteFunction = F2FunctionRemote<UserGetOneQuery, UserGetOneQueryResult>
 
 @JsExport
-@JsName("RealmGetOneQuery")
-class RealmGetOneQuery(
-	open val id: RealmId,
-	val authRealm: AuthRealm
+@JsName("UserGetOneQuery")
+class UserGetOneQuery(
+	val id: UserId,
+	val realmId: RealmId,
+	val auth: AuthRealm,
 ) : Command
 
 @JsExport
-@JsName("RealmGetOneQueryResult")
-class RealmGetOneQueryResult(
-	val realm: RealmModel?
+@JsName("UserGetOneQueryResult")
+class UserGetOneQueryResult(
+	val user: UserModel?
 ) : Event

@@ -16,20 +16,22 @@ import java.util.*
 
 class UserCreateFunctionImplTest : I2KeycloakTest() {
 
+
+	val clientMaster = GivenKC().auth().withMasterRealmClient()
+	val realmId = GivenKC(clientMaster).realm().withTestRealm()
+
+
 	@Test
 	fun `should not find not existing user `(): Unit = runBlocking {
-		val client = GivenKC().auth().withMasterRealmClient()
-		val realmId = GivenKC(client).realm().withTestRealm()
 
-		AssertionKC.user(client.keycloak).notExist(realmId, UUID.randomUUID().toString())
+		AssertionKC.user(clientMaster.keycloak).notExist(realmId, UUID.randomUUID().toString())
 	}
 
 	@Test
 	fun `should create user`(): Unit = runBlocking {
-		val client = GivenKC().auth().withMasterRealmClient()
-		val realmId = GivenKC(client).realm().withTestRealm()
 		val userUuid = "user-${UUID.randomUUID()}"
 		val cmd = UserCreateCommand(
+			realmId = realmId,
 			username = "username-${userUuid}",
 			firstname = null,
 			lastname = null,
@@ -38,12 +40,11 @@ class UserCreateFunctionImplTest : I2KeycloakTest() {
 			metadata = mapOf(
 				"organizationId" to UUID.randomUUID().toString()
 			),
-			auth = client.auth,
-			realmId = realmId
+			auth = clientMaster.auth,
 		)
 		val event = UserCreateFunctionImpl().userCreateFunction().invokeSingle(cmd)
 
 		Assertions.assertThat(event.id).isNotNull
-		AssertionKC.user(client.keycloak).exist(realmId, event.id)
+		AssertionKC.user(clientMaster.keycloak).exist(realmId, event.id)
 	}
 }
