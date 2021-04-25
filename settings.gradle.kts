@@ -43,6 +43,7 @@ include(
 include(
     "i2-s2:user:user-domain",
     "i2-s2:user:user-f2-create",
+    "i2-s2:user:user-f2-delete",
     "i2-s2:user:user-f2-disable",
     "i2-s2:user:user-f2-password-reset",
     "i2-s2:user:user-f2-roles-grant",
