@@ -6,6 +6,9 @@ import i2.keycloak.realm.client.config.AuthRealmClientBuilder
 import i2.keycloak.realm.domain.features.command.UserCreateCommand
 import i2.keycloak.realm.domain.features.command.UserCreateFunction
 import i2.keycloak.realm.domain.features.command.UserCreatedResult
+import i2.s2.keycloak.utils.isFailure
+import i2.s2.keycloak.utils.onCreationFailure
+import i2.s2.keycloak.utils.toEntityCreatedId
 import org.keycloak.representations.idm.UserRepresentation
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -23,7 +26,7 @@ class UserCreateFunctionImpl {
 
 	private fun createUser(client: AuthRealmClient, cmd: UserCreateCommand): String {
 		val userRepresentation = initUserRepresentation(cmd)
-		return createUser(client, cmd.realmId, userRepresentation, ::onUserCreationFailure).also {
+		return createUser(client, cmd.realmId, userRepresentation).also {
 			// onboarding(client, cmd)
 		}
 	}
@@ -32,11 +35,10 @@ class UserCreateFunctionImpl {
 		client: AuthRealmClient,
 		realmId: String,
 		user: UserRepresentation,
-		onFailure: (response: Response) -> Unit = {},
 	): String {
 		val response = client.keycloak.realm(realmId).users().create(user)
 		if (response.isFailure()) {
-			onFailure(response)
+			response.onCreationFailure("user")
 		}
 		return response.toEntityCreatedId()
 	}
@@ -63,18 +65,5 @@ class UserCreateFunctionImpl {
 //		client.getUserResource(cmd.id).executeActionsEmail(cmd.auth.clientId, cmd.auth.redirectUrl, actions)
 //	}
 
-	private fun Response.isFailure(): Boolean {
-		return this.status < 200 || this.status > 299
-	}
 
-	private fun Response.toEntityCreatedId(): String {
-		return this.location.toString().substringAfterLast("/")
-	}
-
-	private fun onUserCreationFailure(response: Response) = onCreationFailure(response, "user")
-
-	private fun onCreationFailure(response: Response, entityName: String = "entity") {
-		val message = "Error creating $entityName in identity provider (code: ${response.status}) }"
-		throw UserCreationError(message)
-	}
 }

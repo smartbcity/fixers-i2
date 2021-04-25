@@ -16,7 +16,8 @@ include(
 
 include(
     "i2-keycloak:keycloak-auth:keycloak-auth-client",
-    "i2-keycloak:keycloak-auth:keycloak-auth-domain"
+    "i2-keycloak:keycloak-auth:keycloak-auth-domain",
+    "i2-keycloak:keycloak-utils"
 )
 
 include(
