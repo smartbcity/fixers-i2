@@ -10,7 +10,10 @@ object Versions {
     const val assertj = "3.15.0"
     const val testcontainers = "1.15.2"
 
+    const val kdatetime = "0.1.1"
+
     const val keycloak = "11.0.2"
     const val f2 = "0.1.0-SNAPSHOT"
+    const val s2 = "0.1.0-SNAPSHOT"
 
 }

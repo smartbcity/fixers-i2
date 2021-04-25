@@ -1,0 +1,48 @@
+package i2.s2.realm.f2
+
+import f2.function.spring.adapter.f2Function
+import i2.keycloak.realm.client.config.AuthRealmClientBuilder
+import i2.s2.errors.I2ApiError
+import i2.s2.errors.asI2Exception
+import i2.s2.realm.domain.RealmModel
+import i2.s2.realm.domain.features.command.RealmGetOneQueryFunction
+import i2.s2.realm.domain.features.command.RealmGetOneQueryResult
+import org.keycloak.representations.idm.RealmRepresentation
+import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.Configuration
+import s2.spring.utils.logger.Logger
+import javax.ws.rs.NotFoundException
+
+@Configuration
+class RealmGetOneQueryFunctionImpl {
+
+	protected val logger by Logger()
+
+	@Bean
+	fun realmGetOneQueryFunction(): RealmGetOneQueryFunction = f2Function { cmd ->
+		try {
+			val masterRealm = AuthRealmClientBuilder().build(cmd.authRealm)
+			val model = masterRealm.keycloak.realm(cmd.id).toRepresentation().asRealmModel()
+			RealmGetOneQueryResult(model)
+		} catch (e: NotFoundException) {
+			RealmGetOneQueryResult(null)
+		} catch (e: Exception) {
+			val msg = "Error fetching realm with id[${cmd.id}]"
+			logger.error(msg, e)
+			throw I2ApiError(
+				description = msg,
+				payload = emptyMap()
+			).asI2Exception()
+		}
+
+
+	}
+
+	private fun RealmRepresentation.asRealmModel(): RealmModel {
+		return RealmModel(
+			id = this.id,
+			name = this.displayName,
+		)
+	}
+
+}

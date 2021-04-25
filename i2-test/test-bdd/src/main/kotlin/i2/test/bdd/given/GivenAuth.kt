@@ -18,7 +18,7 @@ class GivenAuth(
 			clientId = "admin-cli",
 			username = "admin",
 			password = "admin",
-			realm = "master",
+			realmId = "master",
 			redirectUrl = "http://localhost:3000",
 		)
 		return AuthRealmClientBuilder().build(auth)
@@ -29,7 +29,7 @@ class GivenAuth(
 			serverUrl = SERVER_URL_TEST,
 			clientId = "admin-cli",
 			clientSecret = "test",
-			realm = realm,
+			realmId = realm,
 			redirectUrl = ""
 		)
 		return AuthRealmClientBuilder().build(auth)

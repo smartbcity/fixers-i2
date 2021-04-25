@@ -9,5 +9,5 @@ typealias RealmId = String
 @JsName("RealmModel")
 class RealmModel(
 	val id: RealmId,
-	val name: String
+	val name: String?
 )

@@ -25,8 +25,13 @@ include(
 )
 
 include(
+    "i2-s2:error:error-domain"
+)
+
+include(
     "i2-s2:realm:realm-domain",
-    "i2-s2:realm:realm-f2-create"
+    "i2-s2:realm:realm-f2-create",
+    "i2-s2:realm:realm-f2-query"
 )
 
 include(
