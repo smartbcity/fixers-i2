@@ -20,6 +20,7 @@ dependencies {
     api(project(":i2-s2:user:user-f2-password-reset"))
     api(project(":i2-s2:user:user-f2-roles-grant"))
     api(project(":i2-s2:user:user-f2-roles-revoke"))
+    api(project(":i2-s2:user:user-f2-update"))
 
     api(project(":i2-keycloak:keycloak-auth:keycloak-auth-client"))
     api("org.testcontainers:junit-jupiter:${Versions.testcontainers}")
