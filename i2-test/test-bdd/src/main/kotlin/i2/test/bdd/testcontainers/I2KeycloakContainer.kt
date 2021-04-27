@@ -5,8 +5,7 @@ import org.testcontainers.containers.wait.strategy.Wait
 import java.io.File
 import java.time.Duration
 
-class I2KeycloakContainer(file: File) :
-	DockerComposeContainer<I2KeycloakContainer>(file) {
+class I2KeycloakContainer(file: File): DockerComposeContainer<I2KeycloakContainer>(file) {
 
 	init {
 		withExposedService("keycloak-it",
@@ -24,5 +23,4 @@ class I2KeycloakContainer(file: File) :
 			return container!!
 		}
 	}
-
 }

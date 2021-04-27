@@ -7,7 +7,8 @@ import org.keycloak.admin.client.Keycloak
 fun AssertionKC.Companion.auth(keycloak: Keycloak): AssertionClient = AssertionClient(keycloak)
 
 class AssertionClient(
-	private val keycloak: Keycloak) {
+	private val keycloak: Keycloak
+) {
 	companion object
 
 	fun exist(realmId: String, clientId: String) {

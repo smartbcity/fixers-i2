@@ -16,12 +16,12 @@ typealias RealmGetOneQueryRemoteFunction = F2FunctionRemote<RealmGetOneQuery, Re
 @JsExport
 @JsName("RealmGetOneQuery")
 class RealmGetOneQuery(
-	open val id: RealmId,
+	val id: RealmId,
 	val authRealm: AuthRealm
-) : Command
+): Command
 
 @JsExport
 @JsName("RealmGetOneQueryResult")
 class RealmGetOneQueryResult(
 	val realm: RealmModel?
-) : Event
+): Event

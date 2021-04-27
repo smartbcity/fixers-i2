@@ -11,7 +11,7 @@ import kotlinx.coroutines.runBlocking
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 
-internal class RealmGetOneQueryFunctionImplTest : I2KeycloakTest() {
+internal class RealmGetOneQueryFunctionImplTest: I2KeycloakTest() {
 
 	val masterClient = GivenKC().auth().withMasterRealmClient()
 	val realmId = GivenKC(masterClient).realm().withTestRealm()
@@ -32,7 +32,7 @@ internal class RealmGetOneQueryFunctionImplTest : I2KeycloakTest() {
 	@Test
 	fun `should return null realm when not exists`(): Unit = runBlocking {
 		val cmd = RealmGetOneQuery(
-			id = "NOT_EXISTING_REAML",
+			id = "NOT_EXISTING_REALM",
 			authRealm = masterClient.auth
 		)
 
