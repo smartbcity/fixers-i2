@@ -7,7 +7,6 @@ import i2.keycloak.realm.domain.features.query.UserGetOneQueryFunction
 import i2.keycloak.realm.domain.features.query.UserGetOneQueryResult
 import i2.s2.errors.I2ApiError
 import i2.s2.errors.asI2Exception
-import org.keycloak.representations.idm.UserRepresentation
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import s2.spring.utils.logger.Logger
@@ -36,13 +35,6 @@ class UserGetOneQueryFunctionImpl {
 				payload = emptyMap()
 			).asI2Exception()
 		}
-	}
-
-	private fun UserRepresentation.asModel(): UserModel {
-		return UserModel(
-			id = this.id,
-			email = this.email,
-		)
 	}
 
 	private fun UserModel.asResult(): UserGetOneQueryResult {
