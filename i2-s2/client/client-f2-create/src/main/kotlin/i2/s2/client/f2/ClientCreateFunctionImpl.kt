@@ -6,6 +6,7 @@ import i2.keycloak.realm.client.config.AuthRealmClientBuilder
 import i2.s2.client.domain.features.command.ClientCreateCommand
 import i2.s2.client.domain.features.command.ClientCreateFunction
 import i2.s2.client.domain.features.command.ClientCreatedResult
+import i2.s2.keycloak.utils.toEntityCreatedId
 import org.keycloak.representations.idm.ClientRepresentation
 import org.keycloak.representations.idm.ProtocolMapperRepresentation
 import org.springframework.context.annotation.Bean
@@ -17,10 +18,12 @@ class ClientCreateFunctionImpl {
 	@Bean
 	fun clientCreateFunction(): ClientCreateFunction = f2Function { cmd ->
 		val realmClient = AuthRealmClientBuilder().build(cmd.auth)
-		createClient(cmd).let {
+
+		val id = createClient(cmd).let {
 			realmClient.createClient(cmd.realmId, it)
 		}
-		ClientCreatedResult(cmd.id)
+
+		ClientCreatedResult(id)
 	}
 
 	private fun createClient(cmd: ClientCreateCommand): ClientRepresentation {
@@ -54,8 +57,8 @@ class ClientCreateFunctionImpl {
 	}
 
 
-	private fun AuthRealmClient.createClient(realmId: String, client: ClientRepresentation) {
-		this.keycloak.realm(realmId).clients().create(client)
+	private fun AuthRealmClient.createClient(realmId: String, client: ClientRepresentation): String {
+		return this.clients(realmId).create(client).toEntityCreatedId()
 	}
 
 }

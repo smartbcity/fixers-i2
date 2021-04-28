@@ -17,6 +17,7 @@ typealias ClientCreateRemoteFunction = F2FunctionRemote<ClientCreateCommand, Cli
 class ClientCreateCommand(
 	val id: ClientId,
 	val realmId: String,
+	val auth: AuthRealm,
 	val isPublicClient: Boolean = true,
 	val isDirectAccessGrantsEnabled: Boolean = true,
 	val rootUrl: String? = null,
@@ -25,7 +26,6 @@ class ClientCreateCommand(
 	val adminUrl: String = "",
 	val webOrigins: List<String> = emptyList(),
 	val protocolMappers: List<String> = emptyList(),
-	val auth: AuthRealm,
 ) : Command
 
 @JsExport
