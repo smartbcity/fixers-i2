@@ -23,6 +23,7 @@ include(
 include(
     "i2-s2:client:client-domain",
     "i2-s2:client:client-f2-create",
+    "i2-s2:client:client-f2-generate-secret",
     "i2-s2:client:client-f2-query"
 )
 
