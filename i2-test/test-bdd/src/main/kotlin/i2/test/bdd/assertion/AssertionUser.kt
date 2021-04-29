@@ -13,7 +13,7 @@ class AssertionUser(
 ) {
 	companion object
 
-	fun exist(realmId: String, id: UserId) {
+	fun exists(realmId: String, id: UserId) {
 		try {
 			val user = getUserRepresentation(realmId, id)
 			Assertions.assertThat(user).isNotNull
@@ -33,7 +33,7 @@ class AssertionUser(
 	}
 
 
-	fun notExist(realmId: String, id: UserId) {
+	fun notExists(realmId: String, id: UserId) {
 		try {
 			getUserRepresentation(realmId, id)
 			Assertions.fail("Realm[${id} exist]")
@@ -43,15 +43,12 @@ class AssertionUser(
 	}
 
 	fun assertThat(realmId: String, id: UserId): UserComparator {
-		exist(realmId, id)
+		exists(realmId, id)
 		val user = getUserRepresentation(realmId, id)
 		return UserComparator(user)
 	}
 
-	private fun getUserRepresentation(
-		realmId: String,
-		id: String,
-	): UserRepresentation {
+	private fun getUserRepresentation(realmId: String, id: String): UserRepresentation {
 		return keycloak.realm(realmId).users().get(id).toRepresentation()
 	}
 

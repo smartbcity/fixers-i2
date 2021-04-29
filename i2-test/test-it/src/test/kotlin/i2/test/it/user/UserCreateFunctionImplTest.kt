@@ -21,7 +21,7 @@ class UserCreateFunctionImplTest : I2KeycloakTest() {
 
 	@Test
 	fun `should not find not existing user `(): Unit = runBlocking {
-		AssertionKC.user(clientMaster.keycloak).notExist(realmId, UUID.randomUUID().toString())
+		AssertionKC.user(clientMaster.keycloak).notExists(realmId, UUID.randomUUID().toString())
 	}
 
 	@Test
@@ -42,7 +42,7 @@ class UserCreateFunctionImplTest : I2KeycloakTest() {
 		val event = UserCreateFunctionImpl().userCreateFunction().invokeSingle(cmd)
 
 		Assertions.assertThat(event.id).isNotNull
-		AssertionKC.user(clientMaster.keycloak).exist(realmId, event.id)
+		AssertionKC.user(clientMaster.keycloak).exists(realmId, event.id)
 		AssertionKC.user(clientMaster.keycloak).assertThat(realmId, event.id).hasFields(
 			userId = event.id,
 			username = cmd.username,

@@ -12,7 +12,7 @@ import i2.test.bdd.given.user
 import i2.test.bdd.testcontainers.I2KeycloakTest
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test
-import java.util.*
+import java.util.UUID
 
 internal class UserDeleteFunctionImplTest: I2KeycloakTest() {
 
@@ -32,6 +32,6 @@ internal class UserDeleteFunctionImplTest: I2KeycloakTest() {
 		UserDeleteFunctionImpl().userDeleteFunction().invokeSingle(cmd)
 
 
-		AssertionKC.user(client.keycloak).notExist(realmId, userId)
+		AssertionKC.user(client.keycloak).notExists(realmId, userId)
 	}
 }

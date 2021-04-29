@@ -5,6 +5,7 @@ import f2.dsl.cqrs.Event
 import f2.dsl.function.F2Function
 import f2.dsl.function.F2FunctionRemote
 import i2.keycloak.master.domain.AuthRealm
+import i2.keycloak.master.domain.RealmId
 import i2.s2.client.domain.ClientId
 import kotlin.js.JsExport
 import kotlin.js.JsName
@@ -16,7 +17,7 @@ typealias ClientCreateRemoteFunction = F2FunctionRemote<ClientCreateCommand, Cli
 @JsName("ClientCreateCommand")
 class ClientCreateCommand(
 	val id: ClientId,
-	val realmId: String,
+	val realmId: RealmId,
 	val auth: AuthRealm,
 	val isPublicClient: Boolean = true,
 	val isDirectAccessGrantsEnabled: Boolean = true,
