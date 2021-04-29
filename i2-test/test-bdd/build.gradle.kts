@@ -7,8 +7,9 @@ plugins {
 dependencies {
 
     api(project(":i2-s2:client:client-f2-create"))
-    api(project(":i2-s2:client:client-f2-query"))
     api(project(":i2-s2:client:client-f2-generate-secret"))
+    api(project(":i2-s2:client:client-f2-query"))
+    api(project(":i2-s2:client:client-f2-update"))
 
     api(project(":i2-s2:realm:realm-f2-create"))
     api(project(":i2-s2:realm:realm-f2-query"))
