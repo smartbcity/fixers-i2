@@ -15,6 +15,7 @@ dependencies {
     api(project(":i2-s2:realm:realm-f2-query"))
 
     api(project(":i2-s2:role:role-f2-create"))
+    api(project(":i2-s2:role:role-f2-query"))
 
     api(project(":i2-s2:user:user-f2-create"))
     api(project(":i2-s2:user:user-f2-disable"))
