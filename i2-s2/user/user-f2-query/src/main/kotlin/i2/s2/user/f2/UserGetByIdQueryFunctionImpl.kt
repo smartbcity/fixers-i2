@@ -3,8 +3,8 @@ package i2.s2.user.f2
 import f2.function.spring.adapter.f2Function
 import i2.keycloak.realm.client.config.AuthRealmClientBuilder
 import i2.keycloak.realm.domain.UserModel
-import i2.keycloak.realm.domain.features.query.UserGetOneQueryFunction
-import i2.keycloak.realm.domain.features.query.UserGetOneQueryResult
+import i2.keycloak.realm.domain.features.query.UserGetByIdQueryFunction
+import i2.keycloak.realm.domain.features.query.UserGetByIdQueryResult
 import i2.s2.errors.I2ApiError
 import i2.s2.errors.asI2Exception
 import org.springframework.context.annotation.Bean
@@ -13,12 +13,12 @@ import s2.spring.utils.logger.Logger
 import javax.ws.rs.NotFoundException
 
 @Configuration
-class UserGetOneQueryFunctionImpl {
+class UserGetByIdQueryFunctionImpl {
 
 	private val logger by Logger()
 
 	@Bean
-	fun userGetOneQueryFunction(): UserGetOneQueryFunction = f2Function { cmd ->
+	fun userGetByIdQueryFunction(): UserGetByIdQueryFunction = f2Function { cmd ->
 		val realmClient = AuthRealmClientBuilder().build(cmd.auth)
 		try {
 			realmClient.getUserResource(cmd.realmId, cmd.id)
@@ -26,9 +26,9 @@ class UserGetOneQueryFunctionImpl {
 				.asModel()
 				.asResult()
 		} catch (e: NotFoundException) {
-			UserGetOneQueryResult(null)
+			UserGetByIdQueryResult(null)
 		} catch (e: Exception) {
-			val msg = "Error fetching realm with id[${cmd.id}]"
+			val msg = "Error fetching User with id[${cmd.id}]"
 			logger.error(msg, e)
 			throw I2ApiError(
 				description = msg,
@@ -37,8 +37,8 @@ class UserGetOneQueryFunctionImpl {
 		}
 	}
 
-	private fun UserModel.asResult(): UserGetOneQueryResult {
-		return UserGetOneQueryResult(this)
+	private fun UserModel.asResult(): UserGetByIdQueryResult {
+		return UserGetByIdQueryResult(this)
 	}
 
 }

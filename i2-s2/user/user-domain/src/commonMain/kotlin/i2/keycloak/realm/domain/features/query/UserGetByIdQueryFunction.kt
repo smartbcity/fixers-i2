@@ -11,19 +11,19 @@ import i2.keycloak.realm.domain.UserModel
 import kotlin.js.JsExport
 import kotlin.js.JsName
 
-typealias UserGetOneQueryFunction = F2Function<UserGetOneQuery, UserGetOneQueryResult>
-typealias UserGetOneQueryRemoteFunction = F2FunctionRemote<UserGetOneQuery, UserGetOneQueryResult>
+typealias UserGetByIdQueryFunction = F2Function<UserGetByIdQuery, UserGetByIdQueryResult>
+typealias UserGetByIdQueryRemoteFunction = F2FunctionRemote<UserGetByIdQuery, UserGetByIdQueryResult>
 
 @JsExport
-@JsName("UserGetOneQuery")
-class UserGetOneQuery(
+@JsName("UserGetByIdQuery")
+class UserGetByIdQuery(
 	val id: UserId,
 	val realmId: RealmId,
 	val auth: AuthRealm,
-) : Command
+): Command
 
 @JsExport
-@JsName("UserGetOneQueryResult")
-class UserGetOneQueryResult(
+@JsName("UserGetByIdQueryResult")
+class UserGetByIdQueryResult(
 	val user: UserModel?
-) : Event
+): Event

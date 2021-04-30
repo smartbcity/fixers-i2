@@ -11,19 +11,19 @@ import i2.s2.client.domain.ClientModel
 import kotlin.js.JsExport
 import kotlin.js.JsName
 
-typealias ClientGetOneQueryFunction = F2Function<ClientGetOneQuery, ClientGetOneQueryResult>
-typealias ClientGetOneQueryRemoteFunction = F2FunctionRemote<ClientGetOneQuery, ClientGetOneQueryResult>
+typealias ClientGetByIdQueryFunction = F2Function<ClientGetByIdQuery, ClientGetByIdQueryResult>
+typealias ClientGetByIdQueryRemoteFunction = F2FunctionRemote<ClientGetByIdQuery, ClientGetByIdQueryResult>
 
 @JsExport
-@JsName("ClientGetOneQuery")
-class ClientGetOneQuery(
+@JsName("ClientGetByIdQuery")
+class ClientGetByIdQuery(
 	val id: ClientId,
 	val realmId: RealmId,
 	val auth: AuthRealm,
 ): Command
 
 @JsExport
-@JsName("ClientGetOneQueryResult")
-class ClientGetOneQueryResult(
+@JsName("ClientGetByIdQueryResult")
+class ClientGetByIdQueryResult(
 	val client: ClientModel?
 ): Event

@@ -2,9 +2,7 @@ package i2.test.it.user
 
 import f2.dsl.cqrs.base.PageRequestBase
 import f2.function.spring.invokeSingle
-import i2.keycloak.realm.domain.features.query.UserGetOneQuery
 import i2.keycloak.realm.domain.features.query.UserGetPageQuery
-import i2.s2.user.f2.UserGetOneQueryFunctionImpl
 import i2.s2.user.f2.UserGetPageQueryFunctionImpl
 import i2.test.bdd.given.GivenKC
 import i2.test.bdd.given.auth
@@ -14,7 +12,7 @@ import i2.test.bdd.testcontainers.I2KeycloakTest
 import kotlinx.coroutines.runBlocking
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
-import java.util.*
+import java.util.UUID
 
 class UserGetPageQueryFunctionImplTest: I2KeycloakTest() {
 
