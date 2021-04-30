@@ -20,7 +20,7 @@ class UserCreateFunctionImplTest : I2KeycloakTest() {
 	val realmId = GivenKC(clientMaster).realm().withTestRealm()
 
 	@Test
-	fun `should not find not existing user `(): Unit = runBlocking {
+	fun `should not find not existing user`(): Unit = runBlocking {
 		AssertionKC.user(clientMaster.keycloak).notExists(realmId, UUID.randomUUID().toString())
 	}
 

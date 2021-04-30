@@ -15,7 +15,7 @@ class GivenRole(
 			id = roleId,
 			description = "description",
 			isClientRole = false,
-			composite = composite,
+			composites = composite,
 			auth = client.auth
 		)
 		RoleCreateFunctionImpl().roleCreateFunction().invokeSingle(cmd).id

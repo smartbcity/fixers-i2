@@ -23,7 +23,7 @@ class RoleCreateFunctionImpl {
 	}
 
 	fun AuthRealmClient.initRole(cmd: RoleCreateCommand) {
-		val roleRepresentations = cmd.composite.map { role ->
+		val roleRepresentations = cmd.composites.map { role ->
 			getRoleRepresentation(role)
 		}
 		createRole(cmd.id, cmd.description, cmd.isClientRole)
@@ -43,9 +43,8 @@ class RoleCreateFunctionImpl {
 			this.name = role
 			this.description = description
 			this.clientRole = isClientRole
-		}.also {  roleRepresentation ->
+		}.also { roleRepresentation ->
 			realm.roles().create(roleRepresentation)
 		}
 	}
-
 }

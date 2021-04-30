@@ -18,12 +18,12 @@ class RoleCreateCommand(
 	val id: RoleId,
 	val description: String?,
 	val isClientRole: Boolean,
-	val composite: List<RoleId>,
+	val composites: List<RoleId>,
 	val auth: AuthRealm,
-) : Command
+): Command
 
 @JsExport
 @JsName("RoleCreatedResult")
 class RoleCreatedResult(
 	val id: String
-) : Event
+): Event

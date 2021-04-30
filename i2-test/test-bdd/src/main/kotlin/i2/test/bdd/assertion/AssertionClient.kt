@@ -32,17 +32,17 @@ class AssertionClient(
 		}
 	}
 
-	fun assertThat(realmId: RealmId, id: ClientId): ClientComparator {
+	fun assertThat(realmId: RealmId, id: ClientId): ClientAssert {
 		exists(realmId, id)
 		val client = getClientRepresentation(realmId, id)
-		return ClientComparator(client)
+		return ClientAssert(client)
 	}
 
 	private fun getClientRepresentation(realmId: RealmId, id: ClientId): ClientRepresentation {
 		return keycloak.realm(realmId).clients().get(id).toRepresentation()
 	}
 
-	inner class ClientComparator(
+	inner class ClientAssert(
 		private val client: ClientRepresentation
 	) {
 		fun hasFields(

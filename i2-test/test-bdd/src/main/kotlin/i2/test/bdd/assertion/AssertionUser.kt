@@ -42,17 +42,17 @@ class AssertionUser(
 		}
 	}
 
-	fun assertThat(realmId: String, id: UserId): UserComparator {
+	fun assertThat(realmId: String, id: UserId): UserAssert {
 		exists(realmId, id)
 		val user = getUserRepresentation(realmId, id)
-		return UserComparator(user)
+		return UserAssert(user)
 	}
 
 	private fun getUserRepresentation(realmId: String, id: String): UserRepresentation {
 		return keycloak.realm(realmId).users().get(id).toRepresentation()
 	}
 
-	inner class UserComparator(
+	inner class UserAssert(
 		private val user: UserRepresentation
 	) {
 		fun hasFields(
