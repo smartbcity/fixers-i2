@@ -4,6 +4,7 @@ import i2.keycloak.master.domain.RealmId
 import i2.s2.role.domain.RoleId
 import org.assertj.core.api.Assertions
 import org.keycloak.admin.client.Keycloak
+import org.keycloak.admin.client.resource.RoleResource
 import org.keycloak.representations.idm.RoleRepresentation
 
 
@@ -34,29 +35,37 @@ class AssertionRole(
 
 	fun assertThat(realmId: RealmId, id: RoleId): RoleAssert {
 		exists(realmId, id)
-		val role = getRoleRepresentation(realmId, id)
-		return RoleAssert(role)
+		val roleResource = getRoleResource(realmId, id)
+		return RoleAssert(
+			role = roleResource.toRepresentation(),
+			roleComposites = roleResource.roleComposites
+		)
 	}
 
-	private fun getRoleRepresentation(realmId: String, id: String): RoleRepresentation {
-		return keycloak.realm(realmId).roles().get(id).toRepresentation()
+	private fun getRoleRepresentation(realmId: String, id: RoleId): RoleRepresentation {
+		return getRoleResource(realmId, id).toRepresentation()
+	}
+
+	private fun getRoleResource(realmId: RealmId, id: RoleId): RoleResource {
+		return keycloak.realm(realmId).roles().get(id)
 	}
 
 	inner class RoleAssert(
-		private val role: RoleRepresentation
+		private val role: RoleRepresentation,
+		private val roleComposites: Set<RoleRepresentation>
 	) {
 		fun hasFields(
 			id: RoleId = role.id,
 			description: String? = role.description,
 			isClientRole: Boolean = role.clientRole,
-			composites: Iterable<RoleId> = role.composites?.realm ?: emptyList(),
+			compositeNames: Iterable<RoleId> = role.composites?.realm ?: emptyList(),
 		) {
 			Assertions.assertThat(id).isEqualTo(role.id)
 			Assertions.assertThat(description).isEqualTo(role.description)
 			Assertions.assertThat(isClientRole).isEqualTo(role.clientRole)
-			if (composites.count() > 0) {
-				Assertions.assertThat(role.composites).isNotNull
-				Assertions.assertThat(composites).containsAll(role.composites.realm)
+			if (compositeNames.count() > 0) {
+				Assertions.assertThat(roleComposites).isNotNull
+				Assertions.assertThat(compositeNames).containsAll(roleComposites.map(RoleRepresentation::getName))
 			} else {
 				Assertions.assertThat(role.composites?.realm).isNullOrEmpty()
 			}

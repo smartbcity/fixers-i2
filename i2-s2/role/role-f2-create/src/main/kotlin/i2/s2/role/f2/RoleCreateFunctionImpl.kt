@@ -23,11 +23,11 @@ class RoleCreateFunctionImpl {
 	}
 
 	fun AuthRealmClient.initRole(cmd: RoleCreateCommand) {
-		val roleRepresentations = cmd.composites.map { role ->
+		val compositeRoles = cmd.composites.map { role ->
 			getRoleRepresentation(role)
 		}
 		createRole(cmd.id, cmd.description, cmd.isClientRole)
-		getRolesResource(cmd.id).addComposites(roleRepresentations)
+		getRolesResource(cmd.id).addComposites(compositeRoles)
 	}
 
 	fun AuthRealmClient.getRoleRepresentation(role: RoleId): RoleRepresentation {
