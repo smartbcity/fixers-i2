@@ -25,7 +25,7 @@ class AssertionClient(
 
 	fun notExists(realmId: RealmId, id: ClientId) {
 		try {
-			val realm = keycloak.realm(realmId).clients().get(id).toRepresentation()
+			keycloak.realm(realmId).clients().get(id).toRepresentation()
 			Assertions.fail("Client[${id} exists]")
 		} catch (e: javax.ws.rs.NotFoundException) {
 			Assertions.assertThat(true).isTrue
