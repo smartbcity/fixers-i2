@@ -3,6 +3,7 @@ package i2.test.bdd.data.client
 import i2.keycloak.master.domain.AuthRealm
 import i2.keycloak.master.domain.RealmId
 import i2.s2.client.domain.ClientId
+import i2.s2.client.domain.ClientIdentifier
 import i2.s2.client.domain.features.command.ClientCreateCommand
 import i2.test.bdd.data.DataTest
 import java.util.UUID
@@ -10,7 +11,7 @@ import java.util.UUID
 fun DataTest.Companion.clientCreateCommand(
     realmId: RealmId,
     auth: AuthRealm,
-    id: ClientId = UUID.randomUUID().toString(),
+    clientIdentifier: ClientIdentifier = UUID.randomUUID().toString(),
     isPublicClient: Boolean = true,
     isDirectAccessGrantsEnabled: Boolean = true,
     rootUrl: String? = null,
@@ -20,7 +21,7 @@ fun DataTest.Companion.clientCreateCommand(
     webOrigins: List<String> = emptyList(),
     protocolMappers: List<String> = emptyList(),
 ) = ClientCreateCommand(
-    id = id,
+    clientIdentifier = clientIdentifier,
     realmId = realmId,
     isPublicClient = isPublicClient,
     isDirectAccessGrantsEnabled = isDirectAccessGrantsEnabled,

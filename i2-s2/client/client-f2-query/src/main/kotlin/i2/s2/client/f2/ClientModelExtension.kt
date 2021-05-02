@@ -7,6 +7,7 @@ fun List<ClientRepresentation>.asModels(): List<ClientModel> = map(ClientReprese
 
 fun ClientRepresentation.asModel(): ClientModel {
 	return ClientModel(
-		id = this.id
+		id = this.id,
+		clientIdentifier = this.clientId
 	)
 }

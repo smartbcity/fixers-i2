@@ -23,15 +23,15 @@ class ClientCreateFunctionImplTest : I2KeycloakTest() {
 	fun `should create a new realm`(): Unit = runBlocking {
 		GivenKC().realm().withTestRealm()
 
-		val id = "client-${UUID.randomUUID()}"
+		val clientIdentifier = "client-${UUID.randomUUID()}"
 		val cmd = ClientCreateCommand(
-			id = id,
+			clientIdentifier = clientIdentifier,
 			realmId = "test",
 			auth = masterRealmClient.auth
 		)
 
 		val event = ClientCreateFunctionImpl().clientCreateFunction().invokeSingle(cmd)
-		Assertions.assertThat(event.id).isEqualTo(id)
-		AssertionKC.client(masterRealmClient.keycloak).exists("test", id)
+		Assertions.assertThat(event.id).isNotNull
+		AssertionKC.client(masterRealmClient.keycloak).exists("test", clientIdentifier)
 	}
 }

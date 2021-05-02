@@ -17,18 +17,16 @@ class ClientCreateFunctionImpl {
 
 	@Bean
 	fun clientCreateFunction(): ClientCreateFunction = f2Function { cmd ->
-		val realmClient = AuthRealmClientBuilder().build(cmd.auth)
-
-		val id = createClient(cmd).let {
-			realmClient.createClient(cmd.realmId, it)
+		buildClient(cmd).let { client ->
+			AuthRealmClientBuilder().build(cmd.auth).createClient(cmd.realmId, client)
+		}.let { id ->
+			ClientCreatedResult(id)
 		}
-
-		ClientCreatedResult(id)
 	}
 
-	private fun createClient(cmd: ClientCreateCommand): ClientRepresentation {
+	private fun buildClient(cmd: ClientCreateCommand): ClientRepresentation {
 		return ClientRepresentation().apply {
-			this.clientId = cmd.id
+			this.clientId = cmd.clientIdentifier
 			this.isPublicClient = cmd.isPublicClient
 			this.isDirectAccessGrantsEnabled = cmd.isDirectAccessGrantsEnabled
 			this.rootUrl = cmd.rootUrl
