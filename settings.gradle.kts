@@ -33,6 +33,11 @@ include(
 )
 
 include(
+    "i2-s2:import:import-domain",
+    "i2-s2:import:import-data"
+)
+
+include(
     "i2-s2:realm:realm-domain",
     "i2-s2:realm:realm-f2-create",
     "i2-s2:realm:realm-f2-query"
