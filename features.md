@@ -34,37 +34,36 @@ i2-s2/client/client-f2-create
 *User: `Realm Admin`*
 
 ```
-TODO What is updated?  FXR-66 - [Client] As Realm Admin, I want to update a client
+i2-s2/client/client-f2-update
 ```
 
 
 ### Generate new secret
 *User: `Realm Admin`*
 ```
-TODO https://smartbcity.atlassian.net/browse/FXR-84
 i2-s2/client/client-f2-generate-secret
 ```
 
-### Get all realm client
+### Get all realm clients
 *User: `Realm Admin`*
 ```
-TODO FXR-67 - As a realm admin, I want to get page of client ha
+i2-s2/client/client-f2-query
 ```
 
-### Get all realm clients by id
+### Get realm client by id
 *User: `Realm Admin`*
 ```
-TODO FXR-68 - As a realm admin, I want to get client by id
+i2-s2/client/client-f2-query
 ```
 
 ## Role
-Client roles
+Realm roles
 
 ### Create 
 *User: `Realm Admin`*
 
 ```
-i2-s2/client/client-f2-create
+i2-s2/role/role-f2-create
 ```
 
 ### Add role
@@ -82,41 +81,15 @@ What is the differents betweem create and add?
 TODO FXR-70 - As a Keyclaok Admin, I want to add Composites
 ```
 
-### Get all role
-
-```TODO
-FXR-71 - As a Keyclaok Admin, I want to get a page of roles
-```
-### Get role by ?
-
-```TODO
-FXR-72 - As a Realm Admin, I want to get a role by id/key 
-```
-
-## Realm roles
-```
-TODO What is Realm ROLES
-```
-
-### Create 
-*User: `plateform-api`*
+### Get all roles
 
 ```
-TODO FXR-73 - As a Realm Admin, I want to create Realm role 
+i2-s2/role/role-f2-query
 ```
-
-### Add role 
-*User: `plateform-api`*
+### Get role by id
 
 ```
-TODO FXR-74 - As a Realm Admin, I want to create add (asign) role to Realm role 
-```
-
-### Add Composites
-*User: `plateform-api`*
-
-```
-TODO FXR-75 - As a Realm Admin, I want to create add (asign) composite to Realm role
+i2-s2/role/role-f2-query
 ```
 
 
@@ -132,7 +105,7 @@ i2-s2/user/user-f2-create
 *User: `plateform-api`*
 
 ```
-TODO FXR-77 - As a Realm Admin, I want to update a user 
+i2-s2/user/user-f2-update
 ```
 
 
@@ -140,14 +113,14 @@ TODO FXR-77 - As a Realm Admin, I want to update a user
 *User: `plateform-api`*
 
 ```
-TODO FXR-78 - As a Realm Admin, I want to disable a user 
+i2-s2/user/user-f2-disable
 ```
 
 ### Delete
 *User: `plateform-api`*
 
 ```
-FXR-79 - As a Realm Admin, I want to delete a user
+i2-s2/user/user-f2-delete
 ```
 
 
@@ -169,8 +142,8 @@ i2-s2/user/user-f2-roles-revoke
 ### Execute actions email
 *User: `plateform-api`*
 
-```
-TODO FXR-80 - [User] As a Realm Admin, I want to execute action email on a user 
+``` TODO test
+i2-s2/user/user-f2-email-actions 
 ```
 
 
@@ -178,28 +151,28 @@ TODO FXR-80 - [User] As a Realm Admin, I want to execute action email on a user
 *User: `plateform-api`*
 
 ```
-i2-s2/user/user-f2-roles-revoke
+i2-s2/user/user-f2-password-reset
 ```
 
-### Get list of user
+### Get all users
 *User: `plateform-api`*
 
 ```
-TODO FXR-81 - [User] As a Realm Admin, I want to get a page of users h
+i2-s2/user/user-f2-query
 ```
 
 ### Get user by id
 *User: `plateform-api`*
 
 ```
-TODO FXR-82 - [User] As a Realm Admin, I want to get a user by id or email 
+i2-s2/user/user-f2-query
 ```
 
-### GET user by email
+### Get user by email
 *User: `plateform-api`*
 
 ```
-TODO FXR-82 - [User] As a Realm Admin, I want to get a user by id or email 
+i2-s2/user/user-f2-query 
 ```
 
 
@@ -207,7 +180,7 @@ TODO FXR-82 - [User] As a Realm Admin, I want to get a user by id or email
 
 ### As an keycloak admin I want init:
   * A realm
-  * A client for reaml
+  * A client for the realm
   * Role with Permission
   * User
 
