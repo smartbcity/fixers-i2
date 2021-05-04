@@ -21,6 +21,11 @@ include(
 )
 
 include(
+    "i2-s2:commons:commons-api",
+    "i2-s2:commons:commons-domain"
+)
+
+include(
     "i2-s2:client:client-domain",
     "i2-s2:client:client-f2-create",
     "i2-s2:client:client-f2-generate-secret",

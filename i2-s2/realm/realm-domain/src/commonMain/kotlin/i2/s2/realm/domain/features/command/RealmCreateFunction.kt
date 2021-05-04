@@ -19,10 +19,10 @@ class RealmCreateCommand(
 	val locale: String?,
 	val smtpServer: Map<String, String>?,
 	val masterRealmAuth: AuthRealm
-) : Command
+): Command
 
 @JsExport
 @JsName("RealmCreatedResult")
 class RealmCreatedResult(
 	val id: String
-) : Event
+): Event
