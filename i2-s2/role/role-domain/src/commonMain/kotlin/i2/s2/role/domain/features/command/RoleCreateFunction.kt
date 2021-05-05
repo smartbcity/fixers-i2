@@ -1,10 +1,11 @@
 package i2.s2.role.domain.features.command
 
-import f2.dsl.cqrs.Command
-import f2.dsl.cqrs.Event
 import f2.dsl.function.F2Function
 import f2.dsl.function.F2FunctionRemote
 import i2.keycloak.master.domain.AuthRealm
+import i2.keycloak.master.domain.RealmId
+import i2.s2.commons.f2.KeycloakF2Command
+import i2.s2.commons.f2.KeycloakF2Result
 import i2.s2.role.domain.RoleId
 import kotlin.js.JsExport
 import kotlin.js.JsName
@@ -19,11 +20,12 @@ class RoleCreateCommand(
 	val description: String?,
 	val isClientRole: Boolean,
 	val composites: List<RoleId>,
-	val auth: AuthRealm,
-): Command
+	override val auth: AuthRealm,
+	val realmId: RealmId
+): KeycloakF2Command
 
 @JsExport
 @JsName("RoleCreatedResult")
 class RoleCreatedResult(
 	val id: String
-): Event
+): KeycloakF2Result

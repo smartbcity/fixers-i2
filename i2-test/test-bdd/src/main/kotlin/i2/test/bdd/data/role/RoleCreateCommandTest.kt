@@ -1,6 +1,7 @@
 package i2.test.bdd.data.role
 
 import i2.keycloak.master.domain.AuthRealm
+import i2.keycloak.master.domain.RealmId
 import i2.s2.role.domain.RoleId
 import i2.s2.role.domain.features.command.RoleCreateCommand
 import i2.test.bdd.data.DataTest
@@ -8,6 +9,7 @@ import java.util.UUID
 
 fun DataTest.Companion.roleCreateCommand(
     auth: AuthRealm,
+    realmId: RealmId,
     id: RoleId = UUID.randomUUID().toString(),
     description: String? = null,
     isClientRole: Boolean = false,
@@ -17,5 +19,6 @@ fun DataTest.Companion.roleCreateCommand(
     description = description,
     isClientRole = isClientRole,
     composites = composites,
-    auth = auth
+    auth = auth,
+    realmId = realmId
 )

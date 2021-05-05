@@ -8,6 +8,7 @@ import i2.test.bdd.data.DataTest
 import i2.test.bdd.data.role.roleCreateCommand
 import i2.test.bdd.given.GivenKC
 import i2.test.bdd.given.auth
+import i2.test.bdd.given.realm
 import i2.test.bdd.given.role
 import i2.test.bdd.testcontainers.I2KeycloakTest
 import kotlinx.coroutines.runBlocking
@@ -18,16 +19,18 @@ import java.util.UUID
 class RoleCreateFunctionImplTest: I2KeycloakTest() {
 
 	private val masterClient = GivenKC().auth().withMasterRealmClient()
+	private val realmId = GivenKC(masterClient).realm().withTestRealm()
 
 	@Test
 	fun `should create a realm role`(): Unit = runBlocking {
 		val cmd = DataTest.roleCreateCommand(
 			auth = masterClient.auth,
+			realmId = realmId,
 			isClientRole = false,
 		)
 		RoleCreateFunctionImpl().roleCreateFunction().invokeSingle(cmd)
 
-		AssertionKC.role(masterClient.keycloak).assertThat(masterClient.auth.realmId, cmd.id).hasFields(
+		AssertionKC.role(masterClient.keycloak).assertThat(realmId, cmd.id).hasFields(
 			description = cmd.description,
 			isClientRole = cmd.isClientRole,
 			compositeNames = cmd.composites
@@ -38,19 +41,20 @@ class RoleCreateFunctionImplTest: I2KeycloakTest() {
 	fun `should create a realm role with composites`(): Unit = runBlocking {
 		val givenRole = GivenKC(masterClient).role()
 		val compositeRoles = listOf(
-			givenRole.withRole(UUID.randomUUID().toString()),
-			givenRole.withRole(UUID.randomUUID().toString()),
-			givenRole.withRole(UUID.randomUUID().toString())
+			givenRole.withRole(realmId, UUID.randomUUID().toString()),
+			givenRole.withRole(realmId, UUID.randomUUID().toString()),
+			givenRole.withRole(realmId, UUID.randomUUID().toString())
 		)
 
 		val cmd = DataTest.roleCreateCommand(
 			auth = masterClient.auth,
+			realmId = realmId,
 			isClientRole = false,
 			composites = compositeRoles
 		)
 		RoleCreateFunctionImpl().roleCreateFunction().invokeSingle(cmd)
 
-		AssertionKC.role(masterClient.keycloak).assertThat(masterClient.auth.realmId, cmd.id).hasFields(
+		AssertionKC.role(masterClient.keycloak).assertThat(realmId, cmd.id).hasFields(
 			description = cmd.description,
 			isClientRole = cmd.isClientRole,
 			compositeNames = cmd.composites
@@ -61,6 +65,7 @@ class RoleCreateFunctionImplTest: I2KeycloakTest() {
 	fun `should not create a realm role when its composites does not exist`(): Unit = runBlocking {
 		val cmd = DataTest.roleCreateCommand(
 			auth = masterClient.auth,
+			realmId = realmId,
 			isClientRole = false,
 			composites = listOf(UUID.randomUUID().toString(), UUID.randomUUID().toString())
 		)

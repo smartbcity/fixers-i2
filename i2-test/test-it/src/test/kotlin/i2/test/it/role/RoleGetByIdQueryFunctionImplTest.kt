@@ -5,6 +5,7 @@ import i2.s2.role.domain.features.query.RoleGetByIdQuery
 import i2.s2.role.f2.RoleGetByIdQueryFunctionImpl
 import i2.test.bdd.given.GivenKC
 import i2.test.bdd.given.auth
+import i2.test.bdd.given.realm
 import i2.test.bdd.given.role
 import i2.test.bdd.testcontainers.I2KeycloakTest
 import kotlinx.coroutines.runBlocking
@@ -15,14 +16,15 @@ import java.util.UUID
 class RoleGetByIdQueryFunctionImplTest: I2KeycloakTest() {
 
 	private val client = GivenKC().auth().withMasterRealmClient()
+	private val realmId = GivenKC(client).realm().withTestRealm()
 
-	private val roleId = GivenKC(client).role().withRole(UUID.randomUUID().toString())
+	private val roleId = GivenKC(client).role().withRole(realmId, UUID.randomUUID().toString())
 
 	@Test
 	fun `should get role when exists`(): Unit = runBlocking {
 		val cmd = RoleGetByIdQuery(
 			id = roleId,
-			realmId = client.auth.realmId,
+			realmId = realmId,
 			auth = client.auth
 		)
 		val result = RoleGetByIdQueryFunctionImpl().roleGetByIdQueryFunction().invokeSingle(cmd)
@@ -34,7 +36,7 @@ class RoleGetByIdQueryFunctionImplTest: I2KeycloakTest() {
 	fun `should not get role when not exists`(): Unit = runBlocking {
 		val cmd = RoleGetByIdQuery(
 			id = "NOT_EXISTING_ROLE",
-			realmId = client.auth.realmId,
+			realmId = realmId,
 			auth = client.auth
 		)
 		val result = RoleGetByIdQueryFunctionImpl().roleGetByIdQueryFunction().invokeSingle(cmd)
