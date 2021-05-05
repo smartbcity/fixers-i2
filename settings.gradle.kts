@@ -50,6 +50,7 @@ include(
 
 include(
     "i2-s2:role:role-domain",
+    "i2-s2:role:role-f2-add-composites",
     "i2-s2:role:role-f2-create",
     "i2-s2:role:role-f2-query"
 )
