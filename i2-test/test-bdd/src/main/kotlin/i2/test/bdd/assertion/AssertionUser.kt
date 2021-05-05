@@ -1,6 +1,7 @@
 package i2.test.bdd.assertion
 
 import i2.keycloak.realm.domain.UserId
+import i2.s2.realm.domain.UserImport
 import org.assertj.core.api.Assertions
 import org.keycloak.admin.client.Keycloak
 import org.keycloak.representations.idm.UserRepresentation
@@ -74,5 +75,14 @@ class AssertionUser(
 				Assertions.assertThat(user.attributes[key]).isEqualTo(listOf(value))
 			}
 		}
+
+		fun matchImport(import: UserImport) = hasFields(
+			username = import.username,
+			firstname = import.firstname,
+			lastname = import.lastname,
+			email = import.email,
+			isEnable = import.isEnable,
+			metadata = import.metadata,
+		)
 	}
 }

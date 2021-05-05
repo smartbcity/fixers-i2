@@ -2,6 +2,8 @@ package i2.test.bdd.assertion
 
 import i2.keycloak.master.domain.RealmId
 import i2.s2.client.domain.ClientId
+import i2.s2.client.domain.ClientIdentifier
+import i2.s2.realm.domain.ClientImport
 import org.assertj.core.api.Assertions
 import org.keycloak.admin.client.Keycloak
 import org.keycloak.representations.idm.ClientRepresentation
@@ -46,15 +48,42 @@ class AssertionClient(
 		private val client: ClientRepresentation
 	) {
 		fun hasFields(
-			userId: ClientId = client.id,
-			rootUrl: String = client.rootUrl,
+			clientId: ClientId = client.id,
+			clientIdentifier: ClientIdentifier = client.clientId,
+			isPublicClient: Boolean = client.isPublicClient,
+			isDirectAccessGrantsEnabled: Boolean = client.isDirectAccessGrantsEnabled,
+			isServiceAccountsEnabled: Boolean = client.isServiceAccountsEnabled,
+			authorizationServicesEnabled: Boolean = client.authorizationServicesEnabled,
+			rootUrl: String? = client.rootUrl,
 			redirectUris: List<String> = client.redirectUris,
 			baseUrl: String? = client.baseUrl,
+			adminUrl: String = client.adminUrl,
+			webOrigins: List<String> = client.webOrigins,
 		) {
-			Assertions.assertThat(client.id).isEqualTo(userId)
+			Assertions.assertThat(client.id).isEqualTo(clientId)
+			Assertions.assertThat(client.clientId).isEqualTo(clientIdentifier)
+			Assertions.assertThat(client.isPublicClient).isEqualTo(isPublicClient)
+			Assertions.assertThat(client.isDirectAccessGrantsEnabled).isEqualTo(isDirectAccessGrantsEnabled)
+			Assertions.assertThat(client.isServiceAccountsEnabled).isEqualTo(isServiceAccountsEnabled)
+			Assertions.assertThat(client.authorizationServicesEnabled ?: false).isEqualTo(authorizationServicesEnabled)
 			Assertions.assertThat(client.rootUrl).isEqualTo(rootUrl)
 			Assertions.assertThat(client.redirectUris).isEqualTo(redirectUris)
 			Assertions.assertThat(client.baseUrl).isEqualTo(baseUrl)
+			Assertions.assertThat(client.adminUrl).isEqualTo(adminUrl)
+			Assertions.assertThat(client.webOrigins).containsAll(webOrigins)
 		}
+
+		fun matchImport(import: ClientImport) = hasFields(
+			clientIdentifier = import.clientIdentifier,
+			isPublicClient = import.isPublicClient,
+			isDirectAccessGrantsEnabled = import.isDirectAccessGrantsEnabled,
+			isServiceAccountsEnabled = import.isServiceAccountsEnabled,
+			authorizationServicesEnabled = import.authorizationServicesEnabled,
+			rootUrl = import.rootUrl,
+			redirectUris = import.redirectUris,
+			baseUrl = import.baseUrl,
+			adminUrl = import.adminUrl,
+			webOrigins = import.webOrigins,
+		)
 	}
 }

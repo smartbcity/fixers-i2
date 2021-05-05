@@ -67,12 +67,19 @@ class AssertionRole(
 			Assertions.assertThat(name).isEqualTo(role.name)
 			Assertions.assertThat(description).isEqualTo(role.description)
 			Assertions.assertThat(isClientRole).isEqualTo(role.clientRole)
-			if (compositeNames.count() > 0) {
+			if (composites.count() > 0) {
 				Assertions.assertThat(roleComposites).isNotNull
 				Assertions.assertThat(composites).containsAll(roleComposites.map(RoleRepresentation::getName))
 			} else {
 				Assertions.assertThat(role.composites?.realm).isNullOrEmpty()
 			}
 		}
+
+		fun matchImport(import: RoleImport) = hasFields(
+			name = import.name,
+			description = import.description,
+			isClientRole = import.isClientRole,
+			composites = import.composites
+		)
 	}
 }
