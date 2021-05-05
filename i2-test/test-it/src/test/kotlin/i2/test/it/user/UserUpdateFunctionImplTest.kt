@@ -2,7 +2,7 @@ package i2.test.it.user
 
 import f2.function.spring.invokeSingle
 import i2.s2.errors.I2Exception
-import i2.s2.user.create.UserUpdateFunctionImpl
+import i2.s2.user.f2.UserUpdateFunctionImpl
 import i2.test.bdd.assertion.AssertionKC
 import i2.test.bdd.assertion.user
 import i2.test.bdd.data.DataTest

@@ -1,4 +1,4 @@
-package i2.s2.user.create
+package i2.s2.user.f2
 
 import f2.function.spring.adapter.f2Function
 import i2.keycloak.realm.client.config.AuthRealmClientBuilder

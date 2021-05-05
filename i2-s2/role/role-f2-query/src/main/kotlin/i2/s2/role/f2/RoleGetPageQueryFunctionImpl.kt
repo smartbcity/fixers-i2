@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration
 class RoleGetPageQueryFunctionImpl {
 
 	@Bean
-	fun roleGetPageQueryFunctionImpl(): RoleGetPageQueryFunction = f2Function { cmd ->
+	fun roleGetPageQueryFunction(): RoleGetPageQueryFunction = f2Function { cmd ->
 		val realmClient = AuthRealmClientBuilder().build(cmd.auth)
 
 		val size = cmd.page.size ?: 10

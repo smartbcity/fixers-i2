@@ -1,7 +1,7 @@
 package i2.test.it.user
 
 import f2.function.spring.invokeSingle
-import i2.s2.user.create.UserCreateFunctionImpl
+import i2.s2.user.f2.UserCreateFunctionImpl
 import i2.test.bdd.assertion.AssertionKC
 import i2.test.bdd.assertion.user
 import i2.test.bdd.data.DataTest

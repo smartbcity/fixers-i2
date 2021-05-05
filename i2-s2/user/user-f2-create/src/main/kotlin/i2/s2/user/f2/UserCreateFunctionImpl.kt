@@ -1,4 +1,4 @@
-package i2.s2.user.create
+package i2.s2.user.f2
 
 import f2.function.spring.adapter.f2Function
 import i2.keycloak.realm.client.config.AuthRealmClient
@@ -12,7 +12,6 @@ import i2.s2.keycloak.utils.toEntityCreatedId
 import org.keycloak.representations.idm.UserRepresentation
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import javax.ws.rs.core.Response
 
 @Configuration
 class UserCreateFunctionImpl {

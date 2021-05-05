@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
 @Configuration
-class ClientUpdateFunctionImpl {
+class ClientUpdateUrisFunctionImpl {
 
     @Bean
     fun clientUpdateUrisFunction(): ClientUpdateUrisFunction = f2Function { cmd ->

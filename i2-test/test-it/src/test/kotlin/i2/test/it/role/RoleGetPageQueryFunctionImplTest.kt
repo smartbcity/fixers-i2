@@ -34,7 +34,7 @@ class RoleGetPageQueryFunctionImplTest: I2KeycloakTest() {
 				size = 5
 			)
 		)
-		val result = RoleGetPageQueryFunctionImpl().roleGetPageQueryFunctionImpl().invokeSingle(cmd)
+		val result = RoleGetPageQueryFunctionImpl().roleGetPageQueryFunction().invokeSingle(cmd)
 
 		Assertions.assertThat(result.page.list).hasSize(cmd.page.size!!)
 		Assertions.assertThat(result.page.total).isEqualTo(existingRoles.size + newRoles.size.toLong())
