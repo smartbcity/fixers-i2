@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-i2.s2.role.f2.RoleGetByIdQueryFunctionImpl
+i2.s2.role.f2.RoleGetByNameQueryFunctionImpl

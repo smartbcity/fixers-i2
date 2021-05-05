@@ -14,8 +14,8 @@ class RoleAddCompositesFunctionImpl {
         val composites = cmd.composites.map { roleId ->
             client.getRoleResource(cmd.realmId, roleId).toRepresentation()
         }
-        client.getRoleResource(cmd.realmId, cmd.roleId).addComposites(composites)
+        client.getRoleResource(cmd.realmId, cmd.roleName).addComposites(composites)
 
-        RoleAddCompositesResult(cmd.roleId)
+        RoleAddCompositesResult(cmd.roleName)
     }
 }

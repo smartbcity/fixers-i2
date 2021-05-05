@@ -35,13 +35,13 @@ class RoleAddCompositesFunctionImplTest: I2KeycloakTest() {
 		val cmd = DataTest.roleAddCompositesCommand(
 			auth = masterClient.auth,
 			realmId = realmId,
-			roleId = roleId,
+			roleName = roleId,
 			composites = compositeRoles
 		)
 		RoleAddCompositesFunctionImpl().roleAddCompositesFunction().invokeSingle(cmd)
 
-		AssertionKC.role(masterClient.keycloak).assertThat(realmId, cmd.roleId).hasFields(
-			compositeNames = cmd.composites
+		AssertionKC.role(masterClient.keycloak).assertThat(realmId, cmd.roleName).hasFields(
+			composites = cmd.composites
 		)
 	}
 
@@ -50,7 +50,7 @@ class RoleAddCompositesFunctionImplTest: I2KeycloakTest() {
 		val cmd = DataTest.roleAddCompositesCommand(
 			auth = masterClient.auth,
 			realmId = realmId,
-			roleId = roleId,
+			roleName = roleId,
 			composites = listOf(UUID.randomUUID().toString(), UUID.randomUUID().toString())
 		)
 

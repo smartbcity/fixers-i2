@@ -4,24 +4,24 @@ import f2.dsl.function.F2Function
 import f2.dsl.function.F2FunctionRemote
 import i2.keycloak.master.domain.AuthRealm
 import i2.keycloak.master.domain.RealmId
-import i2.s2.role.domain.RoleId
 import i2.s2.role.domain.RoleModel
+import i2.s2.role.domain.RoleName
 import kotlin.js.JsExport
 import kotlin.js.JsName
 
-typealias RoleGetByIdQueryFunction = F2Function<RoleGetByIdQuery, RoleGetByIdQueryResult>
-typealias RoleGetByIdQueryFunctionRemote = F2FunctionRemote<RoleGetByIdQuery, RoleGetByIdQueryResult>
+typealias RoleGetByNameQueryFunction = F2Function<RoleGetByNameQuery, RoleGetByNameQueryResult>
+typealias RoleGetByNameQueryFunctionRemote = F2FunctionRemote<RoleGetByNameQuery, RoleGetByNameQueryResult>
 
 @JsExport
-@JsName("RoleGetByIdQuery")
-class RoleGetByIdQuery(
+@JsName("RoleGetByNameQuery")
+class RoleGetByNameQuery(
     val realmId: RealmId,
     val auth: AuthRealm,
-    val id: RoleId
+    val name: RoleName
 )
 
 @JsExport
-@JsName("RoleGetByIdQueryResult")
-class RoleGetByIdQueryResult(
+@JsName("RoleGetByNameQueryResult")
+class RoleGetByNameQueryResult(
     val role: RoleModel?
 )

@@ -6,7 +6,7 @@ import i2.keycloak.master.domain.AuthRealm
 import i2.keycloak.master.domain.RealmId
 import i2.s2.commons.f2.KeycloakF2Command
 import i2.s2.commons.f2.KeycloakF2Result
-import i2.s2.role.domain.RoleId
+import i2.s2.role.domain.RoleName
 import kotlin.js.JsExport
 import kotlin.js.JsName
 
@@ -16,8 +16,8 @@ typealias RoleAddCompositesRemoteFunction = F2FunctionRemote<RoleAddCompositesCo
 @JsExport
 @JsName("RoleAddCompositesCommand")
 class RoleAddCompositesCommand(
-	val roleId: RoleId,
-	val composites: List<RoleId>,
+	val roleName: RoleName,
+	val composites: List<RoleName>,
 	override val auth: AuthRealm,
 	val realmId: RealmId
 ): KeycloakF2Command

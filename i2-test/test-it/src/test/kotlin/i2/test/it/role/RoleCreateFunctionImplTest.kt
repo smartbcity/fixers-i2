@@ -30,10 +30,10 @@ class RoleCreateFunctionImplTest: I2KeycloakTest() {
 		)
 		RoleCreateFunctionImpl().roleCreateFunction().invokeSingle(cmd)
 
-		AssertionKC.role(masterClient.keycloak).assertThat(realmId, cmd.id).hasFields(
+		AssertionKC.role(masterClient.keycloak).assertThat(realmId, cmd.name).hasFields(
 			description = cmd.description,
 			isClientRole = cmd.isClientRole,
-			compositeNames = cmd.composites
+			composites = cmd.composites
 		)
 	}
 
@@ -54,10 +54,10 @@ class RoleCreateFunctionImplTest: I2KeycloakTest() {
 		)
 		RoleCreateFunctionImpl().roleCreateFunction().invokeSingle(cmd)
 
-		AssertionKC.role(masterClient.keycloak).assertThat(realmId, cmd.id).hasFields(
+		AssertionKC.role(masterClient.keycloak).assertThat(realmId, cmd.name).hasFields(
 			description = cmd.description,
 			isClientRole = cmd.isClientRole,
-			compositeNames = cmd.composites
+			composites = cmd.composites
 		)
 	}
 

@@ -7,6 +7,7 @@ import i2.keycloak.master.domain.RealmId
 import i2.s2.commons.f2.KeycloakF2Command
 import i2.s2.commons.f2.KeycloakF2Result
 import i2.s2.role.domain.RoleId
+import i2.s2.role.domain.RoleName
 import kotlin.js.JsExport
 import kotlin.js.JsName
 
@@ -16,10 +17,10 @@ typealias RoleCreateRemoteFunction = F2FunctionRemote<RoleCreateCommand, RoleCre
 @JsExport
 @JsName("RoleCreateCommand")
 class RoleCreateCommand(
-	val id: RoleId,
+	val name: RoleName,
 	val description: String?,
 	val isClientRole: Boolean,
-	val composites: List<RoleId>,
+	val composites: List<RoleName>,
 	override val auth: AuthRealm,
 	val realmId: RealmId
 ): KeycloakF2Command
@@ -27,5 +28,5 @@ class RoleCreateCommand(
 @JsExport
 @JsName("RoleCreatedResult")
 class RoleCreatedResult(
-	val id: String
+	val id: RoleId
 ): KeycloakF2Result
