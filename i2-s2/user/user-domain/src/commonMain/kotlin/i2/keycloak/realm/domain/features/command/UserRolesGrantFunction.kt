@@ -5,6 +5,7 @@ import f2.dsl.cqrs.Event
 import f2.dsl.function.F2Function
 import f2.dsl.function.F2FunctionRemote
 import i2.keycloak.master.domain.AuthRealm
+import i2.keycloak.master.domain.RealmId
 import i2.keycloak.realm.domain.UserId
 import kotlin.js.JsExport
 import kotlin.js.JsName
@@ -18,10 +19,11 @@ class UserRolesGrantCommand(
 	val id: UserId,
 	val roles: List<String>,
 	val auth: AuthRealm,
-) : Command
+	val realmId: RealmId = auth.realmId
+): Command
 
 @JsExport
 @JsName("UserRolesGrantedResult")
 class UserRolesGrantedResult(
 	val id: String
-) : Event
+): Event
