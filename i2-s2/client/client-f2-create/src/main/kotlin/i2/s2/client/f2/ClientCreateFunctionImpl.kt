@@ -27,18 +27,22 @@ class ClientCreateFunctionImpl {
 	private fun buildClient(cmd: ClientCreateCommand): ClientRepresentation {
 		return ClientRepresentation().apply {
 			this.clientId = cmd.clientIdentifier
-			this.isPublicClient = cmd.isPublicClient
+			this.secret = cmd.secret
 			this.isDirectAccessGrantsEnabled = cmd.isDirectAccessGrantsEnabled
+			this.isServiceAccountsEnabled = cmd.isServiceAccountsEnabled
+			this.authorizationServicesEnabled = cmd.authorizationServicesEnabled
+			this.isStandardFlowEnabled = cmd.isStandardFlowEnabled
+			this.isPublicClient = cmd.isPublicClient
 			this.rootUrl = cmd.rootUrl
 			this.redirectUris = cmd.redirectUris.map { url -> "${url}/*" }
 			this.baseUrl = cmd.baseUrl
 			this.adminUrl = cmd.adminUrl
 			this.webOrigins = cmd.webOrigins
-			this.protocolMappers = cmd.protocolMappers.map(::fieldMapper)
+			this.protocolMappers = cmd.protocolMappers.map { (key, value) -> fieldMapper(key, value) }
 		}
 	}
 
-	private fun fieldMapper(name: String): ProtocolMapperRepresentation {
+	private fun fieldMapper(name: String, value: String): ProtocolMapperRepresentation {
 		return ProtocolMapperRepresentation().apply {
 			this.name = name
 			this.protocol = "openid-connect"
@@ -49,6 +53,7 @@ class ClientCreateFunctionImpl {
 				"id.token.claim" to "false",
 				"access.token.claim" to "true",
 				"claim.name" to name,
+				"claim.value" to value,
 				"jsonType.label" to "String"
 			)
 		}

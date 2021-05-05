@@ -17,21 +17,25 @@ typealias ClientCreateRemoteFunction = F2FunctionRemote<ClientCreateCommand, Cli
 @JsExport
 @JsName("ClientCreateCommand")
 class ClientCreateCommand(
-	val clientIdentifier: ClientIdentifier,
-	val realmId: RealmId,
 	val auth: AuthRealm,
+	val realmId: RealmId,
+	val clientIdentifier: ClientIdentifier,
+	val secret: String? = null,
 	val isPublicClient: Boolean = true,
 	val isDirectAccessGrantsEnabled: Boolean = true,
+	val isServiceAccountsEnabled: Boolean = true,
+	val authorizationServicesEnabled: Boolean = false,
+	val isStandardFlowEnabled: Boolean = false,
 	val rootUrl: String? = null,
 	val redirectUris: List<String> = emptyList(),
 	val baseUrl: String = "",
 	val adminUrl: String = "",
 	val webOrigins: List<String> = emptyList(),
-	val protocolMappers: List<String> = emptyList(),
-) : Command
+	val protocolMappers: Map<String, String> = emptyMap(),
+): Command
 
 @JsExport
 @JsName("ClientCreatedResult")
 class ClientCreatedResult(
-	val id: String
-) : Event
+	val id: ClientId
+): Event
