@@ -5,6 +5,7 @@ plugins {
 dependencies {
 
     commonMainApi(project(":i2-keycloak:keycloak-auth:keycloak-auth-domain"))
+    commonMainApi(project(":i2-s2:commons:commons-domain"))
     commonMainApi(project(":i2-s2:error:error-domain"))
     commonMainApi(project(":i2-s2:client:client-domain"))
     commonMainApi(project(":i2-s2:realm:realm-domain"))

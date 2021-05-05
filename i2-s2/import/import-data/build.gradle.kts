@@ -7,6 +7,7 @@ plugins {
 dependencies {
     api(project(":i2-s2:import:import-domain"))
 
+    api(project(":i2-s2:commons:commons-api"))
 
     api(project(":i2-s2:client:client-f2-create"))
     api(project(":i2-s2:client:client-f2-query"))
