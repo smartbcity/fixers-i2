@@ -11,9 +11,9 @@ enableFeaturePreview("GRADLE_METADATA")
 
 include(
         "i2-spring:i2-spring-boot-starter-auth",
-        "auth-test"
+        "i2-keycloak",
+        "sample:spring-boot-auth-test"
 )
-
 include(
     "i2-keycloak:keycloak-auth:keycloak-auth-client",
     "i2-keycloak:keycloak-auth:keycloak-auth-domain"
