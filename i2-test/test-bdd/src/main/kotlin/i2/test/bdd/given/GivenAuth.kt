@@ -12,13 +12,13 @@ class GivenAuth(
 		val SERVER_URL_TEST = "http://localhost:8080/auth"
 	}
 
-	fun withMasterRealmClient(): AuthRealmClient {
+	fun withMasterRealmClient(realm: RealmId = "master"): AuthRealmClient {
 		val auth = AuthRealmPassword(
 			serverUrl = SERVER_URL_TEST,
 			clientId = "admin-cli",
 			username = "admin",
 			password = "admin",
-			realm = "master",
+			realmId = realm,
 			redirectUrl = "http://localhost:3000",
 		)
 		return AuthRealmClientBuilder().build(auth)
@@ -29,7 +29,7 @@ class GivenAuth(
 			serverUrl = SERVER_URL_TEST,
 			clientId = "admin-cli",
 			clientSecret = "test",
-			realm = realm,
+			realmId = realm,
 			redirectUrl = ""
 		)
 		return AuthRealmClientBuilder().build(auth)

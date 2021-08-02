@@ -87,6 +87,8 @@ subprojects {
 
             implementation(kotlin("reflect"))
 
+            implementation("city.smartb.s2:s2-spring-boot-starter-utils-logger:${Versions.s2}")
+
             testImplementation("org.junit.jupiter:junit-jupiter:${Versions.junit}")
             testImplementation("org.junit.jupiter:junit-jupiter-api:${Versions.junit}")
 

@@ -1,6 +1,6 @@
 package i2.test.it.realm
 
-import f2.function.spring.invokeSingle
+import f2.dsl.fnc.invoke
 import i2.s2.realm.domain.features.command.RealmCreateCommand
 import i2.s2.realm.f2.RealmCreateFunctionImpl
 import i2.test.bdd.testcontainers.I2KeycloakTest
@@ -33,7 +33,7 @@ class RealmCreateFunctionImplTest : I2KeycloakTest() {
 			masterRealmAuth = masterClient.auth
 		)
 
-		val event = RealmCreateFunctionImpl().realmCreateFunction().invokeSingle(cmd)
+		val event = RealmCreateFunctionImpl().realmCreateFunction().invoke(cmd)
 		AssertionKC.realm(masterClient.keycloak).exist(id)
 	}
 }

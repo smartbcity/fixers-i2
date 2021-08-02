@@ -1,10 +1,11 @@
-package i2.s2.user.resetpassword
+package i2.s2.user.f2
 
-import f2.function.spring.adapter.f2Function
+import f2.dsl.fnc.f2Function
 import i2.keycloak.realm.client.config.AuthRealmClient
 import i2.keycloak.realm.client.config.AuthRealmClientBuilder
 import i2.keycloak.realm.domain.UserId
-import i2.keycloak.realm.domain.features.command.*
+import i2.keycloak.realm.domain.features.command.UserRolesRevokeFunction
+import i2.keycloak.realm.domain.features.command.UserRolesRevokedResult
 import org.keycloak.admin.client.resource.RoleScopeResource
 import org.keycloak.representations.idm.RoleRepresentation
 import org.springframework.context.annotation.Bean

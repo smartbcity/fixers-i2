@@ -1,0 +1,5 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+i2.s2.client.f2.ClientGetByIdQueryFunctionImpl,\
+i2.s2.client.f2.ClientGetByClientIdentifierQueryFunctionImpl,\
+i2.s2.client.f2.ClientGetPageQueryFunctionImpl,\
+i2.s2.client.f2.ClientGetSecretQueryFunctionImpl

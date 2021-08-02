@@ -1,6 +1,7 @@
 package i2.s2.user.f2
 
-import f2.function.spring.adapter.f2Function
+import f2.dsl.fnc.f2Function
+import i2.keycloak.master.domain.RealmId
 import i2.keycloak.realm.client.config.AuthRealmClient
 import i2.keycloak.realm.client.config.AuthRealmClientBuilder
 import i2.keycloak.realm.domain.UserId
@@ -17,23 +18,23 @@ class UserRolesGrantFunctionImpl {
 	@Bean
 	fun userRolesGrantFunction(): UserRolesGrantFunction = f2Function { cmd ->
 		val realmClient = AuthRealmClientBuilder().build(cmd.auth)
-		realmClient.addUserRole(cmd.id, cmd.roles)
+		realmClient.addUserRole(cmd.realmId, cmd.id, cmd.roles)
 		UserRolesGrantedResult(cmd.id)
 	}
 
-	fun AuthRealmClient.addUserRole(userId: UserId, roles: List<String>) {
+	fun AuthRealmClient.addUserRole(realmId: RealmId, userId: UserId, roles: List<String>) {
 		val roleRepresentations = roles.map { role ->
-			getRoleRepresentation(role)
+			getRoleRepresentation(realmId, role)
 		}
-		getUserRealmRolesResource(userId).add(roleRepresentations)
+		getUserRealmRolesResource(realmId, userId).add(roleRepresentations)
 	}
 
-	fun AuthRealmClient.getRoleRepresentation(role: String): RoleRepresentation {
-		return realm.roles().get(role).toRepresentation()
+	fun AuthRealmClient.getRoleRepresentation(realmId: RealmId, role: String): RoleRepresentation {
+		return getRoleResource(realmId, role).toRepresentation()
 	}
 
-	protected fun AuthRealmClient.getUserRealmRolesResource(userId: String): RoleScopeResource {
-		return getUserResource(userId).roles().realmLevel()
+	protected fun AuthRealmClient.getUserRealmRolesResource(realmId: RealmId, userId: String): RoleScopeResource {
+		return getUserResource(realmId, userId).roles().realmLevel()
 	}
 
 }

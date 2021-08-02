@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-i2.s2.user.create.UserCreateFunctionImpl
+i2.s2.user.f2.UserResetPasswordFunctionImpl

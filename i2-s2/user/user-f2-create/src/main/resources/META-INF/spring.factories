@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-i2.s2.realm.config.UserCreateFunctionImpl
+i2.s2.user.f2.UserCreateFunctionImpl
