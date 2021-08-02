@@ -1,6 +1,6 @@
 package i2.s2.user.f2
 
-import f2.function.spring.adapter.f2Function
+import f2.dsl.fnc.f2Function
 import i2.keycloak.realm.client.config.AuthRealmClientBuilder
 import i2.keycloak.realm.domain.features.command.UserUpdateCommand
 import i2.keycloak.realm.domain.features.command.UserUpdateFunction

@@ -1,6 +1,6 @@
 package i2.test.it.role
 
-import f2.function.spring.invokeSingle
+import f2.dsl.fnc.invoke
 import i2.s2.role.domain.features.query.RoleGetByNameQuery
 import i2.s2.role.f2.RoleGetByNameQueryFunctionImpl
 import i2.test.bdd.given.GivenKC
@@ -27,7 +27,7 @@ class RoleGetByNameQueryFunctionImplTest: I2KeycloakTest() {
 			realmId = realmId,
 			auth = client.auth
 		)
-		val result = RoleGetByNameQueryFunctionImpl().roleGetByNameQueryFunction().invokeSingle(cmd)
+		val result = RoleGetByNameQueryFunctionImpl().roleGetByNameQueryFunction().invoke(cmd)
 
 		Assertions.assertThat(result.role).isNotNull
 	}
@@ -39,7 +39,7 @@ class RoleGetByNameQueryFunctionImplTest: I2KeycloakTest() {
 			realmId = realmId,
 			auth = client.auth
 		)
-		val result = RoleGetByNameQueryFunctionImpl().roleGetByNameQueryFunction().invokeSingle(cmd)
+		val result = RoleGetByNameQueryFunctionImpl().roleGetByNameQueryFunction().invoke(cmd)
 
 		Assertions.assertThat(result.role).isNull()
 	}

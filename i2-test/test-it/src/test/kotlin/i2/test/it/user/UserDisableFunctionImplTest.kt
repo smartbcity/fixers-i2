@@ -1,6 +1,6 @@
 package i2.test.it.user
 
-import f2.function.spring.invokeSingle
+import f2.dsl.fnc.invoke
 import i2.keycloak.realm.domain.features.command.UserDisableCommand
 import i2.s2.user.f2.UserDisableFunctionImpl
 import i2.test.bdd.assertion.AssertionKC
@@ -28,7 +28,7 @@ internal class UserDisableFunctionImplTest: I2KeycloakTest() {
 			realmId = realmId,
 			auth = client.auth
 		)
-		val disabled = UserDisableFunctionImpl().userDisableFunction().invokeSingle(cmd)
+		val disabled = UserDisableFunctionImpl().userDisableFunction().invoke(cmd)
 
 
 		AssertionKC.user(client.keycloak).isDisabled(realmId, userId)

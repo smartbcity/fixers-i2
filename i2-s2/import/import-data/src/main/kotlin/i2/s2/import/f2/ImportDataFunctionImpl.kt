@@ -1,7 +1,7 @@
 package i2.s2.import.f2
 
-import f2.function.spring.adapter.f2Function
-import f2.function.spring.invokeSingle
+import f2.dsl.fnc.f2Function
+import f2.dsl.fnc.invoke
 import i2.keycloak.master.domain.AuthRealm
 import i2.keycloak.realm.domain.UserId
 import i2.keycloak.realm.domain.features.command.UserCreateFunction
@@ -35,7 +35,6 @@ import kotlinx.coroutines.flow.toList
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-
 
 @Configuration
 class ImportDataFunctionImpl {
@@ -82,7 +81,7 @@ class ImportDataFunctionImpl {
 
 	private suspend fun createRealm(auth: AuthRealm, realmImport: RealmImport): RealmCreatedResult {
 		val command = realmImport.toRealmCreateCommand(auth)
-		return realmCreateFunction.invokeSingle(command)
+		return realmCreateFunction.invoke(command)
 	}
 
 	private suspend fun createRoles(auth: AuthRealm, realmId: RealmId, roleImports: List<RoleImport>): List<RoleCreatedResult> {
@@ -98,7 +97,7 @@ class ImportDataFunctionImpl {
 	private suspend fun createClients(auth: AuthRealm, realmId: RealmId, clientImports: List<ClientImport>): Map<ClientId, ClientIdentifier> {
 		return clientImports.map { clientImport ->
 			val createCommand = clientImport.toClientCreateCommand(auth, realmId)
-			val result = clientCreateFunction.invokeSingle(createCommand)
+			val result = clientCreateFunction.invoke(createCommand)
 			grantServiceAccountRoles(auth, realmId, clientImport)
 			result.id to clientImport.clientIdentifier
 		}.toMap()
@@ -119,13 +118,13 @@ class ImportDataFunctionImpl {
 			realmId = realmId,
 			username = username
 		)
-		return userGetByUsernameQueryFunction.invokeSingle(query).user?.id
+		return userGetByUsernameQueryFunction.invoke(query).user?.id
 	}
 
 	private suspend fun createUsers(auth: AuthRealm, realmId: RealmId, userImports: List<UserImport>): Map<UserId, String> {
 		return userImports.map { userImport ->
 			val command = userImport.toUserCreateCommand(auth, realmId)
-			val result = userCreateFunction.invokeSingle(command)
+			val result = userCreateFunction.invoke(command)
 			grantUser(auth, realmId, result.id, userImport.roles)
 			result.id to userImport.username
 		}.toMap()
@@ -138,6 +137,6 @@ class ImportDataFunctionImpl {
 			auth = auth,
 			realmId = realmId
 		)
-		userRolesGrantFunction.invokeSingle(rolesCommand)
+		userRolesGrantFunction.invoke(rolesCommand)
 	}
 }

@@ -1,6 +1,6 @@
 package i2.test.it.role
 
-import f2.function.spring.invokeSingle
+import f2.dsl.fnc.invoke
 import i2.s2.role.f2.RoleAddCompositesFunctionImpl
 import i2.test.bdd.assertion.AssertionKC
 import i2.test.bdd.assertion.role
@@ -38,7 +38,7 @@ class RoleAddCompositesFunctionImplTest: I2KeycloakTest() {
 			roleName = roleId,
 			composites = compositeRoles
 		)
-		RoleAddCompositesFunctionImpl().roleAddCompositesFunction().invokeSingle(cmd)
+		RoleAddCompositesFunctionImpl().roleAddCompositesFunction().invoke(cmd)
 
 		AssertionKC.role(masterClient.keycloak).assertThat(realmId, cmd.roleName).hasFields(
 			composites = cmd.composites
@@ -55,7 +55,7 @@ class RoleAddCompositesFunctionImplTest: I2KeycloakTest() {
 		)
 
 		Assertions.assertThatThrownBy { runBlocking {
-			RoleAddCompositesFunctionImpl().roleAddCompositesFunction().invokeSingle(cmd)
+			RoleAddCompositesFunctionImpl().roleAddCompositesFunction().invoke(cmd)
 		}}.isNotNull
 	}
 
@@ -68,7 +68,7 @@ class RoleAddCompositesFunctionImplTest: I2KeycloakTest() {
 		)
 
 		Assertions.assertThatThrownBy { runBlocking {
-			RoleAddCompositesFunctionImpl().roleAddCompositesFunction().invokeSingle(cmd)
+			RoleAddCompositesFunctionImpl().roleAddCompositesFunction().invoke(cmd)
 		}}.isNotNull
 	}
 }

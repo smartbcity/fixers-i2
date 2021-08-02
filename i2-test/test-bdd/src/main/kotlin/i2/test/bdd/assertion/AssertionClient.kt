@@ -53,7 +53,7 @@ class AssertionClient(
 			isPublicClient: Boolean = client.isPublicClient,
 			isDirectAccessGrantsEnabled: Boolean = client.isDirectAccessGrantsEnabled,
 			isServiceAccountsEnabled: Boolean = client.isServiceAccountsEnabled,
-			authorizationServicesEnabled: Boolean = client.authorizationServicesEnabled,
+//			authorizationServicesEnabled: Boolean = client.authorizationServicesEnabled,
 			rootUrl: String? = client.rootUrl,
 			redirectUris: List<String> = client.redirectUris,
 			baseUrl: String? = client.baseUrl,
@@ -65,7 +65,7 @@ class AssertionClient(
 			Assertions.assertThat(client.isPublicClient).isEqualTo(isPublicClient)
 			Assertions.assertThat(client.isDirectAccessGrantsEnabled).isEqualTo(isDirectAccessGrantsEnabled)
 			Assertions.assertThat(client.isServiceAccountsEnabled).isEqualTo(isServiceAccountsEnabled)
-			Assertions.assertThat(client.authorizationServicesEnabled ?: false).isEqualTo(authorizationServicesEnabled)
+//			Assertions.assertThat(client.authorizationServicesEnabled ?: false).isEqualTo(authorizationServicesEnabled)
 			Assertions.assertThat(client.rootUrl).isEqualTo(rootUrl)
 			Assertions.assertThat(client.redirectUris).isEqualTo(redirectUris)
 			Assertions.assertThat(client.baseUrl).isEqualTo(baseUrl)
@@ -78,7 +78,7 @@ class AssertionClient(
 			isPublicClient = import.isPublicClient,
 			isDirectAccessGrantsEnabled = import.isDirectAccessGrantsEnabled,
 			isServiceAccountsEnabled = import.isServiceAccountsEnabled,
-			authorizationServicesEnabled = import.authorizationServicesEnabled,
+//			authorizationServicesEnabled = import.authorizationServicesEnabled,
 			rootUrl = import.rootUrl,
 			redirectUris = import.redirectUris,
 			baseUrl = import.baseUrl,

@@ -1,6 +1,6 @@
 package i2.test.it.user
 
-import f2.function.spring.invokeSingle
+import f2.dsl.fnc.invoke
 import i2.s2.user.f2.UserCreateFunctionImpl
 import i2.test.bdd.assertion.AssertionKC
 import i2.test.bdd.assertion.user
@@ -39,7 +39,7 @@ class UserCreateFunctionImplTest : I2KeycloakTest() {
 				"organizationId" to UUID.randomUUID().toString()
 			),
 		)
-		val event = UserCreateFunctionImpl().userCreateFunction().invokeSingle(cmd)
+		val event = UserCreateFunctionImpl().userCreateFunction().invoke(cmd)
 
 		Assertions.assertThat(event.id).isNotNull
 		AssertionKC.user(clientMaster.keycloak).exists(realmId, event.id)

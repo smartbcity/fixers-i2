@@ -1,8 +1,8 @@
 package i2.test.bdd.given
 
-import f2.function.spring.invokeSingle
-import i2.keycloak.master.domain.RealmId
+import f2.dsl.fnc.invoke
 import i2.keycloak.realm.client.config.AuthRealmClient
+import i2.s2.realm.domain.RealmId
 import i2.s2.role.domain.RoleName
 import i2.s2.role.domain.features.command.RoleCreateCommand
 import i2.s2.role.f2.RoleCreateFunctionImpl
@@ -20,7 +20,7 @@ class GivenRole(
 			auth = client.auth,
 			realmId = realmId
 		)
-		RoleCreateFunctionImpl().roleCreateFunction().invokeSingle(cmd).id
+		RoleCreateFunctionImpl().roleCreateFunction().invoke(cmd).id
 	}
 }
 

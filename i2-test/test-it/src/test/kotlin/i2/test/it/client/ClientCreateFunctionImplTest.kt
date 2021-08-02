@@ -1,6 +1,6 @@
 package i2.test.it.client
 
-import f2.function.spring.invokeSingle
+import f2.dsl.fnc.invoke
 import i2.s2.client.domain.features.command.ClientCreateCommand
 import i2.s2.client.f2.ClientCreateFunctionImpl
 import i2.test.bdd.assertion.AssertionKC
@@ -30,7 +30,7 @@ class ClientCreateFunctionImplTest : I2KeycloakTest() {
 			auth = masterRealmClient.auth
 		)
 
-		val event = ClientCreateFunctionImpl().clientCreateFunction().invokeSingle(cmd)
+		val event = ClientCreateFunctionImpl().clientCreateFunction().invoke(cmd)
 		Assertions.assertThat(event.id).isNotNull
 		AssertionKC.client(masterRealmClient.keycloak).exists("test", clientIdentifier)
 	}

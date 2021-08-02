@@ -1,6 +1,6 @@
 package i2.s2.client.f2
 
-import f2.function.spring.adapter.f2Function
+import f2.dsl.fnc.f2Function
 import i2.keycloak.realm.client.config.AuthRealmClientBuilder
 import i2.s2.client.domain.features.command.ClientGenerateSecretFunction
 import i2.s2.client.domain.features.command.ClientGenerateSecretResult

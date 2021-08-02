@@ -1,6 +1,6 @@
 package i2.test.it.user
 
-import f2.function.spring.invokeSingle
+import f2.dsl.fnc.invoke
 import i2.keycloak.realm.domain.features.command.UserDeleteCommand
 import i2.s2.user.f2.UserDeleteFunctionImpl
 import i2.test.bdd.assertion.AssertionKC
@@ -29,7 +29,7 @@ internal class UserDeleteFunctionImplTest: I2KeycloakTest() {
 			realmId = realmId,
 			auth = client.auth
 		)
-		UserDeleteFunctionImpl().userDeleteFunction().invokeSingle(cmd)
+		UserDeleteFunctionImpl().userDeleteFunction().invoke(cmd)
 
 
 		AssertionKC.user(client.keycloak).notExists(realmId, userId)

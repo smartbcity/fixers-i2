@@ -1,6 +1,6 @@
 package i2.test.it.user
 
-import f2.function.spring.invokeSingle
+import f2.dsl.fnc.invoke
 import i2.s2.errors.I2Exception
 import i2.s2.user.f2.UserUpdateFunctionImpl
 import i2.test.bdd.assertion.AssertionKC
@@ -35,7 +35,7 @@ class UserUpdateFunctionImplTest: I2KeycloakTest() {
 			email = "sandra@geffroi.com",
 			metadata = mapOf("key" to "value")
 		)
-		val updatedUserId = UserUpdateFunctionImpl().userUpdateFunction().invokeSingle(updateCommand).id
+		val updatedUserId = UserUpdateFunctionImpl().userUpdateFunction().invoke(updateCommand).id
 
 		AssertionKC.user(clientMaster.keycloak).assertThat(realmId, updatedUserId).hasFields(
 			userId = userId,
@@ -51,7 +51,7 @@ class UserUpdateFunctionImplTest: I2KeycloakTest() {
 		val updateCommand = DataTest.userUpdateCommand(realmId = realmId, auth = clientMaster.auth)
 
 		try {
-			UserUpdateFunctionImpl().userUpdateFunction().invokeSingle(updateCommand)
+			UserUpdateFunctionImpl().userUpdateFunction().invoke(updateCommand)
 			Assertions.fail("User[${updateCommand.userId}] should not exist")
 		} catch (e: I2Exception) {}
 	}

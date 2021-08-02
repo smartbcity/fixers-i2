@@ -1,7 +1,7 @@
 package i2.test.it.role
 
 import f2.dsl.cqrs.base.PageRequestBase
-import f2.function.spring.invokeSingle
+import f2.dsl.fnc.invoke
 import i2.s2.role.domain.features.query.RoleGetPageQuery
 import i2.s2.role.f2.RoleGetPageQueryFunctionImpl
 import i2.test.bdd.given.GivenKC
@@ -21,7 +21,7 @@ class RoleGetPageQueryFunctionImplTest: I2KeycloakTest() {
 
 	@Test
 	fun `should get page of role`(): Unit = runBlocking {
-		val existingRoles = client.roles().list()
+		val existingRoles = client.roles(realmId).list()
 		val newRoles = (0..6).map {
 			GivenKC(client).role().withRole(realmId, UUID.randomUUID().toString())
 		}
@@ -34,7 +34,7 @@ class RoleGetPageQueryFunctionImplTest: I2KeycloakTest() {
 				size = 5
 			)
 		)
-		val result = RoleGetPageQueryFunctionImpl().roleGetPageQueryFunction().invokeSingle(cmd)
+		val result = RoleGetPageQueryFunctionImpl().roleGetPageQueryFunction().invoke(cmd)
 
 		Assertions.assertThat(result.page.list).hasSize(cmd.page.size!!)
 		Assertions.assertThat(result.page.total).isEqualTo(existingRoles.size + newRoles.size.toLong())

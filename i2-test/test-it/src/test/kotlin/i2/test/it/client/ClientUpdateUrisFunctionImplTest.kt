@@ -1,6 +1,6 @@
 package i2.test.it.client
 
-import f2.function.spring.invokeSingle
+import f2.dsl.fnc.invoke
 import i2.s2.client.f2.ClientUpdateUrisFunctionImpl
 import i2.s2.errors.I2Exception
 import i2.test.bdd.assertion.AssertionKC
@@ -34,8 +34,7 @@ class ClientUpdateUrisFunctionImplTest: I2KeycloakTest() {
             redirectUris = listOf("https://redirectUris-$clientId.com"),
             baseUrl = "https://baseUrl-$clientId.com",
         )
-        ClientUpdateUrisFunctionImpl().clientUpdateUrisFunction().invokeSingle(command)
-
+        ClientUpdateUrisFunctionImpl().clientUpdateUrisFunction().invoke(command)
         AssertionKC.client(masterClient.keycloak).assertThat(realmId, clientId).hasFields(
             rootUrl = command.rootUrl,
             redirectUris = command.redirectUris,
@@ -51,7 +50,7 @@ class ClientUpdateUrisFunctionImplTest: I2KeycloakTest() {
         )
 
         Assertions.assertThatThrownBy { runBlocking {
-            ClientUpdateUrisFunctionImpl().clientUpdateUrisFunction().invokeSingle(command)
+            ClientUpdateUrisFunctionImpl().clientUpdateUrisFunction().invoke(command)
         }}.isInstanceOf(I2Exception::class.java)
     }
 }

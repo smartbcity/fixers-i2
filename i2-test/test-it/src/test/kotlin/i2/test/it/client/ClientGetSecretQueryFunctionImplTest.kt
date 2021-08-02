@@ -1,6 +1,6 @@
 package i2.test.it.client
 
-import f2.function.spring.invokeSingle
+import f2.dsl.fnc.invoke
 import i2.s2.client.domain.features.query.ClientGetSecretQuery
 import i2.s2.client.f2.ClientGetSecretQueryFunctionImpl
 import i2.s2.errors.I2Exception
@@ -28,7 +28,7 @@ class ClientGetSecretQueryFunctionImplTest: I2KeycloakTest() {
             realmId = realmId,
             auth = masterClient.auth
         )
-        val result = ClientGetSecretQueryFunctionImpl().clientGetSecretQueryFunction().invokeSingle(cmd)
+        val result = ClientGetSecretQueryFunctionImpl().clientGetSecretQueryFunction().invoke(cmd)
 
         Assertions.assertThat(result.secret).isNotNull
     }
@@ -42,7 +42,7 @@ class ClientGetSecretQueryFunctionImplTest: I2KeycloakTest() {
         )
 
         Assertions.assertThatThrownBy { runBlocking {
-            ClientGetSecretQueryFunctionImpl().clientGetSecretQueryFunction().invokeSingle(cmd)
+            ClientGetSecretQueryFunctionImpl().clientGetSecretQueryFunction().invoke(cmd)
         }}.isInstanceOf(I2Exception::class.java)
     }
 }

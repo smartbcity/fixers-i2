@@ -1,6 +1,6 @@
 package i2.test.it.user
 
-import f2.function.spring.invokeSingle
+import f2.dsl.fnc.invoke
 import i2.keycloak.realm.domain.features.query.UserGetByEmailQuery
 import i2.s2.user.f2.UserGetByEmailQueryFunctionImpl
 import i2.test.bdd.data.DataTest
@@ -34,7 +34,7 @@ class UserGetByEmailQueryFunctionImplTest: I2KeycloakTest() {
 			realmId = realmId,
 			auth = client.auth
 		)
-		val result = UserGetByEmailQueryFunctionImpl().userGetByEmailQueryFunction().invokeSingle(cmd)
+		val result = UserGetByEmailQueryFunctionImpl().userGetByEmailQueryFunction().invoke(cmd)
 
 		Assertions.assertThat(result.user).isNotNull
 	}
@@ -53,7 +53,7 @@ class UserGetByEmailQueryFunctionImplTest: I2KeycloakTest() {
 			realmId = realmId,
 			auth = client.auth
 		)
-		val result = UserGetByEmailQueryFunctionImpl().userGetByEmailQueryFunction().invokeSingle(cmd)
+		val result = UserGetByEmailQueryFunctionImpl().userGetByEmailQueryFunction().invoke(cmd)
 
 		Assertions.assertThat(result.user).isNull()
 	}

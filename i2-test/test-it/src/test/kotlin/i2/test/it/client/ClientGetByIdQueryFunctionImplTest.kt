@@ -1,6 +1,6 @@
 package i2.test.it.client
 
-import f2.function.spring.invokeSingle
+import f2.dsl.fnc.invoke
 import i2.s2.client.domain.features.query.ClientGetByIdQuery
 import i2.s2.client.f2.ClientGetByIdQueryFunctionImpl
 import i2.test.bdd.given.GivenKC
@@ -26,7 +26,7 @@ class ClientGetByIdQueryFunctionImplTest: I2KeycloakTest() {
 			realmId = realmId,
 			auth = masterClient.auth
 		)
-		val result = ClientGetByIdQueryFunctionImpl().clientGetByIdQueryFunction().invokeSingle(cmd)
+		val result = ClientGetByIdQueryFunctionImpl().clientGetByIdQueryFunction().invoke(cmd)
 
 		Assertions.assertThat(result.client).isNotNull
 	}
@@ -38,7 +38,7 @@ class ClientGetByIdQueryFunctionImplTest: I2KeycloakTest() {
 			realmId = realmId,
 			auth = masterClient.auth
 		)
-		val result = ClientGetByIdQueryFunctionImpl().clientGetByIdQueryFunction().invokeSingle(cmd)
+		val result = ClientGetByIdQueryFunctionImpl().clientGetByIdQueryFunction().invoke(cmd)
 
 		Assertions.assertThat(result.client).isNull()
 	}

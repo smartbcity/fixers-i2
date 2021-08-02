@@ -1,6 +1,6 @@
 package i2.test.it.client
 
-import f2.function.spring.invokeSingle
+import f2.dsl.fnc.invoke
 import i2.s2.client.domain.features.command.ClientGenerateSecretCommand
 import i2.s2.client.f2.ClientGenerateSecretFunctionImpl
 import i2.test.bdd.given.GivenKC
@@ -27,7 +27,7 @@ class ClientGenerateSecretFunctionImplTest: I2KeycloakTest() {
             realmId = realmId,
             auth = masterClient.auth
         )
-        val secret = ClientGenerateSecretFunctionImpl().clientGenerateSecretFunction().invokeSingle(cmd).secret
+        val secret = ClientGenerateSecretFunctionImpl().clientGenerateSecretFunction().invoke(cmd).secret
 
         Assertions.assertThat(secret).isNotNull
     }

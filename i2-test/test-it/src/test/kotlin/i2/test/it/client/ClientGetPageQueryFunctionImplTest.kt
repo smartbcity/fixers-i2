@@ -1,7 +1,7 @@
 package i2.test.it.client
 
 import f2.dsl.cqrs.base.PageRequestBase
-import f2.function.spring.invokeSingle
+import f2.dsl.fnc.invoke
 import i2.s2.client.domain.features.query.ClientGetPageQuery
 import i2.s2.client.f2.ClientGetPageQueryFunctionImpl
 import i2.test.bdd.given.GivenKC
@@ -35,7 +35,7 @@ class ClientGetPageQueryFunctionImplTest: I2KeycloakTest() {
 				size = 5
 			)
 		)
-		val result = ClientGetPageQueryFunctionImpl().clientGetPageQueryFunctionImpl().invokeSingle(cmd)
+		val result = ClientGetPageQueryFunctionImpl().clientGetPageQueryFunctionImpl().invoke(cmd)
 
 		Assertions.assertThat(result.page.list).hasSize(cmd.page.size!!)
 		Assertions.assertThat(result.page.total).isEqualTo(expectedClients.size + existingClients.size.toLong())
@@ -61,7 +61,7 @@ class ClientGetPageQueryFunctionImplTest: I2KeycloakTest() {
 				size = pageSize
 			)
 		)
-		val result = ClientGetPageQueryFunctionImpl().clientGetPageQueryFunctionImpl().invokeSingle(cmd)
+		val result = ClientGetPageQueryFunctionImpl().clientGetPageQueryFunctionImpl().invoke(cmd)
 
 		Assertions.assertThat(result.page.list).hasSize(lastPageSize)
 		Assertions.assertThat(result.page.total).isEqualTo(expectedClients.size + existingClients.size.toLong())
@@ -79,7 +79,7 @@ class ClientGetPageQueryFunctionImplTest: I2KeycloakTest() {
 				size = existingClients.size
 			)
 		)
-		val result = ClientGetPageQueryFunctionImpl().clientGetPageQueryFunctionImpl().invokeSingle(cmd)
+		val result = ClientGetPageQueryFunctionImpl().clientGetPageQueryFunctionImpl().invoke(cmd)
 
 		Assertions.assertThat(result.page.list).hasSize(0)
 		Assertions.assertThat(result.page.total).isEqualTo(existingClients.size.toLong())

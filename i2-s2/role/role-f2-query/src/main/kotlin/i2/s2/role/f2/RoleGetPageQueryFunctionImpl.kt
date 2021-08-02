@@ -1,7 +1,7 @@
 package i2.s2.role.f2
 
 import f2.dsl.cqrs.base.PageBase
-import f2.function.spring.adapter.f2Function
+import f2.dsl.fnc.f2Function
 import i2.keycloak.realm.client.config.AuthRealmClientBuilder
 import i2.s2.role.domain.RoleModel
 import i2.s2.role.domain.features.query.RoleGetPageQueryFunction

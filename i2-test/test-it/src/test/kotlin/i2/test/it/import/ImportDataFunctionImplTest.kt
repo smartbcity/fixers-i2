@@ -1,6 +1,6 @@
 package i2.test.it.import
 
-import f2.function.spring.invokeSingle
+import f2.dsl.fnc.invoke
 import i2.s2.realm.domain.ClientImport
 import i2.s2.realm.domain.RoleImport
 import i2.s2.realm.domain.UserImport
@@ -61,7 +61,7 @@ class ImportDataFunctionImplTest: I2KeycloakTest() {
             auth = masterClient.auth
         )
 
-        val importResult = importDataFunction.invokeSingle(command)
+        val importResult = importDataFunction.invoke(command)
 
         AssertionKC.realm(masterClient.keycloak).exist(realm.id)
 

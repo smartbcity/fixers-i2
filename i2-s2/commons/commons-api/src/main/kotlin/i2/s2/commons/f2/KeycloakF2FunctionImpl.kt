@@ -1,7 +1,7 @@
 package i2.s2.commons.f2
 
-import f2.dsl.function.F2Function
-import f2.function.spring.adapter.f2Function
+import f2.dsl.fnc.F2Function
+import f2.dsl.fnc.f2Function
 import i2.keycloak.realm.client.config.AuthRealmClient
 import i2.keycloak.realm.client.config.AuthRealmClientBuilder
 

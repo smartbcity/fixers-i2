@@ -1,6 +1,6 @@
 package i2.test.it.realm
 
-import f2.function.spring.invokeSingle
+import f2.dsl.fnc.invoke
 import i2.s2.realm.domain.features.command.RealmGetOneQuery
 import i2.s2.realm.f2.RealmGetOneQueryFunctionImpl
 import i2.test.bdd.given.GivenKC
@@ -23,7 +23,7 @@ internal class RealmGetOneQueryFunctionImplTest: I2KeycloakTest() {
 			authRealm = masterClient.auth
 		)
 
-		val found = RealmGetOneQueryFunctionImpl().realmGetOneQueryFunction().invokeSingle(cmd)
+		val found = RealmGetOneQueryFunctionImpl().realmGetOneQueryFunction().invoke(cmd)
 		Assertions.assertThat(found.realm).isNotNull
 
 	}
@@ -36,7 +36,7 @@ internal class RealmGetOneQueryFunctionImplTest: I2KeycloakTest() {
 			authRealm = masterClient.auth
 		)
 
-		val found = RealmGetOneQueryFunctionImpl().realmGetOneQueryFunction().invokeSingle(cmd)
+		val found = RealmGetOneQueryFunctionImpl().realmGetOneQueryFunction().invoke(cmd)
 		Assertions.assertThat(found.realm).isNull()
 
 	}

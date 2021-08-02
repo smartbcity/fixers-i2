@@ -1,7 +1,7 @@
 package i2.test.it.user
 
 import f2.dsl.cqrs.base.PageRequestBase
-import f2.function.spring.invokeSingle
+import f2.dsl.fnc.invoke
 import i2.keycloak.realm.domain.features.query.UserGetPageQuery
 import i2.s2.user.f2.UserGetPageQueryFunctionImpl
 import i2.test.bdd.given.GivenKC
@@ -35,7 +35,7 @@ class UserGetPageQueryFunctionImplTest: I2KeycloakTest() {
 				size = 5
 			)
 		)
-		val result = UserGetPageQueryFunctionImpl().userGetPageQueryFunctionImpl().invokeSingle(cmd)
+		val result = UserGetPageQueryFunctionImpl().userGetPageQueryFunctionImpl().invoke(cmd)
 
 		Assertions.assertThat(result.page.list).hasSize(5)
 		Assertions.assertThat(result.page.total).isEqualTo(7)

@@ -2,8 +2,7 @@ package i2.s2.client.domain.features.query
 
 import f2.dsl.cqrs.Command
 import f2.dsl.cqrs.Event
-import f2.dsl.function.F2Function
-import f2.dsl.function.F2FunctionRemote
+import f2.dsl.fnc.F2Function
 import i2.keycloak.master.domain.AuthRealm
 import i2.keycloak.master.domain.RealmId
 import i2.s2.client.domain.ClientId
@@ -12,7 +11,6 @@ import kotlin.js.JsExport
 import kotlin.js.JsName
 
 typealias ClientGetByIdQueryFunction = F2Function<ClientGetByIdQuery, ClientGetByIdQueryResult>
-typealias ClientGetByIdQueryRemoteFunction = F2FunctionRemote<ClientGetByIdQuery, ClientGetByIdQueryResult>
 
 @JsExport
 @JsName("ClientGetByIdQuery")

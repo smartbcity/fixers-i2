@@ -1,6 +1,6 @@
 package i2.test.it.user
 
-import f2.function.spring.invokeSingle
+import f2.dsl.fnc.invoke
 import i2.keycloak.realm.domain.features.query.UserGetByUsernameQuery
 import i2.s2.user.f2.UserGetByUsernameQueryFunctionImpl
 import i2.test.bdd.data.DataTest
@@ -34,7 +34,7 @@ class UserGetByUsernameQueryFunctionImplTest: I2KeycloakTest() {
 			realmId = realmId,
 			auth = client.auth
 		)
-		val result = UserGetByUsernameQueryFunctionImpl().userGetByUsernameQueryFunction().invokeSingle(cmd)
+		val result = UserGetByUsernameQueryFunctionImpl().userGetByUsernameQueryFunction().invoke(cmd)
 
 		Assertions.assertThat(result.user).isNotNull
 	}
@@ -53,7 +53,7 @@ class UserGetByUsernameQueryFunctionImplTest: I2KeycloakTest() {
 			realmId = realmId,
 			auth = client.auth
 		)
-		val result = UserGetByUsernameQueryFunctionImpl().userGetByUsernameQueryFunction().invokeSingle(cmd)
+		val result = UserGetByUsernameQueryFunctionImpl().userGetByUsernameQueryFunction().invoke(cmd)
 
 		Assertions.assertThat(result.user).isNull()
 	}
