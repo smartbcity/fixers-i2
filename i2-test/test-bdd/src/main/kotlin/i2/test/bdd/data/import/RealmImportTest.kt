@@ -7,7 +7,7 @@ import i2.s2.realm.domain.UserImport
 import i2.test.bdd.data.DataTest
 import java.util.UUID
 
-fun DataTest.Companion.realmImport(
+fun DataTest.realmImport(
     id: String = UUID.randomUUID().toString(),
     theme: String? = null,
     locale: String? = null,

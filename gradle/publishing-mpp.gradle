@@ -6,7 +6,6 @@ import org.gradle.util.VersionNumber
 
 // Configures publishing of Maven artifacts to Bintray
 
-apply plugin: 'maven'
 apply plugin: 'maven-publish'
 
 apply from: project.rootProject.file('gradle/pom.gradle')
@@ -109,5 +108,3 @@ task nexusUpload(dependsOn: publish)
 
 // This is required for K/N publishing
 nexusUpload.dependsOn publishToMavenLocal
-
-

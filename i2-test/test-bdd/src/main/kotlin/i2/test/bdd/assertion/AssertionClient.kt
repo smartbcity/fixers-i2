@@ -9,7 +9,7 @@ import org.keycloak.admin.client.Keycloak
 import org.keycloak.representations.idm.ClientRepresentation
 
 
-fun AssertionKC.Companion.client(keycloak: Keycloak): AssertionClient = AssertionClient(keycloak)
+fun AssertionKC.client(keycloak: Keycloak): AssertionClient = AssertionClient(keycloak)
 
 class AssertionClient(
 	private val keycloak: Keycloak

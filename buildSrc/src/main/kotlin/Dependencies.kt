@@ -3,6 +3,7 @@ object PluginVersions {
     const val kotlin = "1.5.21"
     const val jib = "2.7.0"
     const val springPom = "1.0.10.RELEASE"
+    const val fixers = "experimental-SNAPSHOT"
 }
 
 object Versions {

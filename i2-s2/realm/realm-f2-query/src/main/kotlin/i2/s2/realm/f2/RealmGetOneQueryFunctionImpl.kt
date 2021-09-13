@@ -16,7 +16,7 @@ import javax.ws.rs.NotFoundException
 @Configuration
 class RealmGetOneQueryFunctionImpl {
 
-	protected val logger by Logger()
+	private val logger by Logger()
 
 	@Bean
 	fun realmGetOneQueryFunction(): RealmGetOneQueryFunction = f2Function { cmd ->
@@ -34,8 +34,6 @@ class RealmGetOneQueryFunctionImpl {
 				payload = emptyMap()
 			).asI2Exception()
 		}
-
-
 	}
 
 	private fun RealmRepresentation.asRealmModel(): RealmModel {
@@ -44,5 +42,4 @@ class RealmGetOneQueryFunctionImpl {
 			name = this.displayName,
 		)
 	}
-
 }

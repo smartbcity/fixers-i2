@@ -6,7 +6,7 @@ import i2.s2.realm.domain.RealmId
 import i2.test.bdd.data.DataTest
 import java.util.UUID
 
-fun DataTest.Companion.userCreateCommand(
+fun DataTest.userCreateCommand(
     realmId: RealmId,
     auth: AuthRealm,
     username: String = "user-{${UUID.randomUUID()}}",

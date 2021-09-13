@@ -7,7 +7,7 @@ import i2.s2.realm.domain.RealmId
 import i2.test.bdd.data.DataTest
 import java.util.UUID
 
-fun DataTest.Companion.userUpdateCommand(
+fun DataTest.userUpdateCommand(
     realmId: RealmId,
     auth: AuthRealm,
     userId: UserId = UUID.randomUUID().toString(),

@@ -7,6 +7,10 @@ plugins {
     id("io.spring.dependency-management") version PluginVersions.springPom apply false
     id("org.springframework.boot") version PluginVersions.springBoot apply false
     id("com.google.cloud.tools.jib") version PluginVersions.jib apply false
+
+    id("city.smartb.fixers.gradle.config") version PluginVersions.fixers
+    id("city.smartb.fixers.gradle.sonar") version PluginVersions.fixers
+    id("city.smartb.fixers.gradle.d2") version PluginVersions.fixers
 }
 
 allprojects {

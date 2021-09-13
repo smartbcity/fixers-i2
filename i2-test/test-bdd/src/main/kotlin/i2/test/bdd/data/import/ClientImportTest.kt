@@ -6,7 +6,7 @@ import i2.s2.role.domain.RoleName
 import i2.test.bdd.data.DataTest
 import java.util.UUID
 
-fun DataTest.Companion.clientImport(
+fun DataTest.clientImport(
     clientIdentifier: ClientIdentifier = UUID.randomUUID().toString(),
     isPublicClient: Boolean = true,
     isDirectAccessGrantsEnabled: Boolean = true,

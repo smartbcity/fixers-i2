@@ -12,11 +12,16 @@ import org.springframework.context.annotation.Configuration
 @Configuration
 class ClientGetPageQueryFunctionImpl {
 
+	companion object {
+		const val PAGE_SIZE = 10
+		const val PAGE_NUMBER = 1
+	}
+
 	@Bean
 	fun clientGetPageQueryFunctionImpl(): ClientGetPageQueryFunction = f2Function { cmd ->
 		val realmClient = AuthRealmClientBuilder().build(cmd.auth)
-		val size = cmd.page.size ?: 10
-		val page = cmd.page.page ?: 1
+		val size = cmd.page.size ?: PAGE_SIZE
+		val page = cmd.page.page ?: PAGE_NUMBER
  		val clients = realmClient.clients(cmd.realmId)
 			.findAll()
 
@@ -35,5 +40,4 @@ class ClientGetPageQueryFunctionImpl {
 			list = this
 		))
 	}
-
 }

@@ -12,7 +12,7 @@ class GivenRealm(
 ) {
 
 	companion object {
-		val REALM_TEST = "test"
+		const val REALM_TEST = "test"
 	}
 
 	fun withTestRealm(): RealmId {

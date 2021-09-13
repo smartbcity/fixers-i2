@@ -6,7 +6,6 @@ import org.gradle.util.VersionNumber
 
 // Configures publishing of Maven artifacts to Bintray
 
-apply plugin: 'maven'
 apply plugin: 'java-library'
 apply plugin: 'maven-publish'
 apply plugin: 'signing'

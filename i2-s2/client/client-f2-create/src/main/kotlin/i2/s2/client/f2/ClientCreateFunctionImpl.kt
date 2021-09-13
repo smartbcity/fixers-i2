@@ -59,9 +59,7 @@ class ClientCreateFunctionImpl {
 		}
 	}
 
-
 	private fun AuthRealmClient.createClient(realmId: String, client: ClientRepresentation): String {
 		return this.clients(realmId).create(client).toEntityCreatedId()
 	}
-
 }

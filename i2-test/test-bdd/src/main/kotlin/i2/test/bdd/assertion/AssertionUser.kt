@@ -7,7 +7,7 @@ import org.keycloak.admin.client.Keycloak
 import org.keycloak.representations.idm.UserRepresentation
 
 
-fun AssertionKC.Companion.user(keycloak: Keycloak): AssertionUser = AssertionUser(keycloak)
+fun AssertionKC.user(keycloak: Keycloak): AssertionUser = AssertionUser(keycloak)
 
 class AssertionUser(
 	private val keycloak: Keycloak,
@@ -23,7 +23,6 @@ class AssertionUser(
 		}
 	}
 
-
 	fun isDisabled(realmId: String, id: UserId) {
 		try {
 			val user = getUserRepresentation(realmId, id)
@@ -32,7 +31,6 @@ class AssertionUser(
 			Assertions.fail("Realm[${id} not found]", e)
 		}
 	}
-
 
 	fun notExists(realmId: String, id: UserId) {
 		try {

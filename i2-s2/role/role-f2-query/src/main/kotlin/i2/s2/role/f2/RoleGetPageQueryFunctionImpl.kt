@@ -12,12 +12,17 @@ import org.springframework.context.annotation.Configuration
 @Configuration
 class RoleGetPageQueryFunctionImpl {
 
+	companion object {
+		const val PAGE_SIZE = 10
+		const val PAGE_NUMBER = 1
+	}
+
 	@Bean
 	fun roleGetPageQueryFunction(): RoleGetPageQueryFunction = f2Function { cmd ->
 		val realmClient = AuthRealmClientBuilder().build(cmd.auth)
 
-		val size = cmd.page.size ?: 10
-		val page = cmd.page.page ?: 1
+		val size = cmd.page.size ?: PAGE_SIZE
+		val page = cmd.page.page ?: PAGE_NUMBER
 		val roles = realmClient.roles(cmd.realmId).list()
 
 		roles.chunked(size)
@@ -25,7 +30,6 @@ class RoleGetPageQueryFunctionImpl {
 			.asModels()
 			.asResult(page, size, roles.size)
 	}
-
 
 	private fun List<RoleModel>.asResult(page: Int, size: Int, total: Int): RoleGetPageQueryResult {
 		return RoleGetPageQueryResult(PageBase(
@@ -35,5 +39,4 @@ class RoleGetPageQueryFunctionImpl {
 			list = this
 		))
 	}
-
 }

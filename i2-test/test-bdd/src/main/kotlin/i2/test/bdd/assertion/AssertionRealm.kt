@@ -3,7 +3,7 @@ package i2.test.bdd.assertion
 import org.assertj.core.api.Assertions
 import org.keycloak.admin.client.Keycloak
 
-fun AssertionKC.Companion.realm(keycloak: Keycloak): RealmAssertion = RealmAssertion(keycloak)
+fun AssertionKC.realm(keycloak: Keycloak): RealmAssertion = RealmAssertion(keycloak)
 
 class RealmAssertion(
 	private val keycloak: Keycloak
@@ -27,5 +27,4 @@ class RealmAssertion(
 			Assertions.assertThat(true).isTrue
 		}
 	}
-
 }

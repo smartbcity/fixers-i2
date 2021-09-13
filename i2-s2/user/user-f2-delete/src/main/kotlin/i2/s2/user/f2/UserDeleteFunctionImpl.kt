@@ -2,7 +2,8 @@ package i2.s2.user.f2
 
 import f2.dsl.fnc.f2Function
 import i2.keycloak.realm.client.config.AuthRealmClientBuilder
-import i2.keycloak.realm.domain.features.command.*
+import i2.keycloak.realm.domain.features.command.UserDeleteFunction
+import i2.keycloak.realm.domain.features.command.UserDeletedResult
 import i2.s2.errors.I2ApiError
 import i2.s2.errors.asI2Exception
 import org.springframework.context.annotation.Bean
@@ -24,5 +25,4 @@ class UserDeleteFunctionImpl {
 			).asI2Exception(e)
 		}
 	}
-
 }

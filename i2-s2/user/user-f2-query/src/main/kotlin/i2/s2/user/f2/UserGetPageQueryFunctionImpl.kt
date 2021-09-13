@@ -12,11 +12,16 @@ import org.springframework.context.annotation.Configuration
 @Configuration
 class UserGetPageQueryFunctionImpl {
 
+	companion object {
+		const val PAGE_SIZE = 10
+		const val PAGE_NUMBER = 1
+	}
+
 	@Bean
 	fun userGetPageQueryFunctionImpl(): UserGetPageQueryFunction = f2Function { cmd ->
 		val realmClient = AuthRealmClientBuilder().build(cmd.auth)
-		val size = cmd.page.size ?: 10
-		val page = cmd.page.page ?: 1
+		val size = cmd.page.size ?: PAGE_SIZE
+		val page = cmd.page.page ?: PAGE_NUMBER
 		val first = page * size
 		val max = first + size
 		val count = realmClient.keycloak.realm(cmd.realmId).users().count()
@@ -24,7 +29,6 @@ class UserGetPageQueryFunctionImpl {
 			.asModels()
 			.asResult(page, size, count)
 	}
-
 
 	private fun List<UserModel>.asResult(page: Int, size: Int, total: Int): UserGetPageQueryResult {
 		return UserGetPageQueryResult(PageBase(

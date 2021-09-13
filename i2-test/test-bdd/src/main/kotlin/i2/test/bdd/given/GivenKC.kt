@@ -7,4 +7,3 @@ class GivenKC(
 ) {
 	companion object
 }
-

@@ -33,8 +33,7 @@ class UserRolesGrantFunctionImpl {
 		return getRoleResource(realmId, role).toRepresentation()
 	}
 
-	protected fun AuthRealmClient.getUserRealmRolesResource(realmId: RealmId, userId: String): RoleScopeResource {
+	private fun AuthRealmClient.getUserRealmRolesResource(realmId: RealmId, userId: String): RoleScopeResource {
 		return getUserResource(realmId, userId).roles().realmLevel()
 	}
-
 }
