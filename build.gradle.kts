@@ -1,16 +1,16 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("multiplatform") version PluginVersions.kotlin apply false
-    kotlin("jvm") version PluginVersions.kotlin apply false
-    kotlin("plugin.spring") version PluginVersions.kotlin apply false
-    id("io.spring.dependency-management") version PluginVersions.springPom apply false
-    id("org.springframework.boot") version PluginVersions.springBoot apply false
-    id("com.google.cloud.tools.jib") version PluginVersions.jib apply false
+    kotlin("multiplatform") version PluginVersionsLocal.kotlin apply false
+    kotlin("jvm") version PluginVersionsLocal.kotlin apply false
+    kotlin("plugin.spring") version PluginVersionsLocal.kotlin apply false
+    id("io.spring.dependency-management") version PluginVersionsLocal.springPom apply false
+    id("org.springframework.boot") version PluginVersionsLocal.springBoot apply false
+    id("com.google.cloud.tools.jib") version PluginVersionsLocal.jib apply false
 
-    id("city.smartb.fixers.gradle.config") version PluginVersions.fixers
-    id("city.smartb.fixers.gradle.sonar") version PluginVersions.fixers
-    id("city.smartb.fixers.gradle.d2") version PluginVersions.fixers
+    id("city.smartb.fixers.gradle.config") version PluginVersionsLocal.fixers
+    id("city.smartb.fixers.gradle.sonar") version PluginVersionsLocal.fixers
+    id("city.smartb.fixers.gradle.d2") version PluginVersionsLocal.fixers
 }
 
 allprojects {
@@ -60,6 +60,7 @@ subprojects {
             }
         }
     }
+
     plugins.withType(JavaPlugin::class.java).whenPluginAdded {
         tasks.withType<KotlinCompile>().configureEach {
             println("Configuring $name in project ${project.name}...")
@@ -72,7 +73,7 @@ subprojects {
         the<io.spring.gradle.dependencymanagement.dsl.DependencyManagementExtension>().apply {
             imports {
                 mavenBom(org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES) {
-                    bomProperty("kotlin.version", PluginVersions.kotlin)
+                    bomProperty("kotlin.version", PluginVersionsLocal.kotlin)
                 }
             }
         }
@@ -98,7 +99,7 @@ subprojects {
 
             testImplementation("org.assertj:assertj-core:${Versions.assertj}")
 
-            implementation("org.springframework.boot:spring-boot-starter-test:${PluginVersions.springBoot}") {
+            implementation("org.springframework.boot:spring-boot-starter-test:${PluginVersionsLocal.springBoot}") {
                 exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
             }
         }

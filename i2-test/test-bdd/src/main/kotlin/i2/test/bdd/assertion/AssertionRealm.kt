@@ -21,7 +21,7 @@ class RealmAssertion(
 
 	fun notExist(id: String) {
 		try {
-			val realm = keycloak.realm(id).toRepresentation()
+			keycloak.realm(id).toRepresentation()
 			Assertions.fail("Realm[${id} exist]")
 		} catch (e: javax.ws.rs.NotFoundException) {
 			Assertions.assertThat(true).isTrue
