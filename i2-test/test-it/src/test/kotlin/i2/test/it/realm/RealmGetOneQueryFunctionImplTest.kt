@@ -28,7 +28,6 @@ internal class RealmGetOneQueryFunctionImplTest: I2KeycloakTest() {
 
 	}
 
-
 	@Test
 	fun `should return null realm when not exists`(): Unit = runBlocking {
 		val cmd = RealmGetOneQuery(
@@ -38,6 +37,5 @@ internal class RealmGetOneQueryFunctionImplTest: I2KeycloakTest() {
 
 		val found = RealmGetOneQueryFunctionImpl().realmGetOneQueryFunction().invoke(cmd)
 		Assertions.assertThat(found.realm).isNull()
-
 	}
 }

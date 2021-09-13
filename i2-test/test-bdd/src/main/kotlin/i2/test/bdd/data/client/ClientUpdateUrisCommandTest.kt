@@ -7,7 +7,7 @@ import i2.s2.client.domain.features.command.ClientUpdateUrisCommand
 import i2.test.bdd.data.DataTest
 import java.util.UUID
 
-fun DataTest.Companion.clientUpdateUrisCommand(
+fun DataTest.clientUpdateUrisCommand(
     realmId: RealmId,
     auth: AuthRealm,
     id: ClientId = UUID.randomUUID().toString(),

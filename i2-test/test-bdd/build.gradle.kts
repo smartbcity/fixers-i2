@@ -1,6 +1,7 @@
 plugins {
 	id("io.spring.dependency-management")
-    kotlin("jvm")
+    id("city.smartb.fixers.gradle.kotlin.jvm")
+    id("city.smartb.fixers.gradle.publish")
     kotlin("plugin.spring")
 }
 
@@ -30,6 +31,10 @@ dependencies {
     api(project(":i2-s2:user:user-f2-update"))
 
     api(project(":i2-keycloak:keycloak-auth:keycloak-auth-client"))
+
     api("org.testcontainers:junit-jupiter:${Versions.testcontainers}")
+    api("org.assertj:assertj-core:${Versions.assertj}")
+    implementation("org.springframework.boot:spring-boot-starter-test")
+
 
 }

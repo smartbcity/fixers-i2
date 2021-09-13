@@ -13,6 +13,7 @@ import s2.spring.utils.logger.Logger
 
 @Configuration
 class ClientGetSecretQueryFunctionImpl {
+
     private val logger by Logger()
 
     @Bean

@@ -1,6 +1,7 @@
 plugins {
 	id("io.spring.dependency-management")
-    kotlin("jvm")
+    id("city.smartb.fixers.gradle.kotlin.jvm")
+    id("city.smartb.fixers.gradle.publish")
     kotlin("plugin.spring")
 }
 
@@ -14,5 +15,3 @@ dependencies {
     testImplementation(project(":i2-test:test-bdd"))
 
 }
-
-apply(from = rootProject.file("gradle/publishing.gradle"))

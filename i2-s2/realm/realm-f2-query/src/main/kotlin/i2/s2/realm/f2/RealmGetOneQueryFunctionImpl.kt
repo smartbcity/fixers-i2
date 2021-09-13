@@ -10,13 +10,13 @@ import i2.s2.realm.domain.features.command.RealmGetOneQueryResult
 import org.keycloak.representations.idm.RealmRepresentation
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import s2.spring.utils.logger.Logger
 import javax.ws.rs.NotFoundException
+import s2.spring.utils.logger.Logger
 
 @Configuration
 class RealmGetOneQueryFunctionImpl {
 
-	protected val logger by Logger()
+	private val logger by Logger()
 
 	@Bean
 	fun realmGetOneQueryFunction(): RealmGetOneQueryFunction = f2Function { cmd ->
@@ -34,8 +34,6 @@ class RealmGetOneQueryFunctionImpl {
 				payload = emptyMap()
 			).asI2Exception()
 		}
-
-
 	}
 
 	private fun RealmRepresentation.asRealmModel(): RealmModel {
@@ -44,5 +42,4 @@ class RealmGetOneQueryFunctionImpl {
 			name = this.displayName,
 		)
 	}
-
 }

@@ -10,7 +10,7 @@ import org.keycloak.admin.client.resource.RoleResource
 import org.keycloak.representations.idm.RoleRepresentation
 
 
-fun AssertionKC.Companion.role(keycloak: Keycloak): AssertionRole = AssertionRole(keycloak)
+fun AssertionKC.role(keycloak: Keycloak): AssertionRole = AssertionRole(keycloak)
 
 class AssertionRole(
 	private val keycloak: Keycloak,

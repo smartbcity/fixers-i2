@@ -1,13 +1,11 @@
 pluginManagement {
     repositories {
         gradlePluginPortal()
-        jcenter()
+        maven { url = uri("https://oss.sonatype.org/content/repositories/snapshots") }
     }
 }
 
 rootProject.name = "i2"
-
-enableFeaturePreview("GRADLE_METADATA")
 
 include(
         "i2-spring:i2-spring-boot-starter-auth",

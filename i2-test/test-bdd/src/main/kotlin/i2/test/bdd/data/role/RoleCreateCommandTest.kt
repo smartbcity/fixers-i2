@@ -6,7 +6,7 @@ import i2.s2.role.domain.features.command.RoleCreateCommand
 import i2.test.bdd.data.DataTest
 import java.util.UUID
 
-fun DataTest.Companion.roleCreateCommand(
+fun DataTest.roleCreateCommand(
     auth: AuthRealm,
     realmId: RoleName,
     name: RoleName = UUID.randomUUID().toString(),

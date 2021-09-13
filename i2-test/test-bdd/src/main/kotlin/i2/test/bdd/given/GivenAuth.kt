@@ -6,10 +6,9 @@ import i2.keycloak.master.domain.RealmId
 import i2.keycloak.realm.client.config.AuthRealmClient
 import i2.keycloak.realm.client.config.AuthRealmClientBuilder
 
-class GivenAuth(
-) {
+class GivenAuth {
 	companion object {
-		val SERVER_URL_TEST = "http://localhost:8080/auth"
+		const val SERVER_URL_TEST = "http://localhost:8080/auth"
 	}
 
 	fun withMasterRealmClient(realm: RealmId = "master"): AuthRealmClient {
@@ -34,7 +33,6 @@ class GivenAuth(
 		)
 		return AuthRealmClientBuilder().build(auth)
 	}
-
 }
 
 fun GivenKC.auth(): GivenAuth = GivenAuth()

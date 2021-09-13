@@ -40,5 +40,4 @@ class UserGetByUsernameQueryFunctionImpl {
 	private fun UserModel?.asResult(): UserGetByUsernameQueryResult {
 		return UserGetByUsernameQueryResult(this)
 	}
-
 }

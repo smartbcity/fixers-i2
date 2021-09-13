@@ -2,7 +2,8 @@ package i2.s2.user.f2
 
 import f2.dsl.fnc.f2Function
 import i2.keycloak.realm.client.config.AuthRealmClientBuilder
-import i2.keycloak.realm.domain.features.command.*
+import i2.keycloak.realm.domain.features.command.UserResetPasswordFunction
+import i2.keycloak.realm.domain.features.command.UserResetPasswordResult
 import org.keycloak.representations.idm.CredentialRepresentation
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration

@@ -63,6 +63,4 @@ class UserCreateFunctionImpl {
 //	private fun executeEmailActions(client: AuthRealmClient, cmd: UserCreateCommand, actions: List<String>) {
 //		client.getUserResource(cmd.id).executeActionsEmail(cmd.auth.clientId, cmd.auth.redirectUrl, actions)
 //	}
-
-
 }

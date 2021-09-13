@@ -7,7 +7,7 @@ import i2.s2.client.domain.features.command.ClientCreateCommand
 import i2.test.bdd.data.DataTest
 import java.util.UUID
 
-fun DataTest.Companion.clientCreateCommand(
+fun DataTest.clientCreateCommand(
     realmId: RealmId,
     auth: AuthRealm,
     clientIdentifier: ClientIdentifier = UUID.randomUUID().toString(),

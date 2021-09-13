@@ -7,7 +7,7 @@ import i2.s2.role.domain.features.command.RoleAddCompositesCommand
 import i2.test.bdd.data.DataTest
 import java.util.UUID
 
-fun DataTest.Companion.roleAddCompositesCommand(
+fun DataTest.roleAddCompositesCommand(
     auth: AuthRealm,
     realmId: RealmId,
     roleName: RoleName = UUID.randomUUID().toString(),

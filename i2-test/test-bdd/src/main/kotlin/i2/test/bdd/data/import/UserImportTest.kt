@@ -4,7 +4,7 @@ import i2.s2.realm.domain.UserImport
 import i2.test.bdd.data.DataTest
 import java.util.UUID
 
-fun DataTest.Companion.userImport(
+fun DataTest.userImport(
     username: String = UUID.randomUUID().toString(),
     firstname: String? = null,
     lastname: String? = null,
