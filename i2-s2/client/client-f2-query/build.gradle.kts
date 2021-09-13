@@ -6,6 +6,9 @@ plugins {
 }
 
 dependencies {
+
+    implementation("city.smartb.s2:s2-spring-boot-starter-utils-logger:${Versions.s2}")
+
     api(project(":i2-s2:client:client-domain"))
     api(project(":i2-keycloak:keycloak-auth:keycloak-auth-client"))
 

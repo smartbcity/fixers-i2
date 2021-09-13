@@ -10,8 +10,8 @@ import i2.s2.realm.domain.features.command.RealmGetOneQueryResult
 import org.keycloak.representations.idm.RealmRepresentation
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import s2.spring.utils.logger.Logger
 import javax.ws.rs.NotFoundException
+import s2.spring.utils.logger.Logger
 
 @Configuration
 class RealmGetOneQueryFunctionImpl {

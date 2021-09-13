@@ -9,11 +9,11 @@ import i2.s2.errors.I2ApiError
 import i2.s2.errors.asI2Exception
 import org.keycloak.representations.idm.ClientRepresentation
 import org.springframework.context.annotation.Bean
-import s2.spring.utils.logger.Logger
 import javax.ws.rs.NotFoundException
+import org.slf4j.LoggerFactory
 
 class ClientGetByIdQueryFunctionImpl {
-    private val logger by Logger()
+    private val logger = LoggerFactory.getLogger(ClientGetByIdQueryFunctionImpl::class.java)
 
     @Bean
     fun clientGetByIdQueryFunction(): ClientGetByIdQueryFunction = f2Function { cmd ->
