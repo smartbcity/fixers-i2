@@ -23,6 +23,15 @@ allprojects {
     }
 }
 
+fixers {
+    bundle {
+        id = "i2"
+        name = "I2"
+        description = "Identity and Authentification functions"
+        url = "https://gitlab.smartb.city/fixers/i2"
+    }
+}
+
 subprojects {
     plugins.withType(org.jetbrains.kotlin.gradle.plugin.KotlinMultiplatformPluginWrapper::class.java).whenPluginAdded {
         the<org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension>().apply {
