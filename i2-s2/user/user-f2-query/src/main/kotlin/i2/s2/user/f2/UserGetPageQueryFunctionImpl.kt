@@ -1,6 +1,6 @@
 package i2.s2.user.f2
 
-import f2.dsl.cqrs.base.PageBase
+import f2.dsl.cqrs.page.Page
 import f2.dsl.fnc.f2Function
 import i2.keycloak.realm.client.config.AuthRealmClientBuilder
 import i2.keycloak.realm.domain.UserModel
@@ -27,16 +27,16 @@ class UserGetPageQueryFunctionImpl {
 		val count = realmClient.keycloak.realm(cmd.realmId).users().count()
 		realmClient.keycloak.realm(cmd.realmId).users().list(first, max)
 			.asModels()
-			.asResult(page, size, count)
+			.asResult(count)
 	}
 
-	private fun List<UserModel>.asResult(page: Int, size: Int, total: Int): UserGetPageQueryResult {
-		return UserGetPageQueryResult(PageBase(
-			page = page,
-			size = size,
-			total = total.toLong(),
-			list = this
-		))
+	private fun List<UserModel>.asResult(total: Int): UserGetPageQueryResult {
+		return UserGetPageQueryResult(
+			Page(
+				total = total,
+				list = this
+			)
+		)
 	}
 
 }

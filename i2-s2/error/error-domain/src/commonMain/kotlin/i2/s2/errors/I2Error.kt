@@ -1,8 +1,8 @@
 package i2.s2.errors
 
-import f2.dsl.cqrs.ErrorSeverity
-import f2.dsl.cqrs.ErrorSeverityError
-import f2.dsl.cqrs.base.ErrorBase
+import f2.dsl.cqrs.error.Error
+import f2.dsl.cqrs.error.ErrorSeverity
+import f2.dsl.cqrs.error.ErrorSeverityError
 import kotlinx.datetime.Clock
 
 open class I2Error(
@@ -11,5 +11,4 @@ open class I2Error(
 	payload: Map<String, String>,
 	date: String = Clock.System.now().toString(),
 	severity: ErrorSeverity = ErrorSeverityError()
-): ErrorBase<Map<String, String>>(
-	type, description, date, payload, severity)
+): Error<Map<String, String>>(type, description, date, payload, severity)

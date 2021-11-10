@@ -1,6 +1,6 @@
 package i2.s2.client.f2
 
-import f2.dsl.cqrs.base.PageBase
+import f2.dsl.cqrs.page.Page
 import f2.dsl.fnc.f2Function
 import i2.keycloak.realm.client.config.AuthRealmClientBuilder
 import i2.s2.client.domain.ClientModel
@@ -28,16 +28,16 @@ class ClientGetPageQueryFunctionImpl {
 		clients.chunked(size)
 			.getOrElse(page) { emptyList() }
 			.asModels()
-			.asResult(page, size, clients.size)
+			.asResult(clients.size)
 	}
 
 
-	private fun List<ClientModel>.asResult(page: Int, size: Int, total: Int): ClientGetPageQueryResult {
-		return ClientGetPageQueryResult(PageBase(
-			page = page,
-			size = size,
-			total = total.toLong(),
-			list = this
-		))
+	private fun List<ClientModel>.asResult(total: Int): ClientGetPageQueryResult {
+		return ClientGetPageQueryResult(
+			Page(
+				total = total,
+				list = this
+			)
+		)
 	}
 }

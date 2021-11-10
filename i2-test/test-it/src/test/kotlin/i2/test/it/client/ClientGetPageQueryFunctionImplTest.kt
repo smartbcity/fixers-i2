@@ -1,6 +1,6 @@
 package i2.test.it.client
 
-import f2.dsl.cqrs.base.PageRequestBase
+import f2.dsl.cqrs.page.PagePagination
 import f2.dsl.fnc.invoke
 import i2.s2.client.domain.features.query.ClientGetPageQuery
 import i2.s2.client.f2.ClientGetPageQueryFunctionImpl
@@ -30,7 +30,7 @@ class ClientGetPageQueryFunctionImplTest: I2KeycloakTest() {
 		val cmd = ClientGetPageQuery(
 			realmId = realmId,
 			auth = masterClient.auth,
-			page = PageRequestBase(
+			page = PagePagination(
 				page = 0,
 				size = 5
 			)
@@ -56,7 +56,7 @@ class ClientGetPageQueryFunctionImplTest: I2KeycloakTest() {
 		val cmd = ClientGetPageQuery(
 			realmId = realmId,
 			auth = masterClient.auth,
-			page = PageRequestBase(
+			page = PagePagination(
 				page = 1,
 				size = pageSize
 			)
@@ -74,7 +74,7 @@ class ClientGetPageQueryFunctionImplTest: I2KeycloakTest() {
 		val cmd = ClientGetPageQuery(
 			realmId = realmId,
 			auth = masterClient.auth,
-			page = PageRequestBase(
+			page = PagePagination(
 				page = 10,
 				size = existingClients.size
 			)

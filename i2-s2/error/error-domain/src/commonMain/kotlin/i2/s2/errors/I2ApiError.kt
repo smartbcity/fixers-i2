@@ -1,6 +1,6 @@
 package i2.s2.errors
 
-import f2.dsl.cqrs.ErrorSeverityError
+import f2.dsl.cqrs.error.ErrorSeverityError
 
 class I2ApiError(
 	override val description: String,

@@ -1,6 +1,6 @@
 package i2.test.it.user
 
-import f2.dsl.cqrs.base.PageRequestBase
+import f2.dsl.cqrs.page.PagePagination
 import f2.dsl.fnc.invoke
 import i2.keycloak.realm.domain.features.query.UserGetPageQuery
 import i2.s2.user.f2.UserGetPageQueryFunctionImpl
@@ -30,7 +30,7 @@ class UserGetPageQueryFunctionImplTest: I2KeycloakTest() {
 		val cmd = UserGetPageQuery(
 			realmId = realmId,
 			auth = client.auth,
-			page = PageRequestBase(
+			page = PagePagination(
 				page = 0,
 				size = 5
 			)

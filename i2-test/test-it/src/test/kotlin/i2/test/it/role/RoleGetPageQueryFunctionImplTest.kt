@@ -1,6 +1,6 @@
 package i2.test.it.role
 
-import f2.dsl.cqrs.base.PageRequestBase
+import f2.dsl.cqrs.page.PagePagination
 import f2.dsl.fnc.invoke
 import i2.s2.role.domain.features.query.RoleGetPageQuery
 import i2.s2.role.f2.RoleGetPageQueryFunctionImpl
@@ -29,7 +29,7 @@ class RoleGetPageQueryFunctionImplTest: I2KeycloakTest() {
 		val cmd = RoleGetPageQuery(
 			realmId = realmId,
 			auth = client.auth,
-			page = PageRequestBase(
+			page = PagePagination(
 				page = 0,
 				size = 5
 			)
