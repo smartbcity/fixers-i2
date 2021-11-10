@@ -1,5 +1,4 @@
 plugins {
-	id("io.spring.dependency-management")
     id("city.smartb.fixers.gradle.kotlin.jvm")
     id("city.smartb.fixers.gradle.publish")
     kotlin("plugin.spring")
@@ -34,7 +33,7 @@ dependencies {
 
     api("org.testcontainers:junit-jupiter:${Versions.testcontainers}")
     api("org.assertj:assertj-core:${Versions.assertj}")
-    implementation("org.springframework.boot:spring-boot-starter-test")
+    implementation("org.springframework.boot:spring-boot-starter-test:${Versions.springBoot}")
 
 
 }

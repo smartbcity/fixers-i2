@@ -7,6 +7,9 @@ object PluginVersionsLocal {
 }
 
 object Versions {
+    const val springBoot = PluginVersionsLocal.springBoot
+    const val springOauth2 = "5.5.3"
+
     const val junit = "5.7.0"
     const val assertj = "3.15.0"
     const val testcontainers = "1.15.2"
