@@ -5,9 +5,9 @@ plugins {
 }
 
 dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-security:${Versions.springBoot}")
-    implementation("org.springframework.security:spring-security-oauth2-resource-server:${Versions.springOauth2}")
-    implementation( "org.springframework.security:spring-security-oauth2-jose:${Versions.springOauth2}")
+    api("org.springframework.boot:spring-boot-starter-security:${Versions.springBoot}")
+    api("org.springframework.security:spring-security-oauth2-resource-server:${Versions.springOauth2}")
+    api( "org.springframework.security:spring-security-oauth2-jose:${Versions.springOauth2}")
 
     implementation("org.springframework.boot:spring-boot-autoconfigure:${Versions.springBoot}")
 

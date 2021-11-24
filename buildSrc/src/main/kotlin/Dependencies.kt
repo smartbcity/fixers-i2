@@ -1,6 +1,6 @@
 object PluginVersionsLocal {
-    const val springBoot = "2.5.3"
-    const val kotlin = "1.5.21"
+    const val springBoot = "2.6.0"
+    const val kotlin = "1.6.0"
     const val jib = "2.7.0"
     const val springPom = "1.0.10.RELEASE"
     const val fixers = "experimental-SNAPSHOT"
@@ -8,7 +8,7 @@ object PluginVersionsLocal {
 
 object Versions {
     const val springBoot = PluginVersionsLocal.springBoot
-    const val springOauth2 = "5.5.3"
+    const val springOauth2 = "5.6.0"
 
     const val junit = "5.7.0"
     const val assertj = "3.15.0"
@@ -18,6 +18,6 @@ object Versions {
 
     const val keycloak = "11.0.2"
     const val f2 = "experimental-SNAPSHOT"
-    const val s2 = "0.1.0-SNAPSHOT"
+    const val s2 = "experimental-SNAPSHOT"
 
 }
