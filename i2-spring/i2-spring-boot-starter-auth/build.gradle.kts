@@ -10,6 +10,4 @@ dependencies {
     api( "org.springframework.security:spring-security-oauth2-jose:${Versions.springOauth2}")
 
     implementation("org.springframework.boot:spring-boot-autoconfigure:${Versions.springBoot}")
-
-    implementation("io.projectreactor:reactor-core:${Versions.reactor}")
 }

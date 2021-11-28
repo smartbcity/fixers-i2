@@ -32,8 +32,5 @@ dependencies {
     api(project(":i2-keycloak:keycloak-auth:keycloak-auth-client"))
 
     api("org.testcontainers:junit-jupiter:${Versions.testcontainers}")
-    api("org.assertj:assertj-core:${Versions.assertj}")
     implementation("org.springframework.boot:spring-boot-starter-test:${Versions.springBoot}")
-
-
 }
