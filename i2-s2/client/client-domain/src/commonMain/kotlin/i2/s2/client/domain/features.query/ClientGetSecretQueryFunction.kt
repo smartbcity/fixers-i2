@@ -20,5 +20,5 @@ class ClientGetSecretQuery(
 @JsExport
 @JsName("ClientGetSecretQueryResult")
 class ClientGetSecretQueryResult(
-    val secret: String
+    val secret: String?
 )

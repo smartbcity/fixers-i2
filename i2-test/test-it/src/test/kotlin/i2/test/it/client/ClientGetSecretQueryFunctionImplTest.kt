@@ -30,7 +30,7 @@ class ClientGetSecretQueryFunctionImplTest: I2KeycloakTest() {
         )
         val result = ClientGetSecretQueryFunctionImpl().clientGetSecretQueryFunction().invoke(cmd)
 
-        Assertions.assertThat(result.secret).isNotNull
+        Assertions.assertThat(result.secret).isNull()
     }
 
     @Test

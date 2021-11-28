@@ -1,10 +1,10 @@
 plugins {
-    kotlin("plugin.spring") version PluginVersionsLocal.kotlin apply false
-    id("org.springframework.boot") version PluginVersionsLocal.springBoot apply false
+    kotlin("plugin.spring") version PluginVersions.kotlin apply false
+    id("org.springframework.boot") version PluginVersions.springBoot apply false
 
-    id("city.smartb.fixers.gradle.config") version PluginVersionsLocal.fixers
-    id("city.smartb.fixers.gradle.sonar") version PluginVersionsLocal.fixers
-    id("city.smartb.fixers.gradle.d2") version PluginVersionsLocal.fixers
+    id("city.smartb.fixers.gradle.config") version PluginVersions.fixers
+    id("city.smartb.fixers.gradle.sonar") version PluginVersions.fixers
+    id("city.smartb.fixers.gradle.d2") version PluginVersions.fixers
 }
 
 allprojects {
