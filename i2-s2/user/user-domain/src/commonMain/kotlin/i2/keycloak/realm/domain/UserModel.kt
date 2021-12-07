@@ -9,5 +9,9 @@ typealias UserId = String
 @JsName("UserModel")
 class UserModel(
 	val id: UserId,
-	val email: String?
+	val email: String?,
+	val firstName: String?,
+	val lastName: String?,
+	val realmRoles: List<String>,
+	val attributes: Map<String, List<String>>
 )

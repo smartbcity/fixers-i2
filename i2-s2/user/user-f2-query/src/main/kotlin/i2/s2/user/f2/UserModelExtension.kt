@@ -7,7 +7,11 @@ fun List<UserRepresentation>.asModels(): List<UserModel>  = map(UserRepresentati
 
 fun UserRepresentation.asModel(): UserModel {
 	return UserModel(
-		id = this.id,
-		email = this.email,
+		id = id,
+		email = email,
+		firstName = firstName,
+		lastName = lastName,
+		realmRoles = realmRoles,
+		attributes = attributes
 	)
 }
