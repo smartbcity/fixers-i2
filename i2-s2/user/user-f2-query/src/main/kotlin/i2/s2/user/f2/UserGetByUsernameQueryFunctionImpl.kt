@@ -7,12 +7,18 @@ import i2.keycloak.realm.domain.features.query.UserGetByUsernameQueryFunction
 import i2.keycloak.realm.domain.features.query.UserGetByUsernameQueryResult
 import i2.s2.errors.I2ApiError
 import i2.s2.errors.asI2Exception
+import i2.s2.user.f2.model.asModel
+import i2.s2.user.f2.service.UserFinderService
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import s2.spring.utils.logger.Logger
 
 @Configuration
 class UserGetByUsernameQueryFunctionImpl {
+
+	@Autowired
+	private lateinit var userFinderService: UserFinderService
 
 	private val logger by Logger()
 
@@ -23,7 +29,7 @@ class UserGetByUsernameQueryFunctionImpl {
 			realmClient.users(cmd.realmId)
 				.search(cmd.username)
 				.firstOrNull()
-				?.asModel()
+				?.asModel { userId -> userFinderService.getRoles(userId, cmd.realmId, cmd.auth) }
 				.asResult()
 		} catch (e: NoSuchElementException) {
 			UserGetByUsernameQueryResult(null)

@@ -1,12 +1,14 @@
 package i2.s2.user.f2
 
-import f2.dsl.fnc.f2Function
-import i2.keycloak.realm.client.config.AuthRealmClientBuilder
 import i2.keycloak.realm.domain.UserModel
 import i2.keycloak.realm.domain.features.query.UserGetByEmailQueryFunction
 import i2.keycloak.realm.domain.features.query.UserGetByEmailQueryResult
+import i2.s2.commons.f2.keycloakF2Function
 import i2.s2.errors.I2ApiError
 import i2.s2.errors.asI2Exception
+import i2.s2.user.f2.model.asModel
+import i2.s2.user.f2.service.UserFinderService
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import s2.spring.utils.logger.Logger
@@ -14,14 +16,16 @@ import s2.spring.utils.logger.Logger
 @Configuration
 class UserGetByEmailQueryFunctionImpl {
 
+	@Autowired
+	private lateinit var userFinderService: UserFinderService
+
 	private val logger by Logger()
 
 	@Bean
-	fun userGetByEmailQueryFunction(): UserGetByEmailQueryFunction = f2Function { cmd ->
-		val realmClient = AuthRealmClientBuilder().build(cmd.auth)
+	fun userGetByEmailQueryFunction(): UserGetByEmailQueryFunction = keycloakF2Function { cmd, realmClient ->
 		try {
 			realmClient.users(cmd.realmId).list().first { user -> user.email == cmd.email }
-				.asModel()
+				.asModel { userId -> userFinderService.getRoles(userId, cmd.realmId, cmd.auth) }
 				.asResult()
 		} catch (e: NoSuchElementException) {
 			UserGetByEmailQueryResult(null)

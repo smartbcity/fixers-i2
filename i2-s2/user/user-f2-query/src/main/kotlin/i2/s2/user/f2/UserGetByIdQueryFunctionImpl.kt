@@ -7,6 +7,9 @@ import i2.keycloak.realm.domain.features.query.UserGetByIdQueryFunction
 import i2.keycloak.realm.domain.features.query.UserGetByIdQueryResult
 import i2.s2.errors.I2ApiError
 import i2.s2.errors.asI2Exception
+import i2.s2.user.f2.model.asModel
+import i2.s2.user.f2.service.UserFinderService
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import s2.spring.utils.logger.Logger
@@ -14,6 +17,9 @@ import javax.ws.rs.NotFoundException
 
 @Configuration
 class UserGetByIdQueryFunctionImpl {
+
+	@Autowired
+	private lateinit var userFinderService: UserFinderService
 
 	private val logger by Logger()
 
@@ -23,7 +29,7 @@ class UserGetByIdQueryFunctionImpl {
 		try {
 			realmClient.getUserResource(cmd.realmId, cmd.id)
 				.toRepresentation()
-				.asModel()
+				.asModel { userId -> userFinderService.getRoles(userId, cmd.realmId, cmd.auth) }
 				.asResult()
 		} catch (e: NotFoundException) {
 			UserGetByIdQueryResult(null)

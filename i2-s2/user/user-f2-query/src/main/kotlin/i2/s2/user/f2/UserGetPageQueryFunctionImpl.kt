@@ -1,32 +1,36 @@
 package i2.s2.user.f2
 
 import f2.dsl.cqrs.page.Page
-import f2.dsl.fnc.f2Function
-import i2.keycloak.realm.client.config.AuthRealmClientBuilder
 import i2.keycloak.realm.domain.UserModel
 import i2.keycloak.realm.domain.features.query.UserGetPageQueryFunction
 import i2.keycloak.realm.domain.features.query.UserGetPageQueryResult
+import i2.s2.commons.f2.keycloakF2Function
+import i2.s2.user.f2.model.asModels
+import i2.s2.user.f2.service.UserFinderService
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
 @Configuration
 class UserGetPageQueryFunctionImpl {
 
+	@Autowired
+	private lateinit var userFinderService: UserFinderService
+
 	companion object {
 		const val PAGE_SIZE = 10
-		const val PAGE_NUMBER = 1
+		const val PAGE_NUMBER = 0
 	}
 
 	@Bean
-	fun userGetPageQueryFunctionImpl(): UserGetPageQueryFunction = f2Function { cmd ->
-		val realmClient = AuthRealmClientBuilder().build(cmd.auth)
+	fun userGetPageQueryFunctionImpl(): UserGetPageQueryFunction = keycloakF2Function { cmd, realmClient ->
 		val size = cmd.page.size ?: PAGE_SIZE
 		val page = cmd.page.page ?: PAGE_NUMBER
 		val first = page * size
 		val max = first + size
 		val count = realmClient.keycloak.realm(cmd.realmId).users().count()
 		realmClient.keycloak.realm(cmd.realmId).users().list(first, max)
-			.asModels()
+			.asModels { userId -> userFinderService.getRoles(userId, cmd.realmId, cmd.auth) }
 			.asResult(count)
 	}
 

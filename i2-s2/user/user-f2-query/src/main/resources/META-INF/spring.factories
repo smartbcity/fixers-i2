@@ -2,4 +2,6 @@ org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 i2.s2.user.f2.UserGetByIdQueryFunctionImpl,\
 i2.s2.user.f2.UserGetByEmailQueryFunctionImpl,\
 i2.s2.user.f2.UserGetByUsernameQueryFunctionImpl,\
-i2.s2.user.f2.UserGetPageQueryFunctionImpl
+i2.s2.user.f2.UserGetPageQueryFunctionImpl,\
+i2.s2.user.f2.UserGetRolesQueryFunctionImpl,\
+i2.s2.user.f2.service.UserFinderService
