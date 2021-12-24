@@ -8,7 +8,8 @@ KEYCLOAK_NAME	    := smartbcity/i2-keycloak
 KEYCLOAK_IMG        := ${KEYCLOAK_NAME}:${VERSION}
 KEYCLOAK_LATEST		:= ${KEYCLOAK_NAME}:latest
 
-libs: package-kotlin package-keycloak
+libs: package-kotlin
+docker: package-keycloak
 docs: package-storybook
 
 package-kotlin:
