@@ -1,6 +1,12 @@
 import { addons } from '@storybook/addons';
-import theme from './theme';
+import {create} from "@storybook/theming";
+import logo from "../public/logo.png";
 
 addons.setConfig({
-    theme: theme,
+    theme: create({
+        base: 'light',
+        brandTitle: 'SmartB I2',
+        brandUrl: 'https://docs.smartb.city/i2',
+        brandImage: logo,
+    }),
 });
