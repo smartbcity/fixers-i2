@@ -1,31 +1,28 @@
-version: '3.3'
+version: "3.3"
 
 services:
-  keycloak:
+  keycloak-it:
     image: smartbcity/i2-keycloak:experimental
-    container_name: i2-keycloak
     environment:
       DB_VENDOR: POSTGRES
-      DB_ADDR: keycloak_pg
+      DB_ADDR: keycloak-postgres-it
       DB_SCHEMA: public
-      DB_DATABASE: i2-keycloak-pg
+      DB_DATABASE: keycloack-it
       DB_USER: admin
       DB_PASSWORD: admin
-      KEYCLOAK_USER: smartb
-      KEYCLOAK_PASSWORD: smartb
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: admin
       KEYCLOAK_HOSTNAME: localhost
       PROXY_ADDRESS_FORWARDING: "true"
       JDBC_PARAMS: "ssl=false"
     ports:
       - 8080:8080
     depends_on:
-      - keycloak_pg
+      - keycloak-postgres-it
 
-  keycloak_pg:
+  keycloak-postgres-it:
     image: postgres
     environment:
-      POSTGRES_DB: i2-keycloak-pg
+      POSTGRES_DB: keycloack-it
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin
-#    volumes:
-#      - ${DATA_VOLUME}/postgres/data:/var/lib/postgresql/data
