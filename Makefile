@@ -12,7 +12,7 @@ libs: package-kotlin package-keycloak
 docs: package-storybook
 
 package-kotlin:
-	@gradle clean build publish
+	@gradle clean build publish --stacktrace
 
 package-storybook:
 	@docker build -f ${STORYBOOK_DOCKERFILE} -t ${STORYBOOK_IMG} .
