@@ -1,6 +1,7 @@
 package i2.test.it.user
 
 import f2.dsl.fnc.invoke
+import i2.keycloak.realm.domain.features.command.UserCreateFunction
 import i2.s2.user.f2.UserCreateFunctionImpl
 import i2.test.bdd.assertion.AssertionKC
 import i2.test.bdd.assertion.user
@@ -13,11 +14,15 @@ import i2.test.bdd.testcontainers.I2KeycloakTest
 import kotlinx.coroutines.runBlocking
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
+import org.springframework.beans.factory.annotation.Autowired
 import java.util.UUID
 
 class UserCreateFunctionImplTest : I2KeycloakTest() {
 	val clientMaster = GivenKC().auth().withMasterRealmClient()
 	val realmId = GivenKC(clientMaster).realm().withTestRealm()
+
+	@Autowired
+	private lateinit var userCreateFunction: UserCreateFunction
 
 	@Test
 	fun `should not find not existing user`(): Unit = runBlocking {
@@ -33,13 +38,13 @@ class UserCreateFunctionImplTest : I2KeycloakTest() {
 			username = "username-${userUuid}",
 			firstname = "Jerry",
 			lastname = "Pait",
-			email = "jerry@pait.com",
+			email = "${UUID.randomUUID()}@pait.com",
 			isEnable = true,
 			metadata = mapOf(
 				"organizationId" to UUID.randomUUID().toString()
 			),
 		)
-		val event = UserCreateFunctionImpl().userCreateFunction().invoke(cmd)
+		val event = userCreateFunction.invoke(cmd)
 
 		Assertions.assertThat(event.id).isNotNull
 		AssertionKC.user(clientMaster.keycloak).exists(realmId, event.id)

@@ -8,7 +8,6 @@ import i2.s2.errors.I2ApiError
 import i2.s2.errors.asI2Exception
 import i2.s2.user.f2.model.asModel
 import i2.s2.user.f2.service.UserFinderService
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import s2.spring.utils.logger.Logger
@@ -16,15 +15,15 @@ import s2.spring.utils.logger.Logger
 @Configuration
 class UserGetByEmailQueryFunctionImpl {
 
-	@Autowired
-	private lateinit var userFinderService: UserFinderService
-
 	private val logger by Logger()
 
 	@Bean
-	fun userGetByEmailQueryFunction(): UserGetByEmailQueryFunction = keycloakF2Function { cmd, realmClient ->
+	fun userGetByEmailQueryFunction(userFinderService: UserFinderService)
+			: UserGetByEmailQueryFunction = keycloakF2Function { cmd, realmClient ->
 		try {
-			realmClient.users(cmd.realmId).list().first { user -> user.email == cmd.email }
+			realmClient.users(cmd.realmId).list().first { user ->
+				user.email == cmd.email
+			}
 				.asModel { userId -> userFinderService.getRoles(userId, cmd.realmId, cmd.auth) }
 				.asResult()
 		} catch (e: NoSuchElementException) {
@@ -42,5 +41,4 @@ class UserGetByEmailQueryFunctionImpl {
 	private fun UserModel.asResult(): UserGetByEmailQueryResult {
 		return UserGetByEmailQueryResult(this)
 	}
-
 }

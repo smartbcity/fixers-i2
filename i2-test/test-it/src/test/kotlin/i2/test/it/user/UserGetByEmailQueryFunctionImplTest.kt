@@ -2,7 +2,7 @@ package i2.test.it.user
 
 import f2.dsl.fnc.invoke
 import i2.keycloak.realm.domain.features.query.UserGetByEmailQuery
-import i2.s2.user.f2.UserGetByEmailQueryFunctionImpl
+import i2.keycloak.realm.domain.features.query.UserGetByEmailQueryFunction
 import i2.test.bdd.data.DataTest
 import i2.test.bdd.data.user.userCreateCommand
 import i2.test.bdd.given.GivenKC
@@ -13,12 +13,16 @@ import i2.test.bdd.testcontainers.I2KeycloakTest
 import kotlinx.coroutines.runBlocking
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
+import org.springframework.beans.factory.annotation.Autowired
 import java.util.UUID
 
 class UserGetByEmailQueryFunctionImplTest: I2KeycloakTest() {
 
 	private val client = GivenKC().auth().withMasterRealmClient()
 	private val realmId = GivenKC(client).realm().withTestRealm()
+
+	@Autowired
+	lateinit var userGetByEmailQueryFunction: UserGetByEmailQueryFunction
 
 	@Test
 	fun `should get user when user with email exists`(): Unit = runBlocking {
@@ -34,7 +38,7 @@ class UserGetByEmailQueryFunctionImplTest: I2KeycloakTest() {
 			realmId = realmId,
 			auth = client.auth
 		)
-		val result = UserGetByEmailQueryFunctionImpl().userGetByEmailQueryFunction().invoke(cmd)
+		val result = userGetByEmailQueryFunction.invoke(cmd)
 
 		Assertions.assertThat(result.user).isNotNull
 	}
@@ -53,7 +57,7 @@ class UserGetByEmailQueryFunctionImplTest: I2KeycloakTest() {
 			realmId = realmId,
 			auth = client.auth
 		)
-		val result = UserGetByEmailQueryFunctionImpl().userGetByEmailQueryFunction().invoke(cmd)
+		val result = userGetByEmailQueryFunction.invoke(cmd)
 
 		Assertions.assertThat(result.user).isNull()
 	}

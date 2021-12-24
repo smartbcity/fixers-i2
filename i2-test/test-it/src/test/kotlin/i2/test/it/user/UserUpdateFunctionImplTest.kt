@@ -32,7 +32,7 @@ class UserUpdateFunctionImplTest: I2KeycloakTest() {
 			auth = clientMaster.auth,
 			firstname = "Sandra",
 			lastname = "Geffroi",
-			email = "sandra@geffroi.com",
+			email = "${UUID.randomUUID()}@geffroi.com",
 			metadata = mapOf("key" to "value")
 		)
 		val updatedUserId = UserUpdateFunctionImpl().userUpdateFunction().invoke(updateCommand).id

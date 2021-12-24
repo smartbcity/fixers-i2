@@ -9,7 +9,7 @@ import i2.keycloak.realm.domain.features.query.UserGetRolesQueryFunction
 import org.springframework.stereotype.Service
 
 @Service
-internal class UserFinderService(
+class UserFinderService(
     private val userGetRolesQueryFunction: UserGetRolesQueryFunction
 ) {
     suspend fun getRoles(userId: UserId, realmId: RealmId, authRealm: AuthRealm) = UserGetRolesQuery(
