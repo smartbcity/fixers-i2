@@ -26,3 +26,8 @@ services:
       POSTGRES_DB: keycloack-it
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin
+
+networks:
+  default:
+    external:
+      name: bclannet-it
