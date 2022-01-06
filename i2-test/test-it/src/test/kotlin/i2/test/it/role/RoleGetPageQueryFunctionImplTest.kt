@@ -39,5 +39,4 @@ class RoleGetPageQueryFunctionImplTest: I2KeycloakTest() {
 		Assertions.assertThat(result.page.list).hasSize(cmd.page.size!!)
 		Assertions.assertThat(result.page.total).isEqualTo(existingRoles.size + newRoles.size.toLong())
 	}
-
 }
