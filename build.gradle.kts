@@ -2,7 +2,6 @@ plugins {
     kotlin("plugin.spring") version PluginVersions.kotlin apply false
     id("org.springframework.boot") version PluginVersions.springBoot apply false
 
-
     kotlin("plugin.serialization") version PluginVersions.kotlin apply false
     kotlin("kapt") version PluginVersions.kotlin apply false
 
