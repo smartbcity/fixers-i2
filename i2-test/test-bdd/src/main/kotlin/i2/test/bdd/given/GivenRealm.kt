@@ -37,13 +37,11 @@ class GivenRealm(
 			client.realmsResource().create(realm)
 			getRealmRepresentation(id)
 		} catch (e: javax.ws.rs.NotFoundException) {
-			Assertions.fail<Unit>("Error initializing realm [${id}]")
-			null
+			Assertions.fail("Error initializing realm [${id}]")
 		}
 	}
 	private fun getRealmRepresentation(id: String) = client.keycloak.realm(id).toRepresentation()
 
 }
-
 
 fun GivenKC.realm() = GivenRealm(this.client)
