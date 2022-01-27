@@ -1,4 +1,4 @@
-package i2.s2.commons.f2.utils
+package i2.commons.utils
 
 import com.fasterxml.jackson.core.JsonParser
 import com.fasterxml.jackson.databind.DeserializationFeature

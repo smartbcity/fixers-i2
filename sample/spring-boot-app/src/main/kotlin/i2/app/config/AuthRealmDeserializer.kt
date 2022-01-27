@@ -8,11 +8,11 @@ import com.fasterxml.jackson.databind.JsonMappingException
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.Module
 import com.fasterxml.jackson.databind.module.SimpleModule
+import i2.commons.utils.parseJsonTo
+import i2.commons.utils.toJson
 import i2.keycloak.master.domain.AuthRealm
 import i2.keycloak.master.domain.AuthRealmClientSecret
 import i2.keycloak.master.domain.AuthRealmPassword
-import i2.s2.commons.f2.utils.parseJsonTo
-import i2.s2.commons.f2.utils.toJson
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 

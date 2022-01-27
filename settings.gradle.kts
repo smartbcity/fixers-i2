@@ -9,6 +9,10 @@ pluginManagement {
 rootProject.name = "i2"
 
 include(
+    "i2-commons:i2-commons-api",
+    "i2-commons:i2-commons-domain",
+)
+include(
     "i2-spring:i2-spring-boot-starter-auth",
     "i2-keycloak",
     "sample:spring-boot-app"

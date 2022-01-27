@@ -2,7 +2,7 @@ package i2.s2.organization.f2
 
 import f2.dsl.fnc.f2Function
 import f2.dsl.fnc.invoke
-import i2.s2.commons.f2.utils.toJson
+import i2.commons.utils.toJson
 import i2.s2.group.domain.features.command.GroupCreateCommand
 import i2.s2.group.domain.features.command.GroupCreateFunction
 import i2.s2.organization.domain.features.command.OrganizationCreateCommand

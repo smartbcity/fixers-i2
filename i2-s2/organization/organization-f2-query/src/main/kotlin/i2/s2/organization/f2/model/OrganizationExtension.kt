@@ -1,6 +1,6 @@
 package i2.s2.organization.f2.model
 
-import i2.s2.commons.f2.utils.parseJsonTo
+import i2.commons.utils.parseJsonTo
 import i2.s2.group.domain.model.GroupModel
 import i2.s2.organization.domain.model.AddressBase
 import i2.s2.organization.domain.model.Organization
