@@ -17,5 +17,5 @@ class OrganizationGetByIdQuery(
 ): KeycloakF2Command
 
 class OrganizationGetByIdQueryResult(
-	val group: OrganizationBase?
+	val organization: OrganizationBase?
 ): KeycloakF2Result
