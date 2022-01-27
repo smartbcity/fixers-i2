@@ -9,9 +9,9 @@ pluginManagement {
 rootProject.name = "i2"
 
 include(
-        "i2-spring:i2-spring-boot-starter-auth",
-        "i2-keycloak",
-        "sample:spring-boot-auth-test"
+    "i2-spring:i2-spring-boot-starter-auth",
+    "i2-keycloak",
+    "sample:spring-boot-auth-test"
 )
 include(
     "i2-keycloak:keycloak-auth:keycloak-auth-client",
@@ -35,7 +35,12 @@ include(
 include(
     "i2-s2:error:error-domain"
 )
-
+include(
+    "i2-s2:group:group-domain",
+    "i2-s2:group:group-f2-create",
+    "i2-s2:group:group-f2-query",
+    "i2-s2:group:group-f2-update"
+)
 include(
     "i2-s2:import:import-domain",
     "i2-s2:import:import-data"
