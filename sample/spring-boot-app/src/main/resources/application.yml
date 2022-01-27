@@ -3,8 +3,8 @@ spring:
     web-application-type: reactive
 
 keycloak:
-  auth-server-url: http://localhost:8080/auth
-  realm: server
+  auth-server-url: https://auth.smart-b.io/auth
+  realm: test
 
 i2:
   jwt-issuer-uri: {keycloak.auth-server-url}/realms/${keycloak.realm}

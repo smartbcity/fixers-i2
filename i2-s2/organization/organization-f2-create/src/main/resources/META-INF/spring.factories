@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-i2.s2.group.f2.OrganizationCreateFunctionImpl
+i2.s2.organization.f2.OrganizationCreateFunctionImpl
