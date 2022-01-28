@@ -67,7 +67,6 @@ open class Client(
                 header("Authorization", "Bearer $token")
             }
         }
-        println("$baseUrl/$path")
         url("$baseUrl/$path")
     }
 }
