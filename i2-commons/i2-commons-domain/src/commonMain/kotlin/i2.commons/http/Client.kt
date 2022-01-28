@@ -10,7 +10,7 @@ import io.ktor.client.request.url
 import io.ktor.http.ContentType
 import io.ktor.http.parametersOf
 
-abstract class Client(
+open class Client(
     private val baseUrl: String,
     httpClientBuilder: ClientBuilder,
     protected open var generateBearerToken: suspend () -> String? = { null },
@@ -57,7 +57,7 @@ abstract class Client(
         basicSetup(path, withAuth)
         val parameters = formData.map { (key, value) -> key to listOf(value) }
                 .toTypedArray()
-        
+
         this.body = FormDataContent(parametersOf(*parameters))
     }
 
