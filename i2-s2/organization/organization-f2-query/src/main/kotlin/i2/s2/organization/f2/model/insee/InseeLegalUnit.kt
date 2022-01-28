@@ -1,11 +1,11 @@
 package i2.s2.organization.f2.model.insee
 
 data class InseeLegalUnit(
-    val etatAdministratifUniteLegale: String,
-    val statutDiffusionUniteLegale: String,
-    val dateCreationUniteLegale: String,
-    val categorieJuridiqueUniteLegale: String,
-    val denominationUniteLegale: String,
+    val etatAdministratifUniteLegale: String?,
+    val statutDiffusionUniteLegale: String?,
+    val dateCreationUniteLegale: String?,
+    val categorieJuridiqueUniteLegale: String?,
+    val denominationUniteLegale: String?,
     val sigleUniteLegale: String?,
     val denominationUsuelle1UniteLegale: String?,
     val denominationUsuelle2UniteLegale: String?,
@@ -19,15 +19,15 @@ data class InseeLegalUnit(
     val prenom4UniteLegale: String?,
     val prenomUsuelUniteLegale: String?,
     val pseudonymeUniteLegale: String?,
-    val activitePrincipaleUniteLegale: String,
-    val nomenclatureActivitePrincipaleUniteLegale: String,
+    val activitePrincipaleUniteLegale: String?,
+    val nomenclatureActivitePrincipaleUniteLegale: String?,
     val identifiantAssociationUniteLegale: String?,
-    val economieSocialeSolidaireUniteLegale: String,
-    val caractereEmployeurUniteLegale: String,
-    val trancheEffectifsUniteLegale: String,
-    val anneeEffectifsUniteLegale: String,
-    val nicSiegeUniteLegale: String,
-    val dateDernierTraitementUniteLegale: String,
-    val categorieEntreprise: String,
-    val anneeCategorieEntreprise: String
+    val economieSocialeSolidaireUniteLegale: String?,
+    val caractereEmployeurUniteLegale: String?,
+    val trancheEffectifsUniteLegale: String?,
+    val anneeEffectifsUniteLegale: String?,
+    val nicSiegeUniteLegale: String?,
+    val dateDernierTraitementUniteLegale: String?,
+    val categorieEntreprise: String?,
+    val anneeCategorieEntreprise: String?
 )

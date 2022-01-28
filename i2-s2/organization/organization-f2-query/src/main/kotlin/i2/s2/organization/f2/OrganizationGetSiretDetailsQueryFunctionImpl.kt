@@ -33,14 +33,21 @@ class OrganizationGetSiretDetailsQueryFunctionImpl(
 	private fun InseeOrganization.toOrganization() = OrganizationBase(
 		id = "",
 		siret = siret,
-		name = uniteLegale.denominationUniteLegale,
+		name = uniteLegale.denominationUniteLegale.orEmpty(),
 		description = null,
 		address = adresseEtablissement.toAddress()
 	)
 
 	private fun InseeAddress.toAddress() = AddressBase(
-		street = "$numeroVoieEtablissement $indiceRepetitionEtablissement $typeVoieEtablissement $libelleVoieEtablissement",
-		postalCode = codePostalEtablissement,
-		city = libelleCommuneEtablissement
+		street = street(),
+		postalCode = codePostalEtablissement.orEmpty(),
+		city = libelleCommuneEtablissement.orEmpty()
 	)
+
+	private fun InseeAddress.street() = StringBuilder().apply {
+		numeroVoieEtablissement?.let { append("$it ") }
+		indiceRepetitionEtablissement?.let { append("$it ") }
+		typeVoieEtablissement?.let { append("$it ") }
+		libelleVoieEtablissement?.let { append(it) }
+	}.toString()
 }
