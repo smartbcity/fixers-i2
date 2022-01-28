@@ -10,8 +10,7 @@ fun <T> String.parseJsonTo(targetClass: Class<T>): T {
 }
 
 fun <T> String.parseJsonTo(targetClass: Class<Array<T>>): List<T> {
-    val parsedValue = this.parseTo(targetClass)
-    return listOf(*parsedValue)
+    return parseTo(targetClass).toList()
 }
 
 private fun <T> String.parseTo(targetClass: Class<T>): T {

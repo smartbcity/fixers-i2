@@ -6,7 +6,7 @@ import kotlin.js.Promise
 
 @JsExport
 @JsName("ClientJs")
-abstract class ClientJs{
+open class ClientJs{
 
     protected fun <T> doCall(fnc: suspend () -> Any): Promise<T> = GlobalScope.promise {
         val result = fnc()
