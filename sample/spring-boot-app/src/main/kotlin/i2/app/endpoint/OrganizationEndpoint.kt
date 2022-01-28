@@ -3,7 +3,7 @@ package i2.app.endpoint
 import i2.s2.organization.domain.features.command.OrganizationCreateFunction
 import i2.s2.organization.domain.features.command.OrganizationUpdateFunction
 import i2.s2.organization.domain.features.query.OrganizationGetByIdQueryFunction
-import i2.s2.organization.domain.features.query.OrganizationGetSiretDetailsQueryFunction
+import i2.s2.organization.domain.features.query.OrganizationGetInseeOrganizationQueryFunction
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration
 class OrganizationEndpoint(
     private val organizationCreateFunction: OrganizationCreateFunction,
     private val organizationGetByIdQueryFunction: OrganizationGetByIdQueryFunction,
-    private val organizationGetSiretDetailsQueryFunction: OrganizationGetSiretDetailsQueryFunction,
+    private val organizationGetInseeOrganizationQueryFunction: OrganizationGetInseeOrganizationQueryFunction,
     private val organizationUpdateFunction: OrganizationUpdateFunction
 ) {
 
@@ -25,5 +25,5 @@ class OrganizationEndpoint(
     fun getOrganization() = organizationGetByIdQueryFunction
 
     @Bean
-    fun getSiretDetails() = organizationGetSiretDetailsQueryFunction
+    fun getInseeOrganization() = organizationGetInseeOrganizationQueryFunction
 }

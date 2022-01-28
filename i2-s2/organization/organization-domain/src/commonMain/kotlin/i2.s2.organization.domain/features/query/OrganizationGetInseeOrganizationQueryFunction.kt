@@ -5,12 +5,12 @@ import f2.dsl.cqrs.Event
 import f2.dsl.fnc.F2Function
 import i2.s2.organization.domain.model.OrganizationBase
 
-typealias OrganizationGetSiretDetailsQueryFunction = F2Function<OrganizationGetSiretDetailsQuery, OrganizationGetSiretDetailsQueryResult>
+typealias OrganizationGetInseeOrganizationQueryFunction = F2Function<OrganizationGetInseeOrganizationQuery, OrganizationGetInseeOrganizationQueryResult>
 
-class OrganizationGetSiretDetailsQuery(
+class OrganizationGetInseeOrganizationQuery(
 	val siret: String
 ): Command
 
-class OrganizationGetSiretDetailsQueryResult(
+class OrganizationGetInseeOrganizationQueryResult(
 	val organization: OrganizationBase?
 ): Event
