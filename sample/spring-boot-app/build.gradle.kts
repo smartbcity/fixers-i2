@@ -1,6 +1,6 @@
 plugins {
 	id("city.smartb.fixers.gradle.kotlin.jvm")
-    id("city.smartb.fixers.gradle.publish")
+	id("org.springframework.boot")
 	kotlin("plugin.spring")
 }
 
@@ -17,4 +17,8 @@ dependencies {
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test:${Versions.springBoot}")
 	testImplementation("io.projectreactor:reactor-test:3.4.11")
+}
+
+tasks.withType<org.springframework.boot.gradle.tasks.bundling.BootBuildImage> {
+	imageName = "smartbcity/i2-gateway:${this.project.version}"
 }
