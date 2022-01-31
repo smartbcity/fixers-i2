@@ -10,6 +10,7 @@ interface Organization {
     val name: String
     val description: String?
     val address: Address
+    val website: String?
 }
 
 data class OrganizationBase(
@@ -17,5 +18,6 @@ data class OrganizationBase(
     override val siret: String,
     override val name: String,
     override val description: String?,
-    override val address: Address
+    override val address: Address,
+    override val website: String?
 ): Organization

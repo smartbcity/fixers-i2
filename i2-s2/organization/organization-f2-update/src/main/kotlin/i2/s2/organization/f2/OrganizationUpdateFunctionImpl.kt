@@ -29,6 +29,7 @@ class OrganizationUpdateFunctionImpl(
 			::siret.name to siret,
 			::address.name to address.toJson(),
 			::description.name to description,
+			::website.name to website
 		).mapValues { (_, value) -> listOfNotNull(value) },
 		roles = emptyList(),
 		auth = auth,

@@ -15,6 +15,7 @@ data class OrganizationCreateCommand(
     val name: String,
     val description: String?,
     val address: AddressBase,
+    val website: String?,
     override val auth: AuthRealm,
     val realmId: RealmId
 ): KeycloakF2Command
