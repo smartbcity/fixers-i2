@@ -9,8 +9,8 @@ import i2.s2.organization.domain.model.OrganizationBase
 fun GroupModel.toOrganization() = OrganizationBase(
     id = id,
     name = name,
-    siret = attributes[Organization::siret.name]!!.first(),
-    address = attributes[Organization::address.name]!!.first().parseJsonTo(AddressBase::class.java),
+    siret = attributes[Organization::siret.name]?.first() ?: "",
+    address = attributes[Organization::address.name]?.first()?.parseJsonTo(AddressBase::class.java).orEmpty(),
     description = attributes[Organization::description.name]?.firstOrNull(),
     website = attributes[Organization::website.name]?.firstOrNull()
 )
