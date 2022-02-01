@@ -1,9 +1,9 @@
 package i2.test.bdd.data.user
 
+import i2.keycloak.f2.realm.domain.RealmId
+import i2.keycloak.f2.realm.domain.UserId
+import i2.keycloak.f2.realm.domain.features.command.UserUpdateCommand
 import i2.keycloak.master.domain.AuthRealm
-import i2.keycloak.realm.domain.UserId
-import i2.keycloak.realm.domain.features.command.UserUpdateCommand
-import i2.s2.realm.domain.RealmId
 import i2.test.bdd.data.DataTest
 import java.util.UUID
 

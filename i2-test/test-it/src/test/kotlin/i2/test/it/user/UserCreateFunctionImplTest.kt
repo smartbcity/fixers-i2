@@ -1,8 +1,7 @@
 package i2.test.it.user
 
 import f2.dsl.fnc.invoke
-import i2.keycloak.realm.domain.features.command.UserCreateFunction
-import i2.s2.user.f2.UserCreateFunctionImpl
+import i2.keycloak.f2.realm.domain.features.command.UserCreateFunction
 import i2.test.bdd.assertion.AssertionKC
 import i2.test.bdd.assertion.user
 import i2.test.bdd.data.DataTest

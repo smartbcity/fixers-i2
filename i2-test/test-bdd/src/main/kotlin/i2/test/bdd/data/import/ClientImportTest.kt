@@ -1,8 +1,8 @@
 package i2.test.bdd.data.import
 
-import i2.s2.client.domain.ClientIdentifier
-import i2.s2.realm.domain.ClientImport
-import i2.s2.role.domain.RoleName
+import i2.f2.import.domain.ClientImport
+import i2.keycloak.f2.client.domain.ClientIdentifier
+import i2.keycloak.f2.role.domain.RoleName
 import i2.test.bdd.data.DataTest
 import java.util.UUID
 

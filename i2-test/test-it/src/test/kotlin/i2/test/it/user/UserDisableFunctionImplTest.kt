@@ -1,8 +1,8 @@
 package i2.test.it.user
 
 import f2.dsl.fnc.invoke
-import i2.keycloak.realm.domain.features.command.UserDisableCommand
-import i2.s2.user.f2.UserDisableFunctionImpl
+import i2.keycloak.f2.realm.domain.features.command.UserDisableCommand
+import i2.keycloak.f2.user.app.UserDisableFunctionImpl
 import i2.test.bdd.assertion.AssertionKC
 import i2.test.bdd.assertion.user
 import i2.test.bdd.given.GivenKC
@@ -12,7 +12,7 @@ import i2.test.bdd.given.user
 import i2.test.bdd.testcontainers.I2KeycloakTest
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test
-import java.util.*
+import java.util.UUID
 
 internal class UserDisableFunctionImplTest: I2KeycloakTest() {
 

@@ -1,6 +1,6 @@
 package i2.test.bdd.assertion
 
-import i2.s2.group.domain.model.GroupId
+import i2.keycloak.f2.group.domain.model.GroupId
 import org.assertj.core.api.Assertions
 import org.keycloak.admin.client.Keycloak
 import org.keycloak.representations.idm.GroupRepresentation
@@ -45,10 +45,10 @@ class AssertionGroup(
 		private val group: GroupRepresentation
 	) {
 		fun hasFields(
-			id: GroupId = group.id,
-			name: String = group.name,
-			realmRoles: List<String> = group.realmRoles,
-			attributes: Map<String, List<String>> = group.attributes
+            id: GroupId = group.id,
+            name: String = group.name,
+            realmRoles: List<String> = group.realmRoles,
+            attributes: Map<String, List<String>> = group.attributes
 		) {
 			Assertions.assertThat(group.id).isEqualTo(id)
 			Assertions.assertThat(group.name).isEqualTo(name)
