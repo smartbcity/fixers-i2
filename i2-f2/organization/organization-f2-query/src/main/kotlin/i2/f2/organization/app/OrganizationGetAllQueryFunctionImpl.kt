@@ -2,6 +2,7 @@ package i2.f2.organization.app
 
 import f2.dsl.fnc.f2Function
 import f2.dsl.fnc.invoke
+import i2.f2.config.I2KeycloakConfig
 import i2.f2.organization.app.model.toOrganization
 import i2.f2.organization.domain.features.query.OrganizationGetAllQuery
 import i2.f2.organization.domain.features.query.OrganizationGetAllQueryFunction
@@ -14,7 +15,8 @@ import org.springframework.context.annotation.Configuration
 
 @Configuration
 class OrganizationGetAllQueryFunctionImpl(
-	private val groupGetAllQueryFunction: GroupGetAllQueryFunction
+	private val groupGetAllQueryFunction: GroupGetAllQueryFunction,
+	private val i2KeycloakConfig: I2KeycloakConfig
 ) {
 
 	@Bean
@@ -29,7 +31,7 @@ class OrganizationGetAllQueryFunctionImpl(
 		search = search ?: "",
 		page = page,
 		size = size,
-		realmId = realmId,
-		auth = auth
+		realmId = i2KeycloakConfig.realm,
+		auth = i2KeycloakConfig.authRealm()
 	)
 }

@@ -7,6 +7,7 @@ plugins {
 dependencies {
 	implementation(project(":i2-spring:i2-spring-boot-starter-auth"))
 
+	implementation(project(":i2-f2:config"))
 	implementation(project(":i2-f2:organization:organization-f2-create"))
 	implementation(project(":i2-f2:organization:organization-f2-query"))
 	implementation(project(":i2-f2:organization:organization-f2-update"))

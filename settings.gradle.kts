@@ -18,10 +18,9 @@ include(
     "sample:spring-boot-app"
 )
 include(
+    "i2-f2:config",
     "i2-f2:import:import-domain",
-    "i2-f2:import:import-data"
-)
-include(
+    "i2-f2:import:import-data",
     "i2-f2:organization:organization-domain",
     "i2-f2:organization:organization-f2-create",
     "i2-f2:organization:organization-f2-query",

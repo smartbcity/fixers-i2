@@ -2,6 +2,7 @@ package i2.f2.organization.app
 
 import f2.dsl.fnc.f2Function
 import f2.dsl.fnc.invoke
+import i2.f2.config.I2KeycloakConfig
 import i2.f2.organization.app.model.toOrganization
 import i2.f2.organization.domain.features.query.OrganizationGetByIdQuery
 import i2.f2.organization.domain.features.query.OrganizationGetByIdQueryFunction
@@ -13,18 +14,21 @@ import org.springframework.context.annotation.Configuration
 
 @Configuration
 class OrganizationGetByIdQueryFunctionImpl(
-	private val groupGetByIdQueryFunction: GroupGetByIdQueryFunction
+	private val groupGetByIdQueryFunction: GroupGetByIdQueryFunction,
+	private val i2KeycloakConfig: I2KeycloakConfig
 ) {
 
 	@Bean
 	fun organizationGetByIdQueryFunction(): OrganizationGetByIdQueryFunction = f2Function { cmd ->
 		groupGetByIdQueryFunction.invoke(cmd.toGroupGetByIdQuery())
-			.let { result -> OrganizationGetByIdQueryResult(result.group?.toOrganization()) }
+			.group
+			?.toOrganization()
+			.let(::OrganizationGetByIdQueryResult)
 	}
 
 	private fun OrganizationGetByIdQuery.toGroupGetByIdQuery() = GroupGetByIdQuery(
 		id = id,
-		realmId = realmId,
-		auth = auth
+		realmId = i2KeycloakConfig.realm,
+		auth = i2KeycloakConfig.authRealm()
 	)
 }
