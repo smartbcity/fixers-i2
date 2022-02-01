@@ -5,6 +5,12 @@ spring:
 keycloak:
   auth-server-url: https://auth.smart-b.io/auth
   realm: test
+  clients:
+    admin:
+      realm: master
+      clientId: admin-cli
+      username: smartb
+      password: conorS
 
 i2:
   jwt-issuer-uri: $keycloak.auth-server-url}/realms/${keycloak.realm}
@@ -15,6 +21,7 @@ i2:
     insee:
       token: c6ef3de5-3ef1-330a-8917-21f6750dcb09
       sirene-api: https://api.insee.fr/entreprises/sirene/V3
+  auth-client: admin
 
 server:
   port : 9090

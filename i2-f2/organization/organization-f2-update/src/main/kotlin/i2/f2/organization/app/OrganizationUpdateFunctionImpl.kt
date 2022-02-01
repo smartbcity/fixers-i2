@@ -3,6 +3,7 @@ package i2.f2.organization.app
 import f2.dsl.fnc.f2Function
 import f2.dsl.fnc.invoke
 import i2.commons.utils.toJson
+import i2.f2.config.I2KeycloakConfig
 import i2.f2.organization.domain.features.command.OrganizationUpdateCommand
 import i2.f2.organization.domain.features.command.OrganizationUpdateFunction
 import i2.f2.organization.domain.features.command.OrganizationUpdatedResult
@@ -13,7 +14,8 @@ import org.springframework.context.annotation.Configuration
 
 @Configuration
 class OrganizationUpdateFunctionImpl(
-	private val groupUpdateFunction: GroupUpdateFunction
+	private val groupUpdateFunction: GroupUpdateFunction,
+	private val i2KeycloakConfig: I2KeycloakConfig
 ) {
 
 	@Bean
@@ -32,7 +34,7 @@ class OrganizationUpdateFunctionImpl(
 			::website.name to website
 		).mapValues { (_, value) -> listOfNotNull(value) },
 		roles = emptyList(),
-		auth = auth,
-		realmId = realmId
+		realmId = i2KeycloakConfig.realm,
+		auth = i2KeycloakConfig.authRealm()
 	)
 }
