@@ -1,8 +1,8 @@
 package i2.test.it.client
 
 import f2.dsl.fnc.invoke
-import i2.s2.client.f2.ClientUpdateUrisFunctionImpl
-import i2.s2.errors.I2Exception
+import i2.commons.error.I2Exception
+import i2.keycloak.f2.client.app.ClientUpdateUrisFunctionImpl
 import i2.test.bdd.assertion.AssertionKC
 import i2.test.bdd.assertion.client
 import i2.test.bdd.data.DataTest

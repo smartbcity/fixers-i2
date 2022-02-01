@@ -2,8 +2,8 @@ package i2.test.it.user
 
 import f2.dsl.cqrs.page.PagePagination
 import f2.dsl.fnc.invoke
-import i2.keycloak.realm.domain.features.query.UserGetPageQuery
-import i2.keycloak.realm.domain.features.query.UserGetPageQueryFunction
+import i2.keycloak.f2.realm.domain.features.query.UserGetPageQuery
+import i2.keycloak.f2.realm.domain.features.query.UserGetPageQueryFunction
 import i2.test.bdd.given.GivenKC
 import i2.test.bdd.given.auth
 import i2.test.bdd.given.realm

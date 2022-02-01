@@ -7,9 +7,9 @@ plugins {
 dependencies {
 	implementation(project(":i2-spring:i2-spring-boot-starter-auth"))
 
-	implementation(project(":i2-s2:organization:organization-f2-create"))
-	implementation(project(":i2-s2:organization:organization-f2-query"))
-	implementation(project(":i2-s2:organization:organization-f2-update"))
+	implementation(project(":i2-f2:organization:organization-f2-create"))
+	implementation(project(":i2-f2:organization:organization-f2-query"))
+	implementation(project(":i2-f2:organization:organization-f2-update"))
 
 	implementation("city.smartb.f2:f2-spring-boot-starter-function-http:${Versions.f2}")
 	implementation("org.springframework.boot:spring-boot-starter-webflux:${Versions.springBoot}")

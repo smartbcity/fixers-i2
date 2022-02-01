@@ -1,11 +1,11 @@
 package i2.test.bdd.given
 
 import f2.dsl.fnc.invoke
+import i2.keycloak.f2.realm.domain.UserId
+import i2.keycloak.f2.realm.domain.features.command.UserCreateCommand
+import i2.keycloak.f2.user.app.UserCreateFunctionImpl
 import i2.keycloak.master.domain.RealmId
 import i2.keycloak.realm.client.config.AuthRealmClient
-import i2.keycloak.realm.domain.UserId
-import i2.keycloak.realm.domain.features.command.UserCreateCommand
-import i2.s2.user.f2.UserCreateFunctionImpl
 import i2.test.bdd.data.DataTest
 import i2.test.bdd.data.user.userCreateCommand
 import kotlinx.coroutines.runBlocking

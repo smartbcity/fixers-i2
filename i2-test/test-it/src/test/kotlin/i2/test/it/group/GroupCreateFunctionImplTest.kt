@@ -1,7 +1,7 @@
 package i2.test.it.group
 
 import f2.dsl.fnc.invoke
-import i2.s2.group.domain.features.command.GroupCreateFunction
+import i2.keycloak.f2.group.domain.features.command.GroupCreateFunction
 import i2.test.bdd.assertion.AssertionKC
 import i2.test.bdd.assertion.group
 import i2.test.bdd.data.DataTest

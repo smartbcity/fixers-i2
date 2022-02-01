@@ -1,9 +1,9 @@
 package i2.test.bdd.assertion
 
+import i2.f2.import.domain.RoleImport
+import i2.keycloak.f2.role.domain.RoleId
+import i2.keycloak.f2.role.domain.RoleName
 import i2.keycloak.master.domain.RealmId
-import i2.s2.realm.domain.RoleImport
-import i2.s2.role.domain.RoleId
-import i2.s2.role.domain.RoleName
 import org.assertj.core.api.Assertions
 import org.keycloak.admin.client.Keycloak
 import org.keycloak.admin.client.resource.RoleResource
