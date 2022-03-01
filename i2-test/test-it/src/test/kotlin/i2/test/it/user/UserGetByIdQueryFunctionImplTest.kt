@@ -1,8 +1,8 @@
 package i2.test.it.user
 
 import f2.dsl.fnc.invoke
-import i2.keycloak.f2.realm.domain.features.query.UserGetByIdQuery
-import i2.keycloak.f2.realm.domain.features.query.UserGetByIdQueryFunction
+import i2.keycloak.f2.user.domain.features.query.UserGetByIdQuery
+import i2.keycloak.f2.user.domain.features.query.UserGetByIdQueryFunction
 import i2.test.bdd.given.GivenKC
 import i2.test.bdd.given.auth
 import i2.test.bdd.given.realm

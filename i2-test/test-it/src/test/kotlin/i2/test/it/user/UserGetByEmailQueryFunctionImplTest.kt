@@ -1,8 +1,8 @@
 package i2.test.it.user
 
 import f2.dsl.fnc.invoke
-import i2.keycloak.f2.realm.domain.features.query.UserGetByEmailQuery
-import i2.keycloak.f2.realm.domain.features.query.UserGetByEmailQueryFunction
+import i2.keycloak.f2.user.domain.features.query.UserGetByEmailQuery
+import i2.keycloak.f2.user.domain.features.query.UserGetByEmailQueryFunction
 import i2.test.bdd.data.DataTest
 import i2.test.bdd.data.user.userCreateCommand
 import i2.test.bdd.given.GivenKC
