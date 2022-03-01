@@ -6,8 +6,8 @@ import i2.keycloak.f2.client.domain.ClientId
 import i2.keycloak.f2.client.domain.ClientIdentifier
 import i2.keycloak.f2.commons.domain.KeycloakF2Command
 import i2.keycloak.f2.commons.domain.KeycloakF2Result
-import i2.keycloak.f2.realm.domain.UserId
 import i2.keycloak.f2.role.domain.RoleId
+import i2.keycloak.f2.user.domain.model.UserId
 import i2.keycloak.master.domain.AuthRealm
 import i2.keycloak.master.domain.RealmId
 import kotlin.js.JsExport

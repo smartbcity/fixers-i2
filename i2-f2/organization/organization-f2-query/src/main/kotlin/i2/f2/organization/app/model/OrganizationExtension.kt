@@ -1,7 +1,7 @@
 package i2.f2.organization.app.model
 
+import i2.commons.model.AddressBase
 import i2.commons.utils.parseJsonTo
-import i2.f2.organization.domain.model.AddressBase
 import i2.f2.organization.domain.model.Organization
 import i2.f2.organization.domain.model.OrganizationBase
 import i2.keycloak.f2.group.domain.model.GroupModel

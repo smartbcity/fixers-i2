@@ -1,4 +1,4 @@
-package i2.f2.organization.domain.model
+package i2.commons.model
 
 interface Address {
     val street: String

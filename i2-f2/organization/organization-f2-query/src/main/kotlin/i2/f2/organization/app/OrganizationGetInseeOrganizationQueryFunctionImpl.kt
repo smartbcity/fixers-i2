@@ -1,12 +1,12 @@
 package i2.f2.organization.app
 
 import f2.dsl.fnc.f2Function
+import i2.commons.model.AddressBase
 import i2.f2.organization.app.model.insee.InseeAddress
 import i2.f2.organization.app.model.insee.InseeOrganization
 import i2.f2.organization.app.service.InseeHttpClient
 import i2.f2.organization.domain.features.query.OrganizationGetInseeOrganizationQueryFunction
 import i2.f2.organization.domain.features.query.OrganizationGetInseeOrganizationQueryResult
-import i2.f2.organization.domain.model.AddressBase
 import i2.f2.organization.domain.model.OrganizationBase
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration

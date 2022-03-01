@@ -1,5 +1,6 @@
 package i2.f2.organization.domain.model
 
+import i2.commons.model.Address
 import i2.keycloak.f2.group.domain.model.GroupId
 
 typealias OrganizationId = GroupId

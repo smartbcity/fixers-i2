@@ -3,9 +3,9 @@ package i2.f2.import.domain
 import i2.keycloak.f2.client.domain.features.command.ClientCreateCommand
 import i2.keycloak.f2.realm.domain.RealmId
 import i2.keycloak.f2.realm.domain.features.command.RealmCreateCommand
-import i2.keycloak.f2.realm.domain.features.command.UserCreateCommand
 import i2.keycloak.f2.role.domain.features.command.RoleAddCompositesCommand
 import i2.keycloak.f2.role.domain.features.command.RoleCreateCommand
+import i2.keycloak.f2.user.domain.features.command.UserCreateCommand
 import i2.keycloak.master.domain.AuthRealm
 
 fun RealmImport.toRealmCreateCommand(auth: AuthRealm) = RealmCreateCommand(
