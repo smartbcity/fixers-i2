@@ -70,7 +70,8 @@ class UserCreateFunctionImpl(
 		isEnable = true,
 		metadata = listOfNotNull(
 			::address.name to address.toJson(),
-			phone?.let { ::phone.name to it }
+			phone?.let { ::phone.name to it },
+			::sendEmailLink.name to sendEmailLink.toJson()
 		).toMap(),
 		realmId = i2KeycloakConfig.realm,
 		auth = authRealm
