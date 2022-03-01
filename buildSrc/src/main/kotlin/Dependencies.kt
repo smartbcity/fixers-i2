@@ -16,7 +16,7 @@ object Versions {
     const val testcontainers = "1.15.2"
     const val kdatetime = "0.1.1"
 
-    const val keycloak = "15.0.2"
+    const val keycloak = "15.0.1"
     const val f2 = PluginVersions.fixers
     const val s2 = PluginVersions.fixers
 

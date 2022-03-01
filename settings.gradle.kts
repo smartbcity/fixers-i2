@@ -14,7 +14,6 @@ include(
 )
 include(
     "i2-spring:i2-spring-boot-starter-auth",
-    "i2-keycloak:keycloak-f2",
     "sample:spring-boot-app"
 )
 include(
@@ -24,7 +23,11 @@ include(
     "i2-f2:organization:organization-domain",
     "i2-f2:organization:organization-f2-create",
     "i2-f2:organization:organization-f2-query",
-    "i2-f2:organization:organization-f2-update"
+    "i2-f2:organization:organization-f2-update",
+    "i2-f2:i2-user:i2-user-domain",
+    "i2-f2:i2-user:i2-user-f2-create",
+    "i2-f2:i2-user:i2-user-f2-query",
+    "i2-f2:i2-user:i2-user-f2-update"
 )
 include(
     "i2-keycloak:keycloak-auth:keycloak-auth-client",
@@ -65,7 +68,8 @@ include(
     "i2-keycloak:keycloak-f2:user:user-f2-delete",
     "i2-keycloak:keycloak-f2:user:user-f2-disable",
     "i2-keycloak:keycloak-f2:user:user-f2-query",
-    "i2-keycloak:keycloak-f2:user:user-f2-password-reset",
+    "i2-keycloak:keycloak-f2:user:user-f2-email-actions",
+    "i2-keycloak:keycloak-f2:user:user-f2-join-group",
     "i2-keycloak:keycloak-f2:user:user-f2-roles-grant",
     "i2-keycloak:keycloak-f2:user:user-f2-roles-revoke",
     "i2-keycloak:keycloak-f2:user:user-f2-update"
