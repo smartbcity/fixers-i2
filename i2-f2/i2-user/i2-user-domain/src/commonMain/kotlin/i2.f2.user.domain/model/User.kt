@@ -9,22 +9,24 @@ typealias UserId = String
 
 interface User {
     val id: UserId
-    val memberOf: OrganizationRef
+    val memberOf: OrganizationRef?
     val email: String
     val givenName: String
     val familyName: String
     val address: Address
     val phone: String?
     val roles: List<String>
+    val sendEmailLink: Boolean?
 }
 
 data class UserBase(
     override val id: UserId,
-    override val memberOf: OrganizationRefBase,
+    override val memberOf: OrganizationRefBase?,
     override val email: String,
     override val givenName: String,
     override val familyName: String,
     override val address: AddressBase,
     override val phone: String?,
-    override val roles: List<String>
+    override val roles: List<String>,
+    override val sendEmailLink: Boolean? = true
 ): User
