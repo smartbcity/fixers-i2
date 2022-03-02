@@ -5,13 +5,15 @@ import f2.dsl.cqrs.Event
 import f2.dsl.fnc.F2Function
 import i2.f2.organization.domain.model.OrganizationBase
 
-typealias OrganizationGetAllQueryFunction = F2Function<OrganizationGetAllQuery, OrganizationGetAllQueryResult>
+typealias OrganizationGetPageQueryFunction = F2Function<OrganizationGetPageQuery, OrganizationGetPageQueryResult>
 
-class OrganizationGetAllQuery(
+class OrganizationGetPageQuery(
 	val name: String?,
 	val role: String?,
+	val page: Int,
+	val size: Int
 ): Command
 
-class OrganizationGetAllQueryResult(
+class OrganizationGetPageQueryResult(
 	val organizations: List<OrganizationBase>
 ): Event

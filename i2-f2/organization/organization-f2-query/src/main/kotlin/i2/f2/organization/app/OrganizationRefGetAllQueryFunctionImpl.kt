@@ -26,6 +26,8 @@ class OrganizationRefGetAllQueryFunctionImpl(
 	}
 
 	private fun OrganizationRefGetAllQuery.toGroupGetAllQuery() = GroupGetAllQuery(
+		name = null,
+		role = null,
 		realmId = i2KeycloakConfig.realm,
 		auth = i2KeycloakConfig.authRealm()
 	)

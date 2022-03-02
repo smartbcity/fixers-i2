@@ -1,5 +1,6 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 i2.f2.organization.app.OrganizationGetAllQueryFunctionImpl,\
+i2.f2.organization.app.OrganizationGetPageQueryFunctionImpl,\
 i2.f2.organization.app.OrganizationRefGetAllQueryFunctionImpl,\
 i2.f2.organization.app.OrganizationGetByIdQueryFunctionImpl,\
 i2.f2.organization.app.OrganizationGetInseeOrganizationQueryFunctionImpl,\
