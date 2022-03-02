@@ -7,7 +7,7 @@ import i2.f2.organization.domain.model.OrganizationRefBase
 
 typealias OrganizationRefGetAllQueryFunction = F2Function<OrganizationRefGetAllQuery, OrganizationRefGetAllQueryResult>
 
-class OrganizationRefGetAllQuery(): Command
+class OrganizationRefGetAllQuery: Command
 
 class OrganizationRefGetAllQueryResult(
 	val organizations: List<OrganizationRefBase>
