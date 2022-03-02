@@ -16,7 +16,6 @@ import org.springframework.context.annotation.Configuration
 
 @Configuration
 class UserGetAllQueryFunctionImpl(
-	private val organizationGetByIdQueryFunction: OrganizationGetByIdQueryFunction
 	private val i2KeycloakConfig: I2KeycloakConfig,
 	private val userGetPageQueryFunction: UserGetPageQueryFunction
 ) {
@@ -37,11 +36,12 @@ class UserGetAllQueryFunctionImpl(
 		val users =	userPage.list
 			.map { it.toUser(/* TODO need organizationRef */) }
 
-		UserGetAllQueryResult(users, userPage.total)
+		return UserGetAllQueryResult(emptyList(), 0)
 	}
 
 	suspend fun getUsersOfOrganization(cmd: UserGetAllQuery): UserGetAllQueryResult {
 		// TODO there is a keycloak endpoint "group.members()" or something like that
+		return UserGetAllQueryResult(emptyList(), 0)
 	}
 
 	private fun UserGetAllQuery.toUserGetAllQuery() = UserGetPageQuery(
