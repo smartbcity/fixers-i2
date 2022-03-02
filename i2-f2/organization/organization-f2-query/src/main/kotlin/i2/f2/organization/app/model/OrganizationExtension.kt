@@ -13,7 +13,8 @@ fun GroupModel.toOrganization() = OrganizationBase(
     siret = attributes[Organization::siret.name]?.first() ?: "",
     address = attributes[Organization::address.name]?.first()?.parseJsonTo(AddressBase::class.java).orEmpty(),
     description = attributes[Organization::description.name]?.firstOrNull(),
-    website = attributes[Organization::website.name]?.firstOrNull()
+    website = attributes[Organization::website.name]?.firstOrNull(),
+    role = roles.firstOrNull()
 )
 
 fun GroupModel.toOrganizationRef() = OrganizationRefBase(

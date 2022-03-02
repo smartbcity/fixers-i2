@@ -36,7 +36,8 @@ class OrganizationGetInseeOrganizationQueryFunctionImpl(
 		name = uniteLegale.denominationUniteLegale.orEmpty(),
 		description = null,
 		address = adresseEtablissement.toAddress(),
-		website = null
+		website = null,
+		role = null
 	)
 
 	private fun InseeAddress.toAddress() = AddressBase(
