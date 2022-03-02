@@ -14,7 +14,7 @@ data class OrganizationCreateCommand(
     val description: String?,
     val address: AddressBase,
     val website: String?,
-    val role: String
+    val role: String?
 ): Command
 
 data class OrganizationCreatedResult(
