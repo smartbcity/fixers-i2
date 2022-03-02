@@ -13,7 +13,8 @@ data class OrganizationCreateCommand(
     val name: String,
     val description: String?,
     val address: AddressBase,
-    val website: String?
+    val website: String?,
+    val role: String
 ): Command
 
 data class OrganizationCreatedResult(

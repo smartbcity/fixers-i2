@@ -28,7 +28,8 @@ class OrganizationGetAllQueryFunctionImpl(
 	}
 
 	private fun OrganizationGetAllQuery.toGroupGetAllQuery() = GroupGetAllQuery(
-		search = search ?: "",
+		name = name ?: "",
+		role = role ?: "",
 		page = page,
 		size = size,
 		realmId = i2KeycloakConfig.realm,
