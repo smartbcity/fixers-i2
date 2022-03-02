@@ -10,8 +10,11 @@ typealias OrganizationGetAllQueryFunction = F2Function<OrganizationGetAllQuery, 
 class OrganizationGetAllQuery(
 	val name: String?,
 	val role: String?,
+	val page: Int?,
+	val size: Int?
 ): Command
 
 class OrganizationGetAllQueryResult(
-	val organizations: List<OrganizationBase>
+	val organizations: List<OrganizationBase>,
+	val total: Int
 ): Event

@@ -33,28 +33,38 @@ class UserGetAllQueryFunctionImpl(
 	}
 
 	suspend fun getAllUsers(cmd: UserGetAllQuery): UserGetAllQueryResult {
-		val users = keycloakUserGetAllQueryFunction.invoke(cmd.toUserGetAllQuery())
+		val query = keycloakUserGetAllQueryFunction.invoke(cmd.toUserGetAllQuery())
 			.users
-			.map(UserModel::toUser)
+
 		// TODO add organizationRef
-		return UserGetAllQueryResult(users)
+		return UserGetAllQueryResult(
+			users = query.list.map(UserModel::toUser),
+			total = query.total
+		)
 	}
 
 	suspend fun getUsersOfOrganization(cmd: UserGetAllQuery): UserGetAllQueryResult {
-		val users = userGetByGroupIdQueryFunction.invoke(cmd.toUserGetByGroupIdQuery())
+		val query = userGetByGroupIdQueryFunction.invoke(cmd.toUserGetByGroupIdQuery())
 			.users
-			.map{ user -> user.toUser()}
+
 		// TODO add organizationRef
-		return UserGetAllQueryResult(users)
+		return UserGetAllQueryResult(
+			users = query.list.map(UserModel::toUser),
+			total = query.total
+		)
 	}
 
 	private fun UserGetAllQuery.toUserGetAllQuery() = KeycloakUserGetAllQuery(
+		page = page,
+		size = size,
 		realmId = i2KeycloakConfig.realm,
 		auth = i2KeycloakConfig.authRealm()
 	)
 
 	private fun UserGetAllQuery.toUserGetByGroupIdQuery() = UserGetByGroupIdQuery(
-		groupId = organizationId ?: "",
+		groupId = organizationId!!,
+		page = page,
+		size = size,
 		realmId = i2KeycloakConfig.realm,
 		auth = i2KeycloakConfig.authRealm()
 	)
