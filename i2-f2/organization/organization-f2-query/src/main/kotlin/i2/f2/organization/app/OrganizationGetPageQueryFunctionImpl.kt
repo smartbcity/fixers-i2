@@ -4,7 +4,9 @@ import f2.dsl.fnc.f2Function
 import f2.dsl.fnc.invoke
 import i2.f2.config.I2KeycloakConfig
 import i2.f2.organization.app.model.toOrganization
-import i2.f2.organization.domain.features.query.*
+import i2.f2.organization.domain.features.query.OrganizationGetPageQuery
+import i2.f2.organization.domain.features.query.OrganizationGetPageQueryFunction
+import i2.f2.organization.domain.features.query.OrganizationGetPageQueryResult
 import i2.keycloak.f2.group.domain.features.query.GroupGetPageQuery
 import i2.keycloak.f2.group.domain.features.query.GroupGetPageQueryFunction
 import i2.keycloak.f2.group.domain.model.GroupModel

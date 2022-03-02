@@ -2,7 +2,11 @@ package i2.app.endpoint
 
 import i2.f2.organization.domain.features.command.OrganizationCreateFunction
 import i2.f2.organization.domain.features.command.OrganizationUpdateFunction
-import i2.f2.organization.domain.features.query.*
+import i2.f2.organization.domain.features.query.OrganizationGetAllQueryFunction
+import i2.f2.organization.domain.features.query.OrganizationGetByIdQueryFunction
+import i2.f2.organization.domain.features.query.OrganizationGetInseeOrganizationQueryFunction
+import i2.f2.organization.domain.features.query.OrganizationGetPageQueryFunction
+import i2.f2.organization.domain.features.query.OrganizationRefGetAllQueryFunction
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 

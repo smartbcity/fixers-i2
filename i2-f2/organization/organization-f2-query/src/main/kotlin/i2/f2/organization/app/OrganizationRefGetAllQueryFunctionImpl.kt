@@ -4,7 +4,9 @@ import f2.dsl.fnc.f2Function
 import f2.dsl.fnc.invoke
 import i2.f2.config.I2KeycloakConfig
 import i2.f2.organization.app.model.toOrganizationRef
-import i2.f2.organization.domain.features.query.*
+import i2.f2.organization.domain.features.query.OrganizationRefGetAllQuery
+import i2.f2.organization.domain.features.query.OrganizationRefGetAllQueryFunction
+import i2.f2.organization.domain.features.query.OrganizationRefGetAllQueryResult
 import i2.keycloak.f2.group.domain.features.query.GroupGetAllQuery
 import i2.keycloak.f2.group.domain.features.query.GroupGetAllQueryFunction
 import i2.keycloak.f2.group.domain.model.GroupModel
