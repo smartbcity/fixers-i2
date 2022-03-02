@@ -8,7 +8,8 @@ import i2.f2.organization.domain.model.OrganizationBase
 typealias OrganizationGetAllQueryFunction = F2Function<OrganizationGetAllQuery, OrganizationGetAllQueryResult>
 
 class OrganizationGetAllQuery(
-	val search: String?,
+	val name: String?,
+	val role: String?,
 	val page: Int,
 	val size: Int,
 ): Command
