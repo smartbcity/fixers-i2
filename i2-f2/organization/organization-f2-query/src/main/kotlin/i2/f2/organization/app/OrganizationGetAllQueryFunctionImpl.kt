@@ -21,15 +21,19 @@ class OrganizationGetAllQueryFunctionImpl(
 
 	@Bean
 	fun organizationGetAllQueryFunction(): OrganizationGetAllQueryFunction = f2Function { cmd ->
-		groupGetAllQueryFunction.invoke(cmd.toGroupGetAllQuery())
-			.groups
-			.map(GroupModel::toOrganization)
-			.let(::OrganizationGetAllQueryResult)
+		val query = groupGetAllQueryFunction.invoke(cmd.toGroupGetAllQuery())
+
+		OrganizationGetAllQueryResult(
+			organizations = query.groups.list.map(GroupModel::toOrganization),
+			total = query.groups.total
+		)
 	}
 
 	private fun OrganizationGetAllQuery.toGroupGetAllQuery() = GroupGetAllQuery(
 		name = name,
 		role = role,
+		page = page,
+		size = size,
 		realmId = i2KeycloakConfig.realm,
 		auth = i2KeycloakConfig.authRealm()
 	)

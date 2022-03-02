@@ -23,6 +23,7 @@ class OrganizationRefGetAllQueryFunctionImpl(
 	fun organizationRefGetAllQueryFunction(): OrganizationRefGetAllQueryFunction = f2Function { cmd ->
 		groupGetAllQueryFunction.invoke(cmd.toGroupGetAllQuery())
 			.groups
+			.list
 			.map(GroupModel::toOrganizationRef)
 			.let(::OrganizationRefGetAllQueryResult)
 	}
@@ -30,6 +31,8 @@ class OrganizationRefGetAllQueryFunctionImpl(
 	private fun OrganizationRefGetAllQuery.toGroupGetAllQuery() = GroupGetAllQuery(
 		name = null,
 		role = null,
+		page = null,
+		size = null,
 		realmId = i2KeycloakConfig.realm,
 		auth = i2KeycloakConfig.authRealm()
 	)
