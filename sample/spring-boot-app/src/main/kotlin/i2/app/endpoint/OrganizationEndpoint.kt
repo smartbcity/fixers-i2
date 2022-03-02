@@ -2,10 +2,7 @@ package i2.app.endpoint
 
 import i2.f2.organization.domain.features.command.OrganizationCreateFunction
 import i2.f2.organization.domain.features.command.OrganizationUpdateFunction
-import i2.f2.organization.domain.features.query.OrganizationGetAllQueryFunction
-import i2.f2.organization.domain.features.query.OrganizationGetByIdQueryFunction
-import i2.f2.organization.domain.features.query.OrganizationGetInseeOrganizationQueryFunction
-import i2.f2.organization.domain.features.query.OrganizationRefGetAllQueryFunction
+import i2.f2.organization.domain.features.query.*
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
@@ -16,7 +13,8 @@ class OrganizationEndpoint(
     private val organizationGetByIdQueryFunction: OrganizationGetByIdQueryFunction,
     private val organizationGetInseeOrganizationQueryFunction: OrganizationGetInseeOrganizationQueryFunction,
     private val organizationUpdateFunction: OrganizationUpdateFunction,
-    private val organizationRefGetAllQueryFunction: OrganizationRefGetAllQueryFunction
+    private val organizationRefGetAllQueryFunction: OrganizationRefGetAllQueryFunction,
+    private val organizationGetPageQueryFunction: OrganizationGetPageQueryFunction
 ) {
 
     @Bean
@@ -33,6 +31,9 @@ class OrganizationEndpoint(
 
     @Bean
     fun getAllOrganizations() = organizationGetAllQueryFunction
+
+    @Bean
+    fun getOrganizationPage() = organizationGetPageQueryFunction
 
     @Bean
     fun getAllOrganizationRefs() = organizationRefGetAllQueryFunction
