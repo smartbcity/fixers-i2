@@ -3,10 +3,15 @@ package i2.f2.user.app
 import f2.dsl.fnc.f2Function
 import f2.dsl.fnc.invoke
 import i2.f2.config.I2KeycloakConfig
+import i2.f2.organization.domain.model.OrganizationId
+import i2.f2.organization.domain.model.OrganizationRef
+import i2.f2.organization.domain.model.OrganizationRefBase
 import i2.f2.user.app.model.toUser
 import i2.f2.user.domain.features.query.UserGetAllQuery
 import i2.f2.user.domain.features.query.UserGetAllQueryFunction
 import i2.f2.user.domain.features.query.UserGetAllQueryResult
+import i2.keycloak.f2.group.domain.features.query.GroupGetByIdQuery
+import i2.keycloak.f2.group.domain.features.query.GroupGetByIdQueryFunction
 import i2.keycloak.f2.user.domain.features.query.UserGetByGroupIdQuery
 import i2.keycloak.f2.user.domain.features.query.UserGetByGroupIdQueryFunction
 import i2.keycloak.f2.user.domain.model.UserModel
@@ -20,36 +25,22 @@ private typealias KeycloakUserGetAllQueryFunction = i2.keycloak.f2.user.domain.f
 class UserGetAllQueryFunctionImpl(
 	private val i2KeycloakConfig: I2KeycloakConfig,
 	private val keycloakUserGetAllQueryFunction: KeycloakUserGetAllQueryFunction,
-	private val userGetByGroupIdQueryFunction: UserGetByGroupIdQueryFunction
+	private val userGetByGroupIdQueryFunction: UserGetByGroupIdQueryFunction,
+	private val groupGetByIdQueryFunction: GroupGetByIdQueryFunction
 ) {
 
 	@Bean
 	fun i2UserGetAllQueryFunction(): UserGetAllQueryFunction = f2Function { cmd ->
-		if (cmd.organizationId == null) {
-			getAllUsers(cmd)
-		} else {
-			getUsersOfOrganization(cmd)
+		val query = if (cmd.organizationId == null)
+			keycloakUserGetAllQueryFunction.invoke(cmd.toUserGetAllQuery()).users
+		else
+			userGetByGroupIdQueryFunction.invoke(cmd.toUserGetByGroupIdQuery()).users
+
+		val users = query.list.map { user ->
+			user.toUser(getOrganizationRef(user.attributes["memberOf"]?.first()))
 		}
-	}
-
-	suspend fun getAllUsers(cmd: UserGetAllQuery): UserGetAllQueryResult {
-		val query = keycloakUserGetAllQueryFunction.invoke(cmd.toUserGetAllQuery())
-			.users
-
-		// TODO add organizationRef
-		return UserGetAllQueryResult(
-			users = query.list.map(UserModel::toUser),
-			total = query.total
-		)
-	}
-
-	suspend fun getUsersOfOrganization(cmd: UserGetAllQuery): UserGetAllQueryResult {
-		val query = userGetByGroupIdQueryFunction.invoke(cmd.toUserGetByGroupIdQuery())
-			.users
-
-		// TODO add organizationRef
-		return UserGetAllQueryResult(
-			users = query.list.map(UserModel::toUser),
+		UserGetAllQueryResult(
+			users = users,
 			total = query.total
 		)
 	}
@@ -68,4 +59,22 @@ class UserGetAllQueryFunctionImpl(
 		realmId = i2KeycloakConfig.realm,
 		auth = i2KeycloakConfig.authRealm()
 	)
+
+	private suspend fun getOrganizationRef(organizationId: OrganizationId?): OrganizationRefBase? {
+		if (organizationId.isNullOrEmpty())
+			return null
+
+		val groupModel = groupGetByIdQueryFunction.invoke(GroupGetByIdQuery(
+			id = organizationId,
+			realmId = i2KeycloakConfig.realm,
+			auth = i2KeycloakConfig.authRealm()
+		)).group
+
+		return groupModel?.let {
+			OrganizationRefBase(
+				id = it.id,
+				name = it.name
+			)
+		}
+	}
 }
