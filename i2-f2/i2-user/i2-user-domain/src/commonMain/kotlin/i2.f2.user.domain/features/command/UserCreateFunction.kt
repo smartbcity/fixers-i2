@@ -10,7 +10,7 @@ import i2.f2.user.domain.model.UserId
 typealias UserCreateFunction = F2Function<UserCreateCommand, UserCreatedResult>
 
 data class UserCreateCommand(
-    val memberOf: OrganizationId,
+    val memberOf: OrganizationId?,
     val email: String,
     val givenName: String,
     val familyName: String,

@@ -35,12 +35,14 @@ class UserCreateFunctionImpl(
 	fun i2UserCreateFunction(): UserCreateFunction = f2Function { cmd ->
 		val userId = keycloakUserCreateFunction.invoke(cmd.toKeycloakUserCreateCommand()).id
 
-		UserJoinGroupCommand(
-			id = userId,
-			groupId = cmd.memberOf,
-			realmId = i2KeycloakConfig.realm,
-			auth = authRealm
-		).invokeWith(userJoinGroupFunction)
+		cmd.memberOf?.let {
+			UserJoinGroupCommand(
+				id = userId,
+				groupId = it,
+				realmId = i2KeycloakConfig.realm,
+				auth = authRealm
+			).invokeWith(userJoinGroupFunction)
+		}
 
 		UserRolesGrantCommand(
 			id = userId,
@@ -71,7 +73,8 @@ class UserCreateFunctionImpl(
 		metadata = listOfNotNull(
 			::address.name to address.toJson(),
 			phone?.let { ::phone.name to it },
-			::sendEmailLink.name to sendEmailLink.toJson()
+			::sendEmailLink.name to sendEmailLink.toJson(),
+			memberOf?.let { ::memberOf.name to it }
 		).toMap(),
 		realmId = i2KeycloakConfig.realm,
 		auth = authRealm
