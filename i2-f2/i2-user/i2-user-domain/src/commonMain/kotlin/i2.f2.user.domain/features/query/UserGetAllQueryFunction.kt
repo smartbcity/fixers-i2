@@ -10,7 +10,8 @@ typealias UserGetAllQueryFunction = F2Function<UserGetAllQuery, UserGetAllQueryR
 
 class UserGetAllQuery(
 	val organizationId: OrganizationId?,
-	val search: String?,
+	val email: String?,
+	val role: String?,
 	val page: Int?,
 	val size: Int?
 ): Command

@@ -2,8 +2,8 @@ package i2.test.it.user
 
 import f2.dsl.cqrs.page.PagePagination
 import f2.dsl.fnc.invoke
-import i2.keycloak.f2.user.domain.features.query.UserGetPageQuery
-import i2.keycloak.f2.user.domain.features.query.UserGetPageQueryFunction
+import i2.keycloak.f2.user.domain.features.query.UserGetAllQuery
+import i2.keycloak.f2.user.domain.features.query.UserGetAllQueryFunction
 import i2.test.bdd.given.GivenKC
 import i2.test.bdd.given.auth
 import i2.test.bdd.given.realm
@@ -15,13 +15,13 @@ import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import java.util.UUID
 
-class UserGetPageQueryFunctionImplTest: I2KeycloakTest() {
+class UserGetAllQueryFunctionImplTest: I2KeycloakTest() {
 
 	val client = GivenKC().auth().withMasterRealmClient()
 	val realmId = GivenKC(client).realm().withRealmId(UUID.randomUUID().toString())
 
 	@Autowired
-	private lateinit var userGetPageQueryFunction: UserGetPageQueryFunction
+	private lateinit var userGetAllQueryFunction: UserGetAllQueryFunction
 
 	@Test
 	fun `should get page of user`(): Unit = runBlocking {
@@ -31,7 +31,7 @@ class UserGetPageQueryFunctionImplTest: I2KeycloakTest() {
 		}
 
 
-		val cmd = UserGetPageQuery(
+		val cmd = UserGetAllQuery(
 			realmId = realmId,
 			auth = client.auth,
 			page = PagePagination(
@@ -39,10 +39,10 @@ class UserGetPageQueryFunctionImplTest: I2KeycloakTest() {
 				size = 5
 			)
 		)
-		val result = userGetPageQueryFunction.invoke(cmd)
+		val result = userGetAllQueryFunction.invoke(cmd).users
 
-		Assertions.assertThat(result.page.list).hasSize(5)
-		Assertions.assertThat(result.page.total).isEqualTo(7)
+		Assertions.assertThat(result.list).hasSize(5)
+		Assertions.assertThat(result.total).isEqualTo(7)
 	}
 
 }

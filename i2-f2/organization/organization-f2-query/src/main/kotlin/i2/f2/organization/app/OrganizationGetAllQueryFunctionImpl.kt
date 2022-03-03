@@ -1,5 +1,6 @@
 package i2.f2.organization.app
 
+import f2.dsl.cqrs.page.PagePagination
 import f2.dsl.fnc.f2Function
 import f2.dsl.fnc.invoke
 import i2.f2.config.I2KeycloakConfig
@@ -32,8 +33,10 @@ class OrganizationGetAllQueryFunctionImpl(
 	private fun OrganizationGetAllQuery.toGroupGetAllQuery() = GroupGetAllQuery(
 		name = name,
 		role = role,
-		page = page,
-		size = size,
+		page = PagePagination(
+			page = page,
+			size = size
+		),
 		realmId = i2KeycloakConfig.realm,
 		auth = i2KeycloakConfig.authRealm()
 	)
