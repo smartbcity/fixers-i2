@@ -15,6 +15,6 @@ fun UserModel.toUser(organizationRef: OrganizationRefBase? = null) = UserBase(
     familyName = lastName ?: "",
     address = attributes[UserBase::address.name]?.first()?.parseJsonTo(AddressBase::class.java).orEmpty(),
     phone = attributes[UserBase::phone.name]?.firstOrNull(),
-    roles = realmRoles,
+    roles = roles,
     sendEmailLink = attributes[UserBase::sendEmailLink.name]?.firstOrNull().toBoolean()
 )
