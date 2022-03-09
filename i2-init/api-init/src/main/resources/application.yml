@@ -1,0 +1,40 @@
+server:
+  port: 8083
+
+keycloak:
+#  auth-server-url: http://localhost:8080/auth
+#  realm: test
+  admin-cli:
+    realm: master
+    client-id: admin-cli
+#    username: admin
+#    password: admin
+  web:
+    client-id: plateform-web
+#    web-url: https://example.com
+    localhost-url: http://localhost:3000
+  app:
+    client-id: plateform-app
+  smtp:
+    host: me-email
+    port: 1025
+    from: noreply@smartb.city
+    ssl: false
+    starttls: false
+    auth: false
+  users:
+#    -
+#      username: admin
+#      email: admin@admin.com
+#      password: admin
+#      firstname: admin
+#      lastname: admin
+#      role: admin
+  roles:
+#    - admin
+#    - role1
+#    - role2
+#    - role3
+  role-composites:
+#    admin: ["role1"]
+#    role1: ["role2", "role3"]
