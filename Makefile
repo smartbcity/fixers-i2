@@ -13,6 +13,11 @@ I2_APP_IMG	    	:= ${I2_APP_NAME}:${VERSION}
 I2_APP_LATEST		:= ${I2_APP_NAME}:latest
 I2_APP_PACKAGE	   	:= :sample:spring-boot-app:bootBuildImage
 
+I2_INIT_NAME	   	:= smartbcity/i2-init
+I2_INIT_IMG	    	:= ${I2_INIT_NAME}:${VERSION}
+I2_INIT_LATEST		:= ${I2_INIT_NAME}:latest
+I2_INIT_PACKAGE	   	:= :i2-init:api-init:bootBuildImage
+
 libs: package-kotlin
 docker: package-keycloak package-app
 docs: package-storybook
@@ -31,3 +36,7 @@ package-keycloak:
 package-app:
 	VERSION=${VERSION} ./gradlew build ${I2_APP_PACKAGE} -x test --stacktrace
 	@docker push ${I2_APP_IMG}
+
+package-init:
+	VERSION=${VERSION} ./gradlew build ${I2_INIT_PACKAGE} -x test --stacktrace
+	@docker push ${I2_INIT_IMG}
