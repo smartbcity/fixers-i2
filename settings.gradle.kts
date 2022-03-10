@@ -78,3 +78,7 @@ include(
     "i2-test:test-bdd",
     "i2-test:test-it"
 )
+include(
+    "i2-init:api-init",
+    "i2-init:api-auth"
+)
