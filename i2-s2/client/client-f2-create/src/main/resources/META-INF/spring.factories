@@ -1,2 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-i2.s2.client.f2.ClientCreateFunctionImpl

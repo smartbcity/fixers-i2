@@ -1,7 +1,7 @@
 package i2.test.it.role
 
 import f2.dsl.fnc.invoke
-import i2.s2.role.f2.RoleCreateFunctionImpl
+import i2.keycloak.f2.role.app.RoleCreateFunctionImpl
 import i2.test.bdd.assertion.AssertionKC
 import i2.test.bdd.assertion.role
 import i2.test.bdd.data.DataTest

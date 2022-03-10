@@ -1,7 +1,7 @@
 package i2.test.bdd.assertion
 
-import i2.keycloak.realm.domain.UserId
-import i2.s2.realm.domain.UserImport
+import i2.f2.import.domain.UserImport
+import i2.keycloak.f2.user.domain.model.UserId
 import org.assertj.core.api.Assertions
 import org.keycloak.admin.client.Keycloak
 import org.keycloak.representations.idm.UserRepresentation

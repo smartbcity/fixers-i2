@@ -1,8 +1,8 @@
 package i2.test.it.realm
 
 import f2.dsl.fnc.invoke
-import i2.s2.realm.domain.features.command.RealmGetOneQuery
-import i2.s2.realm.f2.RealmGetOneQueryFunctionImpl
+import i2.keycloak.f2.realm.app.RealmGetOneQueryFunctionImpl
+import i2.keycloak.f2.realm.domain.features.command.RealmGetOneQuery
 import i2.test.bdd.given.GivenKC
 import i2.test.bdd.given.auth
 import i2.test.bdd.given.realm

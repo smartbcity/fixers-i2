@@ -1,8 +1,8 @@
 package i2.test.it.user
 
 import f2.dsl.fnc.invoke
-import i2.s2.errors.I2Exception
-import i2.s2.user.f2.UserUpdateFunctionImpl
+import i2.commons.error.I2Exception
+import i2.keycloak.f2.user.app.UserUpdateFunctionImpl
 import i2.test.bdd.assertion.AssertionKC
 import i2.test.bdd.assertion.user
 import i2.test.bdd.data.DataTest
