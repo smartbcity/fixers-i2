@@ -1,9 +1,9 @@
 package i2.test.bdd.data.client
 
+import i2.keycloak.f2.client.domain.ClientIdentifier
+import i2.keycloak.f2.client.domain.features.command.ClientCreateCommand
 import i2.keycloak.master.domain.AuthRealm
 import i2.keycloak.master.domain.RealmId
-import i2.s2.client.domain.ClientIdentifier
-import i2.s2.client.domain.features.command.ClientCreateCommand
 import i2.test.bdd.data.DataTest
 import java.util.UUID
 

@@ -1,6 +1,6 @@
 package i2.test.bdd.data.import
 
-import i2.s2.realm.domain.UserImport
+import i2.f2.import.domain.UserImport
 import i2.test.bdd.data.DataTest
 import java.util.UUID
 

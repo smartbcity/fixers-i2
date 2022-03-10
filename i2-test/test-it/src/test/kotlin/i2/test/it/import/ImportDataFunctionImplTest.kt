@@ -1,11 +1,11 @@
 package i2.test.it.import
 
 import f2.dsl.fnc.invoke
-import i2.s2.realm.domain.ClientImport
-import i2.s2.realm.domain.RoleImport
-import i2.s2.realm.domain.UserImport
-import i2.s2.realm.domain.features.command.ImportDataCommand
-import i2.s2.realm.domain.features.command.ImportDataFunction
+import i2.f2.import.domain.ClientImport
+import i2.f2.import.domain.RoleImport
+import i2.f2.import.domain.UserImport
+import i2.f2.import.domain.command.ImportDataCommand
+import i2.f2.import.domain.command.ImportDataFunction
 import i2.test.bdd.assertion.AssertionKC
 import i2.test.bdd.assertion.client
 import i2.test.bdd.assertion.realm

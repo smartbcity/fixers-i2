@@ -1,9 +1,9 @@
 package i2.test.bdd.assertion
 
+import i2.f2.import.domain.ClientImport
+import i2.keycloak.f2.client.domain.ClientId
+import i2.keycloak.f2.client.domain.ClientIdentifier
 import i2.keycloak.master.domain.RealmId
-import i2.s2.client.domain.ClientId
-import i2.s2.client.domain.ClientIdentifier
-import i2.s2.realm.domain.ClientImport
 import org.assertj.core.api.Assertions
 import org.keycloak.admin.client.Keycloak
 import org.keycloak.representations.idm.ClientRepresentation
@@ -48,17 +48,17 @@ class AssertionClient(
 		private val client: ClientRepresentation
 	) {
 		fun hasFields(
-			clientId: ClientId = client.id,
-			clientIdentifier: ClientIdentifier = client.clientId,
-			isPublicClient: Boolean = client.isPublicClient,
-			isDirectAccessGrantsEnabled: Boolean = client.isDirectAccessGrantsEnabled,
-			isServiceAccountsEnabled: Boolean = client.isServiceAccountsEnabled,
+            clientId: ClientId = client.id,
+            clientIdentifier: ClientIdentifier = client.clientId,
+            isPublicClient: Boolean = client.isPublicClient,
+            isDirectAccessGrantsEnabled: Boolean = client.isDirectAccessGrantsEnabled,
+            isServiceAccountsEnabled: Boolean = client.isServiceAccountsEnabled,
 //			authorizationServicesEnabled: Boolean = client.authorizationServicesEnabled,
-			rootUrl: String? = client.rootUrl,
-			redirectUris: List<String> = client.redirectUris,
-			baseUrl: String? = client.baseUrl,
-			adminUrl: String = client.adminUrl,
-			webOrigins: List<String> = client.webOrigins,
+            rootUrl: String? = client.rootUrl,
+            redirectUris: List<String> = client.redirectUris,
+            baseUrl: String? = client.baseUrl,
+            adminUrl: String = client.adminUrl,
+            webOrigins: List<String> = client.webOrigins,
 		) {
 			Assertions.assertThat(client.id).isEqualTo(clientId)
 			Assertions.assertThat(client.clientId).isEqualTo(clientIdentifier)
