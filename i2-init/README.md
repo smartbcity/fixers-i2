@@ -1,31 +1,6 @@
-This app can be used to initialize a Keycloak.
-
-It creates at least a realm and two clients.
-
-Additional configurations can be provided to create users and roles.
-
-A minimalist docker-compose example is given.
-
-
-## Init Keycloak Domain
-
-* Config Realm Admin
-  
-=> Created Realm Domain
-    * name
-    * CLient 
-      * I2-Api <= Admin -> create user, groups, roles, client
-
-
-## Config Keycloak Domain
-* Config Client I2-Api 
-  
-* Config Realm Domain
-      * Api <= Verify Auth
-      * Web <= Auth
-    * User
-    * Roles
-    * Group
-    * SMTP
-
-
+This app is designed to:
+* Create a realm
+* Inside this realm:
+  * Create a client with restricted rights (defined in i2.init.admin-client.roles.roles)
+  * Create an admin user with realm-admin role
+  * Configure smtp server
