@@ -14,7 +14,7 @@ data class UserCreateCommand(
     val email: String,
     val givenName: String,
     val familyName: String,
-    val address: AddressBase,
+    val address: AddressBase?,
     val phone: String?,
     val roles: List<String>,
     val sendEmailLink: Boolean

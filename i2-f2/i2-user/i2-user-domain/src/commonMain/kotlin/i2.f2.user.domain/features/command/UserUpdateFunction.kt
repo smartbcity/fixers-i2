@@ -13,7 +13,7 @@ data class UserUpdateCommand(
     val email: String,
     val givenName: String,
     val familyName: String,
-    val address: AddressBase,
+    val address: AddressBase?,
     val phone: String?,
     val sendEmailLink: Boolean
 ): Command

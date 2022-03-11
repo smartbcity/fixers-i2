@@ -14,7 +14,7 @@ interface User {
     val email: String
     val givenName: String
     val familyName: String
-    val address: Address
+    val address: Address?
     val phone: String?
     val roles: UserRoles
     val sendEmailLink: Boolean?
@@ -26,7 +26,7 @@ data class UserBase(
     override val email: String,
     override val givenName: String,
     override val familyName: String,
-    override val address: AddressBase,
+    override val address: AddressBase?,
     override val phone: String?,
     override val roles: UserRoles,
     override val sendEmailLink: Boolean? = true
