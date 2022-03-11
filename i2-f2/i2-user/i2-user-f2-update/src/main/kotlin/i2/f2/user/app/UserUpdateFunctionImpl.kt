@@ -48,7 +48,7 @@ class UserUpdateFunctionImpl(
 		firstname = givenName,
 		lastname = familyName,
 		metadata = listOfNotNull(
-			::address.name to address.toJson(),
+			address?.let { ::address.name to address.toJson() },
 			phone?.let { ::phone.name to it }
 		).toMap(),
 		realmId = i2KeycloakConfig.realm,
