@@ -3,93 +3,36 @@ server:
 
 i2:
   keycloak:
-    auth-server-url: http://localhost:8080/auth
+    auth-server-url: http://localhost:8080/auth #
     realm: master
-    username: admin
-    password: admin
+    username: admin #
+    password: admin #
     client-id: admin-cli
   init:
     realm:
-      name: test
- => Realm avec
-  * client it-api {clientId, clientSecret}
-  * user i2-admin {username, password}
-
-i2:
-  keycloak:
-    auth-server-url: http://localhost:8080/auth
-    realm: test
-    clientId: admin
-    clientSecret?: admin
-    username?: admin
-    password?: admin
-  config:
-    realm:
-      smtp:
-        host: me-email
-        port: 1025
-        from: noreply@smartb.city
-        ssl: false
-        starttls: false
-        auth: false
-    client:
-      web:
-        client-id: plateform-web
-        #    web-url: https://example.com
-        localhost-url: http://localhost:3000
-      app:
-        client-id: plateform-app
-    users:
-      #    -
-      #      username: admin
-      #      email: admin@admin.com
-      #      password: admin
-      #      firstname: admin
-      #      lastname: admin
-      #      role: admin
-      roles:
-      #    - admin
-      #    - role1
-      #    - role2
-      #    - role3
-      role-composites:
-    #    admin: ["role1"]
-    #    role1: ["role2", "role3"]
-
-keycloak:
-#  auth-server-url: http://localhost:8080/auth
-#  realm: test
-  admin-cli:
-    realm: master
-    client-id: admin-cli
-#    username: admin
-#    password: admin
-  web:
-    client-id: plateform-web
-#    web-url: https://example.com
-    localhost-url: http://localhost:3000
-  app:
-    client-id: plateform-app
-  smtp:
-    host: me-email
-    port: 1025
-    from: noreply@smartb.city
-    ssl: false
-    starttls: false
-    auth: false
-  users:
-#    -
-#      username: admin
-#      email: admin@admin.com
-#      password: admin
-#      firstname: admin
-#      lastname: admin
-#      role: admin
-  roles:
-#    - admin
-#    - role1
-#    - role2
-#    - role3
-  role-composites:
-#    admin: ["role1"]
-#    role1: ["role2", "role3"]
+      name: test #
+    smtp:
+      host: me-email
+      port: 1025
+      from: noreply@smartb.city
+      ssl: false
+      starttls: false
+      auth: false
+    admin-client:
+      id: i2-api
+      roles: # assign client roles to the user
+        client-id: realm-management
+        roles:
+          - create-client
+          - manage-clients
+          - manage-users
+          - view-clients
+          - view-users
+    admin-user:
+      username: admin #
+      email: admin@admin.com #
+      firstname: admin #
+      lastname: admin #
+      role: # assign a client role to the user
+        name: realm-admin
+        client-id: realm-management

@@ -1,36 +1,34 @@
-package i2.init.api.init.keycloak
+package i2.init.api.auth.config
 
 import i2.keycloak.master.domain.AuthRealmPassword
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import org.springframework.context.annotation.Primary
 
 @Configuration
-class KeycloakAdminCliConfig {
+class KeycloakAdminConfig {
 
-    @Value("\${keycloak.auth-server-url}")
+    @Value("\${i2.keycloak.auth-server-url}")
     lateinit var serverUrl: String
 
-    @Value("\${keycloak.admin-cli.realm}")
+    @Value("\${i2.keycloak.realm}")
     lateinit var realm: String
 
-    @Value("\${keycloak.admin-cli.client-id}")
+    @Value("\${i2.keycloak.client-id}")
     lateinit var clientId: String
 
-    @Value("\${keycloak.admin-cli.username}")
+    @Value("\${i2.keycloak.username}")
     lateinit var username: String
 
-    @Value("\${keycloak.admin-cli.password}")
+    @Value("\${i2.keycloak.password}")
     lateinit var password: String
 
     @Bean
-    @Primary
-    fun adminCliAuthRealm() = AuthRealmPassword(
+    fun authRealm() = AuthRealmPassword(
         serverUrl = serverUrl,
         realmId = realm,
-        clientId = clientId,
         redirectUrl = "",
+        clientId = clientId,
         username = username,
         password = password
     )
