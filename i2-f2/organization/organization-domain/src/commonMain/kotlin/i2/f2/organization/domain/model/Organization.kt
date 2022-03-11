@@ -1,6 +1,7 @@
 package i2.f2.organization.domain.model
 
 import i2.commons.model.Address
+import i2.commons.model.AddressBase
 import i2.keycloak.f2.group.domain.model.GroupId
 
 typealias OrganizationId = GroupId
@@ -10,7 +11,7 @@ interface Organization {
     val siret: String
     val name: String
     val description: String?
-    val address: Address
+    val address: Address?
     val website: String?
     val role: String?
 }
@@ -20,7 +21,7 @@ data class OrganizationBase(
     override val siret: String,
     override val name: String,
     override val description: String?,
-    override val address: Address,
+    override val address: AddressBase?,
     override val website: String?,
     override val role: String?
 ): Organization

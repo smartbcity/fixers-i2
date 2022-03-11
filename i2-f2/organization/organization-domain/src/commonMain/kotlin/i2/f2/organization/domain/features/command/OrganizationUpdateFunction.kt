@@ -13,7 +13,7 @@ data class OrganizationUpdateCommand(
     val siret: String,
     val name: String,
     val description: String?,
-    val address: AddressBase,
+    val address: AddressBase?,
     val website: String?
 ): Command
 
