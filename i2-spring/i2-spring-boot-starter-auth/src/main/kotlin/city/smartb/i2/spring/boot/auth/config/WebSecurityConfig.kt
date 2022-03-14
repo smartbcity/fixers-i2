@@ -124,8 +124,8 @@ interface WebSecurityConfig {
     }
 
     private fun jwtAuthoritiesConverter(jwt: Jwt): Flux<GrantedAuthority> {
-        val realmAccess = jwt.claims["realm_access"]!! as Map<String, List<String>>
-        return realmAccess["roles"]!!.map { role ->
+        val realmAccess = jwt.claims["realm_access"] as Map<String, List<String>>?
+        return realmAccess?.get("roles").orEmpty().map { role ->
             SimpleGrantedAuthority("ROLE_$role")
         }.let { Flux.fromIterable(it) }
     }
