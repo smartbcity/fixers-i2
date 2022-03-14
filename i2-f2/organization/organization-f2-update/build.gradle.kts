@@ -8,5 +8,6 @@ dependencies {
     api(project(":i2-f2:organization:organization-domain"))
 
     implementation(project(":i2-f2:config"))
+    implementation(project(":i2-keycloak:keycloak-f2:group:group-f2-query"))
     implementation(project(":i2-keycloak:keycloak-f2:group:group-f2-update"))
 }
