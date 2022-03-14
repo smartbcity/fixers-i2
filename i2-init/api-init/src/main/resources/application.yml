@@ -3,14 +3,14 @@ server:
 
 i2:
   keycloak:
-    auth-server-url: http://localhost:8080/auth #
+    auth-server-url: http://localhost:8080/auth
     realm: master
-    username: admin #
-    password: admin #
+    username: admin
+    password: admin
     client-id: admin-cli
   init:
     realm:
-      name: test #
+      name: test
     smtp:
       host: me-email
       port: 1025
@@ -26,13 +26,14 @@ i2:
           - create-client
           - manage-clients
           - manage-users
+          - manage-realm
           - view-clients
           - view-users
     admin-user:
-      username: admin #
-      email: admin@admin.com #
-      firstname: admin #
-      lastname: admin #
+      username: admin
+      email: admin@admin.com
+      firstname: admin
+      lastname: admin
       role: # assign a client role to the user
         name: realm-admin
         client-id: realm-management
