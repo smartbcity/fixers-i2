@@ -29,7 +29,7 @@ class UserGetAllQueryFunctionImpl(
 	fun i2UserGetAllQueryFunction(): UserGetAllQueryFunction = f2Function { cmd ->
 		val query = keycloakUserGetAllQueryFunction.invoke(cmd.toUserGetAllQuery()).users
 
-		val users = query.list.map { user ->
+		val users = query.items.map { user ->
 			user.toUser(getOrganizationRef(user.attributes["memberOf"]?.first()))
 		}
 		UserGetAllQueryResult(

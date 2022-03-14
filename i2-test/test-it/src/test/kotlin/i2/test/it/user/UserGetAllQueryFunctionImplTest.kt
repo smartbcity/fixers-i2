@@ -41,7 +41,7 @@ class UserGetAllQueryFunctionImplTest: I2KeycloakTest() {
 		)
 		val result = userGetAllQueryFunction.invoke(cmd).users
 
-		Assertions.assertThat(result.list).hasSize(5)
+		Assertions.assertThat(result.items).hasSize(5)
 		Assertions.assertThat(result.total).isEqualTo(7)
 	}
 
