@@ -83,3 +83,7 @@ include(
     "i2-init:api-init",
     "i2-init:api-auth"
 )
+include(
+    "i2-config:api-config",
+    "i2-config:api-auth"
+)
