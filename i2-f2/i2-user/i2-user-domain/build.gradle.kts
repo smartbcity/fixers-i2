@@ -8,5 +8,5 @@ dependencies {
     commonMainApi(project(":i2-keycloak:keycloak-f2:commons:commons-domain"))
     commonMainApi(project(":i2-keycloak:keycloak-f2:user:user-domain"))
 
-    Dependencies.mpp.f2(::commonMainApi)
+    Dependencies.Mpp.f2(::commonMainApi)
 }

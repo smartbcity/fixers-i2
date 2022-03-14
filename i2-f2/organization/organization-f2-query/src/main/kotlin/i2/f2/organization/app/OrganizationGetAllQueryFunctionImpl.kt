@@ -25,7 +25,7 @@ class OrganizationGetAllQueryFunctionImpl(
 		val query = groupGetAllQueryFunction.invoke(cmd.toGroupGetAllQuery())
 
 		OrganizationGetAllQueryResult(
-			organizations = query.groups.list.map(GroupModel::toOrganization),
+			organizations = query.groups.items.map(GroupModel::toOrganization),
 			total = query.groups.total
 		)
 	}

@@ -24,7 +24,7 @@ class OrganizationRefGetAllQueryFunctionImpl(
 	fun organizationRefGetAllQueryFunction(): OrganizationRefGetAllQueryFunction = f2Function { cmd ->
 		groupGetAllQueryFunction.invoke(cmd.toGroupGetAllQuery())
 			.groups
-			.list
+			.items
 			.map(GroupModel::toOrganizationRef)
 			.let(::OrganizationRefGetAllQueryResult)
 	}
