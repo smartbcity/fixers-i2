@@ -10,7 +10,6 @@ typealias OrganizationUpdateFunction = F2Function<OrganizationUpdateCommand, Org
 
 data class OrganizationUpdateCommand(
     val id: OrganizationId,
-    val siret: String,
     val name: String,
     val description: String?,
     val address: AddressBase?,
