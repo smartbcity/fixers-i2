@@ -12,7 +12,7 @@ data class OrganizationCreateCommand(
     val siret: String,
     val name: String,
     val description: String?,
-    val address: AddressBase,
+    val address: AddressBase?,
     val website: String?,
     val role: String?
 ): Command

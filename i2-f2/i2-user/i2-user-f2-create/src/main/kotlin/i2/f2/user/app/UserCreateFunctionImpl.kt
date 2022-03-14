@@ -71,7 +71,7 @@ class UserCreateFunctionImpl(
 		email = email,
 		isEnable = true,
 		metadata = listOfNotNull(
-			::address.name to address.toJson(),
+			address?.let { ::address.name to address.toJson() },
 			phone?.let { ::phone.name to it },
 			::sendEmailLink.name to sendEmailLink.toJson(),
 			memberOf?.let { ::memberOf.name to it }
