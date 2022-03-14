@@ -9,24 +9,37 @@ import org.springframework.context.annotation.Configuration
 class KeycloakInitConfig {
 
     @Bean
-    @ConfigurationProperties(prefix = "keycloak.smtp")
+    @ConfigurationProperties(prefix = "i2.init.smtp")
     fun smtpConfig(): Map<String, String> = mutableMapOf()
 
-    @Bean
-    @ConfigurationProperties(prefix = "keycloak.users")
-    fun users(): List<KeycloakUserConfig> = mutableListOf()
+    @Value("\${i2.init.realm.name}")
+    lateinit var realm: String
+
+    @Value("\${i2.init.admin-client.id}")
+    lateinit var clientId: String
+
+    @Value("\${i2.init.admin-client.roles.client-id}")
+    lateinit var clientRolesProviderClientId: String
 
     @Bean
-    @ConfigurationProperties(prefix = "keycloak.roles")
-    fun roles(): List<String> = mutableListOf()
+    @ConfigurationProperties(prefix = "i2.init.admin-client.roles.roles")
+    fun clientRoles(): List<String> = mutableListOf()
 
-    @Bean
-    @ConfigurationProperties(prefix = "keycloak.role-composites")
-    fun roleComposites(): Map<String, List<String>> = mutableMapOf()
+    @Value("\${i2.init.admin-user.username}")
+    lateinit var username: String
 
-    @Value("\${keycloak.web.web-url}")
-    lateinit var webUrl: String
+    @Value("\${i2.init.admin-user.email}")
+    lateinit var email: String
 
-    @Value("\${keycloak.web.localhost-url}")
-    lateinit var localhostUrl: String
+    @Value("\${i2.init.admin-user.firstname}")
+    lateinit var firstname: String
+
+    @Value("\${i2.init.admin-user.lastname}")
+    lateinit var lastname: String
+
+    @Value("\${i2.init.admin-user.role.name}")
+    lateinit var role: String
+
+    @Value("\${i2.init.admin-user.role.client-id}")
+    lateinit var roleClientId: String
 }

@@ -5,10 +5,13 @@ services:
     image: smartbcity/i2-init
     network_mode: host
     environment:
-      - keycloak_auth-server-url=http://localhost:8080/auth
-      - keycloak_realm=test
-      - keycloak_admin-cli_username=admin
-      - keycloak_admin-cli_password=admin
-      - keycloak_web_web-url=https://example.com
+      - i2_keycloak_auth-server-url=http://localhost:8080/auth
+      - i2_keycloak_username=admin
+      - i2_keycloak_password=admin
+      - i2_init_realm_name=test
+      - i2_init_admin-user_username=admin
+      - i2_init_admin-user_email=admin@admin.com
+      - i2_init_admin-user_firstname=admin
+      - i2_init_admin-user_lastname=admin
     ports:
       - 8083:8083

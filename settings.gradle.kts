@@ -43,7 +43,8 @@ include(
     "i2-keycloak:keycloak-f2:client:client-f2-create",
     "i2-keycloak:keycloak-f2:client:client-f2-generate-secret",
     "i2-keycloak:keycloak-f2:client:client-f2-query",
-    "i2-keycloak:keycloak-f2:client:client-f2-update"
+    "i2-keycloak:keycloak-f2:client:client-f2-update",
+    "i2-keycloak:keycloak-f2:client:client-f2-roles-grant"
 )
 include(
     "i2-keycloak:keycloak-f2:group:group-domain",
@@ -81,4 +82,8 @@ include(
 include(
     "i2-init:api-init",
     "i2-init:api-auth"
+)
+include(
+    "i2-config:api-config",
+    "i2-config:api-auth"
 )

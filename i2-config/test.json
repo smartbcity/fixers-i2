@@ -1,0 +1,38 @@
+{
+  "webClient": {
+    "clientId": "plateform-web",
+    "webUrl": "https://json.com",
+    "localhostUrl": "http://localhost:3000"
+  },
+  "appClient": {
+    "clientId": "plateform-app"
+  },
+  "users": [
+    {
+      "username": "user1",
+      "email": "user1@email.com",
+      "password": "user1user",
+      "firstname": "user1",
+      "lastname": "user1",
+      "role": "admin"
+    },
+    {
+      "username": "user2",
+      "email": "user2@email.com",
+      "password": "user2user",
+      "firstname": "user2",
+      "lastname": "user2",
+      "role": "admin"
+    }
+  ],
+  "roles": [
+    "admin",
+    "role1",
+    "role2",
+    "role3"
+  ],
+  "roleComposites": {
+    "admin": ["role1"],
+    "role1": ["role2", "role3"]
+  }
+}
