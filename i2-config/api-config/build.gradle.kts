@@ -12,5 +12,5 @@ dependencies {
 }
 
 tasks.withType<org.springframework.boot.gradle.tasks.bundling.BootBuildImage> {
-    imageName = "smartbcity/i2-config"
+    imageName = "smartbcity/i2-config:${this.project.version}"
 }
