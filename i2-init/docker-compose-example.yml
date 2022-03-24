@@ -2,7 +2,7 @@ version: "3.3"
 
 services:
   i2-init:
-    image: smartbcity/i2-init
+    image: smartbcity/i2-init:0.6.0
     network_mode: host
     environment:
       - i2_keycloak_auth-server-url=http://localhost:8080/auth
@@ -13,5 +13,3 @@ services:
       - i2_init_admin-user_email=admin@admin.com
       - i2_init_admin-user_firstname=admin
       - i2_init_admin-user_lastname=admin
-    ports:
-      - 8083:8083

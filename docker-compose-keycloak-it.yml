@@ -2,6 +2,7 @@ version: "3.3"
 
 services:
   keycloak-it:
+#    image: quay.io/keycloak/keycloak:17.0.0
     image: smartbcity/i2-keycloak:experimental
     environment:
       DB_VENDOR: POSTGRES
@@ -13,12 +14,15 @@ services:
       KEYCLOAK_USER: admin
       KEYCLOAK_PASSWORD: admin
       KEYCLOAK_HOSTNAME: localhost
+#      KEYCLOAK_ADMIN:
+#      KEYCLOAK_ADMIN_PASSWORD:
       PROXY_ADDRESS_FORWARDING: "true"
       JDBC_PARAMS: "ssl=false"
     ports:
       - 8080:8080
     depends_on:
       - keycloak-postgres-it
+#    command: start-dev
 
   keycloak-postgres-it:
     image: postgres
