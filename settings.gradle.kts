@@ -17,6 +17,7 @@ include(
     "sample:spring-boot-app"
 )
 include(
+    "i2-f2:i2-client",
     "i2-f2:config",
     "i2-f2:import:import-domain",
     "i2-f2:import:import-data",
