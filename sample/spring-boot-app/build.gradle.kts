@@ -14,6 +14,8 @@ dependencies {
 	implementation(project(":i2-f2:i2-user:i2-user-f2-create"))
 	implementation(project(":i2-f2:i2-user:i2-user-f2-query"))
 	implementation(project(":i2-f2:i2-user:i2-user-f2-update"))
+	implementation(project(":i2-f2:i2-role:i2-role-f2-add-composites"))
+	implementation(project(":i2-f2:i2-role:i2-role-f2-create"))
 
 	implementation("city.smartb.f2:f2-spring-boot-starter-function-http:${Versions.f2}")
 	implementation("org.springframework.boot:spring-boot-starter-webflux:${Versions.springBoot}")
