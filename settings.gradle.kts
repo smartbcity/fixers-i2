@@ -27,7 +27,10 @@ include(
     "i2-f2:i2-user:i2-user-domain",
     "i2-f2:i2-user:i2-user-f2-create",
     "i2-f2:i2-user:i2-user-f2-query",
-    "i2-f2:i2-user:i2-user-f2-update"
+    "i2-f2:i2-user:i2-user-f2-update",
+    "i2-f2:i2-role:i2-role-domain",
+    "i2-f2:i2-role:i2-role-f2-create",
+    "i2-f2:i2-role:i2-role-f2-add-composites"
 )
 include(
     "i2-keycloak:keycloak-auth:keycloak-auth-client",
