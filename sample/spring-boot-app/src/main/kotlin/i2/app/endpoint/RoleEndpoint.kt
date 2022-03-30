@@ -2,13 +2,15 @@ package i2.app.endpoint
 
 import i2.f2.role.domain.features.command.RoleAddCompositesFunction
 import i2.f2.role.domain.features.command.RoleCreateFunction
+import i2.f2.role.domain.features.command.RoleUpdateFunction
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
 @Configuration
 class RoleEndpoint(
     private val roleAddCompositesFunction: RoleAddCompositesFunction,
-    private val roleCreateFunction: RoleCreateFunction
+    private val roleCreateFunction: RoleCreateFunction,
+    private val roleUpdateFunction: RoleUpdateFunction
 ) {
 
     @Bean
@@ -16,4 +18,7 @@ class RoleEndpoint(
 
     @Bean
     fun roleCreate() = roleCreateFunction
+
+    @Bean
+    fun roleUpdate() = roleUpdateFunction
 }
