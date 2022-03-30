@@ -31,7 +31,8 @@ include(
     "i2-f2:i2-user:i2-user-f2-update",
     "i2-f2:i2-role:i2-role-domain",
     "i2-f2:i2-role:i2-role-f2-create",
-    "i2-f2:i2-role:i2-role-f2-add-composites"
+    "i2-f2:i2-role:i2-role-f2-add-composites",
+    "i2-f2:i2-role:i2-role-f2-update"
 )
 include(
     "i2-keycloak:keycloak-auth:keycloak-auth-client",
@@ -65,7 +66,8 @@ include(
     "i2-keycloak:keycloak-f2:role:role-domain",
     "i2-keycloak:keycloak-f2:role:role-f2-add-composites",
     "i2-keycloak:keycloak-f2:role:role-f2-create",
-    "i2-keycloak:keycloak-f2:role:role-f2-query"
+    "i2-keycloak:keycloak-f2:role:role-f2-query",
+    "i2-keycloak:keycloak-f2:role:role-f2-update"
 )
 include(
     "i2-keycloak:keycloak-f2:user:user-domain",
