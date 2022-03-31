@@ -33,7 +33,7 @@ class OrganizationCreateFunctionImpl(
 			::description.name to description,
 			::website.name to website
 		).mapValues { (_, value) -> listOfNotNull(value) },
-		roles = listOfNotNull(role),
+		roles = roles ?: emptyList(),
 		realmId = i2KeycloakConfig.realm,
 		auth = i2KeycloakConfig.authRealm()
 	)

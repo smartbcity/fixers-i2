@@ -44,7 +44,7 @@ class OrganizationUpdateFunctionImpl(
 			::description.name to description,
 			::website.name to website
 		).mapValues { (_, value) -> listOfNotNull(value) },
-		roles = organization.role?.let(::listOf).orEmpty(),
+		roles = roles ?: emptyList(),
 		realmId = i2KeycloakConfig.realm,
 		auth = i2KeycloakConfig.authRealm()
 	)
