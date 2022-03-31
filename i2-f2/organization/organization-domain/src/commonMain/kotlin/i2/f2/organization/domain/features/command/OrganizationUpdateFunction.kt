@@ -13,7 +13,8 @@ data class OrganizationUpdateCommand(
     val name: String,
     val description: String?,
     val address: AddressBase?,
-    val website: String?
+    val website: String?,
+    val roles: List<String>?
 ): Command
 
 data class OrganizationUpdatedResult(
