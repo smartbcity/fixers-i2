@@ -9,7 +9,7 @@ import i2.f2.organization.domain.model.OrganizationId
 typealias OrganizationCreateFunction = F2Function<OrganizationCreateCommand, OrganizationCreatedResult>
 
 data class OrganizationCreateCommand(
-    val siret: String,
+    val siret: String?,
     val name: String,
     val description: String?,
     val address: AddressBase?,
