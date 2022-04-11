@@ -4,6 +4,8 @@ import f2.dsl.cqrs.Command
 import f2.dsl.cqrs.Event
 import f2.dsl.fnc.F2Function
 import i2.commons.model.AddressBase
+import i2.f2.organization.domain.model.Organization
+import i2.f2.organization.domain.model.OrganizationId
 import i2.f2.user.domain.model.UserId
 
 typealias UserUpdateFunction = F2Function<UserUpdateCommand, UserUpdatedResult>
@@ -15,7 +17,9 @@ data class UserUpdateCommand(
     val familyName: String,
     val address: AddressBase?,
     val phone: String?,
-    val sendEmailLink: Boolean
+    val sendEmailLink: Boolean,
+    val memberOf: OrganizationId?,
+    val roles: List<String>?,
 ): Command
 
 data class UserUpdatedResult(

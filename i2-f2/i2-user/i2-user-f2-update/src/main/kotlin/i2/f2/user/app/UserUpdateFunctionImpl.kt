@@ -10,7 +10,12 @@ import i2.f2.user.domain.features.command.UserUpdateFunction
 import i2.f2.user.domain.features.command.UserUpdatedResult
 import i2.keycloak.f2.user.domain.features.command.UserEmailSendActionsCommand
 import i2.keycloak.f2.user.domain.features.command.UserEmailSendActionsFunction
+import i2.keycloak.f2.user.domain.features.command.UserJoinGroupCommand
+import i2.keycloak.f2.user.domain.features.command.UserJoinGroupFunction
+import i2.keycloak.f2.user.domain.features.command.UserRolesGrantCommand
+import i2.keycloak.f2.user.domain.features.command.UserRolesGrantFunction
 import i2.keycloak.master.domain.AuthRealm
+import org.slf4j.LoggerFactory
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
@@ -22,12 +27,33 @@ class UserUpdateFunctionImpl(
 	private val authRealm: AuthRealm,
 	private val keycloakUserUpdateFunction: KeycloakUserUpdateFunction,
 	private val i2KeycloakConfig: I2KeycloakConfig,
-	private val userEmailSendActionsFunction: UserEmailSendActionsFunction
+	private val userJoinGroupFunction: UserJoinGroupFunction,
+	private val userEmailSendActionsFunction: UserEmailSendActionsFunction,
+	private val userRolesGrantFunction: UserRolesGrantFunction
 ) {
+
+	private val logger = LoggerFactory.getLogger(UserUpdateFunctionImpl::class.java)
 
 	@Bean
 	fun i2UserUpdateFunction(): UserUpdateFunction = f2Function { cmd ->
 		keycloakUserUpdateFunction.invoke(cmd.toKeycloakUserUpdateCommand())
+		logger.info("i2UserUpdateFunction - update memberOf: ${cmd.memberOf != null}")
+		cmd.memberOf?.let {
+			UserJoinGroupCommand(
+				id = cmd.id,
+				groupId = it,
+				realmId = i2KeycloakConfig.realm,
+				auth = authRealm,
+				leaveOtherGroups = true
+			).invokeWith(userJoinGroupFunction)
+		}
+
+		UserRolesGrantCommand(
+			id = cmd.id,
+			roles = cmd.roles,
+			auth = authRealm,
+			realmId = i2KeycloakConfig.realm
+		).invokeWith(userRolesGrantFunction)
 
 		if (cmd.sendEmailLink) {
 			UserEmailSendActionsCommand(
