@@ -13,6 +13,7 @@ dependencies {
 	implementation(project(":i2-f2:organization:organization-f2-update"))
 	implementation(project(":i2-f2:i2-user:i2-user-f2-create"))
 	implementation(project(":i2-f2:i2-user:i2-user-f2-query"))
+	implementation(project(":i2-f2:i2-user:i2-user-f2-reset-password"))
 	implementation(project(":i2-f2:i2-user:i2-user-f2-update"))
 	implementation(project(":i2-f2:i2-role:i2-role-f2-add-composites"))
 	implementation(project(":i2-f2:i2-role:i2-role-f2-create"))
