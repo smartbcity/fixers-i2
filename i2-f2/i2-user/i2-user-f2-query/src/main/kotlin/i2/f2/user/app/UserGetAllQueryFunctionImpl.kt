@@ -4,14 +4,11 @@ import f2.dsl.cqrs.page.PagePagination
 import f2.dsl.fnc.f2Function
 import f2.dsl.fnc.invoke
 import i2.f2.config.I2KeycloakConfig
-import i2.f2.organization.domain.model.OrganizationId
-import i2.f2.organization.domain.model.OrganizationRefBase
-import i2.f2.user.app.model.toUser
+import i2.f2.user.app.service.UserTransformer
 import i2.f2.user.domain.features.query.UserGetAllQuery
 import i2.f2.user.domain.features.query.UserGetAllQueryFunction
 import i2.f2.user.domain.features.query.UserGetAllQueryResult
-import i2.keycloak.f2.group.domain.features.query.GroupGetByIdQuery
-import i2.keycloak.f2.group.domain.features.query.GroupGetByIdQueryFunction
+import org.slf4j.LoggerFactory
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
@@ -22,15 +19,14 @@ private typealias KeycloakUserGetAllQueryFunction = i2.keycloak.f2.user.domain.f
 class UserGetAllQueryFunctionImpl(
 	private val i2KeycloakConfig: I2KeycloakConfig,
 	private val keycloakUserGetAllQueryFunction: KeycloakUserGetAllQueryFunction,
-	private val groupGetByIdQueryFunction: GroupGetByIdQueryFunction
+	private val userTransformer: UserTransformer
 ) {
 
 	@Bean
 	fun i2UserGetAllQueryFunction(): UserGetAllQueryFunction = f2Function { cmd ->
 		val query = keycloakUserGetAllQueryFunction.invoke(cmd.toUserGetAllQuery()).users
-
 		val users = query.items.map { user ->
-			user.toUser(getOrganizationRef(user.attributes["memberOf"]?.first()))
+			userTransformer.toUser(user)
 		}
 		UserGetAllQueryResult(
 			users = users,
@@ -50,22 +46,5 @@ class UserGetAllQueryFunctionImpl(
 		auth = i2KeycloakConfig.authRealm()
 	)
 
-	private suspend fun getOrganizationRef(organizationId: OrganizationId?): OrganizationRefBase? {
-		if (organizationId.isNullOrEmpty()) {
-			return null
-		}
 
-		val groupModel = groupGetByIdQueryFunction.invoke(GroupGetByIdQuery(
-			id = organizationId,
-			realmId = i2KeycloakConfig.realm,
-			auth = i2KeycloakConfig.authRealm()
-		)).group
-
-		return groupModel?.let {
-			OrganizationRefBase(
-				id = it.id,
-				name = it.name
-			)
-		}
-	}
 }

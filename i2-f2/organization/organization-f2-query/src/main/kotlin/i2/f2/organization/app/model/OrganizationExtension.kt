@@ -4,7 +4,7 @@ import i2.commons.model.AddressBase
 import i2.commons.utils.parseJsonTo
 import i2.f2.organization.domain.model.Organization
 import i2.f2.organization.domain.model.OrganizationBase
-import i2.f2.organization.domain.model.OrganizationRefBase
+import i2.f2.organization.domain.model.OrganizationRef
 import i2.keycloak.f2.group.domain.model.GroupModel
 
 fun GroupModel.toOrganization() = OrganizationBase(
@@ -17,7 +17,7 @@ fun GroupModel.toOrganization() = OrganizationBase(
     roles = roles.toTypedArray()
 )
 
-fun GroupModel.toOrganizationRef() = OrganizationRefBase(
+fun GroupModel.toOrganizationRef() = OrganizationRef(
     id = id,
     name = name
 )

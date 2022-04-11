@@ -1,3 +1,4 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+i2.f2.user.app.ServiceAutoconfigure,\
 i2.f2.user.app.UserGetAllQueryFunctionImpl,\
 i2.f2.user.app.UserGetByIdQueryFunctionImpl

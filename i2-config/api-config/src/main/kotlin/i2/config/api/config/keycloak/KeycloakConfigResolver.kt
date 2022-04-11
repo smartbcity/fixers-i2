@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonParser
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.KotlinModule
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.boot.context.properties.ConstructorBinding
 import s2.spring.utils.logger.Logger
@@ -25,12 +26,12 @@ data class KeycloakConfigResolver (
     fun getConfiguration(): KeycloakConfigProperties {
         if (json == null) {
             logger.info("Loading configuration from env variables...")
-            return config!!
+            return config
         }
 
         try {
             logger.info("Loading configuration from json file [$json]...")
-            return getFile(json!!).readText().parseTo(KeycloakConfigProperties::class.java)
+            return getFile(json).readText().parseTo(KeycloakConfigProperties::class.java)
         } catch (e: Exception) {
             logger.error("Error configuration from json file [${json}]", e)
             exitProcess(-1)
@@ -52,10 +53,9 @@ data class KeycloakConfigResolver (
     }
 
     private fun <T> String.parseTo(targetClass: Class<T>): T {
-        val mapper = ObjectMapper()
+        val mapper = jacksonObjectMapper()
             .enable(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES)
             .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-            .registerModule(KotlinModule())
 
         return mapper.readValue(this, targetClass)
     }
