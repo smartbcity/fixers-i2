@@ -19,7 +19,7 @@ data class UserUpdateCommand(
     val phone: String?,
     val sendEmailLink: Boolean,
     val memberOf: OrganizationId?,
-    val roles: List<String>?,
+    val roles: List<String>,
 ): Command
 
 data class UserUpdatedResult(

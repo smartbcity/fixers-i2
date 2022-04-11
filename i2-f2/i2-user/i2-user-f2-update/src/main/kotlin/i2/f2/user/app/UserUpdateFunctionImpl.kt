@@ -37,7 +37,6 @@ class UserUpdateFunctionImpl(
 	@Bean
 	fun i2UserUpdateFunction(): UserUpdateFunction = f2Function { cmd ->
 		keycloakUserUpdateFunction.invoke(cmd.toKeycloakUserUpdateCommand())
-		logger.info("i2UserUpdateFunction - update memberOf: ${cmd.memberOf != null}")
 		cmd.memberOf?.let {
 			UserJoinGroupCommand(
 				id = cmd.id,
