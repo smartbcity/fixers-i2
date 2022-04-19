@@ -3,7 +3,7 @@ package i2.f2.user.app
 import f2.dsl.fnc.f2Function
 import f2.dsl.fnc.invoke
 import i2.f2.config.I2KeycloakConfig
-import i2.f2.user.domain.features.command.UserPasswordResettedResult
+import i2.f2.user.domain.features.command.UserPasswordResetResult
 import i2.f2.user.domain.features.command.UserResetPasswordCommand
 import i2.f2.user.domain.features.command.UserResetPasswordFunction
 import i2.keycloak.master.domain.AuthRealm
@@ -23,7 +23,7 @@ class UserResetPasswordFunctionImpl(
 	@Bean
 	fun i2UserResetPasswordFunction(): UserResetPasswordFunction = f2Function { cmd ->
 		keycloakUserResetPasswordFunction.invoke(cmd.toKeycloakUserResetPasswordCommand())
-		UserPasswordResettedResult(cmd.id)
+		UserPasswordResetResult(cmd.id)
 	}
 
 	private fun UserResetPasswordCommand.toKeycloakUserResetPasswordCommand() = KeycloakUserResetPasswordCommand(
