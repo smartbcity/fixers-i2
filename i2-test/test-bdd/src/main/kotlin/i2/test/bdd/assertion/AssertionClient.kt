@@ -1,6 +1,5 @@
 package i2.test.bdd.assertion
 
-import i2.f2.import.domain.ClientImport
 import i2.keycloak.f2.client.domain.ClientId
 import i2.keycloak.f2.client.domain.ClientIdentifier
 import i2.keycloak.master.domain.RealmId
@@ -72,18 +71,5 @@ class AssertionClient(
 			Assertions.assertThat(client.adminUrl).isEqualTo(adminUrl)
 			Assertions.assertThat(client.webOrigins).containsAll(webOrigins)
 		}
-
-		fun matchImport(import: ClientImport) = hasFields(
-			clientIdentifier = import.clientIdentifier,
-			isPublicClient = import.isPublicClient,
-			isDirectAccessGrantsEnabled = import.isDirectAccessGrantsEnabled,
-			isServiceAccountsEnabled = import.isServiceAccountsEnabled,
-//			authorizationServicesEnabled = import.authorizationServicesEnabled,
-			rootUrl = import.rootUrl,
-			redirectUris = import.redirectUris,
-			baseUrl = import.baseUrl,
-			adminUrl = import.adminUrl,
-			webOrigins = import.webOrigins,
-		)
 	}
 }

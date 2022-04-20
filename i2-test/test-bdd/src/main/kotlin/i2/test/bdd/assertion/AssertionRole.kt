@@ -1,6 +1,5 @@
 package i2.test.bdd.assertion
 
-import i2.f2.import.domain.RoleImport
 import i2.keycloak.f2.role.domain.RoleId
 import i2.keycloak.f2.role.domain.RoleName
 import i2.keycloak.master.domain.RealmId
@@ -74,12 +73,5 @@ class AssertionRole(
 				Assertions.assertThat(role.composites?.realm).isNullOrEmpty()
 			}
 		}
-
-		fun matchImport(import: RoleImport) = hasFields(
-			name = import.name,
-			description = import.description,
-			isClientRole = import.isClientRole,
-			composites = import.composites
-		)
 	}
 }
