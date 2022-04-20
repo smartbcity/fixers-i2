@@ -14,10 +14,9 @@ include(
 )
 include(
     "i2-spring:i2-spring-boot-starter-auth",
-    "sample:spring-boot-app"
+    "i2-gateway:api-gateway"
 )
 include(
-    "i2-f2:i2-client",
     "i2-f2:config",
     "i2-f2:organization:organization-domain",
     "i2-f2:organization:organization-f2-create",
@@ -92,4 +91,7 @@ include(
 include(
     "i2-config:api-config",
     "i2-config:api-auth"
+)
+include(
+    "i2-client"
 )
