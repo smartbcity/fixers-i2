@@ -14,8 +14,6 @@ dependencies {
     api(project(":i2-keycloak:keycloak-f2:group:group-f2-create"))
     api(project(":i2-keycloak:keycloak-f2:group:group-f2-update"))
 
-    api(project(":i2-f2:import:import-data"))
-
     api(project(":i2-keycloak:keycloak-f2:realm:realm-f2-create"))
     api(project(":i2-keycloak:keycloak-f2:realm:realm-f2-query"))
 
