@@ -11,9 +11,9 @@ object PluginVersions {
 }
 
 object Versions {
-    val f2 = PluginVersions.fixers
-    val s2 = PluginVersions.fixers
-    const val ktor = FixersVersions.Kotlin.ktor
+	val f2 = PluginVersions.fixers
+	val s2 = PluginVersions.fixers
+	const val ktor = "2.0.0"
 
 	const val springBoot = PluginVersions.springBoot
 	const val springOauth2 = "5.6.0"
@@ -21,7 +21,7 @@ object Versions {
 	const val kdatetime = "0.1.1"
 	const val keycloak = "15.0.1"
 
-    const val testcontainers = FixersVersions.Test.testcontainers
+	const val testcontainers = FixersVersions.Test.testcontainers
 }
 
 object Dependencies {
@@ -31,9 +31,11 @@ object Dependencies {
 		)
 
 		fun ktor(scope: Scope) = scope.add(
-			"io.ktor:ktor-client-core-jvm:${Versions.ktor}",
+			"io.ktor:ktor-client-core:${Versions.ktor}",
+			"io.ktor:ktor-client-content-negotiation:${Versions.ktor}",
 			"io.ktor:ktor-client-cio:${Versions.ktor}",
-			"io.ktor:ktor-client-jackson:${Versions.ktor}"
+			"io.ktor:ktor-serialization-kotlinx-json:${Versions.ktor}",
+			"io.ktor:ktor-serialization-jackson:${Versions.ktor}"
 		)
 	}
 
