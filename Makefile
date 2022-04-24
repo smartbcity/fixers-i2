@@ -11,7 +11,7 @@ KEYCLOAK_LATEST		:= ${KEYCLOAK_NAME}:latest
 I2_APP_NAME	   	 	:= smartbcity/i2-gateway
 I2_APP_IMG	    	:= ${I2_APP_NAME}:${VERSION}
 I2_APP_LATEST		:= ${I2_APP_NAME}:latest
-I2_APP_PACKAGE	   	:= :sample:spring-boot-app:bootBuildImage
+I2_APP_PACKAGE	   	:= :i2-gateway:api-gateway:bootBuildImage
 
 I2_INIT_NAME	   	:= smartbcity/i2-init
 I2_INIT_IMG	    	:= ${I2_INIT_NAME}:${VERSION}

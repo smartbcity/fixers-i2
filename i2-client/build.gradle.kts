@@ -8,8 +8,5 @@ plugins {
 dependencies {
 	api(project(":i2-f2:i2-role:i2-role-domain"))
 	api(project(":i2-f2:organization:organization-domain"))
-
-	api("io.ktor:ktor-client-jackson:${Versions.ktor}")
-	api("io.ktor:ktor-client-cio:${Versions.ktor}")
-
+	Dependencies.Jvm.ktor(::implementation)
 }
