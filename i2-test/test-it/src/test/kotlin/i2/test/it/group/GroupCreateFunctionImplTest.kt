@@ -8,6 +8,7 @@ import i2.test.bdd.data.DataTest
 import i2.test.bdd.data.group.groupCreateCommand
 import i2.test.bdd.given.GivenKC
 import i2.test.bdd.given.auth
+import i2.test.bdd.given.group
 import i2.test.bdd.given.realm
 import i2.test.bdd.testcontainers.I2KeycloakTest
 import kotlinx.coroutines.runBlocking
@@ -41,5 +42,27 @@ class GroupCreateFunctionImplTest: I2KeycloakTest() {
             realmRoles = cmd.roles,
             attributes = cmd.attributes,
         )
+    }
+
+    @Test
+    fun `should create sub group`(): Unit = runBlocking {
+        val groupUuid = "group-${UUID.randomUUID()}"
+        val parentGroupId = GivenKC().group().withGroup(realmId, groupUuid)
+        val cmd = DataTest.groupCreateCommand(
+            realmId = realmId,
+            auth = clientMaster.auth,
+            name = "name-${groupUuid}",
+            attributes = mapOf("zeKey" to listOf("zeFirstValue", "zeSecondValue")),
+            parentGroupId = parentGroupId
+        )
+        val event = groupCreateFunction.invoke(cmd)
+
+        Assertions.assertThat(event.id).isNotNull
+        AssertionKC.group(clientMaster.keycloak).assertThat(realmId, event.id).hasFields(
+            id = event.id,
+            name = cmd.name,
+            realmRoles = cmd.roles,
+            attributes = cmd.attributes,
+        ).haveParentGroup(parentGroupId)
     }
 }

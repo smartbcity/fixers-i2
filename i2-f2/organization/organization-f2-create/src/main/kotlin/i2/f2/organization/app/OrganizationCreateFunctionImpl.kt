@@ -22,7 +22,12 @@ class OrganizationCreateFunctionImpl(
 	fun organizationCreateFunction(): OrganizationCreateFunction = f2Function { cmd ->
 		groupCreateFunction.invoke(cmd.toGroupCreateCommand())
 			.id
-			.let(::OrganizationCreatedResult)
+			.let{ groupId ->
+				OrganizationCreatedResult(
+					parentOrganization = cmd.parentOrganizationId,
+					id = groupId
+				)
+			}
 	}
 
 	private fun OrganizationCreateCommand.toGroupCreateCommand() = GroupCreateCommand(
@@ -35,6 +40,7 @@ class OrganizationCreateFunctionImpl(
 		).mapValues { (_, value) -> listOfNotNull(value) },
 		roles = roles ?: emptyList(),
 		realmId = i2KeycloakConfig.realm,
-		auth = i2KeycloakConfig.authRealm()
+		auth = i2KeycloakConfig.authRealm(),
+		parentGroupId = parentOrganizationId
 	)
 }
