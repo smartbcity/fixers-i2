@@ -1,6 +1,7 @@
 package i2.test.bdd.assertion
 
 import i2.keycloak.f2.group.domain.model.GroupId
+import i2.keycloak.master.domain.RealmId
 import org.assertj.core.api.Assertions
 import org.keycloak.admin.client.Keycloak
 import org.keycloak.representations.idm.GroupRepresentation
@@ -31,10 +32,10 @@ class AssertionGroup(
 		}
 	}
 
-	fun assertThat(realmId: String, id: GroupId): GroupAssert {
+	fun assertThat(realmId: RealmId, id: GroupId): GroupAssert {
 		exists(realmId, id)
 		val group = getGroupRepresentation(realmId, id)
-		return GroupAssert(group)
+		return GroupAssert(group, realmId)
 	}
 
 	private fun getGroupRepresentation(realmId: String, id: String): GroupRepresentation {
@@ -42,19 +43,30 @@ class AssertionGroup(
 	}
 
 	inner class GroupAssert(
-		private val group: GroupRepresentation
+		private val group: GroupRepresentation,
+		private val realmId: RealmId
 	) {
 		fun hasFields(
             id: GroupId = group.id,
             name: String = group.name,
             realmRoles: List<String> = group.realmRoles,
-            attributes: Map<String, List<String>> = group.attributes
-		) {
+            attributes: Map<String, List<String>> = group.attributes,
+		): GroupAssert {
 			Assertions.assertThat(group.id).isEqualTo(id)
 			Assertions.assertThat(group.name).isEqualTo(name)
 			Assertions.assertThat(group.realmRoles).isEqualTo(realmRoles)
 			attributes.forEach { (key, value) ->
 				Assertions.assertThat(group.attributes[key]).isEqualTo(value)
+			}
+			return this
+		}
+
+		fun haveParentGroup(parentGroupId: GroupId) {
+			try {
+				val parentGroup = getGroupRepresentation(realmId, parentGroupId)
+				Assertions.assertThat(parentGroup.subGroups.map { it.id }).contains(group.id)
+			} catch (e: javax.ws.rs.NotFoundException) {
+				Assertions.fail("Parent Group[${parentGroupId}] not found", e)
 			}
 		}
 	}

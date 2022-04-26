@@ -14,9 +14,11 @@ data class OrganizationCreateCommand(
     val description: String?,
     val address: AddressBase?,
     val website: String?,
-    val roles: List<String>?
+    val roles: List<String>?,
+    val parentOrganizationId: OrganizationId
 ): Command
 
 data class OrganizationCreatedResult(
-    val id: OrganizationId
+    val id: OrganizationId,
+    val parentOrganization: OrganizationId
 ): Event
