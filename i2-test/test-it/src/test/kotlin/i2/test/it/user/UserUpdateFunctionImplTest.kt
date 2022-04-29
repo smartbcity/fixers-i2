@@ -9,6 +9,7 @@ import i2.test.bdd.data.DataTest
 import i2.test.bdd.data.user.userUpdateCommand
 import i2.test.bdd.given.GivenKC
 import i2.test.bdd.given.auth
+import i2.test.bdd.given.group
 import i2.test.bdd.given.realm
 import i2.test.bdd.given.user
 import i2.test.bdd.testcontainers.I2KeycloakTest
@@ -25,6 +26,7 @@ class UserUpdateFunctionImplTest: I2KeycloakTest() {
 	@Test
 	fun `should update existing user`(): Unit = runBlocking {
 		val userId = GivenKC(clientMaster).user().withUser(realmId, UUID.randomUUID().toString())
+		val groupId = GivenKC(clientMaster).group().withGroup(realmId, UUID.randomUUID().toString())
 
 		val updateCommand = DataTest.userUpdateCommand(
 			userId = userId,
@@ -33,7 +35,7 @@ class UserUpdateFunctionImplTest: I2KeycloakTest() {
 			firstname = "Sandra",
 			lastname = "Geffroi",
 			email = "${UUID.randomUUID()}@geffroi.com",
-			metadata = mapOf("key" to "value")
+			metadata = mapOf("memberOf" to groupId)
 		)
 		val updatedUserId = UserUpdateFunctionImpl().userUpdateFunction().invoke(updateCommand).id
 
