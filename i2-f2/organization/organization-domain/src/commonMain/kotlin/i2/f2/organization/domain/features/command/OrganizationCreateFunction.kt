@@ -15,10 +15,10 @@ data class OrganizationCreateCommand(
     val address: AddressBase?,
     val website: String?,
     val roles: List<String>?,
-    val parentOrganizationId: OrganizationId?
+    val parentOrganizationId: OrganizationId? = null
 ): Command
 
 data class OrganizationCreatedResult(
     val id: OrganizationId,
-    val parentOrganization: OrganizationId?
+    val parentOrganization: OrganizationId? = null
 ): Event
