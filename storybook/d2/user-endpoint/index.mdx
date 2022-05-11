@@ -1,0 +1,17 @@
+import { CodeHighlighter, DescriptedCode } from '@smartb/g2-documentation'
+import { Meta } from '@storybook/addon-docs/blocks'
+import UserEndpointDesc from './desc.md'
+import UserEndpointVisualJson from './visualJson.json'
+
+<Meta title="Sample/Boring Documentation" parameters={{ previewTabs: { canvas: { hidden: true } } }} />
+
+<DescriptedCode
+  leftElement={<UserEndpointDesc />}
+  rightElement={
+    <CodeHighlighter
+      object={UserEndpointVisualJson}
+      language={"json"}
+      title={"Example"}
+    />
+  }
+/>
