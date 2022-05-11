@@ -4,8 +4,20 @@ import i2.commons.model.Address
 import i2.commons.model.AddressBase
 import i2.keycloak.f2.group.domain.model.GroupId
 
+/**
+ * Unique identifier of an organization.
+ * @d2 model
+ * @parent [i2.f2.organization.domain.D2OrganizationModelSection]
+ * @order 20
+ * @visual json "85171569-8970-45fb-b52a-85b59f06c292"
+ */
 typealias OrganizationId = GroupId
 
+/**
+ * Representation of an organization.
+ * @D2 model
+ * @parent [i2.f2.organization.domain.D2OrganizationModelSection]
+ */
 interface Organization {
     val id: OrganizationId
     val siret: String
