@@ -1,0 +1,17 @@
+import { CodeHighlighter, DescriptedCode } from '@smartb/g2-documentation'
+import { Meta } from '@storybook/addon-docs/blocks'
+import UserIdDesc from './desc.md'
+import UserIdVisualJson from './visualJson.json'
+
+<Meta title="UserId" parameters={{ previewTabs: { canvas: { hidden: true } } }} />
+
+<DescriptedCode
+  leftElement={<UserIdDesc />}
+  rightElement={
+    <CodeHighlighter
+      object={UserIdVisualJson}
+      language={"json"}
+      title={"Example"}
+    />
+  }
+/>
