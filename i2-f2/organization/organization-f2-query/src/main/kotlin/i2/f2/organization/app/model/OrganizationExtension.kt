@@ -19,5 +19,6 @@ fun GroupModel.toOrganization() = OrganizationBase(
 
 fun GroupModel.toOrganizationRef() = OrganizationRef(
     id = id,
-    name = name
+    name = name,
+    roles = roles
 )

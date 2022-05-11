@@ -32,7 +32,8 @@ class UserTransformer(
 		).invokeWith(userGetGroupsQueryFunction).items.firstOrNull()?.let { group ->
 			OrganizationRef(
 				id = group.id,
-				name = group.name
+				name = group.name,
+				roles = emptyList()
 			)
 		}
 		return UserBase(
