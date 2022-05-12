@@ -28,7 +28,7 @@ open class Client(
         }.body()
     }
 
-    protected suspend inline fun <reified T> postWithBearerToken(path: String, jsonBody: Any, token: String): T {
+    protected suspend inline fun <reified T> post(path: String, jsonBody: Any, token: String): T {
         return httpClient.post {
             url("$baseUrl/$path")
             header("Content-Type", ContentType.Application.Json)

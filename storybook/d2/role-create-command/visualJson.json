@@ -1,0 +1,6 @@
+{
+  "name" : "Carrier",
+  "composites" : [ "write_user", "read_user" ],
+  "description" : "A carrier is someone that carries things.",
+  "isClientRole" : "true"
+}

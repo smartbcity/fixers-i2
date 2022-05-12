@@ -1,10 +1,10 @@
 
 
-### UserId
+## UserId
 
 
 
-Unique identifier of an user.
+Unique identifier of the user.
 
 
 

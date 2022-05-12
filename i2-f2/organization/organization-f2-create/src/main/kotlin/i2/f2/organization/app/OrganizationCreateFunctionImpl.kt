@@ -6,7 +6,7 @@ import i2.commons.utils.toJson
 import i2.f2.config.I2KeycloakConfig
 import i2.f2.organization.domain.features.command.OrganizationCreateCommand
 import i2.f2.organization.domain.features.command.OrganizationCreateFunction
-import i2.f2.organization.domain.features.command.OrganizationCreatedResult
+import i2.f2.organization.domain.features.command.OrganizationCreateResult
 import i2.keycloak.f2.group.domain.features.command.GroupCreateCommand
 import i2.keycloak.f2.group.domain.features.command.GroupCreateFunction
 import org.springframework.context.annotation.Bean
@@ -23,7 +23,7 @@ class OrganizationCreateFunctionImpl(
 		groupCreateFunction.invoke(cmd.toGroupCreateCommand())
 			.id
 			.let{ groupId ->
-				OrganizationCreatedResult(
+				OrganizationCreateResult(
 					parentOrganization = cmd.parentOrganizationId,
 					id = groupId
 				)

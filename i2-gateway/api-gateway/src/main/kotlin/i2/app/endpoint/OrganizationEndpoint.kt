@@ -6,32 +6,42 @@ import i2.app.auth.PermissionEvaluator
 import i2.app.auth.SUPER_ADMIN_ROLE
 import i2.f2.organization.domain.features.command.OrganizationCreateFunction
 import i2.f2.organization.domain.features.command.OrganizationUpdateFunction
-import i2.f2.organization.domain.features.query.OrganizationGetAllQueryFunction
-import i2.f2.organization.domain.features.query.OrganizationGetByIdQueryFunction
-import i2.f2.organization.domain.features.query.OrganizationGetInseeOrganizationQueryFunction
-import i2.f2.organization.domain.features.query.OrganizationRefGetAllQueryFunction
+import i2.f2.organization.domain.features.query.OrganizationGetBySiretFunction
+import i2.f2.organization.domain.features.query.OrganizationGetFunction
+import i2.f2.organization.domain.features.query.OrganizationPageFunction
+import i2.f2.organization.domain.features.query.OrganizationRefGetAllFunction
 import javax.annotation.security.RolesAllowed
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
+/**
+ * @d2 service
+ * @title Organization/Entrypoints
+ */
 @Configuration
 class OrganizationEndpoint(
     private val organizationCreateFunction: OrganizationCreateFunction,
-    private val organizationGetAllQueryFunction: OrganizationGetAllQueryFunction,
-    private val organizationGetByIdQueryFunction: OrganizationGetByIdQueryFunction,
-    private val organizationGetInseeOrganizationQueryFunction: OrganizationGetInseeOrganizationQueryFunction,
+    private val organizationPageFunction: OrganizationPageFunction,
+    private val organizationGetFunction: OrganizationGetFunction,
+    private val organizationGetBySiretFunction: OrganizationGetBySiretFunction,
     private val organizationUpdateFunction: OrganizationUpdateFunction,
-    private val organizationRefGetAllQueryFunction: OrganizationRefGetAllQueryFunction,
+    private val organizationRefGetAllFunction: OrganizationRefGetAllFunction,
     private val permissionEvaluator: PermissionEvaluator
 ) {
 
+    /**
+     * Creates an Organization.
+     */
     @Bean
     @RolesAllowed(SUPER_ADMIN_ROLE)
-    fun createOrganization() = organizationCreateFunction
+    fun organizationCreate() = organizationCreateFunction
 
+    /**
+     * Updates an Organization.
+     */
     @Bean
     @RolesAllowed(SUPER_ADMIN_ROLE, "write_organization")
-    fun updateOrganization(): OrganizationUpdateFunction = f2Function { cmd ->
+    fun organizationUpdate(): OrganizationUpdateFunction = f2Function { cmd ->
         if (permissionEvaluator.isSuperAdmin() || permissionEvaluator.checkOrganizationId(cmd.id)) {
             organizationUpdateFunction.invoke(cmd)
         } else {
@@ -39,19 +49,31 @@ class OrganizationEndpoint(
         }
     }
 
+    /**
+     * Fetches an Organization by its ID.
+     */
     @Bean
     @RolesAllowed(SUPER_ADMIN_ROLE, "read_organization")
-    fun getOrganization() = organizationGetByIdQueryFunction
+    fun organizationGet() = organizationGetFunction
 
+    /**
+     * Fetches an Organization by its siret number.
+     */
     @Bean
     @RolesAllowed(SUPER_ADMIN_ROLE, "read_organization")
-    fun getInseeOrganization() = organizationGetInseeOrganizationQueryFunction
+    fun organizationGetBySiret() = organizationGetBySiretFunction
 
+    /**
+     * Fetches a page of organizations.
+     */
     @Bean
     @RolesAllowed(SUPER_ADMIN_ROLE, "read_organization")
-    fun getAllOrganizations() = organizationGetAllQueryFunction
+    fun organizationPage() = organizationPageFunction
 
+    /**
+     * Fetches all OrganizationRef.
+     */
     @Bean
     @RolesAllowed(SUPER_ADMIN_ROLE, "read_organization")
-    fun getAllOrganizationRefs() = organizationRefGetAllQueryFunction
+    fun organizationRefGetAll() = organizationRefGetAllFunction
 }

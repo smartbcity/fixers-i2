@@ -7,39 +7,33 @@ import i2.app.auth.SUPER_ADMIN_ROLE
 import i2.f2.user.domain.features.command.UserCreateFunction
 import i2.f2.user.domain.features.command.UserResetPasswordFunction
 import i2.f2.user.domain.features.command.UserUpdateFunction
-import i2.f2.user.domain.features.query.UserGetAllQueryFunction
-import i2.f2.user.domain.features.query.UserGetByIdQuery
-import i2.f2.user.domain.features.query.UserGetByIdQueryFunction
+import i2.f2.user.domain.features.query.UserGetFunction
+import i2.f2.user.domain.features.query.UserGetQuery
+import i2.f2.user.domain.features.query.UserPageFunction
 import javax.annotation.security.RolesAllowed
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
 /**
- * Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
- * quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
- * Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
- * @D2 page
- * @title Sample/Boring Documentation
- * @visual json
- * {
- *   "name": "Stuff",
- *   "description": "Phrase describing the stuff",
- *   "things": [["Weird thingy", "Eww wat is dis"]]
- * }
+ * @d2 service
+ * @title User/Entrypoints
  */
 @Configuration
 class UserEndpoint(
     private val userCreateFunction: UserCreateFunction,
     private val userResetPasswordFunction: UserResetPasswordFunction,
     private val userUpdateFunction: UserUpdateFunction,
-    private val userGetByIdQueryFunction: UserGetByIdQueryFunction,
-    private val userGetAllQueryFunction: UserGetAllQueryFunction,
+    private val userGetFunction: UserGetFunction,
+    private val userPageFunction: UserPageFunction,
     private val permissionEvaluator: PermissionEvaluator
 ) {
 
+    /**
+     * Creates a User.
+     */
     @Bean
     @RolesAllowed(SUPER_ADMIN_ROLE, "write_user")
-    fun createUser(): UserCreateFunction = f2Function { cmd ->
+    fun userCreate(): UserCreateFunction = f2Function { cmd ->
         if (permissionEvaluator.isSuperAdmin() || permissionEvaluator.checkOrganizationId(cmd.memberOf)) {
             userCreateFunction.invoke(cmd)
         } else {
@@ -47,9 +41,12 @@ class UserEndpoint(
         }
     }
 
+    /**
+     * Updates a User.
+     */
     @Bean
     @RolesAllowed(SUPER_ADMIN_ROLE, "write_user")
-    fun updateUser(): UserUpdateFunction = f2Function { cmd ->
+    fun userUpdate(): UserUpdateFunction = f2Function { cmd ->
         if (permissionEvaluator.isSuperAdmin() || permissionEvaluator.checkOrganizationId(cmd.memberOf)) {
             userUpdateFunction.invoke(cmd)
         } else {
@@ -57,10 +54,13 @@ class UserEndpoint(
         }
     }
 
+    /**
+     * Sets the given password for the given user ID.
+     */
     @Bean
     @RolesAllowed(SUPER_ADMIN_ROLE, "write_user")
-    fun resetUserPassword(): UserResetPasswordFunction = f2Function { cmd ->
-        val user = userGetByIdQueryFunction.invoke(UserGetByIdQuery(cmd.id)).user
+    fun userResetPassword(): UserResetPasswordFunction = f2Function { cmd ->
+        val user = userGetFunction.invoke(UserGetQuery(cmd.id)).item
         if (permissionEvaluator.isSuperAdmin() || permissionEvaluator.checkOrganizationId(user?.memberOf?.id)) {
             userResetPasswordFunction.invoke(cmd)
         } else {
@@ -68,11 +68,17 @@ class UserEndpoint(
         }
     }
 
+    /**
+     * Fetches a User by its ID.
+     */
     @Bean
     @RolesAllowed(SUPER_ADMIN_ROLE, "read_user")
-    fun getUser() = userGetByIdQueryFunction
+    fun userGet() = userGetFunction
 
+    /**
+     * Fetches a page of users.
+     */
     @Bean
     @RolesAllowed(SUPER_ADMIN_ROLE, "read_user")
-    fun getAllUsers() = userGetAllQueryFunction
+    fun userPage() = userPageFunction
 }

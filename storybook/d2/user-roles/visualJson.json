@@ -1,0 +1,4 @@
+{
+  "assignedRoles" : [ "admin" ],
+  "effectiveRoles" : [ "admin", "write_user", "read_user", "write_organization", "read_organization" ]
+}

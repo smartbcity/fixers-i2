@@ -1,10 +1,10 @@
 
 
-## Organization Queries
+# Queries
 
 
 
-Test description config
+Describes all queries used to read data about Organization.
 
 
 

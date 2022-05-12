@@ -1,35 +1,26 @@
 package i2.f2.user.domain
 
 /**
- * Test description config
+ * Describes all models associated to the User entity.
+ * @title User/Model
  * @d2 page
- * @title Core/User
- */
-interface D2UserPage
-
-/**
- * Test description config
- * @d2 section
- * @title User Model
- * @parent [D2UserPage]
+ * @child [i2.keycloak.f2.user.domain.model.UserRoles]
  * @order 10
  */
 interface D2UserModelSection
 
 /**
- * Test description config
- * @d2 section
- * @title User Commands
- * @parent [D2UserPage]
+ * Describes all commands used to update data about User.
+ * @d2 page
+ * @title User/Commands
  * @order 20
  */
 interface D2UserCommandSection
 
 /**
- * Test description config
- * @d2 section
- * @title User Queries
- * @parent [D2UserPage]
+ * Describes all queries used to read data about User.
+ * @d2 page
+ * @title User/Queries
  * @order 30
  */
 interface D2UserQuerySection

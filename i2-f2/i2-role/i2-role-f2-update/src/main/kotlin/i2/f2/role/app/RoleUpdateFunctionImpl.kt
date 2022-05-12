@@ -5,7 +5,7 @@ import f2.dsl.fnc.invoke
 import i2.f2.config.I2KeycloakConfig
 import i2.f2.role.domain.features.command.RoleUpdateCommand
 import i2.f2.role.domain.features.command.RoleUpdateFunction
-import i2.f2.role.domain.features.command.RoleUpdatedResult
+import i2.f2.role.domain.features.command.RoleUpdateResult
 import i2.keycloak.master.domain.AuthRealm
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -23,7 +23,7 @@ class RoleUpdateFunctionImpl(
     @Bean
     fun i2RoleUpdateFunction(): RoleUpdateFunction = f2Function { cmd ->
         val roleId = keycloakRoleUpdateFunction.invoke(cmd.toKeycloakRoleUpdateCommand()).id
-        RoleUpdatedResult(roleId)
+        RoleUpdateResult(roleId)
     }
 
     private fun RoleUpdateCommand.toKeycloakRoleUpdateCommand() = KeycloakRoleUpdateCommand(

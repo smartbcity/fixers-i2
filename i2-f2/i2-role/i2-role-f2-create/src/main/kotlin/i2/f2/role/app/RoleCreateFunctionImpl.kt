@@ -5,7 +5,7 @@ import f2.dsl.fnc.invoke
 import i2.f2.config.I2KeycloakConfig
 import i2.f2.role.domain.features.command.RoleCreateCommand
 import i2.f2.role.domain.features.command.RoleCreateFunction
-import i2.f2.role.domain.features.command.RoleCreatedResult
+import i2.f2.role.domain.features.command.RoleCreateResult
 import i2.keycloak.master.domain.AuthRealm
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -23,7 +23,7 @@ class RoleCreateFunctionImpl(
     @Bean
     fun i2RoleCreateFunction(): RoleCreateFunction = f2Function { cmd ->
         val roleId = keycloakRoleCreateFunction.invoke(cmd.toKeycloakRoleCreateCommand()).id
-        RoleCreatedResult(roleId)
+        RoleCreateResult(roleId)
     }
 
     private fun RoleCreateCommand.toKeycloakRoleCreateCommand() = KeycloakRoleCreateCommand(
