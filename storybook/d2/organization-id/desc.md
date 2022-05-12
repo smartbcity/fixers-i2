@@ -1,10 +1,10 @@
 
 
-### OrganizationId
+## OrganizationId
 
 
 
-Unique identifier of an organization.
+Unique identifier of the organization.
 
 
 

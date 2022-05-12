@@ -1,10 +1,10 @@
 
 
-## Organization Model
+# Model
 
 
 
-Test description config
+Describes all models associated to the Organization entity.
 
 
 

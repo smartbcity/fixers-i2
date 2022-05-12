@@ -1,10 +1,10 @@
 
 
-## Organization Commands
+# Commands
 
 
 
-Test description config
+Describes all commands used to update data about Organization.
 
 
 

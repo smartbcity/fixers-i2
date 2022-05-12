@@ -7,32 +7,32 @@ import i2.commons.utils.toJson
 import i2.f2.config.I2KeycloakConfig
 import i2.f2.organization.domain.features.command.OrganizationUpdateCommand
 import i2.f2.organization.domain.features.command.OrganizationUpdateFunction
-import i2.f2.organization.domain.features.command.OrganizationUpdatedResult
-import i2.f2.organization.domain.features.query.OrganizationGetByIdQuery
-import i2.f2.organization.domain.features.query.OrganizationGetByIdQueryFunction
+import i2.f2.organization.domain.features.command.OrganizationUpdateResult
+import i2.f2.organization.domain.features.query.OrganizationGetFunction
+import i2.f2.organization.domain.features.query.OrganizationGetQuery
 import i2.f2.organization.domain.model.Organization
 import i2.keycloak.f2.group.domain.features.command.GroupUpdateCommand
 import i2.keycloak.f2.group.domain.features.command.GroupUpdateFunction
+import javax.ws.rs.NotFoundException
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import javax.ws.rs.NotFoundException
 
 @Configuration
 class OrganizationUpdateFunctionImpl(
 	private val groupUpdateFunction: GroupUpdateFunction,
 	private val i2KeycloakConfig: I2KeycloakConfig,
-	private val organizationGetByIdQueryFunction: OrganizationGetByIdQueryFunction
+	private val organizationGetFunction: OrganizationGetFunction
 ) {
 
 	@Bean
 	fun organizationUpdateFunction(): OrganizationUpdateFunction = f2Function { cmd ->
-		val organization = OrganizationGetByIdQuery(id = cmd.id)
-			.invokeWith(organizationGetByIdQueryFunction)
-			.organization
+		val organization = OrganizationGetQuery(id = cmd.id)
+			.invokeWith(organizationGetFunction)
+			.item
 			?: throw NotFoundException("Organization [${cmd.id}] not found")
 
 		groupUpdateFunction.invoke(cmd.toGroupUpdateCommand(organization))
-			.let { result -> OrganizationUpdatedResult(result.id) }
+			.let { result -> OrganizationUpdateResult(result.id) }
 	}
 
 	private fun OrganizationUpdateCommand.toGroupUpdateCommand(organization: Organization) = GroupUpdateCommand(

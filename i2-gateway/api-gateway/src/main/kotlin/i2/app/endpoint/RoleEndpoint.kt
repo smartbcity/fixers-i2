@@ -8,6 +8,10 @@ import javax.annotation.security.RolesAllowed
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
+/**
+ * @d2 service
+ * @title Role/Entrypoints
+ */
 @Configuration
 class RoleEndpoint(
     private val roleAddCompositesFunction: RoleAddCompositesFunction,
@@ -15,14 +19,23 @@ class RoleEndpoint(
     private val roleUpdateFunction: RoleUpdateFunction
 ) {
 
+    /**
+     * Associates roles to another role. Associated roles must exist.
+     */
     @Bean
     @RolesAllowed(SUPER_ADMIN_ROLE)
     fun roleAddComposites() = roleAddCompositesFunction
 
+    /**
+     * Creates a Role.
+     */
     @Bean
     @RolesAllowed(SUPER_ADMIN_ROLE)
     fun roleCreate() = roleCreateFunction
 
+    /**
+     * Updates a Role.
+     */
     @Bean
     @RolesAllowed(SUPER_ADMIN_ROLE)
     fun roleUpdate() = roleUpdateFunction

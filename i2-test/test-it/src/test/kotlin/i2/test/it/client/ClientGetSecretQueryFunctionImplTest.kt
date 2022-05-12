@@ -2,17 +2,17 @@ package i2.test.it.client
 
 import f2.dsl.fnc.invoke
 import i2.commons.error.I2Exception
-import i2.keycloak.f2.client.app.ClientGetSecretQueryFunctionImpl
+import i2.keycloak.f2.client.app.ClientGetSecretFunctionImpl
 import i2.keycloak.f2.client.domain.features.query.ClientGetSecretQuery
 import i2.test.bdd.given.GivenKC
 import i2.test.bdd.given.auth
 import i2.test.bdd.given.client
 import i2.test.bdd.given.realm
 import i2.test.bdd.testcontainers.I2KeycloakTest
+import java.util.UUID
 import kotlinx.coroutines.runBlocking
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
-import java.util.UUID
 
 class ClientGetSecretQueryFunctionImplTest: I2KeycloakTest() {
 
@@ -28,7 +28,7 @@ class ClientGetSecretQueryFunctionImplTest: I2KeycloakTest() {
             realmId = realmId,
             auth = masterClient.auth
         )
-        val result = ClientGetSecretQueryFunctionImpl().clientGetSecretQueryFunction().invoke(cmd)
+        val result = ClientGetSecretFunctionImpl().clientGetSecretFunction().invoke(cmd)
 
         Assertions.assertThat(result.secret).isNull()
     }
@@ -42,7 +42,7 @@ class ClientGetSecretQueryFunctionImplTest: I2KeycloakTest() {
         )
 
         Assertions.assertThatThrownBy { runBlocking {
-            ClientGetSecretQueryFunctionImpl().clientGetSecretQueryFunction().invoke(cmd)
+            ClientGetSecretFunctionImpl().clientGetSecretFunction().invoke(cmd)
         }}.isInstanceOf(I2Exception::class.java)
     }
 }

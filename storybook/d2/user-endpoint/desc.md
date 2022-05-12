@@ -1,13 +1,45 @@
 
 
-# Boring Documentation
-
-
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+# Entrypoints
 
 
 
 
 
+  
+<article>
+
+**userCreate** ( cmd: [`UserCreateCommand`](/docs/user-commands--page#usercreatecommand) ) : [`UserCreateResult`](/docs/user-commands--page#usercreateresult) <br/> *Access: admin, write_user* 
+
+Creates a User.
+
+</article>
+<article>
+
+**userGet** ( cmd: [`UserGetQuery`](/docs/user-queries--page#usergetquery) ) : [`UserGetResult`](/docs/user-queries--page#usergetresult) <br/> *Access: admin, read_user* 
+
+Fetches a User by its ID.
+
+</article>
+<article>
+
+**userPage** ( cmd: [`UserPageQuery`](/docs/user-queries--page#userpagequery) ) : [`UserPageResult`](/docs/user-queries--page#userpageresult) <br/> *Access: admin, read_user* 
+
+Fetches a page of users.
+
+</article>
+<article>
+
+**userResetPassword** ( cmd: [`UserResetPasswordCommand`](/docs/user-commands--page#userresetpasswordcommand) ) : [`UserResetPasswordResult`](/docs/user-commands--page#userresetpasswordresult) <br/> *Access: admin, write_user* 
+
+Sets the given password for the given user ID.
+
+</article>
+<article>
+
+**userUpdate** ( cmd: [`UserUpdateCommand`](/docs/user-commands--page#userupdatecommand) ) : [`UserUpdateResult`](/docs/user-commands--page#userupdateresult) <br/> *Access: admin, write_user* 
+
+Updates a User.
+
+</article>
 

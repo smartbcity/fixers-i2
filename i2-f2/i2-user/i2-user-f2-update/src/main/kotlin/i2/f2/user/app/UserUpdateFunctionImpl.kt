@@ -7,7 +7,7 @@ import i2.commons.utils.toJson
 import i2.f2.config.I2KeycloakConfig
 import i2.f2.user.domain.features.command.UserUpdateCommand
 import i2.f2.user.domain.features.command.UserUpdateFunction
-import i2.f2.user.domain.features.command.UserUpdatedResult
+import i2.f2.user.domain.features.command.UserUpdateResult
 import i2.keycloak.f2.user.domain.features.command.UserEmailSendActionsCommand
 import i2.keycloak.f2.user.domain.features.command.UserEmailSendActionsFunction
 import i2.keycloak.f2.user.domain.features.command.UserJoinGroupCommand
@@ -64,7 +64,7 @@ class UserUpdateFunctionImpl(
 				auth = authRealm
 			).invokeWith(userEmailSendActionsFunction)
 		}
-		UserUpdatedResult(cmd.id)
+		UserUpdateResult(cmd.id)
 	}
 
 	private fun UserUpdateCommand.toKeycloakUserUpdateCommand() = KeycloakUserUpdateCommand(

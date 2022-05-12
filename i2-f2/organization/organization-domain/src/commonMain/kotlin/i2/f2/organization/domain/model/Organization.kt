@@ -5,7 +5,7 @@ import i2.commons.model.AddressBase
 import i2.keycloak.f2.group.domain.model.GroupId
 
 /**
- * Unique identifier of an organization.
+ * Unique identifier of the organization.
  * @d2 model
  * @parent [i2.f2.organization.domain.D2OrganizationModelSection]
  * @order 20
@@ -14,17 +14,49 @@ import i2.keycloak.f2.group.domain.model.GroupId
 typealias OrganizationId = GroupId
 
 /**
- * Representation of an organization.
+ * Representation of the organization.
  * @D2 model
  * @parent [i2.f2.organization.domain.D2OrganizationModelSection]
  */
 interface Organization {
+    /**
+     * Identifier of the organization.
+     */
     val id: OrganizationId
+
+    /**
+     * Siret number of the organization.
+     * @example "84488096300013"
+     */
     val siret: String
+
+    /**
+     * Official name of the organization.
+     * @example "SmartB"
+     */
     val name: String
+
+    /**
+     * Description of the organization.
+     * @example "We use technology, design and systems thinking to tackle global sustainability & financing challenges."
+     */
     val description: String?
+
+    /**
+     * Address of the organization.
+     */
     val address: Address?
+
+    /**
+     * Website of the organization.
+     * @example "https://smartb.city/"
+     */
     val website: String?
+
+    /**
+     * Effective roles assigned to the organization. Multiple effective roles can be contained in a role.
+     * @example [["admin", "write_user", "read_user", "write_organization", "read_organization"]]
+     */
     val roles: Array<String>?
 }
 

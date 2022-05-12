@@ -6,8 +6,6 @@ import i2.keycloak.f2.client.domain.ClientId
 import i2.keycloak.f2.client.domain.ClientIdentifier
 import i2.keycloak.f2.client.domain.features.command.ClientCreateCommand
 import i2.keycloak.f2.client.domain.features.command.ClientCreateFunction
-import i2.keycloak.f2.realm.domain.features.command.RealmCreateCommand
-import i2.keycloak.f2.realm.domain.features.command.RealmCreateFunction
 import i2.keycloak.f2.role.domain.RoleId
 import i2.keycloak.f2.role.domain.RoleName
 import i2.keycloak.f2.role.domain.features.command.RoleAddCompositesCommand
@@ -20,7 +18,6 @@ import i2.keycloak.f2.user.domain.features.command.UserRolesGrantCommand
 import i2.keycloak.f2.user.domain.features.command.UserRolesGrantFunction
 import i2.keycloak.f2.user.domain.model.UserId
 import i2.keycloak.master.domain.AuthRealm
-import i2.keycloak.master.domain.RealmId
 import org.springframework.stereotype.Service
 
 @Service

@@ -7,7 +7,7 @@ import i2.commons.utils.toJson
 import i2.f2.config.I2KeycloakConfig
 import i2.f2.user.domain.features.command.UserCreateCommand
 import i2.f2.user.domain.features.command.UserCreateFunction
-import i2.f2.user.domain.features.command.UserCreatedResult
+import i2.f2.user.domain.features.command.UserCreateResult
 import i2.keycloak.f2.user.domain.features.command.UserEmailSendActionsCommand
 import i2.keycloak.f2.user.domain.features.command.UserEmailSendActionsFunction
 import i2.keycloak.f2.user.domain.features.command.UserJoinGroupCommand
@@ -61,7 +61,7 @@ class UserCreateFunctionImpl(
 				auth = authRealm
 			).invokeWith(userEmailSendActionsFunction)
 		}
-		UserCreatedResult(userId)
+		UserCreateResult(userId)
 	}
 
 	private fun UserCreateCommand.toKeycloakUserCreateCommand() = KeycloakUserCreateCommand(

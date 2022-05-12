@@ -1,10 +1,10 @@
 
 
-### User
+## User
 
 
 
-Representation of an user.
+Representation of the user.
 
 
 
@@ -13,51 +13,65 @@ Representation of an user.
   
 <article>
 
-*address* `Address?` 
+***address*** [`Address?`](/docs/commons-address--page#model) 
+
+Address of the user.
 
 </article>
 <article>
 
-*email* `String` 
+***email*** `String` 
+
+Email address.
 
 </article>
 <article>
 
-*familyName* `String` 
+***familyName*** `String` 
+
+Family name of the user.
 
 </article>
 <article>
 
-*givenName* `String` 
+***givenName*** `String` 
+
+First name of the user.
 
 </article>
 <article>
 
-*id* [`UserId`](#userid) 
+***id*** [`UserId`](#userid) 
 
-Identifier of an user.
-
-</article>
-<article>
-
-*memberOf* [`OrganizationRefDTO?`](/docs/core-organization--page#organizationrefdto) 
-
-Organization an user belongs to.
+Identifier of the user.
 
 </article>
 <article>
 
-*phone* `String?` 
+***memberOf*** [`OrganizationRefDTO?`](/docs/organizationref-model--page#organizationrefdto) 
+
+Organization Ref to which the user belongs.
 
 </article>
 <article>
 
-*roles* `UserRoles` 
+***phone*** `String?` 
+
+Telephone number of the user.
 
 </article>
 <article>
 
-*sendEmailLink* `Boolean?` 
+***roles*** [`UserRoles`](#userroles) 
+
+Roles of the user.
+
+</article>
+<article>
+
+***sendEmailLink*** `Boolean?` 
+
+Send a validation email to the user on subscription.
 
 </article>
 

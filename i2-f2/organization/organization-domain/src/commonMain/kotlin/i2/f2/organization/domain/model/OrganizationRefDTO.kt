@@ -1,16 +1,24 @@
 package i2.f2.organization.domain.model
 
 /**
- * Representation of an organization.
+ * Representation of the organization.
  * @D2 model
- * @parent [i2.f2.organization.domain.D2OrganizationModelSection]
+ * @parent [i2.f2.organization.domain.D2OrganizationRefModelSection]
  */
 interface OrganizationRefDTO {
     /**
-     * Identifier of an organization.
+     * Identifier of the organization.
      */
     val id: OrganizationId
+    /**
+     * Name of the organization.
+     * @example "SmartB"
+     */
     val name: String
+    /**
+     * Assigned and effective roles of the organization.
+     * @example [["write_user", "read_user", "write_organization", "read_organization"]]
+     */
     val roles: List<String>
 }
 

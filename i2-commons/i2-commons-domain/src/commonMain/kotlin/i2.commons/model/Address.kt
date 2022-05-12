@@ -1,8 +1,26 @@
 package i2.commons.model
 
+/**
+ * Representation of the address.
+ * @d2 model
+ * @parent [i2.commons.D2AddressPage]
+ * @title Model
+ */
 interface Address {
+    /**
+     * The street address.
+     * @example "2 Rue du pavillon"
+     */
     val street: String
+    /**
+     * The postal code.
+     * @example "34090"
+     */
     val postalCode: String
+    /**
+     * The locality in which the street address is.
+     * @example "Montpellier"
+     */
     val city: String
 }
 
