@@ -113,15 +113,4 @@ class KeycloakAggregateService(
             realmId = realm
         ).invokeWith(clientServiceAccountRolesGrantFunction)
     }
-
-    suspend fun createRole(name: RoleName, realm: RealmId): RoleId {
-        return RoleCreateCommand(
-            name = name,
-            description = null,
-            isClientRole = false,
-            composites = emptyList(),
-            auth = authRealm,
-            realmId = realm
-        ).invokeWith(roleCreateFunction).id
-    }
 }
