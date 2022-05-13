@@ -27,7 +27,7 @@ fixers {
     bundle {
         id = "i2"
         name = "I2"
-        description = "Identity and Authentification functions"
+        description = "Identity and Authentication functions"
         url = "https://gitlab.smartb.city/fixers/i2"
     }
     d2 {
