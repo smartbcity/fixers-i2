@@ -31,6 +31,6 @@ fixers {
         url = "https://gitlab.smartb.city/fixers/i2"
     }
     d2 {
-        outputDirectory = file("storybook/d2/")
+        outputDirectory = file("docs/stories/d2")
     }
 }
