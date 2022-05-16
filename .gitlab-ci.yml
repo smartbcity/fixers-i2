@@ -7,3 +7,6 @@ include:
     file: 'fixers/.gitlab-ci-docs.yml'
   - project: 'framework/fixers/cicd'
     file: 'fixers/.gitlab-ci-docker.yml'
+
+services:
+  - docker:19.03.12-dind

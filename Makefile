@@ -24,7 +24,7 @@ I2_CONFIG_LATEST	:= ${I2_CONFIG_NAME}:latest
 I2_CONFIG_PACKAGE	:= :i2-config:api-config:bootBuildImage
 
 libs: package-kotlin
-docker: package-keycloak package-app
+docker: package-keycloak package-app package-init package-config
 docs: package-storybook
 
 package-kotlin:
