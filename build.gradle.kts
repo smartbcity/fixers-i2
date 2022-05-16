@@ -23,14 +23,20 @@ allprojects {
     }
 }
 
-fixers {
-    bundle {
-        id = "i2"
-        name = "I2"
-        description = "Identity and Authentication functions"
-        url = "https://gitlab.smartb.city/fixers/i2"
+subprojects {
+    plugins.withType(city.smartb.fixers.gradle.config.ConfigPlugin::class.java).whenPluginAdded {
+        fixers {
+            bundle {
+                id = "i2"
+                name = "I2"
+                description = "Identity and Authentication functions"
+                url = "https://gitlab.smartb.city/fixers/i2"
+            }
+        }
     }
+}
+fixers {
     d2 {
-        outputDirectory = file("storybook/stories/d2")
+        outputDirectory = file("storybook/d2/")
     }
 }
