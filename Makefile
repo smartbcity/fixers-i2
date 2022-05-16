@@ -32,7 +32,7 @@ package-kotlin:
 
 package-storybook:
 	@docker build -f ${STORYBOOK_DOCKERFILE} -t ${STORYBOOK_IMG} .
-# 	@docker push ${STORYBOOK_IMG}
+	@docker push ${STORYBOOK_IMG}
 
 package-keycloak:
 	@docker build -f ${KEYCLOAK_DOCKERFILE} -t ${KEYCLOAK_IMG} .
