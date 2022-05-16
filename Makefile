@@ -28,7 +28,7 @@ docker: package-keycloak package-app package-init package-config
 docs: package-storybook
 
 package-kotlin:
-	@gradle clean build publish --stacktrace
+	@gradle clean build publish -x test --stacktrace
 
 package-storybook:
 	@docker build -f ${STORYBOOK_DOCKERFILE} -t ${STORYBOOK_IMG} .
