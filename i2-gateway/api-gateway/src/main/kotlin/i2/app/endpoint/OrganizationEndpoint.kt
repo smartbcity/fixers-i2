@@ -40,7 +40,7 @@ class OrganizationEndpoint(
      * Updates an Organization.
      */
     @Bean
-    @RolesAllowed(SUPER_ADMIN_ROLE, "write_organization")
+    @RolesAllowed("write_organization")
     fun organizationUpdate(): OrganizationUpdateFunction = f2Function { cmd ->
         if (permissionEvaluator.isSuperAdmin() || permissionEvaluator.checkOrganizationId(cmd.id)) {
             organizationUpdateFunction.invoke(cmd)
@@ -53,27 +53,27 @@ class OrganizationEndpoint(
      * Fetches an Organization by its ID.
      */
     @Bean
-    @RolesAllowed(SUPER_ADMIN_ROLE, "read_organization")
+    @RolesAllowed("read_organization")
     fun organizationGet() = organizationGetFunction
 
     /**
      * Fetches an Organization by its siret number.
      */
     @Bean
-    @RolesAllowed(SUPER_ADMIN_ROLE, "read_organization")
+    @RolesAllowed("read_organization")
     fun organizationGetBySiret() = organizationGetBySiretFunction
 
     /**
      * Fetches a page of organizations.
      */
     @Bean
-    @RolesAllowed(SUPER_ADMIN_ROLE, "read_organization")
+    @RolesAllowed("read_organization")
     fun organizationPage() = organizationPageFunction
 
     /**
      * Fetches all OrganizationRef.
      */
     @Bean
-    @RolesAllowed(SUPER_ADMIN_ROLE, "read_organization")
+    @RolesAllowed("read_organization")
     fun organizationRefGetAll() = organizationRefGetAllFunction
 }

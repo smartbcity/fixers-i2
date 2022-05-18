@@ -12,18 +12,11 @@ class KeycloakInitConfig {
     @ConfigurationProperties(prefix = "i2.init.smtp")
     fun smtpConfig(): Map<String, String> = mutableMapOf()
 
-    @Value("\${i2.init.realm.name}")
+    @Value("\${i2.init.realm}")
     lateinit var realm: String
 
     @Value("\${i2.init.admin-client.id}")
     lateinit var clientId: String
-
-    @Value("\${i2.init.admin-client.roles.client-id}")
-    lateinit var clientRolesProviderClientId: String
-
-    @Bean
-    @ConfigurationProperties(prefix = "i2.init.admin-client.roles.roles")
-    fun clientRoles(): List<String> = mutableListOf()
 
     @Value("\${i2.init.admin-user.username}")
     lateinit var username: String
@@ -37,9 +30,7 @@ class KeycloakInitConfig {
     @Value("\${i2.init.admin-user.lastname}")
     lateinit var lastname: String
 
-    @Value("\${i2.init.admin-user.role.name}")
-    lateinit var role: String
-
-    @Value("\${i2.init.admin-user.role.client-id}")
-    lateinit var roleClientId: String
+    @Bean
+    @ConfigurationProperties(prefix = "i2.init.base-roles")
+    fun baseRoles(): List<String> = mutableListOf()
 }
