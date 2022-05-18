@@ -18,6 +18,9 @@ dependencies {
     implementation(project(":i2-keycloak:keycloak-f2:realm:realm-f2-query"))
 
     api(project(":i2-keycloak:keycloak-f2:role:role-domain"))
+    implementation(project(":i2-keycloak:keycloak-f2:role:role-f2-add-composites"))
+    implementation(project(":i2-keycloak:keycloak-f2:role:role-f2-create"))
+    implementation(project(":i2-keycloak:keycloak-f2:role:role-f2-query"))
 
     api(project(":i2-keycloak:keycloak-f2:user:user-domain"))
     implementation(project(":i2-keycloak:keycloak-f2:user:user-f2-create"))

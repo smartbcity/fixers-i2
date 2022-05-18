@@ -3,7 +3,6 @@ package i2.app.endpoint
 import f2.dsl.fnc.f2Function
 import f2.dsl.fnc.invoke
 import i2.app.auth.PermissionEvaluator
-import i2.app.auth.SUPER_ADMIN_ROLE
 import i2.f2.user.domain.features.command.UserCreateFunction
 import i2.f2.user.domain.features.command.UserResetPasswordFunction
 import i2.f2.user.domain.features.command.UserUpdateFunction
@@ -32,7 +31,7 @@ class UserEndpoint(
      * Creates a User.
      */
     @Bean
-    @RolesAllowed(SUPER_ADMIN_ROLE, "write_user")
+    @RolesAllowed("write_user")
     fun userCreate(): UserCreateFunction = f2Function { cmd ->
         if (permissionEvaluator.isSuperAdmin() || permissionEvaluator.checkOrganizationId(cmd.memberOf)) {
             userCreateFunction.invoke(cmd)
@@ -45,7 +44,7 @@ class UserEndpoint(
      * Updates a User.
      */
     @Bean
-    @RolesAllowed(SUPER_ADMIN_ROLE, "write_user")
+    @RolesAllowed("write_user")
     fun userUpdate(): UserUpdateFunction = f2Function { cmd ->
         if (permissionEvaluator.isSuperAdmin() || permissionEvaluator.checkOrganizationId(cmd.memberOf)) {
             userUpdateFunction.invoke(cmd)
@@ -58,7 +57,7 @@ class UserEndpoint(
      * Sets the given password for the given user ID.
      */
     @Bean
-    @RolesAllowed(SUPER_ADMIN_ROLE, "write_user")
+    @RolesAllowed("write_user")
     fun userResetPassword(): UserResetPasswordFunction = f2Function { cmd ->
         val user = userGetFunction.invoke(UserGetQuery(cmd.id)).item
         if (permissionEvaluator.isSuperAdmin() || permissionEvaluator.checkOrganizationId(user?.memberOf?.id)) {
@@ -72,13 +71,13 @@ class UserEndpoint(
      * Fetches a User by its ID.
      */
     @Bean
-    @RolesAllowed(SUPER_ADMIN_ROLE, "read_user")
+    @RolesAllowed("read_user")
     fun userGet() = userGetFunction
 
     /**
      * Fetches a page of users.
      */
     @Bean
-    @RolesAllowed(SUPER_ADMIN_ROLE, "read_user")
+    @RolesAllowed("read_user")
     fun userPage() = userPageFunction
 }

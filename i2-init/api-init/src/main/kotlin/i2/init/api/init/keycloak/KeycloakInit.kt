@@ -1,11 +1,13 @@
 package i2.init.api.init.keycloak
 
-import kotlinx.coroutines.runBlocking
 import i2.init.api.auth.KeycloakAggregateService
 import i2.init.api.auth.KeycloakFinderService
+import java.util.UUID
+import kotlinx.coroutines.runBlocking
 import org.springframework.stereotype.Service
 import s2.spring.utils.logger.Logger
-import java.util.UUID
+
+const val SUPER_ADMIN_ROLE = "super_admin"
 
 @Service
 class KeycloakInit(
@@ -28,6 +30,15 @@ class KeycloakInit(
             logger.info("Initializing Admin user [${keycloakInitConfig.username}]...")
             initAdmin()
             logger.info("Initialized Admin")
+
+            logger.info("Initializing Base roles...")
+            initBaseRoles()
+            logger.info("Initialized Base roles")
+
+            logger.info("Adding composite roles for Admin...")
+            addCompositesToAdminRole()
+            logger.info("Added composite roles for Admin")
+
         } catch (e: Exception) {
             logger.error("Error initializing keycloak", e)
         }
@@ -51,9 +62,16 @@ class KeycloakInit(
         ).let {
             keycloakAggregateService.grantClient(
                 id = keycloakInitConfig.clientId,
-                rolesProviderClientId = keycloakInitConfig.clientRolesProviderClientId,
+                rolesProviderClientId = "realm-management",
                 realm = keycloakInitConfig.realm,
-                roles = keycloakInitConfig.clientRoles()
+                roles = listOf<String>(
+                    "create-client",
+                    "manage-clients",
+                    "manage-users",
+                    "manage-realm",
+                    "view-clients",
+                    "view-users"
+                )
             )
         }
     }
@@ -82,10 +100,25 @@ class KeycloakInit(
                 keycloakAggregateService.grantUser(
                     id = userId,
                     realm = keycloakInitConfig.realm,
-                    clientId = keycloakInitConfig.roleClientId,
-                    keycloakInitConfig.role
+                    clientId = "realm-management",
+                    "realm-admin"
                 )
             }
         }
+    }
+
+    private suspend fun initBaseRoles() {
+        val roles = keycloakInitConfig.baseRoles()
+        roles.let {
+            roles.forEach { role ->
+                keycloakFinderService.getRole(role, keycloakInitConfig.realm)
+                    ?: keycloakAggregateService.createRole(role, "Role created with i2-init", emptyList(), keycloakInitConfig.realm)
+            }
+        }
+    }
+
+    private suspend fun addCompositesToAdminRole() {
+        val composites = keycloakInitConfig.baseRoles().filter { it != SUPER_ADMIN_ROLE }
+        keycloakAggregateService.roleAddComposites(SUPER_ADMIN_ROLE, composites, keycloakInitConfig.realm)
     }
 }

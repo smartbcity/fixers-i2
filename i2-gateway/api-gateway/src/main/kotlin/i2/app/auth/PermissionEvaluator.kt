@@ -5,7 +5,7 @@ import i2.f2.organization.domain.model.OrganizationId
 import org.springframework.stereotype.Service
 
 const val ROLE_PREFIX = "ROLE_"
-const val SUPER_ADMIN_ROLE = "admin"
+const val SUPER_ADMIN_ROLE = "super_admin"
 
 @Service
 class PermissionEvaluator{

@@ -2,10 +2,12 @@ package i2.config.api.config.keycloak
 
 import i2.config.api.auth.KeycloakAggregateService
 import i2.config.api.auth.KeycloakFinderService
+import java.util.UUID
 import kotlinx.coroutines.runBlocking
 import org.springframework.stereotype.Service
 import s2.spring.utils.logger.Logger
-import java.util.UUID
+
+const val SUPER_ADMIN_ROLE = "super_admin"
 
 @Service
 class KeycloakConfig(
@@ -64,6 +66,7 @@ class KeycloakConfig(
             roles.forEach { role ->
                 initRoleWithComposites(role)
             }
+            addCompositesToAdmin(roles.filter { it != SUPER_ADMIN_ROLE })
         }
 
         roleComposites?.let {
@@ -80,6 +83,10 @@ class KeycloakConfig(
         if (composites.isNotEmpty()) {
             keycloakAggregateService.addRoleComposites(role, composites)
         }
+    }
+
+    private suspend fun addCompositesToAdmin(composites: List<String>) {
+        keycloakAggregateService.addRoleComposites(SUPER_ADMIN_ROLE, composites)
     }
 
     private suspend fun initUsers(users: List<KeycloakUserConfig>?) {

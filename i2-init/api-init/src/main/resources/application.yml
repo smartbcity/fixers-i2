@@ -9,8 +9,7 @@ i2:
     password: admin
     client-id: admin-cli
   init:
-    realm:
-      name: test
+    realm: test
     smtp:
       host: me-email
       port: 1025
@@ -18,22 +17,15 @@ i2:
       ssl: false
       starttls: false
       auth: false
-    admin-client:
-      id: i2-api
-      roles: # assign client roles to the user
-        client-id: realm-management
-        roles:
-          - create-client
-          - manage-clients
-          - manage-users
-          - manage-realm
-          - view-clients
-          - view-users
+    admin-client: i2-api
     admin-user:
       username: admin
       email: admin@admin.com
       firstname: admin
       lastname: admin
-      role: # assign a client role to the user
-        name: realm-admin
-        client-id: realm-management
+    base-roles:
+      - admin
+      - read_user
+      - write_user
+      - write_organization
+      - read_organization
