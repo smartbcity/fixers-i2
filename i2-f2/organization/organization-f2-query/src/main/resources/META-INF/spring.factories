@@ -1,7 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-i2.f2.organization.app.OrganizationPageFunctionImpl,\
-i2.f2.organization.app.OrganizationRefGetAllFunctionImpl,\
-i2.f2.organization.app.OrganizationGetFunctionImpl,\
-i2.f2.organization.app.OrganizationGetBySiretFunctionImpl,\
-i2.f2.organization.app.config.InseeConfig,\
-i2.f2.organization.app.service.InseeHttpClient
