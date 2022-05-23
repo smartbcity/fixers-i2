@@ -8,14 +8,14 @@ I2 is a set of features built for Keycloak:
 
 - Builds a Keycloak image embedding SmartB’s default theme.
 - Adds an overlay to Keycloak base SDK.
-- Initiates a Keycloak instance [I2-init](#I2-init)
-- Configurates a Keycloak instance [I2-config](#I2-config)
-- Allows to interact with a Keycloak instance [I2-gateway](#I2-gateway)
+- Initiates a Keycloak instance [I2-init](#i2-init)
+- Configurates a Keycloak instance [I2-config](#i2-config)
+- Allows to interact with a Keycloak instance [I2-gateway](#i2-gateway)
 - Contains a Spring Security Config to work properly with authentication issued by Keycloak (only for Spring boot based app)
 
 # Getting Started
 
-## <a id="I2-init"></a> I2-init
+## I2-init
 
 I2-init is an application used to initialize a realm on your Keycloak instance.
 
@@ -102,7 +102,7 @@ Properties prefix: `i2.init.admin-user`
 | firstname | Firstname of the user | John | admin |
 | lastname | Lastname of the user | Deuf | admin |
 
-## <a id="I2-config"></a> I2-config
+## I2-config
 
 I2-config is an application used to create entities on your Keycloak instance.
 
@@ -193,6 +193,6 @@ Data created are stored in a json file (pay attention to your mounted volume on 
 }
 ```
 
-## <a id="I2-gateway"></a> I2-gateway
+## I2-gateway
 
 See more [here](https://gitlab.smartb.city/framework/connect/im).
