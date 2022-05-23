@@ -1,9 +1,9 @@
 package i2.test.it.client
 
 import f2.dsl.fnc.invoke
-import i2.commons.error.I2Exception
 import i2.keycloak.f2.client.app.ClientGetSecretFunctionImpl
 import i2.keycloak.f2.client.domain.features.query.ClientGetSecretQuery
+import i2.keycloak.f2.commons.domain.error.I2Exception
 import i2.test.bdd.given.GivenKC
 import i2.test.bdd.given.auth
 import i2.test.bdd.given.client

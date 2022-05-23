@@ -18,10 +18,7 @@ const defaultTheme = {
 
 export const parameters = {
   docs: {
-    container: StorybookCanvas,
-    components: {
-      Canvas: StorybookCanvas,
-    },
+    container: StorybookCanvas
   },
 };
 
