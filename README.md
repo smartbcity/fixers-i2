@@ -10,7 +10,7 @@ I2 is a set of features built for Keycloak:
 - Adds an overlay to Keycloak base SDK.
 - Initiates a Keycloak instance [I2-init](#i2-init)
 - Configurates a Keycloak instance [I2-config](#i2-config)
-- Allows to interact with a Keycloak instance [I2-gateway](#i2-gateway)
+- Allows to interact with a Keycloak instance [IM](#im)
 - Contains a Spring Security Config to work properly with authentication issued by Keycloak (only for Spring boot based app)
 
 # Getting Started
@@ -26,12 +26,6 @@ On this realm, it can create/configure:
 - SMTP server
 
 **A random password is generated and printed for both client and user admin.**
-
-TODO features:
-
-- Creates a realm role “admin” and assign to the admin user
-- Adds the “memberOf” claim to the jwt
-- Creates base roles (read_user, write_user ...)
 
 ### Getting started
 
@@ -101,6 +95,12 @@ Properties prefix: `i2.init.admin-user`
 | email | Email of the user | jojolasticot@gmail.com | admin@admin.com |
 | firstname | Firstname of the user | John | admin |
 | lastname | Lastname of the user | Deuf | admin |
+
+#### Incoming features:
+
+- Creates a realm role “admin” and assign to the admin user
+- Adds the “memberOf” claim to the jwt
+- Creates base roles (read_user, write_user ...)
 
 ## I2-config
 
@@ -193,6 +193,6 @@ Data created are stored in a json file (pay attention to your mounted volume on 
 }
 ```
 
-## I2-gateway
+## IM
 
-See more [here](https://gitlab.smartb.city/framework/connect/im).
+See more [here](https://docs.smartb.city/im).
