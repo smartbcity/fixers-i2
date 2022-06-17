@@ -19,7 +19,7 @@ object Versions {
 	const val springOauth2 = "5.6.0"
 
 	const val kdatetime = "0.1.1"
-	const val keycloak = "15.0.1"
+	const val keycloak = "18.0.0"
 
 	const val testcontainers = FixersVersions.Test.testcontainers
 }
