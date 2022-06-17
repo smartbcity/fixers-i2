@@ -25,7 +25,9 @@ i2:
       lastname: admin
     base-roles:
       - super_admin
-      - read_user
-      - write_user
-      - write_organization
-      - read_organization
+      - im_read_user
+      - im_write_user
+      - im_write_organization
+      - im_read_organization
+      - im_read_role
+      - im_write_role
