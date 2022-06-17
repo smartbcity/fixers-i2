@@ -15,7 +15,7 @@ class KeycloakInitConfig {
     @Value("\${i2.init.realm}")
     lateinit var realm: String
 
-    @Value("\${i2.init.admin-client.id}")
+    @Value("\${i2.init.admin-client}")
     lateinit var clientId: String
 
     @Value("\${i2.init.admin-user.username}")
