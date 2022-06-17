@@ -27,10 +27,6 @@ class KeycloakInit(
             initAdminClient()
             logger.info("Initialized Client")
 
-            logger.info("Initializing Admin user [${keycloakInitConfig.username}]...")
-            initAdmin()
-            logger.info("Initialized Admin")
-
             logger.info("Initializing Base roles...")
             initBaseRoles()
             logger.info("Initialized Base roles")
@@ -38,6 +34,10 @@ class KeycloakInit(
             logger.info("Adding composite roles for Admin...")
             addCompositesToAdminRole()
             logger.info("Added composite roles for Admin")
+
+            logger.info("Initializing Admin user [${keycloakInitConfig.username}]...")
+            initAdmin()
+            logger.info("Initialized Admin")
 
         } catch (e: Exception) {
             logger.error("Error initializing keycloak", e)
@@ -102,6 +102,12 @@ class KeycloakInit(
                     realm = keycloakInitConfig.realm,
                     clientId = "realm-management",
                     "realm-admin"
+                )
+                keycloakAggregateService.grantUser(
+                    id = userId,
+                    realm = keycloakInitConfig.realm,
+                    clientId = null,
+                    SUPER_ADMIN_ROLE
                 )
             }
         }

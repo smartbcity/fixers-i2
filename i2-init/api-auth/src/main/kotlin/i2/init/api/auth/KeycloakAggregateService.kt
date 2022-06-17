@@ -100,7 +100,7 @@ class KeycloakAggregateService(
         ).invokeWith(userCreateFunction).id
     }
 
-    suspend fun grantUser(id: UserId, realm: String, clientId: ClientId, vararg roles: RoleName) {
+    suspend fun grantUser(id: UserId, realm: String, clientId: ClientId?, vararg roles: RoleName) {
         UserRolesGrantCommand(
             id = id,
             roles = roles.toList(),
