@@ -67,7 +67,6 @@ abstract class WebSecurityConfig {
     @Bean(SPRING_SECURITY_FILTER_CHAIN)
     @ConditionalOnExpression(AUTHENTICATION_REQUIRED_EXPRESSION)
     fun oauthAuthenticationProvider(http: ServerHttpSecurity): SecurityWebFilterChain {
-        println("AUTH")
         addAuthenticationRules(http)
         http.csrf().disable()
         http.corsConfig()
@@ -117,7 +116,6 @@ abstract class WebSecurityConfig {
     }
 
     fun addPermitAllRules(http: ServerHttpSecurity) {
-        println("PERMIT ALL")
         val permitAllBeans = applicationContext.getBeanNamesForAnnotation(PermitAll::class.java)
             .map { bean -> "$contextPath/$bean" }
             .toTypedArray()
