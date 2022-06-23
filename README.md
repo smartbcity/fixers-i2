@@ -15,6 +15,56 @@ I2 is a set of features built for Keycloak:
 
 # Getting Started
 
+## Spring Security Config
+
+### Base configuration
+
+```i2-spring-boot-starter-auth``` package provides a default configuration for Spring Security.
+Multi tenancy is enabled by default and allows JWT from multiple issuers.
+To do so, you have to add in your ```application.yml``` a list of trusted issuers:
+```
+i2:
+  issuers:
+    -
+      uri: https://localhost:8080/auth/realms/test
+    -
+      uri: https://localhost:8080/auth/realms/test2
+```
+
+#### Maven dependency
+```kotlin
+implementation("city.smartb.i2:i2-spring-boot-starter-auth:${Versions.i2}")
+```
+
+### Keycloak configuration provider
+```i2-spring-boot-starter-auth-keycloak``` extends ```i2-spring-boot-starter-auth``` by adding an endpoint 
+to retrieve Keycloak configuration. 
+As this endpoint should be used before having a valid JWT, the endpoint does not need any pre-authentication.
+Only a name has to be given, in order to retrieve the wanted Keycloak configuration.
+
+Applications importing this package must define the following configuration:
+```
+i2:
+  issuers:
+    -
+      uri: http://localhost:8080/auth/realms/test
+      authUrl: http://localhost:8080/auth
+      realm: test
+      clientId: i2-web
+      name: test
+    -
+      uri: http://localhost:8080/auth/realms/test2
+      authUrl: http://localhost:8080/auth
+      realm: test2
+      clientId: i2-web
+      name: test2
+```
+
+#### Maven dependency
+```kotlin
+implementation("city.smartb.i2:i2-spring-boot-starter-auth-keycloak:${Versions.i2}")
+```
+
 ## I2-init
 
 I2-init is an application used to initialize a realm on your Keycloak instance.
