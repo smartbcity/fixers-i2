@@ -10,6 +10,7 @@ rootProject.name = "i2"
 
 include(
     "i2-spring:i2-spring-boot-starter-auth",
+    "i2-spring:i2-spring-boot-starter-auth-keycloak",
 )
 include(
     "i2-keycloak:keycloak-auth:keycloak-auth-client",
