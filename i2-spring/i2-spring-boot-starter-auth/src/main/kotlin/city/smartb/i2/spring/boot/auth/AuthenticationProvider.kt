@@ -30,6 +30,10 @@ object AuthenticationProvider {
         return getPrincipal()?.getClaim<String>(ORGANIZATION_ID_CLAIM_NAME)
     }
 
+    suspend fun getIssuer(): String {
+        return getPrincipal()?.issuer.toString()
+    }
+
     suspend fun hasRole(role: String): Boolean {
         val authorities = getAuthentication()?.authorities ?: return false
         authorities.any { it.authority == role }

@@ -1,9 +1,16 @@
 package city.smartb.i2.spring.boot.auth.config
 
+import javax.annotation.security.PermitAll
+import javax.annotation.security.RolesAllowed
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.context.properties.ConfigurationProperties
+import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.ApplicationContext
 import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.Configuration
 import org.springframework.security.authorization.AuthorizationDecision
 import org.springframework.security.config.web.server.ServerHttpSecurity
 import org.springframework.security.core.Authentication
@@ -11,6 +18,7 @@ import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.oauth2.jwt.Jwt
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken
+import org.springframework.security.oauth2.server.resource.authentication.JwtIssuerReactiveAuthenticationManagerResolver
 import org.springframework.security.oauth2.server.resource.authentication.ReactiveJwtAuthenticationConverter
 import org.springframework.security.web.server.SecurityWebFilterChain
 import org.springframework.security.web.server.authorization.AuthorizationContext
@@ -18,21 +26,34 @@ import org.springframework.web.cors.CorsConfiguration
 import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
-import javax.annotation.security.PermitAll
-import javax.annotation.security.RolesAllowed
 
-interface WebSecurityConfig {
+@Suppress("UnnecessaryAbstractClass")
+@Configuration
+@ConditionalOnMissingBean(WebSecurityConfig::class)
+@EnableConfigurationProperties(I2TrustedIssuersConfig::class)
+abstract class WebSecurityConfig {
 
     companion object {
         const val SPRING_SECURITY_FILTER_CHAIN = "springSecurityFilterChain"
     }
 
-    val contextPath: String
-    val applicationContext: ApplicationContext
+    @Value("\${spring.cloud.function.web.path:}")
+    lateinit var contextPath: String
+
+    @Autowired
+    lateinit var applicationContext: ApplicationContext
+
+    @Autowired
+    lateinit var i2TrustedIssuersResolver: I2TrustedIssuersConfig
 
     @Bean
     @ConfigurationProperties(prefix = "i2.filter")
     fun authFilter(): Map<String, String> = HashMap()
+
+    @Bean
+    fun trustedIssuers(): List<String> {
+        return i2TrustedIssuersResolver.getTrustedIssuers()
+    }
 
     @Bean(SPRING_SECURITY_FILTER_CHAIN)
     @ConditionalOnExpression(NO_AUTHENTICATION_REQUIRED_EXPRESSION)
@@ -46,6 +67,7 @@ interface WebSecurityConfig {
     @Bean(SPRING_SECURITY_FILTER_CHAIN)
     @ConditionalOnExpression(AUTHENTICATION_REQUIRED_EXPRESSION)
     fun oauthAuthenticationProvider(http: ServerHttpSecurity): SecurityWebFilterChain {
+        println("AUTH")
         addAuthenticationRules(http)
         http.csrf().disable()
         http.corsConfig()
@@ -95,10 +117,11 @@ interface WebSecurityConfig {
     }
 
     fun addPermitAllRules(http: ServerHttpSecurity) {
+        println("PERMIT ALL")
         val permitAllBeans = applicationContext.getBeanNamesForAnnotation(PermitAll::class.java)
             .map { bean -> "$contextPath/$bean" }
             .toTypedArray()
-
+        println(permitAllBeans.joinToString("\n"))
         if (permitAllBeans.isNotEmpty()) {
             http.authorizeExchange()
                 .pathMatchers(*permitAllBeans)
@@ -113,20 +136,32 @@ interface WebSecurityConfig {
     }
 
     fun addJwtParsingRules(http: ServerHttpSecurity) {
-        http.oauth2ResourceServer()
-            .jwt { jwtSpec -> jwtSpec.jwtAuthenticationConverter(jwtAuthenticationConverter()) }
+        val i2TrustedIssuerJwtAuthenticationManagerResolver = I2TrustedIssuerJwtAuthenticationManagerResolver(
+            ::isTrustedIssuer,
+            jwtAuthenticationConverter()
+        )
+
+        http.oauth2ResourceServer { oauth2 ->
+            oauth2.authenticationManagerResolver(
+                JwtIssuerReactiveAuthenticationManagerResolver(i2TrustedIssuerJwtAuthenticationManagerResolver)
+            )
+        }
     }
 
-    private fun jwtAuthenticationConverter(): ReactiveJwtAuthenticationConverter {
+    fun jwtAuthenticationConverter(): ReactiveJwtAuthenticationConverter {
         return ReactiveJwtAuthenticationConverter().apply {
             setJwtGrantedAuthoritiesConverter(::jwtAuthoritiesConverter)
         }
     }
 
-    private fun jwtAuthoritiesConverter(jwt: Jwt): Flux<GrantedAuthority> {
+    fun jwtAuthoritiesConverter(jwt: Jwt): Flux<GrantedAuthority> {
         val realmAccess = jwt.claims["realm_access"] as Map<String, List<String>>?
         return realmAccess?.get("roles").orEmpty().map { role ->
             SimpleGrantedAuthority("ROLE_$role")
         }.let { Flux.fromIterable(it) }
+    }
+
+    fun isTrustedIssuer(issuer: String): Boolean {
+        return issuer in trustedIssuers()
     }
 }
