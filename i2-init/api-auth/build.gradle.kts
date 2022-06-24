@@ -5,7 +5,6 @@ plugins {
 
 dependencies {
     api(project(":i2-keycloak:keycloak-auth:keycloak-auth-client"))
-    api(project(":i2-spring:i2-spring-boot-starter-auth"))
 
     api(project(":i2-keycloak:keycloak-f2:client:client-domain"))
     implementation(project(":i2-keycloak:keycloak-f2:client:client-f2-create"))
