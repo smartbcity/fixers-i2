@@ -1,6 +1,5 @@
 package i2.config.api.config.keycloak
 
-import city.smartb.i2.spring.boot.auth.ORGANIZATION_ID_CLAIM_NAME
 import i2.config.api.auth.KeycloakAggregateService
 import i2.config.api.auth.KeycloakFinderService
 import java.util.UUID
@@ -9,6 +8,7 @@ import org.springframework.stereotype.Service
 import s2.spring.utils.logger.Logger
 
 const val SUPER_ADMIN_ROLE = "super_admin"
+const val ORGANIZATION_ID_CLAIM_NAME = "memberOf"
 
 @Service
 class KeycloakConfig(
