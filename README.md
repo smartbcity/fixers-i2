@@ -71,9 +71,10 @@ I2-init is an application used to initialize a realm on your Keycloak instance.
 
 On this realm, it can create/configure:
 
-- A client with restricted rights (this client will be most likely used by i2-gateway)
+- A client with restricted rights (this client will be most likely used by im-gateway)
 - An admin user that can manage the realm
 - SMTP server
+- Roles used by IM
 
 **A random password is generated and printed for both client and user admin.**
 
@@ -146,11 +147,26 @@ Properties prefix: `i2.init.admin-user`
 | firstname | Firstname of the user | John | admin |
 | lastname | Lastname of the user | Deuf | admin |
 
+#### Base roles
+
+I2-init creates base roles used by IM, which includes:
+- super_admin
+- im_read_user
+- im_write_user
+- im_write_organization
+- im_read_organization
+- im_read_role
+- im_write_role
+
+The ```super_admin``` role is composed with all the others roles.
+
+#### User Admin
+
+The user admin is created with the ```super_admin``` role.
+
 #### Incoming features:
 
-- Creates a realm role “admin” and assign to the admin user
 - Adds the “memberOf” claim to the jwt
-- Creates base roles (read_user, write_user ...)
 
 ## I2-config
 
