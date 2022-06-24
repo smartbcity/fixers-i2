@@ -164,10 +164,6 @@ The ```super_admin``` role is composed with all the others roles.
 
 The user admin is created with the ```super_admin``` role.
 
-#### Incoming features:
-
-- Adds the “memberOf” claim to the jwt
-
 ## I2-config
 
 I2-config is an application used to create entities on your Keycloak instance.

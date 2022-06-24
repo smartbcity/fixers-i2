@@ -1,5 +1,6 @@
 package i2.config.api.config.keycloak
 
+import city.smartb.i2.spring.boot.auth.ORGANIZATION_ID_CLAIM_NAME
 import i2.config.api.auth.KeycloakAggregateService
 import i2.config.api.auth.KeycloakFinderService
 import java.util.UUID
@@ -53,7 +54,8 @@ class KeycloakConfig(
             identifier = clientId,
             baseUrl = webClient.webUrl,
             localhostUrl = webClient.localhostUrl,
-            isStandardFlowEnabled = true
+            isStandardFlowEnabled = true,
+            protocolMappers = mapOf(ORGANIZATION_ID_CLAIM_NAME to ORGANIZATION_ID_CLAIM_NAME)
         )
     }
 
