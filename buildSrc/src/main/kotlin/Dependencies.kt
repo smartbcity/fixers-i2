@@ -5,7 +5,7 @@ import city.smartb.gradle.dependencies.add
 
 object PluginVersions {
 	val fixers = FixersPluginVersions.fixers
-	const val d2 = "0.3.1"
+	const val d2 = "0.8.2"
 	const val springBoot = FixersPluginVersions.springBoot
 	const val kotlin = FixersPluginVersions.kotlin
 }
@@ -19,7 +19,7 @@ object Versions {
 	const val springOauth2 = "5.6.0"
 
 	const val kdatetime = "0.1.1"
-	const val keycloak = "15.0.1"
+	const val keycloak = "18.0.0"
 
 	const val testcontainers = FixersVersions.Test.testcontainers
 }

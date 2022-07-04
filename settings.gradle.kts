@@ -9,28 +9,8 @@ pluginManagement {
 rootProject.name = "i2"
 
 include(
-    "i2-commons:i2-commons-api",
-    "i2-commons:i2-commons-domain",
-)
-include(
     "i2-spring:i2-spring-boot-starter-auth",
-    "i2-gateway:api-gateway"
-)
-include(
-    "i2-f2:config",
-    "i2-f2:organization:organization-domain",
-    "i2-f2:organization:organization-f2-create",
-    "i2-f2:organization:organization-f2-query",
-    "i2-f2:organization:organization-f2-update",
-    "i2-f2:i2-user:i2-user-domain",
-    "i2-f2:i2-user:i2-user-f2-create",
-    "i2-f2:i2-user:i2-user-f2-query",
-    "i2-f2:i2-user:i2-user-f2-reset-password",
-    "i2-f2:i2-user:i2-user-f2-update",
-    "i2-f2:i2-role:i2-role-domain",
-    "i2-f2:i2-role:i2-role-f2-create",
-    "i2-f2:i2-role:i2-role-f2-add-composites",
-    "i2-f2:i2-role:i2-role-f2-update"
+    "i2-spring:i2-spring-boot-starter-auth-keycloak",
 )
 include(
     "i2-keycloak:keycloak-auth:keycloak-auth-client",
@@ -91,7 +71,4 @@ include(
 include(
     "i2-config:api-config",
     "i2-config:api-auth"
-)
-include(
-    "i2-client"
 )

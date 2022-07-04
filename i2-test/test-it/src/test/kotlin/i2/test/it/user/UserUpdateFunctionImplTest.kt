@@ -1,7 +1,7 @@
 package i2.test.it.user
 
 import f2.dsl.fnc.invoke
-import i2.commons.error.I2Exception
+import i2.keycloak.f2.commons.domain.error.I2Exception
 import i2.keycloak.f2.user.app.UserUpdateFunctionImpl
 import i2.test.bdd.assertion.AssertionKC
 import i2.test.bdd.assertion.user
@@ -13,10 +13,10 @@ import i2.test.bdd.given.group
 import i2.test.bdd.given.realm
 import i2.test.bdd.given.user
 import i2.test.bdd.testcontainers.I2KeycloakTest
+import java.util.UUID
 import kotlinx.coroutines.runBlocking
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
-import java.util.UUID
 
 class UserUpdateFunctionImplTest: I2KeycloakTest() {
 
