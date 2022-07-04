@@ -4,14 +4,14 @@ import f2.dsl.fnc.invokeWith
 import i2.config.api.auth.config.KeycloakAdminConfig
 import i2.keycloak.f2.client.domain.ClientIdentifier
 import i2.keycloak.f2.client.domain.ClientModel
+import i2.keycloak.f2.client.domain.features.query.ClientGetByClientIdentifierFunction
 import i2.keycloak.f2.client.domain.features.query.ClientGetByClientIdentifierQuery
-import i2.keycloak.f2.client.domain.features.query.ClientGetByClientIdentifierQueryFunction
 import i2.keycloak.f2.role.domain.RoleModel
 import i2.keycloak.f2.role.domain.RoleName
 import i2.keycloak.f2.role.domain.features.query.RoleGetByNameQuery
 import i2.keycloak.f2.role.domain.features.query.RoleGetByNameQueryFunction
+import i2.keycloak.f2.user.domain.features.query.UserGetByEmailFunction
 import i2.keycloak.f2.user.domain.features.query.UserGetByEmailQuery
-import i2.keycloak.f2.user.domain.features.query.UserGetByEmailQueryFunction
 import i2.keycloak.f2.user.domain.model.UserModel
 import i2.keycloak.master.domain.AuthRealm
 import org.springframework.stereotype.Service
@@ -20,9 +20,9 @@ import org.springframework.stereotype.Service
 class KeycloakFinderService(
     private val authRealm: AuthRealm,
     private val keycloakAdminConfig: KeycloakAdminConfig,
-    private val clientGetByClientIdentifierQueryFunction: ClientGetByClientIdentifierQueryFunction,
+    private val clientGetByClientIdentifierQueryFunction: ClientGetByClientIdentifierFunction,
     private val roleGetByNameQueryFunction: RoleGetByNameQueryFunction,
-    private val userGetByEmailQueryFunction: UserGetByEmailQueryFunction,
+    private val userGetByEmailQueryFunction: UserGetByEmailFunction,
 ) {
 
     suspend fun getClient(id: ClientIdentifier): ClientModel? {
