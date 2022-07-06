@@ -31,7 +31,7 @@ class GroupCreateFunctionImplTest: I2KeycloakTest() {
             realmId = realmId,
             auth = clientMaster.auth,
             name = "name-${groupUuid}",
-            attributes = mapOf("zeKey" to listOf("zeFirstValue", "zeSecondValue"))
+            attributes = mapOf("zeKey" to "zeValue")
         )
         val event = groupCreateFunction.invoke(cmd)
 
@@ -52,7 +52,7 @@ class GroupCreateFunctionImplTest: I2KeycloakTest() {
             realmId = realmId,
             auth = clientMaster.auth,
             name = "name-${groupUuid}",
-            attributes = mapOf("zeKey" to listOf("zeFirstValue", "zeSecondValue")),
+            attributes = mapOf("zeKey" to "zeValue"),
             parentGroupId = parentGroupId
         )
         val event = groupCreateFunction.invoke(cmd)
