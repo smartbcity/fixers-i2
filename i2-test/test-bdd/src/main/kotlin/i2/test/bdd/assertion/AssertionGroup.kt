@@ -50,7 +50,7 @@ class AssertionGroup(
             id: GroupId = group.id,
             name: String = group.name,
             realmRoles: List<String> = group.realmRoles,
-            attributes: Map<String, List<String>> = group.attributes,
+            attributes: Map<String, String> = group.attributes.mapValues { (_, value) -> value.first() },
 		): GroupAssert {
 			Assertions.assertThat(group.id).isEqualTo(id)
 			Assertions.assertThat(group.name).isEqualTo(name)

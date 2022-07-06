@@ -19,7 +19,7 @@ class GivenGroup(
 			realmId = realmId,
 			auth = client.auth,
 			name = "name-${groupName}",
-			attributes = mapOf("zeKey" to listOf("zeFirstValue", "zeSecondValue"))
+			attributes = mapOf("zeKey" to "zeFirstValue")
 		)
 	)
 

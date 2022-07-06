@@ -12,7 +12,7 @@ fun DataTest.groupCreateCommand(
     auth: AuthRealm,
     name: String = "group-{${UUID.randomUUID()}}",
     roles: List<String> = emptyList(),
-    attributes: Map<String, List<String>> = emptyMap(),
+    attributes: Map<String, String> = emptyMap(),
     parentGroupId: GroupId? = null
 ) = GroupCreateCommand(
     realmId = realmId,
