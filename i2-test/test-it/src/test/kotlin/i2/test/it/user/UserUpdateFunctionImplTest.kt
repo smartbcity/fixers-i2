@@ -13,10 +13,10 @@ import i2.test.bdd.given.group
 import i2.test.bdd.given.realm
 import i2.test.bdd.given.user
 import i2.test.bdd.testcontainers.I2KeycloakTest
-import java.util.UUID
 import kotlinx.coroutines.runBlocking
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
+import java.util.UUID
 
 class UserUpdateFunctionImplTest: I2KeycloakTest() {
 
@@ -35,7 +35,7 @@ class UserUpdateFunctionImplTest: I2KeycloakTest() {
 			firstname = "Sandra",
 			lastname = "Geffroi",
 			email = "${UUID.randomUUID()}@geffroi.com",
-			metadata = mapOf("memberOf" to groupId)
+			attributes = mapOf("memberOf" to groupId)
 		)
 		val updatedUserId = UserUpdateFunctionImpl().userUpdateFunction().invoke(updateCommand).id
 
@@ -44,7 +44,7 @@ class UserUpdateFunctionImplTest: I2KeycloakTest() {
 			firstname = updateCommand.firstname,
 			lastname = updateCommand.lastname,
 			email = updateCommand.email,
-			metadata = updateCommand.metadata
+			attributes = updateCommand.attributes
 		)
 	}
 

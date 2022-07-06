@@ -14,13 +14,13 @@ fun DataTest.userUpdateCommand(
     firstname: String? = null,
     lastname: String? = null,
     email: String = "$userId@mail.com",
-    metadata: Map<String, String> = emptyMap(),
+    attributes: Map<String, String> = emptyMap(),
 ) = UserUpdateCommand(
     userId = userId,
     realmId = realmId,
     firstname = firstname,
     lastname = lastname,
     email = email,
-    metadata = metadata,
+    attributes = attributes,
     auth = auth,
 )

@@ -60,7 +60,7 @@ class AssertionUser(
 			lastname: String? = user.lastName,
 			email: String = user.email,
 			isEnable: Boolean = user.isEnabled,
-			metadata: Map<String, String> = emptyMap()
+			attributes: Map<String, String> = emptyMap()
 		) {
 			Assertions.assertThat(user.id).isEqualTo(userId)
 			Assertions.assertThat(user.username).isEqualTo(username)
@@ -68,7 +68,7 @@ class AssertionUser(
 			Assertions.assertThat(user.lastName).isEqualTo(lastname)
 			Assertions.assertThat(user.email).isEqualTo(email)
 			Assertions.assertThat(user.isEnabled).isEqualTo(isEnable)
-			metadata.forEach { (key, value) ->
+			attributes.forEach { (key, value) ->
 				Assertions.assertThat(user.attributes[key]).isEqualTo(listOf(value))
 			}
 		}
