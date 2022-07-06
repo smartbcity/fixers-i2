@@ -33,6 +33,7 @@ include(
     "i2-keycloak:keycloak-f2:group:group-domain",
     "i2-keycloak:keycloak-f2:group:group-f2-create",
     "i2-keycloak:keycloak-f2:group:group-f2-query",
+    "i2-keycloak:keycloak-f2:group:group-f2-set-attributes",
     "i2-keycloak:keycloak-f2:group:group-f2-update"
 )
 include(
@@ -58,6 +59,7 @@ include(
     "i2-keycloak:keycloak-f2:user:user-f2-join-group",
     "i2-keycloak:keycloak-f2:user:user-f2-roles-grant",
     "i2-keycloak:keycloak-f2:user:user-f2-roles-revoke",
+    "i2-keycloak:keycloak-f2:user:user-f2-set-attributes",
     "i2-keycloak:keycloak-f2:user:user-f2-update"
 )
 include(
