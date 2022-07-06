@@ -83,7 +83,7 @@ class KeycloakAggregateService(
         firstname: String,
         lastname: String,
         isEnable: Boolean,
-        metadata: Map<String, String> = emptyMap(),
+        attributes: Map<String, String> = emptyMap(),
         password: String,
         realm: String
     ): UserId {
@@ -93,7 +93,7 @@ class KeycloakAggregateService(
             firstname = firstname,
             lastname = lastname,
             isEnable = isEnable,
-            metadata = metadata,
+            attributes = attributes,
             auth = authRealm,
             realmId = realm,
             password = password

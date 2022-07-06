@@ -39,7 +39,7 @@ class UserCreateFunctionImplTest : I2KeycloakTest() {
 			lastname = "Pait",
 			email = "${UUID.randomUUID()}@pait.com",
 			isEnable = true,
-			metadata = mapOf(
+			attributes = mapOf(
 				"organizationId" to UUID.randomUUID().toString()
 			),
 		)
@@ -54,7 +54,7 @@ class UserCreateFunctionImplTest : I2KeycloakTest() {
 			lastname = cmd.lastname,
 			email = cmd.email,
 			isEnable = cmd.isEnable,
-			metadata = cmd.metadata
+			attributes = cmd.attributes
 		)
 	}
 }
