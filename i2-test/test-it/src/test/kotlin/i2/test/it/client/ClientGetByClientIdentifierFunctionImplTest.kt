@@ -10,10 +10,10 @@ import i2.test.bdd.given.auth
 import i2.test.bdd.given.client
 import i2.test.bdd.given.realm
 import i2.test.bdd.testcontainers.I2KeycloakTest
-import java.util.UUID
 import kotlinx.coroutines.runBlocking
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
+import java.util.UUID
 
 class ClientGetByClientIdentifierFunctionImplTest: I2KeycloakTest() {
 
@@ -34,7 +34,7 @@ class ClientGetByClientIdentifierFunctionImplTest: I2KeycloakTest() {
 		)
 		val result = ClientGetByClientIdentifierFunctionImpl().clientGetByClientIdentifierFunction().invoke(cmd)
 
-		Assertions.assertThat(result.client).isNotNull
+		Assertions.assertThat(result.idem).isNotNull
 	}
 
 	@Test
@@ -46,6 +46,6 @@ class ClientGetByClientIdentifierFunctionImplTest: I2KeycloakTest() {
 		)
 		val result = ClientGetFunctionImpl().clientGetFunction().invoke(cmd)
 
-		Assertions.assertThat(result.client).isNull()
+		Assertions.assertThat(result.item).isNull()
 	}
 }

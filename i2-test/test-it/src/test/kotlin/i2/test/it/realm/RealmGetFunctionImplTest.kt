@@ -24,7 +24,7 @@ internal class RealmGetFunctionImplTest: I2KeycloakTest() {
 		)
 
 		val found = RealmGetFunctionImpl().realmGetFunction().invoke(cmd)
-		Assertions.assertThat(found.realm).isNotNull
+		Assertions.assertThat(found.item).isNotNull
 
 	}
 
@@ -36,6 +36,6 @@ internal class RealmGetFunctionImplTest: I2KeycloakTest() {
 		)
 
 		val found = RealmGetFunctionImpl().realmGetFunction().invoke(cmd)
-		Assertions.assertThat(found.realm).isNull()
+		Assertions.assertThat(found.item).isNull()
 	}
 }

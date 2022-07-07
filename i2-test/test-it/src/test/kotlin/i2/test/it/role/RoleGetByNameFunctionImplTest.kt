@@ -8,10 +8,10 @@ import i2.test.bdd.given.auth
 import i2.test.bdd.given.realm
 import i2.test.bdd.given.role
 import i2.test.bdd.testcontainers.I2KeycloakTest
-import java.util.UUID
 import kotlinx.coroutines.runBlocking
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
+import java.util.UUID
 
 class RoleGetByNameFunctionImplTest: I2KeycloakTest() {
 
@@ -29,7 +29,7 @@ class RoleGetByNameFunctionImplTest: I2KeycloakTest() {
 		)
 		val result = RoleGetByNameFunctionImpl().roleGetByNameFunction().invoke(cmd)
 
-		Assertions.assertThat(result.role).isNotNull
+		Assertions.assertThat(result.item).isNotNull
 	}
 
 	@Test
@@ -41,6 +41,6 @@ class RoleGetByNameFunctionImplTest: I2KeycloakTest() {
 		)
 		val result = RoleGetByNameFunctionImpl().roleGetByNameFunction().invoke(cmd)
 
-		Assertions.assertThat(result.role).isNull()
+		Assertions.assertThat(result.item).isNull()
 	}
 }
