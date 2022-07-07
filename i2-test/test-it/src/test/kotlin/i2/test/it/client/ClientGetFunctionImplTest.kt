@@ -28,7 +28,7 @@ class ClientGetFunctionImplTest: I2KeycloakTest() {
 		)
 		val result = ClientGetFunctionImpl().clientGetFunction().invoke(cmd)
 
-		Assertions.assertThat(result.client).isNotNull
+		Assertions.assertThat(result.item).isNotNull
 	}
 
 	@Test
@@ -40,6 +40,6 @@ class ClientGetFunctionImplTest: I2KeycloakTest() {
 		)
 		val result = ClientGetFunctionImpl().clientGetFunction().invoke(cmd)
 
-		Assertions.assertThat(result.client).isNull()
+		Assertions.assertThat(result.item).isNull()
 	}
 }

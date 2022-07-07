@@ -10,11 +10,11 @@ import i2.test.bdd.given.auth
 import i2.test.bdd.given.realm
 import i2.test.bdd.given.user
 import i2.test.bdd.testcontainers.I2KeycloakTest
-import java.util.UUID
 import kotlinx.coroutines.runBlocking
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
+import java.util.UUID
 
 class UserGetByEmailFunctionImplTest: I2KeycloakTest() {
 
@@ -40,7 +40,7 @@ class UserGetByEmailFunctionImplTest: I2KeycloakTest() {
 		)
 		val result = userGetByEmailFunction.invoke(cmd)
 
-		Assertions.assertThat(result.user).isNotNull
+		Assertions.assertThat(result.item).isNotNull
 	}
 
 	@Test
@@ -59,6 +59,6 @@ class UserGetByEmailFunctionImplTest: I2KeycloakTest() {
 		)
 		val result = userGetByEmailFunction.invoke(cmd)
 
-		Assertions.assertThat(result.user).isNull()
+		Assertions.assertThat(result.item).isNull()
 	}
 }

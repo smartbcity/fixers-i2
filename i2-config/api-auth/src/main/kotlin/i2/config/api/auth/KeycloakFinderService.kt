@@ -30,7 +30,7 @@ class KeycloakFinderService(
             clientIdentifier = id,
             realmId = keycloakAdminConfig.realm,
             auth = authRealm
-        ).invokeWith(clientGetByClientIdentifierQueryFunction).client
+        ).invokeWith(clientGetByClientIdentifierQueryFunction).idem
     }
 
     suspend fun getRole(name: RoleName): RoleModel? {
@@ -38,7 +38,7 @@ class KeycloakFinderService(
             name = name,
             realmId = keycloakAdminConfig.realm,
             auth = authRealm
-        ).invokeWith(roleGetByNameQueryFunction).role
+        ).invokeWith(roleGetByNameQueryFunction).item
     }
 
     suspend fun getUser(email: String): UserModel? {
@@ -46,6 +46,6 @@ class KeycloakFinderService(
             email = email,
             realmId = keycloakAdminConfig.realm,
             auth = authRealm
-        ).invokeWith(userGetByEmailQueryFunction).user
+        ).invokeWith(userGetByEmailQueryFunction).item
     }
 }

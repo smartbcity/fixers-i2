@@ -54,13 +54,13 @@ include(
     "i2-keycloak:keycloak-f2:user:user-f2-delete",
     "i2-keycloak:keycloak-f2:user:user-f2-disable",
     "i2-keycloak:keycloak-f2:user:user-f2-query",
-    "i2-keycloak:keycloak-f2:user:user-f2-reset-password",
     "i2-keycloak:keycloak-f2:user:user-f2-email-actions",
     "i2-keycloak:keycloak-f2:user:user-f2-join-group",
     "i2-keycloak:keycloak-f2:user:user-f2-roles-grant",
     "i2-keycloak:keycloak-f2:user:user-f2-roles-revoke",
     "i2-keycloak:keycloak-f2:user:user-f2-set-attributes",
-    "i2-keycloak:keycloak-f2:user:user-f2-update"
+    "i2-keycloak:keycloak-f2:user:user-f2-update",
+    "i2-keycloak:keycloak-f2:user:user-f2-update-password"
 )
 include(
     "i2-test:test-bdd",
