@@ -13,14 +13,12 @@ fun DataTest.userUpdateCommand(
     userId: UserId = UUID.randomUUID().toString(),
     firstname: String? = null,
     lastname: String? = null,
-    email: String = "$userId@mail.com",
     attributes: Map<String, String> = emptyMap(),
 ) = UserUpdateCommand(
     userId = userId,
     realmId = realmId,
     firstname = firstname,
     lastname = lastname,
-    email = email,
     attributes = attributes,
     auth = auth,
 )
