@@ -56,7 +56,7 @@ class AssertionGroup(
 			Assertions.assertThat(group.name).isEqualTo(name)
 			Assertions.assertThat(group.realmRoles).isEqualTo(realmRoles)
 			attributes.forEach { (key, value) ->
-				Assertions.assertThat(group.attributes[key]).isEqualTo(value)
+				Assertions.assertThat(group.attributes[key]).isEqualTo(listOf(value))
 			}
 			return this
 		}
