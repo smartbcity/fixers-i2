@@ -58,6 +58,7 @@ include(
     "i2-keycloak:keycloak-f2:user:user-f2-join-group",
     "i2-keycloak:keycloak-f2:user:user-f2-roles-grant",
     "i2-keycloak:keycloak-f2:user:user-f2-roles-revoke",
+    "i2-keycloak:keycloak-f2:user:user-f2-roles-set",
     "i2-keycloak:keycloak-f2:user:user-f2-set-attributes",
     "i2-keycloak:keycloak-f2:user:user-f2-update",
     "i2-keycloak:keycloak-f2:user:user-f2-update-email",
