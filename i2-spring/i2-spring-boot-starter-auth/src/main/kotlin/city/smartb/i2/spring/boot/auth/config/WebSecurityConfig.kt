@@ -1,7 +1,5 @@
 package city.smartb.i2.spring.boot.auth.config
 
-import javax.annotation.security.PermitAll
-import javax.annotation.security.RolesAllowed
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression
@@ -26,6 +24,8 @@ import org.springframework.web.cors.CorsConfiguration
 import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
+import javax.annotation.security.PermitAll
+import javax.annotation.security.RolesAllowed
 
 @Suppress("UnnecessaryAbstractClass")
 @Configuration
@@ -119,7 +119,7 @@ abstract class WebSecurityConfig {
         val permitAllBeans = applicationContext.getBeanNamesForAnnotation(PermitAll::class.java)
             .map { bean -> "$contextPath/$bean" }
             .toTypedArray()
-        println(permitAllBeans.joinToString("\n"))
+
         if (permitAllBeans.isNotEmpty()) {
             http.authorizeExchange()
                 .pathMatchers(*permitAllBeans)
