@@ -95,10 +95,15 @@ services:
       - i2_keycloak_password=${KEYCLOAK_PASSWORD}
       - i2_init_realm_name=${INIT_REALM}
       - i2_init_admin-user_username=${INIT_ADMIN_USERNAME}
+      - i2_init_admin-user_password=${INIT_ADMIN_PASSWORD}
       - i2_init_admin-user_email=${INIT_ADMIN_EMAIL}
       - i2_init_admin-user_firstname=${INIT_ADMIN_FIRSTNAME}
       - i2_init_admin-user_lastname=${INIT_ADMIN_FIRSTNAME}
+      - i2.init.admin-client=${INIT_ADMIN_CLIENT-ID}
+      - i2.init.admin-client-secret=${INIT_ADMIN_CLIENT-SECRET}
 ```
+`i2_init_admin-user_password` and `i2.init.admin-client-secret` are optional. 
+UUID password will be generated if absent
 
 ### Configuration
 
