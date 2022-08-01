@@ -18,8 +18,14 @@ class KeycloakInitConfig {
     @Value("\${i2.init.admin-client}")
     lateinit var clientId: String
 
+    @Value("\${i2.init.admin-client-secret}")
+    var clientSecret: String? = null
+
     @Value("\${i2.init.admin-user.username}")
     lateinit var username: String
+
+    @Value("\${i2.init.admin-user.password}")
+    var password: String? = null
 
     @Value("\${i2.init.admin-user.email}")
     lateinit var email: String

@@ -52,7 +52,7 @@ class KeycloakInit(
     }
 
     private suspend fun initAdminClient() = createClientIfNotExists(keycloakInitConfig.clientId) { clientId ->
-        val secret = UUID.randomUUID().toString()
+        val secret = keycloakInitConfig.clientSecret ?: UUID.randomUUID().toString()
         logger.info("Creating admin client with secret: $secret")
         keycloakAggregateService.createClient(
             identifier = clientId,
@@ -86,7 +86,7 @@ class KeycloakInit(
         if (keycloakFinderService.getUser(keycloakInitConfig.email, keycloakInitConfig.realm) != null) {
             logger.info("User admin already created")
         } else {
-            val password = UUID.randomUUID().toString()
+            val password = keycloakInitConfig.password ?: UUID.randomUUID().toString()
             logger.info("Creating user admin with password: $password")
             keycloakAggregateService.createUser(
                 username = keycloakInitConfig.username,
@@ -115,11 +115,9 @@ class KeycloakInit(
 
     private suspend fun initBaseRoles() {
         val roles = keycloakInitConfig.baseRoles()
-        roles.let {
-            roles.forEach { role ->
-                keycloakFinderService.getRole(role, keycloakInitConfig.realm)
-                    ?: keycloakAggregateService.createRole(role, "Role created with i2-init", emptyList(), keycloakInitConfig.realm)
-            }
+        roles.forEach { role ->
+            keycloakFinderService.getRole(role, keycloakInitConfig.realm)
+                ?: keycloakAggregateService.createRole(role, "Role created with i2-init", emptyList(), keycloakInitConfig.realm)
         }
     }
 
