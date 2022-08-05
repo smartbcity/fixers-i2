@@ -14,6 +14,7 @@ fun DataTest.userCreateCommand(
     lastname: String? = null,
     email: String = "$username@mail.com",
     isEnable: Boolean = true,
+    isEmailVerified: Boolean = true,
     attributes: Map<String, String> = emptyMap(),
 ) = UserCreateCommand(
      realmId = realmId,
@@ -22,6 +23,7 @@ fun DataTest.userCreateCommand(
      lastname = lastname,
      email = email,
      isEnable = isEnable,
+     isEmailVerified = isEmailVerified,
      attributes = attributes,
      auth = auth,
 )

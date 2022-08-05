@@ -93,6 +93,7 @@ class KeycloakAggregateService(
             firstname = firstname,
             lastname = lastname,
             isEnable = isEnable,
+            isEmailVerified = true,
             attributes = attributes,
             auth = authRealm,
             realmId = realm,
