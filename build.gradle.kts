@@ -15,7 +15,7 @@ plugins {
 
 allprojects {
     group = "city.smartb.i2"
-    version = System.getenv("VERSION") ?: "latest"
+    version = System.getenv("VERSION") ?: "local"
     repositories {
         mavenCentral()
         maven { url = uri("https://oss.sonatype.org/service/local/repositories/releases/content") }
