@@ -35,6 +35,7 @@ abstract class WebSecurityConfig {
 
     companion object {
         const val SPRING_SECURITY_FILTER_CHAIN = "springSecurityFilterChain"
+        const val ROLE_PREFIX = "ROLE_"
     }
 
     @Value("\${spring.cloud.function.web.path:}")
@@ -155,7 +156,7 @@ abstract class WebSecurityConfig {
     fun jwtAuthoritiesConverter(jwt: Jwt): Flux<GrantedAuthority> {
         val realmAccess = jwt.claims["realm_access"] as Map<String, List<String>>?
         return realmAccess?.get("roles").orEmpty().map { role ->
-            SimpleGrantedAuthority("ROLE_$role")
+            SimpleGrantedAuthority("$ROLE_PREFIX$role")
         }.let { Flux.fromIterable(it) }
     }
 
