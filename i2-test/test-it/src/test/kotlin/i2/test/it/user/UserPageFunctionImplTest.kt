@@ -9,11 +9,11 @@ import i2.test.bdd.given.auth
 import i2.test.bdd.given.realm
 import i2.test.bdd.given.user
 import i2.test.bdd.testcontainers.I2KeycloakTest
-import java.util.UUID
 import kotlinx.coroutines.runBlocking
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
+import java.util.UUID
 
 class UserPageFunctionImplTest: I2KeycloakTest() {
 
@@ -25,11 +25,9 @@ class UserPageFunctionImplTest: I2KeycloakTest() {
 
 	@Test
 	fun `should get page of user`(): Unit = runBlocking {
-
 		(0..6).forEach { _ ->
 			GivenKC(client).user().withUser(realmId, UUID.randomUUID().toString())
 		}
-
 
 		val cmd = UserPageQuery(
 			realmId = realmId,
@@ -37,7 +35,8 @@ class UserPageFunctionImplTest: I2KeycloakTest() {
 			page = PagePagination(
 				page = 0,
 				size = 5
-			)
+			),
+			withDisabled = false
 		)
 		val result = userPageFunction.invoke(cmd).items
 
