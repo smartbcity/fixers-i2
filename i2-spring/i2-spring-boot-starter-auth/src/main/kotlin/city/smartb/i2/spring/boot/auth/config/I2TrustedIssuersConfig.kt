@@ -6,7 +6,7 @@ import org.springframework.boot.context.properties.ConstructorBinding
 @ConfigurationProperties(prefix = "i2")
 @ConstructorBinding
 data class I2TrustedIssuersConfig (
-    private val issuers: List<I2TrustedIssuerProperties>
+    private val issuers: List<I2TrustedIssuerProperties> = emptyList(),
 ) {
 
     fun getTrustedIssuers(): List<String> {

@@ -6,7 +6,7 @@ import org.springframework.boot.context.properties.ConstructorBinding
 @ConfigurationProperties(prefix = "i2")
 @ConstructorBinding
 data class I2KeycloakConfig (
-    val issuers: List<I2KeycloakIssuers>
+    val issuers: List<I2KeycloakIssuers> = emptyList()
 ) {
     fun getConfig(): Map<String, KeycloakConfigDTO> {
         return issuers.associate {
