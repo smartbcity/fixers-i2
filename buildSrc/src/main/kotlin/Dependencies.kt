@@ -8,6 +8,7 @@ object PluginVersions {
 	val d2 = FixersPluginVersions.fixers
 	const val springBoot = FixersPluginVersions.springBoot
 	const val kotlin = FixersPluginVersions.kotlin
+	const val shadowJar = "7.1.2"
 }
 
 object Versions {
