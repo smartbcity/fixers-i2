@@ -19,13 +19,14 @@ docker: package-keycloak package-init package-config
 docs: package-storybook
 
 package-kotlin:
-	./gradlew build publishToMavenLocal publish -x test --stacktrace
+	./gradlew build publish -x test --stacktrace
 
 package-storybook:
 	@docker build -f ${STORYBOOK_DOCKERFILE} -t ${STORYBOOK_IMG} .
 	@docker push ${STORYBOOK_IMG}
 
 package-keycloak:
+	./gradlew i2-keycloak:keycloak-plugin:shadowJar
 	@docker build -f ${KEYCLOAK_DOCKERFILE} -t ${KEYCLOAK_IMG} .
 	@docker push ${KEYCLOAK_IMG}
 

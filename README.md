@@ -263,3 +263,18 @@ Data created are stored in a json file (pay attention to your mounted volume on 
 ## IM
 
 See more [here](https://docs.smartb.city/im).
+
+# Keycloak Plugin
+
+## Create a plugin
+
+1. Create a module inside `i2-keycloak:keycloak-plugin`
+2. Build it with `./gradlew i2-keycloak:keycloak-plugin:shadowJar`
+3. Build the Dockerfile located in `i2-keycloak/docker/`
+4. Enjoy
+
+(steps 2 and 3 can be done automatically with `make package-keycloak`)
+
+## I2-Event-HTTP
+
+client (xxx-web) hardcoded claim: `event-http-wehbook` = url to send the events to  

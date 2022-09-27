@@ -68,6 +68,11 @@ include(
     "i2-keycloak:keycloak-f2:user:user-f2-update-password"
 )
 include(
+    "i2-keycloak:keycloak-plugin",
+    "i2-keycloak:keycloak-plugin:keycloak-event-listener-http",
+    "i2-keycloak:keycloak-plugin:keycloak-plugin-domain",
+)
+include(
     "i2-test:test-bdd",
     "i2-test:test-it"
 )
