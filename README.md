@@ -277,7 +277,7 @@ See more [here](https://docs.smartb.city/im).
 
 ## I2-Event-HTTP
 
-client (xxx-web) hardcoded claim: `event-http-wehbook` = url to send the events to   
+client ("xxx-web" + "account") hardcoded claim: `event-http-wehbook` = url to send the events to   
  > if local and keycloak is within docker container, use ip address instead of localhost
 
 Endpoint example:
