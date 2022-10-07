@@ -83,32 +83,34 @@ class KeycloakInit(
     }
 
     private suspend fun initAdmin() {
-        if (keycloakFinderService.getUser(keycloakInitConfig.email, keycloakInitConfig.realm) != null) {
-            logger.info("User admin already created")
-        } else {
-            val password = keycloakInitConfig.password ?: UUID.randomUUID().toString()
-            logger.info("Creating user admin with password: $password")
-            keycloakAggregateService.createUser(
-                username = keycloakInitConfig.username,
-                email = keycloakInitConfig.email,
-                firstname = keycloakInitConfig.firstname,
-                lastname = keycloakInitConfig.lastname,
-                isEnable = true,
-                password = password,
-                realm = keycloakInitConfig.realm
-            ).let { userId ->
-                keycloakAggregateService.grantUser(
-                    id = userId,
-                    realm = keycloakInitConfig.realm,
-                    clientId = "realm-management",
-                    "realm-admin"
-                )
-                keycloakAggregateService.grantUser(
-                    id = userId,
-                    realm = keycloakInitConfig.realm,
-                    clientId = null,
-                    SUPER_ADMIN_ROLE
-                )
+        keycloakInitConfig.email?.let { email ->
+            if (keycloakFinderService.getUser(email, keycloakInitConfig.realm) != null) {
+                logger.info("User admin already created")
+            } else {
+                val password = keycloakInitConfig.password ?: UUID.randomUUID().toString()
+                logger.info("Creating user admin with password: $password")
+                keycloakAggregateService.createUser(
+                    username = keycloakInitConfig.username ?: email,
+                    email = email,
+                    firstname = keycloakInitConfig.firstname ?: "",
+                    lastname = keycloakInitConfig.lastname ?: "",
+                    isEnable = true,
+                    password = password,
+                    realm = keycloakInitConfig.realm
+                ).let { userId ->
+                    keycloakAggregateService.grantUser(
+                        id = userId,
+                        realm = keycloakInitConfig.realm,
+                        clientId = "realm-management",
+                        "realm-admin"
+                    )
+                    keycloakAggregateService.grantUser(
+                        id = userId,
+                        realm = keycloakInitConfig.realm,
+                        clientId = null,
+                        SUPER_ADMIN_ROLE
+                    )
+                }
             }
         }
     }

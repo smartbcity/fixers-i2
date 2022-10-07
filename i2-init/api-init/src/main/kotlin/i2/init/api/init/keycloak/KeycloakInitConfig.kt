@@ -18,23 +18,23 @@ class KeycloakInitConfig {
     @Value("\${i2.init.admin-client}")
     lateinit var clientId: String
 
-    @Value("\${i2.init.admin-client-secret}")
+    @Value("\${i2.init.admin-client-secret:#{null}}")
     var clientSecret: String? = null
 
-    @Value("\${i2.init.admin-user.username}")
-    lateinit var username: String
+    @Value("\${i2.init.admin-user.username:#{null}}")
+    var username: String? = null
 
-    @Value("\${i2.init.admin-user.password}")
+    @Value("\${i2.init.admin-user.password:#{null}}")
     var password: String? = null
 
-    @Value("\${i2.init.admin-user.email}")
-    lateinit var email: String
+    @Value("\${i2.init.admin-user.email:#{null}}")
+    var email: String? = null
 
-    @Value("\${i2.init.admin-user.firstname}")
-    lateinit var firstname: String
+    @Value("\${i2.init.admin-user.firstname:#{null}}")
+    var firstname: String? = null
 
-    @Value("\${i2.init.admin-user.lastname}")
-    lateinit var lastname: String
+    @Value("\${i2.init.admin-user.lastname:#{null}}")
+    var lastname: String? = null
 
     @Bean
     @ConfigurationProperties(prefix = "i2.init.base-roles")
