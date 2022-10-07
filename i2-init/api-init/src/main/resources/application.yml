@@ -18,11 +18,6 @@ i2:
       starttls: false
       auth: false
     admin-client: i2-api
-    admin-user:
-      username: admin
-      email: admin@admin.com
-      firstname: admin
-      lastname: admin
     base-roles:
       - super_admin
       - im_read_user
