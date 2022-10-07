@@ -280,6 +280,8 @@ See more [here](https://docs.smartb.city/im).
 client ("xxx-web" + "account") hardcoded claim: `event-http-wehbook` = url to send the events to   
  > if local and keycloak is within docker container, use ip address instead of localhost
 
+It is possible to filter the events to send from the keycloak GUI by going to Events > Login Events Settings > Save Events ON > Saved Types
+
 Endpoint example:
 ```kotlin
 @Configuration
