@@ -19,53 +19,53 @@ include(
     "i2-keycloak:keycloak-utils"
 )
 include(
-    "i2-keycloak:keycloak-f2:commons:commons-api",
-    "i2-keycloak:keycloak-f2:commons:commons-domain"
+    "i2-keycloak:keycloak-f2:commons:i2-commons-api",
+    "i2-keycloak:keycloak-f2:commons:i2-commons-domain"
 )
 include(
-    "i2-keycloak:keycloak-f2:client:client-domain",
-    "i2-keycloak:keycloak-f2:client:client-f2-create",
-    "i2-keycloak:keycloak-f2:client:client-f2-generate-secret",
-    "i2-keycloak:keycloak-f2:client:client-f2-query",
-    "i2-keycloak:keycloak-f2:client:client-f2-update",
-    "i2-keycloak:keycloak-f2:client:client-f2-roles-grant"
+    "i2-keycloak:keycloak-f2:client:i2-client-domain",
+    "i2-keycloak:keycloak-f2:client:i2-client-f2-create",
+    "i2-keycloak:keycloak-f2:client:i2-client-f2-generate-secret",
+    "i2-keycloak:keycloak-f2:client:i2-client-f2-query",
+    "i2-keycloak:keycloak-f2:client:i2-client-f2-update",
+    "i2-keycloak:keycloak-f2:client:i2-client-f2-roles-grant"
 )
 include(
-    "i2-keycloak:keycloak-f2:group:group-domain",
-    "i2-keycloak:keycloak-f2:group:group-f2-create",
-    "i2-keycloak:keycloak-f2:group:group-f2-delete",
-    "i2-keycloak:keycloak-f2:group:group-f2-disable",
-    "i2-keycloak:keycloak-f2:group:group-f2-query",
-    "i2-keycloak:keycloak-f2:group:group-f2-set-attributes",
-    "i2-keycloak:keycloak-f2:group:group-f2-update"
+    "i2-keycloak:keycloak-f2:group:i2-group-domain",
+    "i2-keycloak:keycloak-f2:group:i2-group-f2-create",
+    "i2-keycloak:keycloak-f2:group:i2-group-f2-delete",
+    "i2-keycloak:keycloak-f2:group:i2-group-f2-disable",
+    "i2-keycloak:keycloak-f2:group:i2-group-f2-query",
+    "i2-keycloak:keycloak-f2:group:i2-group-f2-set-attributes",
+    "i2-keycloak:keycloak-f2:group:i2-group-f2-update"
 )
 include(
-    "i2-keycloak:keycloak-f2:realm:realm-domain",
-    "i2-keycloak:keycloak-f2:realm:realm-f2-create",
-    "i2-keycloak:keycloak-f2:realm:realm-f2-query"
+    "i2-keycloak:keycloak-f2:realm:i2-realm-domain",
+    "i2-keycloak:keycloak-f2:realm:i2-realm-f2-create",
+    "i2-keycloak:keycloak-f2:realm:i2-realm-f2-query"
 )
 include(
-    "i2-keycloak:keycloak-f2:role:role-domain",
-    "i2-keycloak:keycloak-f2:role:role-f2-add-composites",
-    "i2-keycloak:keycloak-f2:role:role-f2-create",
-    "i2-keycloak:keycloak-f2:role:role-f2-query",
-    "i2-keycloak:keycloak-f2:role:role-f2-update"
+    "i2-keycloak:keycloak-f2:role:i2-role-domain",
+    "i2-keycloak:keycloak-f2:role:i2-role-f2-add-composites",
+    "i2-keycloak:keycloak-f2:role:i2-role-f2-create",
+    "i2-keycloak:keycloak-f2:role:i2-role-f2-query",
+    "i2-keycloak:keycloak-f2:role:i2-role-f2-update"
 )
 include(
-    "i2-keycloak:keycloak-f2:user:user-domain",
-    "i2-keycloak:keycloak-f2:user:user-f2-create",
-    "i2-keycloak:keycloak-f2:user:user-f2-delete",
-    "i2-keycloak:keycloak-f2:user:user-f2-disable",
-    "i2-keycloak:keycloak-f2:user:user-f2-query",
-    "i2-keycloak:keycloak-f2:user:user-f2-email-actions",
-    "i2-keycloak:keycloak-f2:user:user-f2-join-group",
-    "i2-keycloak:keycloak-f2:user:user-f2-roles-grant",
-    "i2-keycloak:keycloak-f2:user:user-f2-roles-revoke",
-    "i2-keycloak:keycloak-f2:user:user-f2-roles-set",
-    "i2-keycloak:keycloak-f2:user:user-f2-set-attributes",
-    "i2-keycloak:keycloak-f2:user:user-f2-update",
-    "i2-keycloak:keycloak-f2:user:user-f2-update-email",
-    "i2-keycloak:keycloak-f2:user:user-f2-update-password"
+    "i2-keycloak:keycloak-f2:user:i2-user-domain",
+    "i2-keycloak:keycloak-f2:user:i2-user-f2-create",
+    "i2-keycloak:keycloak-f2:user:i2-user-f2-delete",
+    "i2-keycloak:keycloak-f2:user:i2-user-f2-disable",
+    "i2-keycloak:keycloak-f2:user:i2-user-f2-query",
+    "i2-keycloak:keycloak-f2:user:i2-user-f2-email-actions",
+    "i2-keycloak:keycloak-f2:user:i2-user-f2-join-group",
+    "i2-keycloak:keycloak-f2:user:i2-user-f2-roles-grant",
+    "i2-keycloak:keycloak-f2:user:i2-user-f2-roles-revoke",
+    "i2-keycloak:keycloak-f2:user:i2-user-f2-roles-set",
+    "i2-keycloak:keycloak-f2:user:i2-user-f2-set-attributes",
+    "i2-keycloak:keycloak-f2:user:i2-user-f2-update",
+    "i2-keycloak:keycloak-f2:user:i2-user-f2-update-email",
+    "i2-keycloak:keycloak-f2:user:i2-user-f2-update-password"
 )
 include(
     "i2-keycloak:keycloak-plugin",
