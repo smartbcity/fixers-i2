@@ -20,7 +20,7 @@ class KeycloakUserConfig(
 class WebClient (
     val clientId: String,
     val webUrl: String,
-    val localhostUrl: String
+    val localhostUrl: String?
 )
 
 class AppClient (
