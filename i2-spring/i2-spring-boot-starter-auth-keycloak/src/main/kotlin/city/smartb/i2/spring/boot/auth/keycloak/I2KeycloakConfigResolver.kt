@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service
 class I2KeycloakConfigResolver(
     private val i2KeycloakConfig: I2KeycloakConfig
 ) {
-    suspend fun getKeycloakConfig(name: String?): KeycloakConfigDTO {
+    suspend fun getKeycloakConfig(name: String?): KeycloakConfig {
         if (name.isNullOrBlank()) {
             return i2KeycloakConfig.getConfig().values.first()
         }

@@ -8,12 +8,12 @@ import org.springframework.boot.context.properties.ConstructorBinding
 data class I2KeycloakConfig (
     val issuers: List<I2KeycloakIssuers> = emptyList()
 ) {
-    fun getConfig(): Map<String, KeycloakConfigDTO> {
+    fun getConfig(): Map<String, KeycloakConfig> {
         return issuers.associate {
-            it.name to KeycloakConfigDTO(
+            it.name to KeycloakConfig(
                 realm = it.realm,
                 authServerUrl = it.authUrl,
-                resource = it.web.clientId
+                resource = it.web?.clientId
             )
         }
     }

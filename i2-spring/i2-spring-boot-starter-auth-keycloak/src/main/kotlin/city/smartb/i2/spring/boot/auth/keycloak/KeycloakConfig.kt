@@ -1,7 +1,7 @@
 package city.smartb.i2.spring.boot.auth.keycloak
 
-data class KeycloakConfigDTO(
+data class KeycloakConfig(
     val realm: String,
     val authServerUrl: String,
-    val resource: String
+    val resource: String?
 )
