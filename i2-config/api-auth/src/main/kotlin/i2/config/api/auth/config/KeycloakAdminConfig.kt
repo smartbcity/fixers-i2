@@ -24,7 +24,6 @@ class KeycloakAdminConfig {
     fun authRealm() = AuthRealmClientSecret(
         serverUrl = serverUrl,
         realmId = realm,
-        redirectUrl = "",
         clientId = clientId,
         clientSecret = clientSecret
     )
