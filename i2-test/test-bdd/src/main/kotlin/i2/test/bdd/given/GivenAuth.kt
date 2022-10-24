@@ -27,7 +27,6 @@ class GivenAuth {
 			clientId = "admin-cli",
 			clientSecret = "test",
 			realmId = realm,
-			redirectUrl = ""
 		)
 		return AuthRealmClientBuilder().build(auth)
 	}
