@@ -6,7 +6,7 @@ class I2KeycloakIssuers(
     name: String,
     authUrl: String,
     realm: String,
-    val web: I2KeycloakProperties
+    val web: I2KeycloakProperties?
 ): I2TrustedIssuerProperties(
     name = name,
     authUrl = authUrl,
