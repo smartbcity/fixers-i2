@@ -14,11 +14,11 @@ class KeycloakConfigEndpoint(
 
     @PermitAll
     @Bean
-    fun keycloak(): (name: String) -> KeycloakConfigDTO = { name ->
+    fun keycloak(): (name: String) -> KeycloakConfig = { name ->
         runBlocking {
             val keycloakConfig = i2KeycloakConfigResolver.getKeycloakConfig(name)
 
-            KeycloakConfigDTO(
+            KeycloakConfig(
                 realm = keycloakConfig.realm,
                 authServerUrl = keycloakConfig.authServerUrl,
                 resource = keycloakConfig.resource,
