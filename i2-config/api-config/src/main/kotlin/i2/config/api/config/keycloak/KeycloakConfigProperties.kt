@@ -18,13 +18,17 @@ class KeycloakUserConfig(
 )
 
 class WebClient (
-    val clientId: String,
-    val roles: Array<String>?,
+    override val clientId: String,
+    override val roles: Array<String>?,
+    override val realmManagementRoles: Array<String>?,
+    override val secret: String?,
     val webUrl: String,
     val localhostUrl: String?
-)
+): AppClient(clientId = clientId, secret = secret, roles = roles, realmManagementRoles = realmManagementRoles)
 
 open class AppClient (
     open val clientId: String,
-    open val roles: Array<String>?
+    open val secret: String?,
+    open val roles: Array<String>?,
+    open val realmManagementRoles: Array<String>?
 )

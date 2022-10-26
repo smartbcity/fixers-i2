@@ -17,7 +17,13 @@ i2:
     app-client:
       client-id: boislocal-api
       roles:
-        - super_admin
+        - test
+      realmManagementRoles:
+        - manage-users
+        - view-users
+        - query-groups
+    roles:
+      - test
 #    users:
 #      -
 #        username: user1
@@ -27,7 +33,7 @@ i2:
 #        lastname: user1
 #        role: admin
 #    roles:
-#      - admin
+#      - test
 #      - role1
 #      - role2
 #      - role3

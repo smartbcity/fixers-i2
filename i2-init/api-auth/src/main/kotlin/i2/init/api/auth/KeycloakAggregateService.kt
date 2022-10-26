@@ -5,8 +5,8 @@ import i2.keycloak.f2.client.domain.ClientId
 import i2.keycloak.f2.client.domain.ClientIdentifier
 import i2.keycloak.f2.client.domain.features.command.ClientCreateCommand
 import i2.keycloak.f2.client.domain.features.command.ClientCreateFunction
-import i2.keycloak.f2.client.domain.features.command.ClientServiceAccountRolesGrantCommand
-import i2.keycloak.f2.client.domain.features.command.ClientServiceAccountRolesGrantFunction
+import i2.keycloak.f2.client.domain.features.command.ClientRealmManagementRolesGrantCommand
+import i2.keycloak.f2.client.domain.features.command.ClientRealmManagementRolesGrantFunction
 import i2.keycloak.f2.realm.domain.features.command.RealmCreateCommand
 import i2.keycloak.f2.realm.domain.features.command.RealmCreateFunction
 import i2.keycloak.f2.role.domain.RoleName
@@ -30,7 +30,7 @@ class KeycloakAggregateService(
     private val realmCreateFunction: RealmCreateFunction,
     private val userCreateFunction: UserCreateFunction,
     private val userRolesGrantFunction: UserRolesGrantFunction,
-    private val clientServiceAccountRolesGrantFunction: ClientServiceAccountRolesGrantFunction,
+    private val clientRealmManagementRolesGrantFunction: ClientRealmManagementRolesGrantFunction,
     private val roleCreateFunction: RoleCreateFunction,
     private val roleAddCompositesFunction: RoleAddCompositesFunction
 ) {
@@ -112,12 +112,12 @@ class KeycloakAggregateService(
     }
 
     suspend fun grantClient(id: ClientId, realm: String, roles: List<RoleName>) {
-        ClientServiceAccountRolesGrantCommand(
+        ClientRealmManagementRolesGrantCommand(
             id = id,
             roles = roles,
             auth = authRealm,
             realmId = realm
-        ).invokeWith(clientServiceAccountRolesGrantFunction)
+        ).invokeWith(clientRealmManagementRolesGrantFunction)
     }
 
     suspend fun createRole(roleName: RoleName, description: String?, composites: List<String>, realm: String) {
