@@ -2,16 +2,14 @@ package i2.config.api.config.keycloak
 
 import com.fasterxml.jackson.core.JsonParser
 import com.fasterxml.jackson.databind.DeserializationFeature
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.module.kotlin.KotlinModule
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.boot.context.properties.ConstructorBinding
-import s2.spring.utils.logger.Logger
 import java.io.File
 import java.net.MalformedURLException
 import java.net.URL
 import kotlin.system.exitProcess
+import org.slf4j.LoggerFactory
 
 const val FILE = "file:"
 
@@ -21,7 +19,7 @@ data class KeycloakConfigResolver (
     val json: String?,
     val config: KeycloakConfigProperties
 ) {
-    private val logger by Logger()
+    private val logger = LoggerFactory.getLogger(KeycloakConfigResolver::class.java)
 
     fun getConfiguration(): KeycloakConfigProperties {
         if (json == null) {

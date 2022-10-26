@@ -23,10 +23,14 @@ object Versions {
 	const val keycloak = "18.0.2"
 
 	const val testcontainers = FixersVersions.Test.testcontainers
+	const val slf4j = FixersVersions.Logging.slf4j
 }
 
 object Dependencies {
 	object Jvm {
+		fun slf4j(scope: Scope) = scope.add(
+			"org.slf4j:slf4j-api:${Versions.slf4j}",
+		)
 		fun f2(scope: Scope) = scope.add(
 			"city.smartb.f2:f2-spring-boot-starter-function-http:${Versions.f2}"
 		)

@@ -21,7 +21,8 @@ class GivenClient(
 		val cmd = DataTest.clientCreateCommand(
 			realmId = realmId,
 			clientIdentifier = clientIdentifier,
-			auth = client.auth
+			auth = client.auth,
+			isPublicClient = false
 		)
 		ClientCreateFunctionImpl().clientCreateFunction().invoke(cmd).id
 	}

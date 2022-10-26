@@ -2,10 +2,13 @@ package i2.config.api.config.keycloak
 
 import i2.config.api.auth.KeycloakAggregateService
 import i2.config.api.auth.KeycloakFinderService
+import i2.keycloak.f2.client.domain.ClientId
+import i2.keycloak.f2.client.domain.ClientIdentifier
+import i2.keycloak.f2.role.domain.RoleName
 import java.util.UUID
 import kotlinx.coroutines.runBlocking
+import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
-import s2.spring.utils.logger.Logger
 
 const val SUPER_ADMIN_ROLE = "super_admin"
 const val ORGANIZATION_ID_CLAIM_NAME = "memberOf"
@@ -16,12 +19,14 @@ class KeycloakConfig(
     private val keycloakFinderService: KeycloakFinderService,
     private val keycloakConfigResolver: KeycloakConfigResolver
 ) {
-    private val logger by Logger()
+    private val logger = LoggerFactory.getLogger(KeycloakConfig::class.java)
 
-
-    fun run() = runBlocking {
+    fun run() {
+        val config = keycloakConfigResolver.getConfiguration()
+        run(config)
+    }
+    fun run(config: KeycloakConfigProperties) = runBlocking {
         try {
-            val config = keycloakConfigResolver.getConfiguration()
             logger.info("Initializing Clients...")
             initApp(config.appClient)
             initWeb(config.webClient)
@@ -39,7 +44,7 @@ class KeycloakConfig(
         }
     }
 
-    private suspend fun initApp(appClient: AppClient) = createClientIfNotExists(appClient.clientId) { clientId ->
+    private suspend fun initApp(appClient: AppClient) = createClientIfNotExists(appClient.clientId, appClient.roles) { clientId ->
         val secret = UUID.randomUUID().toString()
         keycloakAggregateService.createClient(
             identifier = clientId,
@@ -49,21 +54,32 @@ class KeycloakConfig(
         logger.info("App secret: $secret")
     }
 
-    private suspend fun initWeb(webClient: WebClient) = createClientIfNotExists(webClient.clientId) { clientId ->
+    private suspend fun initWeb(webClient: WebClient) = createClientIfNotExists(webClient.clientId, webClient.roles) { clientId ->
         keycloakAggregateService.createClient(
             identifier = clientId,
             baseUrl = webClient.webUrl,
             localhostUrl = webClient.localhostUrl,
             isStandardFlowEnabled = true,
-            protocolMappers = mapOf(ORGANIZATION_ID_CLAIM_NAME to ORGANIZATION_ID_CLAIM_NAME)
+            protocolMappers = mapOf(ORGANIZATION_ID_CLAIM_NAME to ORGANIZATION_ID_CLAIM_NAME),
         )
     }
 
-    private suspend fun createClientIfNotExists(clientId: String, createClient: suspend (id: String) -> Unit) {
-        keycloakFinderService.getClient(clientId) ?: createClient(clientId)
+    private suspend fun createClientIfNotExists(
+        clientId: ClientId,
+        roles: Array<RoleName>?,
+        createClient: suspend (id: ClientIdentifier
+        ) -> Unit) {
+        keycloakFinderService.getClient(clientId) ?: createClient(clientId).let {
+            if(roles != null) {
+                keycloakAggregateService.grantClient(
+                    id = clientId,
+                    roles = roles.toList()
+                )
+            }
+        }
     }
 
-    private suspend fun initRoles(roles: List<String>?, roleComposites: Map<String, List<String>>?) {
+    private suspend fun initRoles(roles: List<RoleName>?, roleComposites: Map<RoleName, List<RoleName>>?) {
         roles?.let {
             roles.forEach { role ->
                 initRoleWithComposites(role)
@@ -78,7 +94,7 @@ class KeycloakConfig(
         }
     }
 
-    private suspend fun initRoleWithComposites(role: String, composites: List<String> = emptyList()) {
+    private suspend fun initRoleWithComposites(role: RoleName, composites: List<RoleName> = emptyList()) {
         keycloakFinderService.getRole(role)
             ?: keycloakAggregateService.createRole(role)
 
@@ -87,7 +103,7 @@ class KeycloakConfig(
         }
     }
 
-    private suspend fun addCompositesToAdmin(composites: List<String>) {
+    private suspend fun addCompositesToAdmin(composites: List<RoleName>) {
         keycloakAggregateService.addRoleComposites(SUPER_ADMIN_ROLE, composites)
     }
 

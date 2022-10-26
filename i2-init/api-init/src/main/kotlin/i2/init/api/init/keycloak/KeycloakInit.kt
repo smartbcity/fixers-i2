@@ -4,8 +4,8 @@ import i2.init.api.auth.KeycloakAggregateService
 import i2.init.api.auth.KeycloakFinderService
 import java.util.UUID
 import kotlinx.coroutines.runBlocking
+import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
-import s2.spring.utils.logger.Logger
 
 const val SUPER_ADMIN_ROLE = "super_admin"
 
@@ -15,7 +15,7 @@ class KeycloakInit(
     private val keycloakInitConfig: KeycloakInitConfig,
     private val keycloakFinderService: KeycloakFinderService,
 ) {
-    private val logger by Logger()
+    private val logger = LoggerFactory.getLogger(KeycloakInit::class.java)
 
     fun init() = runBlocking {
         try {
@@ -62,9 +62,8 @@ class KeycloakInit(
         ).let {
             keycloakAggregateService.grantClient(
                 id = keycloakInitConfig.clientId,
-                rolesProviderClientId = "realm-management",
                 realm = keycloakInitConfig.realm,
-                roles = listOf<String>(
+                roles = listOf(
                     "create-client",
                     "manage-clients",
                     "manage-users",
