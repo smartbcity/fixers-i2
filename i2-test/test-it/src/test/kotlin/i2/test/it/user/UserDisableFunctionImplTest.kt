@@ -28,7 +28,7 @@ internal class UserDisableFunctionImplTest: I2KeycloakTest() {
 			realmId = realmId,
 			auth = client.auth
 		)
-		val disabled = UserDisableFunctionImpl().userDisableFunction().invoke(cmd)
+		UserDisableFunctionImpl().userDisableFunction().invoke(cmd)
 
 
 		AssertionKC.user(client.keycloak).isDisabled(realmId, userId)

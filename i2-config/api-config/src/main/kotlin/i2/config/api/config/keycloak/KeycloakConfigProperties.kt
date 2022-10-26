@@ -19,10 +19,12 @@ class KeycloakUserConfig(
 
 class WebClient (
     val clientId: String,
+    val roles: Array<String>?,
     val webUrl: String,
     val localhostUrl: String?
 )
 
-class AppClient (
-    val clientId: String
+open class AppClient (
+    open val clientId: String,
+    open val roles: Array<String>?
 )

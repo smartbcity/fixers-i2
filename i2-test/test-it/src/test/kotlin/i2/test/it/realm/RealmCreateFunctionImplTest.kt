@@ -33,7 +33,7 @@ class RealmCreateFunctionImplTest : I2KeycloakTest() {
 			masterRealmAuth = masterClient.auth
 		)
 
-		val event = RealmCreateFunctionImpl().realmCreateFunction().invoke(cmd)
+		RealmCreateFunctionImpl().realmCreateFunction().invoke(cmd)
 		AssertionKC.realm(masterClient.keycloak).exist(id)
 	}
 }

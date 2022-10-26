@@ -1,20 +1,23 @@
-server:
-  port: 8083
+spring:
+  main:
+    web-application-type: none
 
 i2:
   keycloak:
     auth-server-url: http://localhost:8080/auth
-    realm: test
-    client-id: i2-api
-    client-secret: c54915d6-3498-4c8f-8143-7858fb72ef6f
+    realm: boislocal-local
+    client-id: i2-admin
+    client-secret: secret
 #  json: file:/Users/teddy/workspace/i2/i2-config/api-config/test.json
   config:
     web-client:
-      client-id: plateform-web
+      client-id: boislocal-web
       web-url: https://application.com
       localhost-url: http://localhost:3000
     app-client:
-      client-id: plateform-app
+      client-id: boislocal-api
+      roles:
+        - super_admin
 #    users:
 #      -
 #        username: user1

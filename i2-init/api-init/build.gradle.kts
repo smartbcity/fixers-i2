@@ -5,10 +5,9 @@ plugins {
 }
 
 dependencies {
-    implementation("city.smartb.f2:f2-spring-boot-starter-function-http:${Versions.f2}")
-    implementation("city.smartb.s2:s2-spring-boot-starter-utils-logger:${Versions.s2}")
-
+    implementation("city.smartb.f2:f2-spring-boot-starter-function:${Versions.f2}")
     implementation(project(":i2-init:api-auth"))
+    Dependencies.Jvm.slf4j(::implementation)
 }
 
 tasks.withType<org.springframework.boot.gradle.tasks.bundling.BootBuildImage> {
