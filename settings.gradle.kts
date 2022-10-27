@@ -69,7 +69,9 @@ include(
 )
 include(
     "i2-keycloak:keycloak-plugin",
+    "i2-keycloak:keycloak-plugin:keycloak-generate-action-token",
     "i2-keycloak:keycloak-plugin:keycloak-event-listener-http",
+    "i2-keycloak:keycloak-plugin:keycloak-plugin-client",
     "i2-keycloak:keycloak-plugin:keycloak-plugin-domain",
 )
 include(
