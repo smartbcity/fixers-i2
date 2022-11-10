@@ -34,7 +34,7 @@ class RolePageFunctionImplTest: I2KeycloakTest() {
 				size = 5
 			)
 		)
-		val result = RolePageFunctionImpl().rolePageFunction().invoke(cmd)
+		val result = RolePageFunctionImpl().i2RolePageFunction().invoke(cmd)
 
 		Assertions.assertThat(result.page.items).hasSize(cmd.page.size!!)
 		Assertions.assertThat(result.page.total).isEqualTo(existingRoles.size + newRoles.size.toLong())
