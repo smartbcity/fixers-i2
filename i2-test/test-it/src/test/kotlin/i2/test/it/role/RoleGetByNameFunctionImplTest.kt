@@ -27,7 +27,7 @@ class RoleGetByNameFunctionImplTest: I2KeycloakTest() {
 			realmId = realmId,
 			auth = client.auth
 		)
-		val result = RoleGetByNameFunctionImpl().roleGetByNameFunction().invoke(cmd)
+		val result = RoleGetByNameFunctionImpl().i2RoleGetByNameFunction().invoke(cmd)
 
 		Assertions.assertThat(result.item).isNotNull
 	}
@@ -39,7 +39,7 @@ class RoleGetByNameFunctionImplTest: I2KeycloakTest() {
 			realmId = realmId,
 			auth = client.auth
 		)
-		val result = RoleGetByNameFunctionImpl().roleGetByNameFunction().invoke(cmd)
+		val result = RoleGetByNameFunctionImpl().i2RoleGetByNameFunction().invoke(cmd)
 
 		Assertions.assertThat(result.item).isNull()
 	}
