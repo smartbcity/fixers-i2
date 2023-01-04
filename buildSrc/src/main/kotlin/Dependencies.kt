@@ -17,7 +17,7 @@ object Versions {
 	const val ktor = FixersVersions.Kotlin.ktor
 
 	const val springBoot = PluginVersions.springBoot
-	const val springOauth2 = "5.6.0"
+	const val springOauth2 = "6.0.1"
 
 	const val kdatetime = "0.1.1"
 	const val keycloak = "18.0.2"

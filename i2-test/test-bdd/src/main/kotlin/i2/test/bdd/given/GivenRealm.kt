@@ -4,6 +4,7 @@ import i2.keycloak.master.domain.RealmId
 import i2.keycloak.realm.client.config.AuthRealmClient
 import i2.keycloak.realm.client.config.buildRealmRepresentation
 import i2.keycloak.realm.client.config.realmsResource
+import javax.ws.rs.NotFoundException
 import org.assertj.core.api.Assertions
 import org.keycloak.representations.idm.RealmRepresentation
 
@@ -23,7 +24,7 @@ class GivenRealm(
 		try {
 			val realm = getRealmRepresentation(id)
 			Assertions.assertThat(realm).isNotNull
-		} catch (e: javax.ws.rs.NotFoundException) {
+		} catch (e: NotFoundException) {
 			create(id)
 		}
 		return id
@@ -36,7 +37,7 @@ class GivenRealm(
 			)
 			client.realmsResource().create(realm)
 			getRealmRepresentation(id)
-		} catch (e: javax.ws.rs.NotFoundException) {
+		} catch (e: NotFoundException) {
 			Assertions.fail("Error initializing realm [${id}]")
 		}
 	}

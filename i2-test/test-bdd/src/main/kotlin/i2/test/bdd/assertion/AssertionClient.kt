@@ -3,6 +3,7 @@ package i2.test.bdd.assertion
 import i2.keycloak.f2.client.domain.ClientId
 import i2.keycloak.f2.client.domain.ClientIdentifier
 import i2.keycloak.master.domain.RealmId
+import javax.ws.rs.NotFoundException
 import org.assertj.core.api.Assertions
 import org.keycloak.admin.client.Keycloak
 import org.keycloak.representations.idm.ClientRepresentation
@@ -19,7 +20,7 @@ class AssertionClient(
 		try {
 			val realm = keycloak.realm(realmId).clients().get(id)
 			Assertions.assertThat(realm).isNotNull
-		} catch (e: javax.ws.rs.NotFoundException) {
+		} catch (e: NotFoundException) {
 			Assertions.fail("Client[${id} not found]", e)
 		}
 	}
@@ -28,7 +29,7 @@ class AssertionClient(
 		try {
 			keycloak.realm(realmId).clients().get(id).toRepresentation()
 			Assertions.fail("Client[${id} exists]")
-		} catch (e: javax.ws.rs.NotFoundException) {
+		} catch (e: NotFoundException) {
 			Assertions.assertThat(true).isTrue
 		}
 	}

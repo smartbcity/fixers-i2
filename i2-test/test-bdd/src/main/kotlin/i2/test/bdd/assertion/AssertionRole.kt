@@ -3,6 +3,7 @@ package i2.test.bdd.assertion
 import i2.keycloak.f2.role.domain.RoleId
 import i2.keycloak.f2.role.domain.RoleName
 import i2.keycloak.master.domain.RealmId
+import javax.ws.rs.NotFoundException
 import org.assertj.core.api.Assertions
 import org.keycloak.admin.client.Keycloak
 import org.keycloak.admin.client.resource.RoleResource
@@ -20,7 +21,7 @@ class AssertionRole(
 		try {
 			val role = getRoleRepresentation(realmId, roleName)
 			Assertions.assertThat(role).isNotNull
-		} catch (e: javax.ws.rs.NotFoundException) {
+		} catch (e: NotFoundException) {
 			Assertions.fail("Role[${roleName} not found]", e)
 		}
 	}
@@ -29,7 +30,7 @@ class AssertionRole(
 		try {
 			getRoleRepresentation(realmId, roleName)
 			Assertions.fail("Role[${roleName} exists]")
-		} catch (e: javax.ws.rs.NotFoundException) {
+		} catch (e: NotFoundException) {
 			Assertions.assertThat(true).isTrue
 		}
 	}

@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.JsonParser
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import org.springframework.boot.context.properties.ConfigurationProperties
-import org.springframework.boot.context.properties.ConstructorBinding
 import java.io.File
 import java.net.MalformedURLException
 import java.net.URL
@@ -14,7 +13,6 @@ import org.slf4j.LoggerFactory
 const val FILE = "file:"
 
 @ConfigurationProperties(prefix = "i2")
-@ConstructorBinding
 data class KeycloakConfigResolver (
     val json: String?,
     val config: KeycloakConfigProperties

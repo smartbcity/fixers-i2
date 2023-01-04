@@ -1,6 +1,6 @@
 package city.smartb.i2.spring.boot.auth.keycloak
 
-import javax.annotation.security.PermitAll
+import jakarta.annotation.security.PermitAll
 import kotlinx.coroutines.runBlocking
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean
