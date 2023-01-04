@@ -2,6 +2,7 @@ package i2.test.bdd.assertion
 
 import i2.keycloak.f2.group.domain.model.GroupId
 import i2.keycloak.master.domain.RealmId
+import javax.ws.rs.NotFoundException
 import org.assertj.core.api.Assertions
 import org.keycloak.admin.client.Keycloak
 import org.keycloak.representations.idm.GroupRepresentation
@@ -18,7 +19,7 @@ class AssertionGroup(
 		try {
 			val group = getGroupRepresentation(realmId, id)
 			Assertions.assertThat(group).isNotNull
-		} catch (e: javax.ws.rs.NotFoundException) {
+		} catch (e: NotFoundException) {
 			Assertions.fail("Group[${id}] not found", e)
 		}
 	}
@@ -27,7 +28,7 @@ class AssertionGroup(
 		try {
 			getGroupRepresentation(realmId, id)
 			Assertions.fail("Group[${id}] exists")
-		} catch (e: javax.ws.rs.NotFoundException) {
+		} catch (e: NotFoundException) {
 			Assertions.assertThat(true).isTrue
 		}
 	}
@@ -65,7 +66,7 @@ class AssertionGroup(
 			try {
 				val parentGroup = getGroupRepresentation(realmId, parentGroupId)
 				Assertions.assertThat(parentGroup.subGroups.map { it.id }).contains(group.id)
-			} catch (e: javax.ws.rs.NotFoundException) {
+			} catch (e: NotFoundException) {
 				Assertions.fail("Parent Group[${parentGroupId}] not found", e)
 			}
 		}

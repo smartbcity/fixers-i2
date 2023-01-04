@@ -1,5 +1,6 @@
 package i2.test.bdd.assertion
 
+import javax.ws.rs.NotFoundException
 import org.assertj.core.api.Assertions
 import org.keycloak.admin.client.Keycloak
 
@@ -14,7 +15,7 @@ class RealmAssertion(
 		try {
 			val realm = keycloak.realm(id).toRepresentation()
 			Assertions.assertThat(realm).isNotNull
-		} catch (e: javax.ws.rs.NotFoundException) {
+		} catch (e: NotFoundException) {
 			Assertions.fail("Realm[${id} not found]", e)
 		}
 	}
@@ -23,7 +24,7 @@ class RealmAssertion(
 		try {
 			keycloak.realm(id).toRepresentation()
 			Assertions.fail("Realm[${id} exist]")
-		} catch (e: javax.ws.rs.NotFoundException) {
+		} catch (e: NotFoundException) {
 			Assertions.assertThat(true).isTrue
 		}
 	}

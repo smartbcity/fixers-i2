@@ -35,7 +35,7 @@ class ClientPageFunctionImplTest: I2KeycloakTest() {
 				size = 5
 			)
 		)
-		val result = ClientPageFunctionImpl().clientPageFunctionImpl().invoke(cmd)
+		val result = ClientPageFunctionImpl().clientPageFunction().invoke(cmd)
 
 		Assertions.assertThat(result.page.items).hasSize(cmd.page.size!!)
 		Assertions.assertThat(result.page.total).isEqualTo(expectedClients.size + existingClients.size.toLong())
@@ -61,7 +61,7 @@ class ClientPageFunctionImplTest: I2KeycloakTest() {
 				size = pageSize
 			)
 		)
-		val result = ClientPageFunctionImpl().clientPageFunctionImpl().invoke(cmd)
+		val result = ClientPageFunctionImpl().clientPageFunction().invoke(cmd)
 
 		Assertions.assertThat(result.page.items).hasSize(lastPageSize)
 		Assertions.assertThat(result.page.total).isEqualTo(expectedClients.size + existingClients.size.toLong())
@@ -79,7 +79,7 @@ class ClientPageFunctionImplTest: I2KeycloakTest() {
 				size = existingClients.size
 			)
 		)
-		val result = ClientPageFunctionImpl().clientPageFunctionImpl().invoke(cmd)
+		val result = ClientPageFunctionImpl().clientPageFunction().invoke(cmd)
 
 		Assertions.assertThat(result.page.items).hasSize(0)
 		Assertions.assertThat(result.page.total).isEqualTo(existingClients.size.toLong())

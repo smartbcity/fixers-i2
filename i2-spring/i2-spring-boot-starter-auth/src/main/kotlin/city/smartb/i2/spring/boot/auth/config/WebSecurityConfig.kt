@@ -24,8 +24,8 @@ import org.springframework.web.cors.CorsConfiguration
 import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
-import javax.annotation.security.PermitAll
-import javax.annotation.security.RolesAllowed
+import jakarta.annotation.security.PermitAll
+import jakarta.annotation.security.RolesAllowed
 
 @Suppress("UnnecessaryAbstractClass")
 @Configuration

@@ -1,6 +1,7 @@
 package i2.test.bdd.assertion
 
 import i2.keycloak.f2.user.domain.model.UserId
+import javax.ws.rs.NotFoundException
 import org.assertj.core.api.Assertions
 import org.keycloak.admin.client.Keycloak
 import org.keycloak.representations.idm.UserRepresentation
@@ -17,7 +18,7 @@ class AssertionUser(
 		try {
 			val user = getUserRepresentation(realmId, id)
 			Assertions.assertThat(user).isNotNull
-		} catch (e: javax.ws.rs.NotFoundException) {
+		} catch (e: NotFoundException) {
 			Assertions.fail("User[${id} not found]", e)
 		}
 	}
@@ -26,7 +27,7 @@ class AssertionUser(
 		try {
 			val user = getUserRepresentation(realmId, id)
 			Assertions.assertThat(user.isEnabled).isFalse()
-		} catch (e: javax.ws.rs.NotFoundException) {
+		} catch (e: NotFoundException) {
 			Assertions.fail("Realm[${id} not found]", e)
 		}
 	}
@@ -35,7 +36,7 @@ class AssertionUser(
 		try {
 			getUserRepresentation(realmId, id)
 			Assertions.fail("Realm[${id} exist]")
-		} catch (e: javax.ws.rs.NotFoundException) {
+		} catch (e: NotFoundException) {
 			Assertions.assertThat(true).isTrue
 		}
 	}
