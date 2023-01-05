@@ -2,7 +2,7 @@ package i2.test.it.role
 
 import f2.dsl.cqrs.page.PagePagination
 import f2.dsl.fnc.invoke
-import i2.keycloak.f2.role.app.RolePageFunctionImpl
+import i2.keycloak.f2.role.query.RolePageFunctionImpl
 import i2.keycloak.f2.role.domain.features.query.RolePageQuery
 import i2.test.bdd.given.GivenKC
 import i2.test.bdd.given.auth

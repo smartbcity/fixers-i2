@@ -2,7 +2,7 @@ package i2.test.bdd.given
 
 import f2.dsl.fnc.invoke
 import i2.keycloak.f2.realm.domain.RealmId
-import i2.keycloak.f2.role.app.RoleCreateFunctionImpl
+import i2.keycloak.f2.role.command.RoleCreateFunctionImpl
 import i2.keycloak.f2.role.domain.RoleName
 import i2.keycloak.f2.role.domain.features.command.RoleCreateCommand
 import i2.keycloak.realm.client.config.AuthRealmClient

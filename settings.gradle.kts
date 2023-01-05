@@ -34,15 +34,13 @@ include(
 )
 include(
     "i2-keycloak:keycloak-f2:realm:i2-realm-domain",
-    "i2-keycloak:keycloak-f2:realm:i2-realm-f2-create",
+    "i2-keycloak:keycloak-f2:realm:i2-realm-f2-command",
     "i2-keycloak:keycloak-f2:realm:i2-realm-f2-query"
 )
 include(
     "i2-keycloak:keycloak-f2:role:i2-role-domain",
-    "i2-keycloak:keycloak-f2:role:i2-role-f2-add-composites",
-    "i2-keycloak:keycloak-f2:role:i2-role-f2-create",
-    "i2-keycloak:keycloak-f2:role:i2-role-f2-query",
-    "i2-keycloak:keycloak-f2:role:i2-role-f2-update"
+    "i2-keycloak:keycloak-f2:role:i2-role-f2-command",
+    "i2-keycloak:keycloak-f2:role:i2-role-f2-query"
 )
 include(
     "i2-keycloak:keycloak-f2:user:i2-user-domain",
