@@ -1,0 +1,2 @@
+city.smartb.i2.spring.boot.auth.keycloak.KeycloakConfigEndpoint
+city.smartb.i2.spring.boot.auth.keycloak.I2KeycloakConfigResolver
