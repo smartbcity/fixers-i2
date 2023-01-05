@@ -11,12 +11,11 @@ dependencies {
     implementation(project(":i2-keycloak:keycloak-f2:client:i2-client-f2-query"))
 
     api(project(":i2-keycloak:keycloak-f2:realm:i2-realm-domain"))
-    implementation(project(":i2-keycloak:keycloak-f2:realm:i2-realm-f2-create"))
+    implementation(project(":i2-keycloak:keycloak-f2:realm:i2-realm-f2-command"))
     implementation(project(":i2-keycloak:keycloak-f2:realm:i2-realm-f2-query"))
 
     api(project(":i2-keycloak:keycloak-f2:role:i2-role-domain"))
-    implementation(project(":i2-keycloak:keycloak-f2:role:i2-role-f2-add-composites"))
-    implementation(project(":i2-keycloak:keycloak-f2:role:i2-role-f2-create"))
+    implementation(project(":i2-keycloak:keycloak-f2:role:i2-role-f2-command"))
     implementation(project(":i2-keycloak:keycloak-f2:role:i2-role-f2-query"))
 
     api(project(":i2-keycloak:keycloak-f2:user:i2-user-domain"))

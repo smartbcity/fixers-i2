@@ -1,7 +1,7 @@
 package i2.test.it.realm
 
 import f2.dsl.fnc.invoke
-import i2.keycloak.f2.realm.app.RealmCreateFunctionImpl
+import i2.keycloak.f2.realm.command.RealmCreateFunctionImpl
 import i2.keycloak.f2.realm.domain.features.command.RealmCreateCommand
 import i2.test.bdd.assertion.AssertionKC
 import i2.test.bdd.assertion.realm
