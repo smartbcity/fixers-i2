@@ -1,7 +1,7 @@
 package i2.test.bdd.given
 
 import f2.dsl.fnc.invoke
-import i2.keycloak.f2.group.app.GroupCreateFunctionImpl
+import i2.keycloak.f2.group.command.GroupCreateFunctionImpl
 import i2.keycloak.f2.group.domain.features.command.GroupCreateCommand
 import i2.keycloak.f2.group.domain.model.GroupId
 import i2.keycloak.f2.user.domain.model.UserId
