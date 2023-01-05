@@ -2,7 +2,7 @@ package i2.test.it.client
 
 import f2.dsl.cqrs.page.PagePagination
 import f2.dsl.fnc.invoke
-import i2.keycloak.f2.client.command.ClientPageFunctionImpl
+import i2.keycloak.f2.client.query.ClientPageFunctionImpl
 import i2.keycloak.f2.client.domain.features.query.ClientPageQuery
 import i2.test.bdd.given.GivenKC
 import i2.test.bdd.given.auth

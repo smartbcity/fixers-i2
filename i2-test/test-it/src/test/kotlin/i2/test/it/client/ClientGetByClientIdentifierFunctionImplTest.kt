@@ -1,8 +1,8 @@
 package i2.test.it.client
 
 import f2.dsl.fnc.invoke
-import i2.keycloak.f2.client.command.ClientGetByClientIdentifierFunctionImpl
-import i2.keycloak.f2.client.command.ClientGetFunctionImpl
+import i2.keycloak.f2.client.query.ClientGetByClientIdentifierFunctionImpl
+import i2.keycloak.f2.client.query.ClientGetFunctionImpl
 import i2.keycloak.f2.client.domain.features.query.ClientGetByClientIdentifierQuery
 import i2.keycloak.f2.client.domain.features.query.ClientGetQuery
 import i2.test.bdd.given.GivenKC
