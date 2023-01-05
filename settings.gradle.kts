@@ -29,12 +29,8 @@ include(
 )
 include(
     "i2-keycloak:keycloak-f2:group:i2-group-domain",
-    "i2-keycloak:keycloak-f2:group:i2-group-f2-create",
-    "i2-keycloak:keycloak-f2:group:i2-group-f2-delete",
-    "i2-keycloak:keycloak-f2:group:i2-group-f2-disable",
-    "i2-keycloak:keycloak-f2:group:i2-group-f2-query",
-    "i2-keycloak:keycloak-f2:group:i2-group-f2-set-attributes",
-    "i2-keycloak:keycloak-f2:group:i2-group-f2-update"
+    "i2-keycloak:keycloak-f2:group:i2-group-f2-command",
+    "i2-keycloak:keycloak-f2:group:i2-group-f2-query"
 )
 include(
     "i2-keycloak:keycloak-f2:realm:i2-realm-domain",

@@ -6,10 +6,11 @@ plugins {
 
 dependencies {
 
+    api(project(":i2-keycloak:keycloak-f2:client:i2-client-f2-query"))
     api(project(":i2-keycloak:keycloak-f2:client:i2-client-f2-command"))
 
-    api(project(":i2-keycloak:keycloak-f2:group:i2-group-f2-create"))
-    api(project(":i2-keycloak:keycloak-f2:group:i2-group-f2-update"))
+    api(project(":i2-keycloak:keycloak-f2:group:i2-group-f2-query"))
+    api(project(":i2-keycloak:keycloak-f2:group:i2-group-f2-command"))
 
     api(project(":i2-keycloak:keycloak-f2:realm:i2-realm-f2-create"))
     api(project(":i2-keycloak:keycloak-f2:realm:i2-realm-f2-query"))
