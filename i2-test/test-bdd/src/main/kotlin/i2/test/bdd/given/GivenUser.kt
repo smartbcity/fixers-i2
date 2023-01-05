@@ -1,7 +1,7 @@
 package i2.test.bdd.given
 
 import f2.dsl.fnc.invoke
-import i2.keycloak.f2.user.app.UserCreateFunctionImpl
+import i2.keycloak.f2.user.command.UserCreateFunctionImpl
 import i2.keycloak.f2.user.domain.features.command.UserCreateCommand
 import i2.keycloak.f2.user.domain.model.UserId
 import i2.keycloak.master.domain.RealmId

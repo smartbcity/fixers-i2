@@ -1,7 +1,7 @@
 package i2.test.it.user
 
 import f2.dsl.fnc.invoke
-import i2.keycloak.f2.user.app.UserDeleteFunctionImpl
+import i2.keycloak.f2.user.command.UserDeleteFunctionImpl
 import i2.keycloak.f2.user.domain.features.command.UserDeleteCommand
 import i2.test.bdd.assertion.AssertionKC
 import i2.test.bdd.assertion.user

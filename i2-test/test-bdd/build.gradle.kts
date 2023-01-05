@@ -21,13 +21,8 @@ dependencies {
     api(project(":i2-keycloak:keycloak-f2:role:i2-role-f2-create"))
     api(project(":i2-keycloak:keycloak-f2:role:i2-role-f2-query"))
 
-    api(project(":i2-keycloak:keycloak-f2:user:i2-user-f2-create"))
-    api(project(":i2-keycloak:keycloak-f2:user:i2-user-f2-disable"))
-    api(project(":i2-keycloak:keycloak-f2:user:i2-user-f2-delete"))
     api(project(":i2-keycloak:keycloak-f2:user:i2-user-f2-query"))
-    api(project(":i2-keycloak:keycloak-f2:user:i2-user-f2-roles-grant"))
-    api(project(":i2-keycloak:keycloak-f2:user:i2-user-f2-roles-revoke"))
-    api(project(":i2-keycloak:keycloak-f2:user:i2-user-f2-update"))
+    api(project(":i2-keycloak:keycloak-f2:user:i2-user-f2-command"))
 
     api(project(":i2-keycloak:keycloak-auth:keycloak-auth-client"))
 

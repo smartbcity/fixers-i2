@@ -1,7 +1,7 @@
 package i2.test.it.user
 
 import f2.dsl.fnc.invoke
-import i2.keycloak.f2.user.app.UserDisableFunctionImpl
+import i2.keycloak.f2.user.command.UserDisableFunctionImpl
 import i2.keycloak.f2.user.domain.features.command.UserDisableCommand
 import i2.test.bdd.assertion.AssertionKC
 import i2.test.bdd.assertion.user
