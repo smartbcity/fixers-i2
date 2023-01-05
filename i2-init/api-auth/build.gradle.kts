@@ -7,10 +7,8 @@ dependencies {
     api(project(":i2-keycloak:keycloak-auth:keycloak-auth-client"))
 
     api(project(":i2-keycloak:keycloak-f2:client:i2-client-domain"))
-    implementation(project(":i2-keycloak:keycloak-f2:client:i2-client-f2-create"))
+    implementation(project(":i2-keycloak:keycloak-f2:client:i2-client-f2-command"))
     implementation(project(":i2-keycloak:keycloak-f2:client:i2-client-f2-query"))
-    implementation(project(":i2-keycloak:keycloak-f2:client:i2-client-f2-generate-secret"))
-    implementation(project(":i2-keycloak:keycloak-f2:client:i2-client-f2-roles-grant"))
 
     api(project(":i2-keycloak:keycloak-f2:realm:i2-realm-domain"))
     implementation(project(":i2-keycloak:keycloak-f2:realm:i2-realm-f2-create"))

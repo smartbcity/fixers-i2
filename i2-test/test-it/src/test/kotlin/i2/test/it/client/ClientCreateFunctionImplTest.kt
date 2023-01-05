@@ -1,7 +1,7 @@
 package i2.test.it.client
 
 import f2.dsl.fnc.invoke
-import i2.keycloak.f2.client.app.ClientCreateFunctionImpl
+import i2.keycloak.f2.client.command.ClientCreateFunctionImpl
 import i2.keycloak.f2.client.domain.features.command.ClientCreateCommand
 import i2.test.bdd.assertion.AssertionKC
 import i2.test.bdd.assertion.client

@@ -31,7 +31,7 @@ object Dependencies {
 		fun slf4j(scope: Scope) = scope.add(
 			"org.slf4j:slf4j-api:${Versions.slf4j}",
 		)
-		fun f2(scope: Scope) = scope.add(
+		fun f2Http(scope: Scope) = scope.add(
 			"city.smartb.f2:f2-spring-boot-starter-function-http:${Versions.f2}"
 		)
 
