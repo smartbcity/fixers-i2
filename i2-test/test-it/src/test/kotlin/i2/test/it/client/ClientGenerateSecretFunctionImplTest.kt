@@ -1,7 +1,7 @@
 package i2.test.it.client
 
 import f2.dsl.fnc.invoke
-import i2.keycloak.f2.client.app.ClientGenerateSecretFunctionImpl
+import i2.keycloak.f2.client.command.ClientGenerateSecretFunctionImpl
 import i2.keycloak.f2.client.domain.features.command.ClientGenerateSecretCommand
 import i2.test.bdd.given.GivenKC
 import i2.test.bdd.given.auth

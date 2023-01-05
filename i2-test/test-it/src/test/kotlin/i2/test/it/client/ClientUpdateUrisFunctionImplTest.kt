@@ -1,7 +1,7 @@
 package i2.test.it.client
 
 import f2.dsl.fnc.invoke
-import i2.keycloak.f2.client.app.ClientUpdateUrisFunctionImpl
+import i2.keycloak.f2.client.command.ClientUpdateUrisFunctionImpl
 import i2.keycloak.f2.commons.domain.error.I2Exception
 import i2.test.bdd.assertion.AssertionKC
 import i2.test.bdd.assertion.client

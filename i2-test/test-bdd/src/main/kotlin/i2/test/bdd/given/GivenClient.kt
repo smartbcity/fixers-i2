@@ -1,7 +1,7 @@
 package i2.test.bdd.given
 
 import f2.dsl.fnc.invoke
-import i2.keycloak.f2.client.app.ClientCreateFunctionImpl
+import i2.keycloak.f2.client.command.ClientCreateFunctionImpl
 import i2.keycloak.f2.client.domain.ClientIdentifier
 import i2.keycloak.master.domain.RealmId
 import i2.keycloak.realm.client.config.AuthRealmClient
