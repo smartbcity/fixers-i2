@@ -58,11 +58,10 @@ include(
     "i2-test:test-bdd",
     "i2-test:test-it"
 )
+
 include(
-    "i2-init:api-init",
-    "i2-init:api-auth"
-)
-include(
-    "i2-config:api-config",
-    "i2-config:api-auth"
+    "i2-app:init:app-init-gateway",
+    "i2-app:init:app-init-service",
+    "i2-app:config:app-config-gateway",
+    "i2-app:config:app-config-service"
 )
