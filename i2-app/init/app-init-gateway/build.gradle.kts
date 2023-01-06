@@ -5,8 +5,8 @@ plugins {
 }
 
 dependencies {
-    implementation("city.smartb.f2:f2-spring-boot-starter-function-http:${Versions.f2}")
     implementation(project(":i2-app:init:app-init-service"))
+    Dependencies.Jvm.f2Http(::implementation)
     Dependencies.Jvm.slf4j(::implementation)
 }
 
