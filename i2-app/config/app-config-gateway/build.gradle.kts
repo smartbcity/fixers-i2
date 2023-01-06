@@ -6,7 +6,7 @@ plugins {
 
 dependencies {
     implementation("city.smartb.f2:f2-spring-boot-starter-function-http:${Versions.f2}")
-    implementation(project(":i2-config:api-auth"))
+    implementation(project(":i2-app:config:app-config-service"))
     Dependencies.Jvm.slf4j(::implementation)
 }
 
