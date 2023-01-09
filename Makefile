@@ -8,11 +8,11 @@ KEYCLOAK_IMG        := ${KEYCLOAK_NAME}:${VERSION}
 
 I2_INIT_NAME	   	:= smartbcity/i2-init
 I2_INIT_IMG	    	:= ${I2_INIT_NAME}:${VERSION}
-I2_INIT_PACKAGE	   	:= :i2-init:api-init:bootBuildImage
+I2_INIT_PACKAGE	   	:= :i2-app:init:app-init-gateway:bootBuildImage
 
 I2_CONFIG_NAME	   	:= smartbcity/i2-config
 I2_CONFIG_IMG	    := ${I2_CONFIG_NAME}:${VERSION}
-I2_CONFIG_PACKAGE	:= :i2-config:api-config:bootBuildImage
+I2_CONFIG_PACKAGE	:= :i2-app:config:app-config-gateway:bootBuildImage
 
 libs: package-kotlin
 docker: package-keycloak package-init package-config
