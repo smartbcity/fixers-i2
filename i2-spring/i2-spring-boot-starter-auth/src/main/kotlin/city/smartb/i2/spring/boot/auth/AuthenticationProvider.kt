@@ -11,6 +11,7 @@ import reactor.core.publisher.Mono
 import kotlin.coroutines.coroutineContext
 
 const val ORGANIZATION_ID_CLAIM_NAME = "memberOf"
+const val AZP_CLAIM_NAME = "azp"
 
 object AuthenticationProvider {
     suspend fun getSecurityContext(): SecurityContext? {
@@ -33,6 +34,10 @@ object AuthenticationProvider {
 
     suspend fun getIssuer(): String {
         return getPrincipal()?.issuer.toString()
+    }
+
+    suspend fun getClientId(): String? {
+        return getPrincipal()?.getClaim<String>(AZP_CLAIM_NAME)
     }
 
     suspend fun hasRole(role: String): Boolean {
