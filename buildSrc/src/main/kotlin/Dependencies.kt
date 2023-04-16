@@ -14,7 +14,6 @@ object PluginVersions {
 
 object Versions {
 	val f2 = PluginVersions.fixers
-	val s2 = PluginVersions.fixers
 	const val ktor = FixersVersions.Kotlin.ktor
 
 	const val springBoot = PluginVersions.springBoot
