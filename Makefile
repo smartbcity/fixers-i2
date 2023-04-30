@@ -15,7 +15,7 @@ I2_CONFIG_IMG	    := ${I2_CONFIG_NAME}:${VERSION}
 I2_CONFIG_PACKAGE	:= :i2-app:config:app-config-gateway:bootBuildImage
 
 libs: package-kotlin
-docker: docker-keycloak docker-init package-config
+docker: docker-keycloak docker-init docker-config
 docs: package-storybook
 
 package-kotlin:
