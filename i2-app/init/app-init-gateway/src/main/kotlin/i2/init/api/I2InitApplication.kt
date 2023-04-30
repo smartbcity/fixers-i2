@@ -1,15 +1,13 @@
-package i2.init.api.init
+package i2.init.api
 
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
-import org.springframework.boot.autoconfigure.domain.EntityScan
 
-@EntityScan("i2.init")
 @SpringBootApplication(scanBasePackages = ["i2.init"])
-class InitApplication
+class I2InitApplication
 
 fun main(args: Array<String>) {
-	SpringApplication(InitApplication::class.java).run {
+	SpringApplication(I2InitApplication::class.java).run {
 		run(*args)
 	}
 }

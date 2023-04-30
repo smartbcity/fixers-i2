@@ -1,5 +1,6 @@
-package i2.init.api.init.keycloak
+package i2.init.api.keycloak
 
+import i2.init.api.auth.KeycloakInitProperties
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.context.annotation.Bean
@@ -39,4 +40,20 @@ class KeycloakInitConfig {
     @Bean
     @ConfigurationProperties(prefix = "i2.init.base-roles")
     fun baseRoles(): List<String> = mutableListOf()
+
+    @Bean
+    fun keycloakInitProperties(): KeycloakInitProperties {
+        return KeycloakInitProperties(
+            smtpConfig = smtpConfig(),
+            realm = realm,
+            clientId = clientId,
+            clientSecret = clientSecret,
+            username = username,
+            password = password,
+            email = email,
+            firstname = firstname,
+            lastname = lastname,
+            baseRoles = baseRoles()
+        )
+    }
 }
