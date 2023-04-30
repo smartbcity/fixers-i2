@@ -10,6 +10,8 @@ i2:
     password: admin
     client-id: admin-cli
   init:
+    maxRetries: 5
+    retryDelayMillis: 10000
     realm: test
     smtp:
       host: me-email

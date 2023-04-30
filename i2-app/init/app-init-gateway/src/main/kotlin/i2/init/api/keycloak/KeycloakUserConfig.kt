@@ -1,4 +1,4 @@
-package i2.init.api.init.keycloak
+package i2.init.api.keycloak
 
 data class KeycloakUserConfig(
     val username: String,

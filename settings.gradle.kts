@@ -33,6 +33,9 @@ include(
     "i2-keycloak:keycloak-f2:group:i2-group-f2-query"
 )
 include(
+    "i2-keycloak:keycloak-f2:init:i2-init-command",
+)
+include(
     "i2-keycloak:keycloak-f2:realm:i2-realm-domain",
     "i2-keycloak:keycloak-f2:realm:i2-realm-f2-command",
     "i2-keycloak:keycloak-f2:realm:i2-realm-f2-query"
@@ -61,7 +64,6 @@ include(
 
 include(
     "i2-app:init:app-init-gateway",
-    "i2-app:init:app-init-service",
     "i2-app:config:app-config-gateway",
     "i2-app:config:app-config-service"
 )
