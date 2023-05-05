@@ -3,28 +3,22 @@ package i2.config.api.config.keycloak
 import com.fasterxml.jackson.core.JsonParser
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import org.springframework.boot.context.properties.ConfigurationProperties
 import java.io.File
 import java.net.MalformedURLException
 import java.net.URL
 import kotlin.system.exitProcess
 import org.slf4j.LoggerFactory
+import org.springframework.boot.context.properties.ConfigurationProperties
 
 const val FILE = "file:"
 
 @ConfigurationProperties(prefix = "i2")
 data class KeycloakConfigResolver (
-    val json: String?,
-    val config: KeycloakConfigProperties
+    val json: String
 ) {
     private val logger = LoggerFactory.getLogger(KeycloakConfigResolver::class.java)
 
     fun getConfiguration(): KeycloakConfigProperties {
-        if (json == null) {
-            logger.info("Loading configuration from env variables...")
-            return config
-        }
-
         try {
             logger.info("Loading configuration from json file [$json]...")
             return getFile(json).readText().parseTo(KeycloakConfigProperties::class.java)
