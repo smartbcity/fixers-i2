@@ -20,16 +20,12 @@ class KeycloakAdminConfig {
     @Value("\${i2.keycloak.client-secret}")
     lateinit var clientSecret: String
 
-
-    @Value("\${i2.keycloak.redirect-url}")
-    lateinit var redirectUrl: String
-
     @Bean
     fun authRealm() = AuthRealmClientSecret(
         serverUrl = serverUrl,
         realmId = realm,
         clientId = clientId,
         clientSecret = clientSecret,
-        redirectUrl = redirectUrl
+        redirectUrl = null
     )
 }
