@@ -1,7 +1,6 @@
-package i2.config.api.config.keycloak
+package i2.config.api.auth
 
-import i2.config.api.auth.KeycloakAggregateService
-import i2.config.api.auth.KeycloakFinderService
+import i2.config.api.auth.config.KeycloakConfigParser
 import i2.keycloak.f2.client.domain.ClientId
 import i2.keycloak.f2.role.domain.RoleName
 import java.util.UUID
@@ -13,17 +12,17 @@ const val SUPER_ADMIN_ROLE = "super_admin"
 const val ORGANIZATION_ID_CLAIM_NAME = "memberOf"
 
 @Service
-class KeycloakConfig(
+class KeycloakConfigService (
     private val keycloakAggregateService: KeycloakAggregateService,
-    private val keycloakFinderService: KeycloakFinderService,
-    private val keycloakConfigResolver: KeycloakConfigResolver
+    private val keycloakFinderService: KeycloakFinderService
 ) {
-    private val logger = LoggerFactory.getLogger(KeycloakConfig::class.java)
+    private val logger = LoggerFactory.getLogger(KeycloakConfigService::class.java)
 
-    fun run() {
-        val config = keycloakConfigResolver.getConfiguration()
+    fun run(configPath: String) {
+        val config = KeycloakConfigParser().getConfiguration(configPath)
         run(config)
     }
+
     fun run(config: KeycloakConfigProperties) = runBlocking {
         try {
             logger.info("Initializing Roles...")

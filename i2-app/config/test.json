@@ -16,8 +16,7 @@
       "realmManagementRoles": [
         "manage-users",
         "view-users",
-        "manage-groups",
-        "view-groups"
+        "query-groups"
       ]
     }
   ],
