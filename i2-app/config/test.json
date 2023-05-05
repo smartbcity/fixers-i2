@@ -1,30 +1,27 @@
 {
-  "webClient": {
-    "clientId": "plateform-web",
-    "webUrl": "https://json.com",
-    "localhostUrl": "http://localhost:3000"
-  },
-  "appClient": {
-    "clientId": "plateform-app"
-  },
-  "users": [
+  "webClients": [
     {
-      "username": "user1",
-      "email": "user1@email.com",
-      "password": "user1user",
-      "firstname": "user1",
-      "lastname": "user1",
-      "role": "admin"
-    },
-    {
-      "username": "user2",
-      "email": "user2@email.com",
-      "password": "user2user",
-      "firstname": "user2",
-      "lastname": "user2",
-      "role": "admin"
+      "clientId": "sb-plateform-web",
+      "webUrl": "https://json.com"
     }
   ],
+  "appClients": [
+    {
+      "clientId": "sb-plateform-app",
+      "clientSecret": "secretsecret",
+      "roles": [
+        "role1",
+        "role2"
+      ],
+      "realmManagementRoles": [
+        "manage-users",
+        "view-users",
+        "manage-groups",
+        "view-groups"
+      ]
+    }
+  ],
+  "users": [],
   "roles": [
     "admin",
     "role1",

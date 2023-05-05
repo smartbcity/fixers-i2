@@ -4,39 +4,8 @@ spring:
 
 i2:
   keycloak:
-    auth-server-url: http://localhost:8080/auth
-    realm: boislocal-local
-    client-id: i2-admin
-    client-secret: secret
-#  json: file:/Users/teddy/workspace/i2/i2-config/api-config/test.json
-  config:
-    web-client:
-      client-id: boislocal-web
-      web-url: https://application.com
-      localhost-url: http://localhost:3000
-    app-client:
-      client-id: boislocal-api
-      roles:
-        - test
-      realmManagementRoles:
-        - manage-users
-        - view-users
-        - query-groups
-    roles:
-      - test
-#    users:
-#      -
-#        username: user1
-#        email: user1@mail.com
-#        password: user1user
-#        firstname: user1
-#        lastname: user1
-#        role: admin
-#    roles:
-#      - test
-#      - role1
-#      - role2
-#      - role3
-#    role-composites:
-#      admin: ["role1"]
-#      role1: ["role2", "role3"]
+    auth-server-url: https://localhost:8080/auth
+    realm: test
+    client-id: sb-realm-manager-app
+    client-secret: secretsecret
+  json: file:/Users/teddy/workspace/i2/i2-app/config/test.json
