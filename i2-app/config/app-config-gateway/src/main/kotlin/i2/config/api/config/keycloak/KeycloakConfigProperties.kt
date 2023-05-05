@@ -4,8 +4,8 @@ class KeycloakConfigProperties (
     val users: List<KeycloakUserConfig>?,
     val roles: List<String>?,
     val roleComposites: Map<String, List<String>>?,
-    val webClient: WebClient,
-    val appClient: AppClient
+    val webClients: List<WebClient>,
+    val appClients: List<AppClient>
 )
 
 class KeycloakUserConfig(
@@ -18,17 +18,13 @@ class KeycloakUserConfig(
 )
 
 class WebClient (
-    override val clientId: String,
-    override val roles: Array<String>?,
-    override val realmManagementRoles: Array<String>?,
-    override val secret: String?,
-    val webUrl: String,
-    val localhostUrl: String?
-): AppClient(clientId = clientId, secret = secret, roles = roles, realmManagementRoles = realmManagementRoles)
+    val clientId: String,
+    val webUrl: String
+)
 
-open class AppClient (
-    open val clientId: String,
-    open val secret: String?,
-    open val roles: Array<String>?,
-    open val realmManagementRoles: Array<String>?
+class AppClient (
+    val clientId: String,
+    val clientSecret: String?,
+    val roles: Array<String>?,
+    val realmManagementRoles: Array<String>?
 )
