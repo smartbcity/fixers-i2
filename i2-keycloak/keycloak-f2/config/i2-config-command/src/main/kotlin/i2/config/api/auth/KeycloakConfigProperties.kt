@@ -1,4 +1,4 @@
-package i2.config.api.config.keycloak
+package i2.config.api.auth
 
 class KeycloakConfigProperties (
     val users: List<KeycloakUserConfig>?,
