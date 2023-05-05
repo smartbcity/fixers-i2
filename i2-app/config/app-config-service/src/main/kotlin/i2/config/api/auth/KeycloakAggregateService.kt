@@ -46,7 +46,6 @@ class KeycloakAggregateService(
         authorizationServicesEnabled: Boolean = false,
         isStandardFlowEnabled: Boolean = false,
         baseUrl: String? = null,
-        localhostUrl: String? = null,
         protocolMappers: Map<String, String> = emptyMap(),
     ): ClientId {
         return ClientCreateCommand(
@@ -60,10 +59,10 @@ class KeycloakAggregateService(
             authorizationServicesEnabled = authorizationServicesEnabled,
             isStandardFlowEnabled = isStandardFlowEnabled,
             rootUrl = baseUrl,
-            redirectUris = listOfNotNull(baseUrl, localhostUrl),
+            redirectUris = listOfNotNull(baseUrl),
             baseUrl = baseUrl ?: "",
             adminUrl = baseUrl ?: "",
-            webOrigins = listOfNotNull(baseUrl, localhostUrl),
+            webOrigins = listOfNotNull(baseUrl),
             protocolMappers = protocolMappers,
         ).invokeWith(clientCreateFunction).id
     }
