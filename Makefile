@@ -15,8 +15,11 @@ I2_CONFIG_IMG	    := ${I2_CONFIG_NAME}:${VERSION}
 I2_CONFIG_PACKAGE	:= :i2-app:config:app-config-gateway:bootBuildImage
 
 libs: package-kotlin
-docker: docker-keycloak docker-init docker-config
+docker: docker-build docker-push
 docs: package-storybook
+
+docker-build: docker-keycloak-build docker-init-build docker-config-build
+docker-push: docker-keycloak-push docker-init-push docker-config-push
 
 package-kotlin:
 	./gradlew build publish -x test --stacktrace
@@ -25,15 +28,21 @@ package-storybook:
 	@docker build -f ${STORYBOOK_DOCKERFILE} -t ${STORYBOOK_IMG} .
 	@docker push ${STORYBOOK_IMG}
 
-docker-keycloak:
+docker-keycloak-build:
 	./gradlew i2-keycloak:keycloak-plugin:shadowJar
 	@docker build -f ${KEYCLOAK_DOCKERFILE} -t ${KEYCLOAK_IMG} .
+
+docker-keycloak-push:
 	@docker push ${KEYCLOAK_IMG}
 
-docker-init:
+docker-init-build:
 	VERSION=${VERSION} ./gradlew build ${I2_INIT_PACKAGE} -x test --stacktrace
+
+docker-init-push:
 	@docker push ${I2_INIT_IMG}
 
-docker-config:
+docker-config-build:
 	VERSION=${VERSION} ./gradlew build ${I2_CONFIG_PACKAGE} -x test --stacktrace
+
+docker-config-push:
 	@docker push ${I2_CONFIG_IMG}
