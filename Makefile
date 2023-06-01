@@ -25,7 +25,7 @@ package-kotlin:
 	./gradlew build publish -x test --stacktrace
 
 package-storybook:
-	@docker build -f ${STORYBOOK_DOCKERFILE} -t ${STORYBOOK_IMG} .
+	@docker build --build-arg CI_NPM_AUTH_TOKEN=${CI_NPM_AUTH_TOKEN} -f ${STORYBOOK_DOCKERFILE} -t ${STORYBOOK_IMG} .
 	@docker push ${STORYBOOK_IMG}
 
 docker-keycloak-build:
