@@ -32,3 +32,5 @@ i2:
       - im_read_role
       - im_write_role
       - im_write_my_organization
+      - admin
+      - user
