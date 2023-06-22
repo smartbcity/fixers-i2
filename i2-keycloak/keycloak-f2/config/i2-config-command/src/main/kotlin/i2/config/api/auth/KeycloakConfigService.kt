@@ -1,8 +1,7 @@
-package i2.config.api.config.keycloak
+package i2.config.api.auth
 
-import i2.config.api.auth.KeycloakAggregateService
-import i2.config.api.auth.KeycloakFinderService
-import i2.keycloak.f2.client.domain.ClientIdentifier
+import i2.config.api.auth.config.KeycloakConfigParser
+import i2.keycloak.f2.client.domain.ClientId
 import i2.keycloak.f2.role.domain.RoleName
 import java.util.UUID
 import kotlinx.coroutines.runBlocking
@@ -13,17 +12,17 @@ const val SUPER_ADMIN_ROLE = "super_admin"
 const val ORGANIZATION_ID_CLAIM_NAME = "memberOf"
 
 @Service
-class KeycloakConfig(
+class KeycloakConfigService (
     private val keycloakAggregateService: KeycloakAggregateService,
-    private val keycloakFinderService: KeycloakFinderService,
-    private val keycloakConfigResolver: KeycloakConfigResolver
+    private val keycloakFinderService: KeycloakFinderService
 ) {
-    private val logger = LoggerFactory.getLogger(KeycloakConfig::class.java)
+    private val logger = LoggerFactory.getLogger(KeycloakConfigService::class.java)
 
-    fun run() {
-        val config = keycloakConfigResolver.getConfiguration()
+    fun run(configPath: String) {
+        val config = KeycloakConfigParser().getConfiguration(configPath)
         run(config)
     }
+
     fun run(config: KeycloakConfigProperties) = runBlocking {
         try {
             logger.info("Initializing Roles...")
@@ -31,8 +30,8 @@ class KeycloakConfig(
             logger.info("Initialized Roles")
 
             logger.info("Initializing Clients...")
-            initApp(config.appClient)
-            initWeb(config.webClient)
+            config.webClients.forEach { initWebClient(it) }
+            config.appClients.forEach { initAppClient(it) }
             logger.info("Initialized Client")
 
             logger.info("Initializing Users...")
@@ -43,44 +42,54 @@ class KeycloakConfig(
         }
     }
 
-    private suspend fun initApp(appClient: AppClient) = appClient.createClientIfNotExists { clientId ->
-        val secret = appClient.secret ?: UUID.randomUUID().toString()
-        keycloakAggregateService.createClient(
-            identifier = clientId,
-            secret = secret,
-            isPublic = false
-        )
-        logger.info("App secret: $secret")
+    private suspend fun checkIfExists(clientId: ClientId): Boolean {
+        return if (keycloakFinderService.getClient(clientId) != null) {
+            logger.info("Client [$clientId] already exists.")
+            true
+        } else {
+            false
+        }
     }
 
-    private suspend fun initWeb(webClient: WebClient) = webClient.createClientIfNotExists { clientId ->
-        val secret = webClient.secret ?: UUID.randomUUID().toString()
-        keycloakAggregateService.createClient(
-            identifier = clientId,
-            secret = secret,
-            baseUrl = webClient.webUrl,
-            localhostUrl = webClient.localhostUrl,
-            isStandardFlowEnabled = true,
-            protocolMappers = mapOf(ORGANIZATION_ID_CLAIM_NAME to ORGANIZATION_ID_CLAIM_NAME),
-        )
+    private suspend fun initAppClient(appClient: AppClient) {
+        if (!checkIfExists(appClient.clientId)) {
+            val secret = appClient.clientSecret ?: UUID.randomUUID().toString()
+            keycloakAggregateService.createClient(
+                identifier = appClient.clientId,
+                secret = secret,
+                isPublic = false,
+                isServiceAccountsEnabled = true,
+                isDirectAccessGrantsEnabled = false,
+                isStandardFlowEnabled = false
+            ).let {
+                appClient.roles?.toList()?.let { list ->
+                    keycloakAggregateService.grantClient(
+                        id = appClient.clientId,
+                        roles = list
+                    )
+                }
+                appClient.realmManagementRoles?.toList()?.let { list ->
+                    keycloakAggregateService.grantRealmManagementClient(
+                        id = appClient.clientId,
+                        roles = list,
+                    )
+                }
+            }
+            logger.info("App secret: $secret")
+        }
     }
 
-    private suspend fun AppClient.createClientIfNotExists(
-        createClient: suspend (id: ClientIdentifier) -> Unit
-    ) {
-        keycloakFinderService.getClient(clientId) ?: createClient(clientId).let {
-            roles?.toList()?.let { list ->
-                keycloakAggregateService.grantClient(
-                    id = clientId,
-                    roles = list
-                )
-            }
-            realmManagementRoles?.toList()?.let { list ->
-                keycloakAggregateService.grantRealmManagementClient(
-                    id = clientId,
-                    roles = list,
-                )
-            }
+    private suspend fun initWebClient(webClient: WebClient) {
+        if (!checkIfExists(webClient.clientId)) {
+            keycloakAggregateService.createClient(
+                identifier = webClient.clientId,
+                baseUrl = webClient.webUrl,
+                isStandardFlowEnabled = true,
+                isDirectAccessGrantsEnabled = false,
+                isServiceAccountsEnabled = false,
+                isPublic = true,
+                protocolMappers = mapOf(ORGANIZATION_ID_CLAIM_NAME to ORGANIZATION_ID_CLAIM_NAME),
+            )
         }
     }
 

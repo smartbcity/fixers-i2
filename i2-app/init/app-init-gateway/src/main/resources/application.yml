@@ -20,7 +20,9 @@ i2:
       ssl: false
       starttls: false
       auth: false
-    admin-client: i2-api
+    admin-client:
+      name: sb-realm-manager-app
+      secret: secretsecret
     base-roles:
       - super_admin
       - im_read_user
@@ -29,3 +31,6 @@ i2:
       - im_read_organization
       - im_read_role
       - im_write_role
+      - im_write_my_organization
+      - admin
+      - user

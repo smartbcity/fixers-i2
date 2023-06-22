@@ -1,9 +1,9 @@
-package i2.config.api.config.keycloak
+package i2.config.api.auth.config
 
 import com.fasterxml.jackson.core.JsonParser
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import org.springframework.boot.context.properties.ConfigurationProperties
+import i2.config.api.auth.KeycloakConfigProperties
 import java.io.File
 import java.net.MalformedURLException
 import java.net.URL
@@ -12,24 +12,15 @@ import org.slf4j.LoggerFactory
 
 const val FILE = "file:"
 
-@ConfigurationProperties(prefix = "i2")
-data class KeycloakConfigResolver (
-    val json: String?,
-    val config: KeycloakConfigProperties
-) {
-    private val logger = LoggerFactory.getLogger(KeycloakConfigResolver::class.java)
+class KeycloakConfigParser {
+    private val logger = LoggerFactory.getLogger(KeycloakConfigParser::class.java)
 
-    fun getConfiguration(): KeycloakConfigProperties {
-        if (json == null) {
-            logger.info("Loading configuration from env variables...")
-            return config
-        }
-
+    fun getConfiguration(configPath: String): KeycloakConfigProperties {
         try {
-            logger.info("Loading configuration from json file [$json]...")
-            return getFile(json).readText().parseTo(KeycloakConfigProperties::class.java)
+            logger.info("Loading configuration from json file [$configPath]...")
+            return getFile(configPath).readText().parseTo(KeycloakConfigProperties::class.java)
         } catch (e: Exception) {
-            logger.error("Error configuration from json file [${json}]", e)
+            logger.error("Error configuration from json file [${configPath}]", e)
             exitProcess(-1)
         }
     }
