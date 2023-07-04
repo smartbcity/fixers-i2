@@ -46,3 +46,6 @@ docker-config-build:
 
 docker-config-push:
 	@docker push ${I2_CONFIG_IMG}
+
+## DEV ENVIRONMENT
+include infra/docker-compose/dev-compose.mk
