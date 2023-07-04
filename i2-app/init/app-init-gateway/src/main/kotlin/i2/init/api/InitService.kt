@@ -2,8 +2,7 @@ package i2.init.api
 
 import i2.init.api.auth.KeycloakInitProperties
 import i2.init.api.auth.KeycloakInitService
-import i2.init.api.config.I2InitProperties
-import kotlinx.coroutines.delay
+import i2.init.api.config.KcInitProperties
 import kotlinx.coroutines.runBlocking
 import org.slf4j.LoggerFactory
 import org.springframework.boot.CommandLineRunner
@@ -15,7 +14,7 @@ class InitService(
     private val context: ConfigurableApplicationContext,
     private val keycloakInitService: KeycloakInitService,
     private val keycloakInitProperties: KeycloakInitProperties,
-    private val i2Initproperties: I2InitProperties
+    private val i2Initproperties: KcInitProperties
 ) : CommandLineRunner {
 
     private val log = LoggerFactory.getLogger(InitService::class.java)

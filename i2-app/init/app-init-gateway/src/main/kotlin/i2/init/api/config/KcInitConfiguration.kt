@@ -4,7 +4,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Configuration
 
 @Configuration
-@EnableConfigurationProperties(I2InitProperties::class)
-class I2InitConfig {
+@EnableConfigurationProperties(KcInitProperties::class)
+class KcInitConfiguration {
 
 }
