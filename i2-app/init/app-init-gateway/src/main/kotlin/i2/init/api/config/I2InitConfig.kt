@@ -5,4 +5,6 @@ import org.springframework.context.annotation.Configuration
 
 @Configuration
 @EnableConfigurationProperties(I2InitProperties::class)
-class I2InitConfig
+class I2InitConfig {
+
+}
