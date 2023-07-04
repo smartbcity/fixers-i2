@@ -6,6 +6,4 @@ import org.springframework.context.annotation.Configuration
 
 @Configuration
 @EnableConfigurationProperties(ConfigurationProperties::class)
-class KCConfigConfiguration {
-
-}
+class KCConfigConfiguration
