@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Configuration
 
 @Configuration
 class KeycloakInitConfig {
-
     @Bean
     @ConfigurationProperties(prefix = "i2.init.smtp")
     fun smtpConfig(): Map<String, String> = mutableMapOf()

@@ -1,21 +1,11 @@
 package i2.init.api.config
 
-import i2.keycloak.master.domain.AuthRealmPassword
+import i2.app.core.KcAuthConfiguration
+import i2.app.core.KcAuthProperties
+import i2.init.api.auth.KeycloakInitProperties
 import org.springframework.boot.context.properties.EnableConfigurationProperties
-import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
 @Configuration
-@EnableConfigurationProperties(value = [KcInitProperties::class, I2KeycloakProperties::class])
-class KcInitConfiguration {
-    @Bean
-    fun authRealm(properties: I2KeycloakProperties) = AuthRealmPassword(
-        serverUrl = properties.authServerUrl,
-        realmId = properties.realm,
-        redirectUrl = "",
-        clientId = properties.clientId,
-        username = properties.username,
-        password = properties.password
-    )
-
-}
+@EnableConfigurationProperties(value = [KcAuthProperties::class, KcInitProperties::class])
+class KcInitConfiguration : KcAuthConfiguration()

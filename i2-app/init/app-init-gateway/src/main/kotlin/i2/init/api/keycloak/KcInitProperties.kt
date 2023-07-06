@@ -1,11 +1,5 @@
 package i2.init.api.keycloak
 
-import i2.init.api.auth.KeycloakInitProperties
-import org.springframework.beans.factory.annotation.Value
-import org.springframework.boot.context.properties.ConfigurationProperties
-import org.springframework.context.annotation.Bean
-import org.springframework.context.annotation.Configuration
-
 data class KcInitUserProperties(
     val username: String? = null,
     val password: String? = null,

@@ -4,7 +4,7 @@ spring:
 
 i2:
   keycloak:
-    authServerUrl: http://keycloak-it:8080/auth
+    serverUrl: http://keycloak-it:8080/auth
     realm: master
     username: root
     password: root
