@@ -14,21 +14,19 @@ class InitService(
     private val context: ConfigurableApplicationContext,
     private val keycloakInitService: KeycloakInitService,
     private val keycloakInitProperties: KeycloakInitProperties,
-    private val i2Initproperties: KcInitProperties
+    private val i2InitProperties: KcInitProperties
 ) : CommandLineRunner {
 
     private val log = LoggerFactory.getLogger(InitService::class.java)
 
     override fun run(vararg args: String?) = runBlocking {
-        val success = retryWithExceptions(i2Initproperties.maxRetries, i2Initproperties.retryDelayMillis, log) {
+        val success = retryWithExceptions(i2InitProperties.maxRetries, i2InitProperties.retryDelayMillis, log) {
             keycloakInitService.init(keycloakInitProperties)
         }
-
         if (!success) {
             log.error("Could not initialize Keycloak. Exiting application.")
             // Handle the situation when initialization failed after all attempts
         }
-
         context.close()
     }
 }
