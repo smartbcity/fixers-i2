@@ -1,4 +1,4 @@
-package i2.init.api
+package i2.app.core
 
 import kotlinx.coroutines.delay
 import org.slf4j.Logger

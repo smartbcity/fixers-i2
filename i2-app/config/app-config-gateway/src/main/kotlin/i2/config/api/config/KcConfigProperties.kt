@@ -2,7 +2,9 @@ package i2.config.api.config
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 
-@ConfigurationProperties(prefix = "i2")
+@ConfigurationProperties(prefix = "i2.config")
 class KcConfigProperties(
-    var configPath: String
+    val maxRetries: Int,
+    val retryDelayMillis: Long,
+    var json: String,
 )

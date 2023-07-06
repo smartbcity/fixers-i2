@@ -3,7 +3,7 @@ plugins {
     id("city.smartb.fixers.gradle.kotlin.jvm")
     kotlin("plugin.spring")
     kotlin("kapt")
-    id("org.graalvm.buildtools.native")
+//    id("org.graalvm.buildtools.native")
 }
 
 dependencies {
