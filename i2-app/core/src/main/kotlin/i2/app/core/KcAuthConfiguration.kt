@@ -18,20 +18,21 @@ data class KcAuthProperties(
     val password: String? = null,
 )
 
+@SuppressWarnings("UnnecessaryAbstractClass")
 abstract class KcAuthConfiguration {
 
     @Bean
     open fun authRealm(properties: KcAuthProperties): AuthRealm {
-        if(properties.clientSecret != null)
-            return AuthRealmClientSecret(
+        return if (properties.clientSecret != null) {
+            AuthRealmClientSecret(
                 serverUrl = properties.serverUrl,
                 realmId = properties.realm,
                 clientId = properties.clientId,
                 clientSecret = properties.clientSecret,
                 redirectUrl = null
             )
-        else if (properties.username != null && properties.password != null)
-            return AuthRealmPassword(
+        } else if (properties.username != null && properties.password != null) {
+            AuthRealmPassword(
                 serverUrl = properties.serverUrl,
                 realmId = properties.realm,
                 clientId = properties.clientId,
@@ -39,7 +40,8 @@ abstract class KcAuthConfiguration {
                 password = properties.password,
                 redirectUrl = ""
             )
-        else
+        } else {
             throw IllegalStateException("Either clientSecret or username and password must be provided")
+        }
     }
 }
