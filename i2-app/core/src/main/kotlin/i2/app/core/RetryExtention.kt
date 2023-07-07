@@ -1,4 +1,4 @@
-package i2.init.api
+package i2.app.core
 
 import kotlinx.coroutines.delay
 import org.slf4j.Logger
@@ -13,6 +13,9 @@ suspend fun retryWithExceptions(
 
     while (attempts < maxRetries && !success) {
         try {
+            logger.info("////////////////////////////////////////////////////")
+            logger.info("Retrying action (attempt $attempts of ${maxRetries})")
+            logger.info("////////////////////////////////////////////////////")
             action()
             success = true
         } catch (ex: Exception) {

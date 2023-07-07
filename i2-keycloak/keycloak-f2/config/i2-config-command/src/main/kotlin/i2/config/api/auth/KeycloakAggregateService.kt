@@ -1,7 +1,6 @@
 package i2.config.api.auth
 
 import f2.dsl.fnc.invokeWith
-import i2.config.api.auth.config.KeycloakAdminConfig
 import i2.keycloak.f2.client.domain.ClientId
 import i2.keycloak.f2.client.domain.ClientIdentifier
 import i2.keycloak.f2.client.domain.features.command.ClientCreateCommand
@@ -28,7 +27,6 @@ import org.springframework.stereotype.Service
 class KeycloakAggregateService(
     private val authRealm: AuthRealm,
     private val clientCreateFunction: ClientCreateFunction,
-    private val keycloakConfig: KeycloakAdminConfig,
     private val roleAddCompositesFunction: RoleAddCompositesFunction,
     private val roleCreateFunction: RoleCreateFunction,
     private val userCreateFunction: UserCreateFunction,
@@ -50,7 +48,7 @@ class KeycloakAggregateService(
     ): ClientId {
         return ClientCreateCommand(
             auth = authRealm,
-            realmId = keycloakConfig.realm,
+            realmId = authRealm.realmId,
             clientIdentifier = identifier,
             secret = secret,
             isPublicClient = isPublic,
@@ -74,7 +72,7 @@ class KeycloakAggregateService(
             isClientRole = false,
             composites = emptyList(),
             auth = authRealm,
-            realmId = keycloakConfig.realm
+            realmId = authRealm.realmId
         ).invokeWith(roleCreateFunction).id
     }
 
@@ -83,7 +81,7 @@ class KeycloakAggregateService(
             roleName = role,
             composites = composites,
             auth = authRealm,
-            realmId = keycloakConfig.realm
+            realmId = authRealm.realmId
         ).invokeWith(roleAddCompositesFunction).id
     }
 
@@ -115,7 +113,7 @@ class KeycloakAggregateService(
             id = id,
             roles = roles.toList(),
             auth = authRealm,
-            realmId = keycloakConfig.realm
+            realmId = authRealm.realmId
         ).invokeWith(userRolesGrantFunction)
     }
 
@@ -124,7 +122,7 @@ class KeycloakAggregateService(
             id = id,
             roles = roles,
             auth = authRealm,
-            realmId = keycloakConfig.realm
+            realmId = authRealm.realmId
         ).invokeWith(clientServiceAccountRolesGrantFunction)
     }
 
@@ -133,7 +131,7 @@ class KeycloakAggregateService(
             id = id,
             roles = roles,
             auth = authRealm,
-            realmId = keycloakConfig.realm
+            realmId = authRealm.realmId
         ).invokeWith(clientRealmManagementRolesGrantFunction)
     }
 }

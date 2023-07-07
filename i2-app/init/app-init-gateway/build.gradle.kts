@@ -3,10 +3,11 @@ plugins {
     id("city.smartb.fixers.gradle.kotlin.jvm")
     kotlin("plugin.spring")
     kotlin("kapt")
-    id("org.graalvm.buildtools.native")
+//    id("org.graalvm.buildtools.native")
 }
 
 dependencies {
+    implementation(project(":i2-app:core"))
     implementation(project(":i2-keycloak:keycloak-f2:init:i2-init-command"))
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 

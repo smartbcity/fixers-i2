@@ -4,8 +4,11 @@ spring:
 
 i2:
   keycloak:
-    auth-server-url: https://localhost:8080/auth
+    serverUrl: http://keycloak-it:8080/auth
     realm: test
-    client-id: sb-realm-manager-app
-    client-secret: secretsecret
-  json: file:/Users/teddy/workspace/i2/i2-app/config/test.json
+    clientId: i2-test-client
+    client-Secret: secret
+  config:
+    maxRetries: 5
+    retryDelayMillis: 10000
+    json: file:./i2-app/config/test.json
