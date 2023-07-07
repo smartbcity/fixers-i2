@@ -13,6 +13,11 @@ suspend fun retryWithExceptions(
 
     while (attempts < maxRetries && !success) {
         try {
+            if(attempts != 0) {
+                logger.info("////////////////////////////////////////////////////")
+                logger.info("Retrying action (attempt $attempts of ${maxRetries})")
+                logger.info("////////////////////////////////////////////////////")
+            }
             action()
             success = true
         } catch (ex: Exception) {

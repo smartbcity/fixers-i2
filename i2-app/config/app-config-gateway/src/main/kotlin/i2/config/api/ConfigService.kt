@@ -19,8 +19,7 @@ class ConfigService(
     private val logger = LoggerFactory.getLogger(ConfigService::class.java)
     override fun run(vararg args: String?) = runBlocking {
         val success = retryWithExceptions(keycloakConfig.maxRetries, keycloakConfig.retryDelayMillis, logger) {
-        keycloakConfigService.run(keycloakConfig.json)
-        context.close()
+            keycloakConfigService.run(keycloakConfig.json)
         }
         if (!success) {
             logger.error("Could not initialize Keycloak. Exiting application.")
