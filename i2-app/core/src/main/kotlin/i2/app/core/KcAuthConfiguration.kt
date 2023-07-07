@@ -3,10 +3,8 @@ package i2.app.core
 import i2.keycloak.master.domain.AuthRealm
 import i2.keycloak.master.domain.AuthRealmClientSecret
 import i2.keycloak.master.domain.AuthRealmPassword
-import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.context.annotation.Bean
-import org.springframework.context.annotation.Configuration
 
 @ConfigurationProperties("i2.keycloak")
 data class KcAuthProperties(
