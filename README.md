@@ -264,9 +264,10 @@ Data created are stored in a json file (pay attention to your mounted volume on 
 
 See more [here](https://docs.smartb.city/im).
 
-# Keycloak Plugin
+# Keycloak
 
-## Create a plugin
+## Keycloak plugin
+### Create a plugin
 
 1. Create a module inside `i2-keycloak:keycloak-plugin`
 2. Build it with `./gradlew i2-keycloak:keycloak-plugin:shadowJar`
@@ -275,7 +276,7 @@ See more [here](https://docs.smartb.city/im).
 
 (steps 2 and 3 can be done automatically with `make package-keycloak`)
 
-## I2-Event-HTTP
+### I2-Event-HTTP
 
 client ("xxx-web" + "account") hardcoded claim: `event-http-wehbook` = url to send the events to   
  > if local and keycloak is within docker container, use ip address instead of localhost
@@ -297,3 +298,14 @@ class KeycloakEventEndpoint(
     }
 }
 ```
+
+## Keycloak Docker
+
+In response to the changes introduced in Keycloak 17, 
+we have developed two Docker images for Keycloak servlets. 
+Each image deals with the `/auth` context path differently, 
+allowing you to choose based on your project's needs.
+
+* `smartbcity/i2-keycloak` corresponds to the Keycloak 17 default, without the `/auth` path.
+
+* `smartbcity/i2-keycloak-auth` adds back the /auth path during the build, catering to setups that still rely on this path.
