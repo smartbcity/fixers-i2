@@ -64,7 +64,7 @@ include(
 )
 
 include(
-    "i2-app:core",
-    "i2-app:init:app-init-gateway",
-    "i2-app:config:app-config-gateway"
+    "i2-keycloak:keycloak-app:core",
+    "i2-keycloak:keycloak-app:init:app-init-gateway",
+    "i2-keycloak:keycloak-app:config:app-config-gateway"
 )

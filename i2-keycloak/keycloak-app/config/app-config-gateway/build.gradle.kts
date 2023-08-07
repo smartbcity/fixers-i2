@@ -6,7 +6,7 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":i2-app:core"))
+    implementation(project(":i2-keycloak:keycloak-app:core"))
     implementation(project(":i2-keycloak:keycloak-f2:config:i2-config-command"))
     Dependencies.Jvm.f2Http(::implementation)
     Dependencies.Jvm.slf4j(::implementation)
