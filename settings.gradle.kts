@@ -59,8 +59,8 @@ include(
     "i2-keycloak:keycloak-plugin:keycloak-plugin-domain",
 )
 include(
-    "i2-test:test-bdd",
-    "i2-test:test-it"
+    "i2-keycloak:keycloak-test:test-bdd",
+    "i2-keycloak:keycloak-test:test-it"
 )
 
 include(
